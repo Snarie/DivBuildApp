@@ -1,0 +1,457 @@
+﻿<Window x:Class="DivBuildApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DivBuildApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920" Background="Black">
+    <Window.Resources>
+
+    </Window.Resources> 
+
+    <Viewbox>
+        <Grid x:Name="grid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="DumpBlock" Foreground="white" HorizontalAlignment="Left" Margin="120,0,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Width="200" Grid.Column="3" Grid.Row="0" Grid.RowSpan="5" FontSize="8"/>
+
+            <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,39,0,0" />
+
+            <Grid x:Name="MaskGrid" Grid.Column="1" Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="132"/>
+                    <ColumnDefinition Width="138"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="MaskBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+                <Label x:Name="MaskName" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2">
+                    <!--Dummy data-->
+                    <Label.Content >Airalidi</Label.Content>
+                </Label>
+                <TextBlock x:Name="MaskBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" >
+                    <!--Dummy data-->
+                    <Run Text="+15%" Foreground="Goldenrod" /><Run Text="MMR_Damage" Foreground="White"/>
+                </TextBlock>
+                <TextBlock x:Name="MaskBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" >
+                    <!--Dummy data-->
+                    <Run Text="+15%" Foreground="Goldenrod"/><Run Text="Headshot_Damage" Foreground="White"/>
+                </TextBlock>
+                <TextBlock x:Name="MaskBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" >
+                    <!--Dummy data-->
+                    <Run Text="+40%" Foreground="Goldenrod"/><Run Text="Disrupt Resistance" Foreground="White"/><LineBreak/><Run Text="+40%" Foreground="Goldenrod"/><Run Text="Pulse Resistance" Foreground="White"/>
+                </TextBlock>
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+                <ComboBox x:Name="MaskBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskCoreStat"  Grid.Column="3" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+            </Grid>
+            <Grid x:Name="BackpackGrid" Grid.Column="2" Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="132"/>
+                    <ColumnDefinition Width="138"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="BackpackBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+                <Label x:Name="BackpackName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="BackpackBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
+                <TextBlock x:Name="BackpackBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
+                <TextBlock x:Name="BackpackBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+                <ComboBox x:Name="BackpackBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackCoreStat"  Grid.Column="3" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+            </Grid>
+
+            <Grid x:Name="ChestGrid" Grid.Column="1" Grid.Row="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="132"/>
+                    <ColumnDefinition Width="138"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="ChestBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+                <Label x:Name="ChestName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="ChestBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
+                <TextBlock x:Name="ChestBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
+                <TextBlock x:Name="ChestBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+                <ComboBox x:Name="ChestBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestCoreStat"  Grid.Column="3" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+            </Grid>
+
+            <Grid x:Name="GlovesGrid" Grid.Column="2" Grid.Row="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="132"/>
+                    <ColumnDefinition Width="138"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="GlovesBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+                <Label x:Name="GlovesName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="GlovesBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
+                <TextBlock x:Name="GlovesBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
+                <TextBlock x:Name="GlovesBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+                <ComboBox x:Name="GlovesBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesCoreStat"  Grid.Column="3" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+            </Grid>
+
+            <Grid x:Name="HolsterGrid" Grid.Column="1" Grid.Row="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="132"/>
+                    <ColumnDefinition Width="138"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="HolsterBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+                <Label x:Name="HolsterName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="HolsterBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
+                <TextBlock x:Name="HolsterBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
+                <TextBlock x:Name="HolsterBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+                <ComboBox x:Name="HolsterBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterCoreStat"  Grid.Column="3" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+            </Grid>
+
+            <Grid x:Name="KneepadsGrid" Grid.Column="2" Grid.Row="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="132"/>
+                    <ColumnDefinition Width="138"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="KneepadsBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+                <Label x:Name="KneepadsName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="KneepadsBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
+                <TextBlock x:Name="KneepadsBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
+                <TextBlock x:Name="KneepadsBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+                <ComboBox x:Name="KneepadsBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsCoreStat"  Grid.Column="3" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+            </Grid>
+            
+            <TextBlock x:Name="ErrorBlock" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="89,107,0,0" Padding="0,0,0,0" TextWrapping="Wrap" Text="No errors?" VerticalAlignment="Top" FontSize="11"/>
+
+            <Grid Grid.Column="4" Grid.Row="3" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderThickness="0" Grid.ColumnSpan="2" Background="Crimson" />
+                <Border BorderBrush="White" BorderThickness="1,0,1,0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="12"/>
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="11"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="4" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="5" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="6" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="7" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="8" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="9" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="10" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="11" Grid.ColumnSpan="2"/>
+                
+                <Label x:Name="CHC_Name" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Critical Hit Chance"/>
+                <Label x:Name="CHC_Value" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="CHD_Name" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Critical Hit Damage"/>
+                <Label x:Name="CHD_Value" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="HeadshotDMG_Name" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Headshot Damage"/>
+                <Label x:Name="HeadshotDMG_Value" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="DMGooC_Name" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Damage out of Cover"/>
+                <Label x:Name="DMGooC_Value" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="ArmorDMG_Name" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Damage" />
+                <Label x:Name="ArmorDMG_Value" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="HealthDMG_Name" Grid.Column="0" Grid.Row="6" Style="{StaticResource StatNameDisplayStyle}" Content="Health Damage" />
+                <Label x:Name="HealthDMG_Value" Grid.Column="0" Grid.Row="6" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="WeaponHandling_Name" Grid.Column="0" Grid.Row="7" Style="{StaticResource StatNameDisplayStyle}" Content="Weapon Handling"/>
+                <Label x:Name="WeaponHandling_Value" Grid.Column="0" Grid.Row="7" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="Accuracy_Name" Grid.Column="0" Grid.Row="8" Style="{StaticResource StatNameDisplayStyle}" Content="Accuracy"/>
+                <Label x:Name="Accuracy_Value" Grid.Column="0" Grid.Row="8" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="Stability_Name" Grid.Column="0" Grid.Row="9" Style="{StaticResource StatNameDisplayStyle}" Content="Stability"/>
+                <Label x:Name="Stability_Value" Grid.Column="0" Grid.Row="9" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="ReloadSpeed_Name" Grid.Column="0" Grid.Row="10" Style="{StaticResource StatNameDisplayStyle}" Content="Reload Speed"/>
+                <Label x:Name="ReloadSpeed_Value" Grid.Column="0" Grid.Row="10" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SwapSpeed_Name" Grid.Column="0" Grid.Row="11" Style="{StaticResource StatNameDisplayStyle}" Content="Swap Speed"/>
+                <Label x:Name="SwapSpeed_Value" Grid.Column="0" Grid.Row="11" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="WeaponDMG_Name" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="All Weapon Damage"/>
+                <Label x:Name="WeaponDMG_Value" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="MMRDMG_Name" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="MMR Damage"/>
+                <Label x:Name="MMRDMG_Value" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="RifleDMG_Name" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Rifle Damage"/>
+                <Label x:Name="RifleDMG_Value" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SMGDMG_Name" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="SMG Damage"/>
+                <Label x:Name="SMGDMG_Value" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="LMGDMG_Name" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="LMG Damage"/>
+                <Label x:Name="LMGDMG_Value" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ARDMG_Name" Grid.Column="1" Grid.Row="6" Style="{StaticResource StatNameDisplayStyle}" Content="AR Damage"/>
+                <Label x:Name="ARDMG_Value" Grid.Column="1" Grid.Row="6" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ShotgunDMG_Name" Grid.Column="1" Grid.Row="7" Style="{StaticResource StatNameDisplayStyle}" Content="Shotgun Damage"/>
+                <Label x:Name="ShotgunDMG_Value" Grid.Column="1" Grid.Row="7" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="PistolDMG_Name" Grid.Column="1" Grid.Row="8" Style="{StaticResource StatNameDisplayStyle}" Content="Pistol Damage"/>
+                <Label x:Name="PistolDMG_Value" Grid.Column="1" Grid.Row="8" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SignatureDMG_Name" Grid.Column="1" Grid.Row="9" Style="{StaticResource StatNameDisplayStyle}" Content="Signature Damage"/>
+                <Label x:Name="SignatureDMG_Value" Grid.Column="1" Grid.Row="9" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="RoFBonus_Name" Grid.Column="1" Grid.Row="10" Style="{StaticResource StatNameDisplayStyle}" Content="Rate of Fire"/>
+                <Label x:Name="RoFBonus_Value" Grid.Column="1" Grid.Row="10" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="AmmoCapacity_Name" Grid.Column="1" Grid.Row="11" Style="{StaticResource StatNameDisplayStyle}" Content="Ammo Capacity"/>
+                <Label x:Name="AmmoCapacity_Value" Grid.Column="1" Grid.Row="11" Style="{StaticResource StatValueDisplayStyle}"/>
+
+            </Grid>
+            
+            <Grid Grid.Column="4" Grid.Row="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderThickness="0" Grid.ColumnSpan="2" Background="Blue" />
+                <Border BorderBrush="White" BorderThickness="1,1,1,0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="6"/>
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="5"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="4" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="5" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="6" Grid.ColumnSpan="2"/>
+
+                <Label x:Name="MaxArmor_Name" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Max Armor"/>
+                <Label x:Name="MaxArmor_Value" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="TotalArmor_Name" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Total Armor"/>
+                <Label x:Name="TotalArmor_Value" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="HealthOnKill_Name" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Health on Kill"/>
+                <Label x:Name="HealthOnKill_Value" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorOnKill_Name" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Armor on Kill"/>
+                <Label x:Name="ArmorOnKill_Value" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorOnKillSet_Name" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Armor on Kill Amount"/>
+                <Label x:Name="ArmorOnKillSet_Value" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="MaxHealth_Name" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Max Health"/>
+                <Label x:Name="MaxHealth_Value" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
+                
+                <Label x:Name="Health_Name" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Health"/>
+                <Label x:Name="Health_Value" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="HealthRegen_Name" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Health Regeneration"/>
+                <Label x:Name="HealthRegen_Value" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorRegen_Name" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Regeneration %"/>
+                <Label x:Name="ArmorRegen_Value" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorRegenSet_Name" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Regeneration"/>
+                <Label x:Name="ArmorRegenSet_Value" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                
+                
+            </Grid>
+            
+            <Grid Grid.Column="4" Grid.Row="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderThickness="0" Grid.ColumnSpan="2" Background="Yellow" />
+                <Border BorderBrush="White" BorderThickness="1,1,1,0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="6"/>
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="5"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="4" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="5" Grid.ColumnSpan="2"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="6" Grid.ColumnSpan="2"/>
+
+                <Label x:Name="SkillTiers_Name" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Tiers"/>
+                <Label x:Name="SkillTiers_Value" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillEfficiency_Name" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Efficiency"/>
+                <Label x:Name="SkillEfficiency_Value" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillDMG_Name" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Damage"/>
+                <Label x:Name="SkillDMG_Value" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillHaste_Name" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Haste"/>
+                <Label x:Name="SkillHaste_Value" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillDuration_Name" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Duration"/>
+                <Label x:Name="SkillDuration_Value" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillHealth_Name" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Health"/>
+                <Label x:Name="SkillHealth_Value" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ShieldHealth_Name" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Shield Health"/>
+                <Label x:Name="ShieldHealth_Value" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillRepair_Name" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Repair"/>
+                <Label x:Name="SkillRepair_Value" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="StatusEffects_Name" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Status Effects"/>
+                <Label x:Name="StatusEffects_Value" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ExplosivesDMG_Name" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Explosive Damage"/>
+                <Label x:Name="ExplosivesDMG_Value" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+            </Grid>
+            
+            <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="8" Grid.Column="4"/>
+
+
+            <TextBox x:Name="WatchLevel" FontSize="14" Grid.Column="2" Width="100" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                 PreviewTextInput="TextBox_PreviewTextInput"
+                 DataObject.Pasting="TextBox_Pasting" 
+                 TextChanged="WatchLevel_TextChanged"/>
+        </Grid>
+
+    </Viewbox>
+</Window>
