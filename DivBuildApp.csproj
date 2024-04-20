@@ -84,7 +84,6 @@
     <Compile Include="DataConverter.cs" />
     <Compile Include="ReadCsv.cs" />
     <Compile Include="SHDWatch.cs" />
-    <Compile Include="Tools\BooleanConverter.cs" />
     <Compile Include="UI\StatTableDisplay.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -211,68 +210,82 @@
     <Resource Include="Images\Weapon Talent Icons\Vindictive.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\Brand Icons\5.11 Tactical.png" />
-    <Content Include="Images\Brand Icons\Aces &amp; Eights.png" />
-    <Content Include="Images\Brand Icons\Acosta%27s Go Bag.png" />
-    <Content Include="Images\Brand Icons\Airaldi Holdings.png" />
-    <Content Include="Images\Brand Icons\Alps Summit Armament.png" />
-    <Content Include="Images\Brand Icons\Badger Tuff.png" />
-    <Content Include="Images\Brand Icons\Belstone Armory.png" />
-    <Content Include="Images\Brand Icons\Bloody Knuckles.png" />
-    <Content Include="Images\Brand Icons\Brazos de Arcabuz.png" />
-    <Content Include="Images\Brand Icons\BTSU Data Gloves.png" />
-    <Content Include="Images\Brand Icons\Catharsis.png" />
-    <Content Include="Images\Brand Icons\ceska Vyroba s.r.o..png" />
-    <Content Include="Images\Brand Icons\China Light Industries.png" />
-    <Content Include="Images\Brand Icons\Collector.png" />
-    <Content Include="Images\Brand Icons\Coyote%27s Mask.png" />
-    <Content Include="Images\Brand Icons\Dodge City.png" />
-    <Content Include="Images\Brand Icons\Douglas &amp; Harding.png" />
-    <Content Include="Images\Brand Icons\Eclipse Protocol.png" />
-    <Content Include="Images\Brand Icons\Electrique.png" />
-    <Content Include="Images\Brand Icons\Empress International.png" />
-    <Content Include="Images\Brand Icons\Fenris Group AB.png" />
-    <Content Include="Images\Brand Icons\Foundry Bulwark.png" />
-    <Content Include="Images\Brand Icons\Future Initiative.png" />
-    <Content Include="Images\Brand Icons\Gila Guard.png" />
-    <Content Include="Images\Brand Icons\Golan Gear Ltd.png" />
-    <Content Include="Images\Brand Icons\Grupo Sombra S.A..png" />
-    <Content Include="Images\Brand Icons\Habsburg Guard.png" />
-    <Content Include="Images\Brand Icons\Hana-U Corporation.png" />
-    <Content Include="Images\Brand Icons\Hard Wired.png" />
-    <Content Include="Images\Brand Icons\Hotshot.png" />
-    <Content Include="Images\Brand Icons\Hunter%27s Fury.png" />
-    <Content Include="Images\Brand Icons\Imperial Dynasty.png" />
-    <Content Include="Images\Brand Icons\Improvised.png" />
-    <Content Include="Images\Brand Icons\Lengmo.png" />
-    <Content Include="Images\Brand Icons\Memento.png" />
-    <Content Include="Images\Brand Icons\Murakami Industries.png" />
-    <Content Include="Images\Brand Icons\Negotiator%27s Dilemma.png" />
-    <Content Include="Images\Brand Icons\NinjaBike Backpack.png" />
-    <Content Include="Images\Brand Icons\NinjaBike Kneepads.png" />
-    <Content Include="Images\Brand Icons\Ongoing Directive.png" />
-    <Content Include="Images\Brand Icons\Ortiz Exuro.png" />
-    <Content Include="Images\Brand Icons\Overlord Armaments.png" />
-    <Content Include="Images\Brand Icons\Petrov Defense Group.png" />
-    <Content Include="Images\Brand Icons\Providence Defense.png" />
-    <Content Include="Images\Brand Icons\Richter &amp; Kaiser GmbH.png" />
-    <Content Include="Images\Brand Icons\Rigger.png" />
-    <Content Include="Images\Brand Icons\Sawyer%27s Kneepads.png" />
-    <Content Include="Images\Brand Icons\Shocker Punch.png" />
-    <Content Include="Images\Brand Icons\Sokolov Concern.png" />
-    <Content Include="Images\Brand Icons\Striker%27s Battlegear.png" />
-    <Content Include="Images\Brand Icons\System Corruption.png" />
-    <Content Include="Images\Brand Icons\Tardigrade.png" />
-    <Content Include="Images\Brand Icons\The Cavalier.png" />
-    <Content Include="Images\Brand Icons\Tip of the Spear.png" />
-    <Content Include="Images\Brand Icons\True Patriot.png" />
-    <Content Include="Images\Brand Icons\Vile.png" />
-    <Content Include="Images\Brand Icons\Walker, Harris &amp; Co..png" />
-    <Content Include="Images\Brand Icons\Waveform.png" />
-    <Content Include="Images\Brand Icons\Wyvern Wear.png" />
-    <Content Include="Images\Brand Icons\Yaahl Gear.png" />
+    <Resource Include="Images\Brand Icons\5.11 Tactical.png" />
+    <Resource Include="Images\Brand Icons\Aces &amp; Eights.png" />
+    <Resource Include="Images\Brand Icons\Acosta%27s Go Bag.png" />
+    <Resource Include="Images\Brand Icons\Airaldi Holdings.png" />
+    <Resource Include="Images\Brand Icons\Alps Summit Armament.png" />
+    <Resource Include="Images\Brand Icons\Badger Tuff.png" />
+    <Resource Include="Images\Brand Icons\Belstone Armory.png" />
+    <Resource Include="Images\Brand Icons\Bloody Knuckles.png" />
+    <Resource Include="Images\Brand Icons\Brazos de Arcabuz.png" />
+    <Resource Include="Images\Brand Icons\BTSU Data Gloves.png" />
+    <Resource Include="Images\Brand Icons\Catharsis.png" />
+    <Resource Include="Images\Brand Icons\ceska Vyroba s.r.o..png" />
+    <Resource Include="Images\Brand Icons\China Light Industries Corp..png" />
+    <Resource Include="Images\Brand Icons\Collector.png" />
+    <Resource Include="Images\Brand Icons\Coyote%27s Mask.png" />
+    <Resource Include="Images\Brand Icons\Dodge City.png" />
+    <Resource Include="Images\Brand Icons\Douglas &amp; Harding.png" />
+    <Resource Include="Images\Brand Icons\Eclipse Protocol.png" />
+    <Resource Include="Images\Brand Icons\Electrique.png" />
+    <Resource Include="Images\Brand Icons\Empress International.png" />
+    <Resource Include="Images\Brand Icons\Fenris Group AB.png" />
+    <Resource Include="Images\Brand Icons\Foundry Bulwark.png" />
+    <Resource Include="Images\Brand Icons\Future Initiative.png" />
+    <Resource Include="Images\Brand Icons\Gila Guard.png" />
+    <Resource Include="Images\Brand Icons\Golan Gear Ltd.png" />
+    <Resource Include="Images\Brand Icons\Grupo Sombra.png" />
+    <Resource Include="Images\Brand Icons\Habsburg Guard.png" />
+    <Resource Include="Images\Brand Icons\Hana-U Corporation.png" />
+    <Resource Include="Images\Brand Icons\Hard Wired.png" />
+    <Resource Include="Images\Brand Icons\Hotshot.png" />
+    <Resource Include="Images\Brand Icons\Hunter%27s Fury.png" />
+    <Resource Include="Images\Brand Icons\Imperial Dynasty.png" />
+    <Resource Include="Images\Brand Icons\Improvised.png" />
+    <Resource Include="Images\Brand Icons\Lengmo.png" />
+    <Resource Include="Images\Brand Icons\Memento.png" />
+    <Resource Include="Images\Brand Icons\Murakami Industries.png" />
+    <Resource Include="Images\Brand Icons\Negotiator%27s Dilemma.png" />
+    <Resource Include="Images\Brand Icons\NinjaBike Backpack.png" />
+    <Resource Include="Images\Brand Icons\NinjaBike Kneepads.png" />
+    <Resource Include="Images\Brand Icons\Ongoing Directive.png" />
+    <Resource Include="Images\Brand Icons\Ortiz Exuro.png" />
+    <Resource Include="Images\Brand Icons\Overlord Armaments.png" />
+    <Resource Include="Images\Brand Icons\Petrov Defense Group.png" />
+    <Resource Include="Images\Brand Icons\Providence Defense.png" />
+    <Resource Include="Images\Brand Icons\Richter &amp; Kaiser GmbH.png" />
+    <Resource Include="Images\Brand Icons\Rigger.png" />
+    <Resource Include="Images\Brand Icons\Sawyer%27s Kneepads.png" />
+    <Resource Include="Images\Brand Icons\Shocker Punch.png" />
+    <Resource Include="Images\Brand Icons\Sokolov Concern.png" />
+    <Resource Include="Images\Brand Icons\Striker%27s Battlegear.png" />
+    <Resource Include="Images\Brand Icons\System Corruption.png" />
+    <Resource Include="Images\Brand Icons\Tardigrade.png" />
+    <Resource Include="Images\Brand Icons\The Cavalier.png" />
+    <Resource Include="Images\Brand Icons\Tip of the Spear.png" />
+    <Resource Include="Images\Brand Icons\True Patriot.png" />
+    <Resource Include="Images\Brand Icons\Vile.png" />
+    <Resource Include="Images\Brand Icons\Walker, Harris &amp; Co.png" />
+    <Resource Include="Images\Brand Icons\Waveform.png" />
+    <Resource Include="Images\Brand Icons\Wyvern Wear.png" />
+    <Resource Include="Images\Brand Icons\Yaahl Gear.png" />
     <Resource Include="Images\BrandDefault.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Brand Icons\Palisade Steelworks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Brand Icons\Uzina Getica.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Brand Icons\Aegis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Brand Icons\Heartbreaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Brand Icons\Umbra Initiative.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

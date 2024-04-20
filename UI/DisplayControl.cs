@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 using System.Xml.Linq;
 
 namespace DivBuildApp
@@ -48,22 +49,38 @@ namespace DivBuildApp
         }
         public static async Task SetBrandImageAsync(Image imageControl, string brandName)
         {
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string imagePath = Path.Combine(baseDirectory, "Images", "Brand Icons", brandName + ".png");
+            string resourcePath = $"pack://application:,,,/Images/Brand Icons/{brandName}.png";
 
-            bool exists = await Task.Run(() => File.Exists(imagePath));
+            // Check if the resource exists
+            bool exists = ResourceExists(resourcePath);
             if (!exists)
             {
-                Console.WriteLine(imagePath + " Not found");
-                imagePath = Path.Combine(baseDirectory, "Images", "Brand Icons", "Improvised.png");
+                Console.WriteLine(resourcePath + " Not found");
+                resourcePath = "pack://application:,,,/Images/Brand Icons/Improvised.png";
             }
 
-            var uri = new Uri(imagePath, UriKind.Absolute);
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                imageControl.Source = new BitmapImage(uri);
+                imageControl.Source = new BitmapImage(new Uri(resourcePath));
             });
         }
+
+        private static bool ResourceExists(string resourcePath)
+        {
+            try
+            {
+                Uri resourceUri = new Uri(resourcePath, UriKind.Absolute);
+                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+                return streamInfo != null;
+            }
+            catch
+            {
+                return false; // Resource not found
+            }
+        }
+
+
+        
 
         public static async Task DisplayBrandBonusesAsync(ItemType itemType, string brandName)
         {
