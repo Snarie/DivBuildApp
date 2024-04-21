@@ -81,8 +81,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CsvFormats\BrandBonusesFormat.cs" />
     <Compile Include="DataConverter.cs" />
-    <Compile Include="ReadCsv.cs" />
+    <Compile Include="Data\CsvReader.cs" />
     <Compile Include="SHDWatch.cs" />
     <Compile Include="UI\StatTableDisplay.cs" />
     <Page Include="MainWindow.xaml">
@@ -98,7 +99,7 @@
     <Compile Include="ComboBoxItem.cs" />
     <Compile Include="Classes\GearGridContent.cs" />
     <Compile Include="Classes\ItemCore.cs" />
-    <Compile Include="CsvReadFormats\BonusCapsFormat.cs" />
+    <Compile Include="CsvFormats\BonusCapsFormat.cs" />
     <Compile Include="UI\DisplayControl.cs" />
     <Compile Include="FileInfo.cs" />
     <Compile Include="GearHandler.cs" />
@@ -128,6 +129,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Data\ItemDefault.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\BonusCaps.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\BrandBonuses.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

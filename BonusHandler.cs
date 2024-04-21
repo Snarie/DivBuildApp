@@ -32,6 +32,23 @@ namespace DivBuildApp
             //if (!successValue) value = 0;
             //return new Bonus(name, value);
         }
+
+        public static bool TryCreateBonus(string type, string value, out Bonus bonus)
+        {
+            bonus = null;   
+            bool successName = Enum.TryParse(type, true, out BonusType bonusName);
+            if (!successName)
+            {
+                return false;
+            }
+            bool successValue = double.TryParse(value, out double bonusValue);
+            if (!successValue)
+            {
+                return false;
+            }
+            bonus = CreateBonus(bonusName, bonusValue);
+            return true;
+        }
         public static Bonus CreateBonus(string type, string value)
         {
             BonusType bonusType = StringToBonusType(type);

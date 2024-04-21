@@ -60,13 +60,13 @@ namespace DivBuildApp
         private void AdjustWindowSizeToScreen()
         {
             double screenHeight = SystemParameters.WorkArea.Height;
-            this.Height = screenHeight * 0.8;
-            this.Width = this.Height * (16.0 / 9.0);
+            Height = screenHeight * 0.8;
+            Width = Height * (16.0 / 9.0);
 
 
             // Optionally, center the window on the screen
-            this.Left = (SystemParameters.WorkArea.Width - this.Width) / 2;
-            this.Top = (SystemParameters.WorkArea.Height - this.Height) / 2;
+            Left = (SystemParameters.WorkArea.Width - Width) / 2;
+            Top = (SystemParameters.WorkArea.Height - Height) / 2;
         }
         
 
@@ -97,7 +97,7 @@ namespace DivBuildApp
         /// </summary>
         private void InitializeBrands()
         {
-            brandSets = FileInfo.ReadBrandSets();
+            brandSets = FileInfo.CsvBrandBonus();
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace DivBuildApp
         private void InitializeGearBonusCaps()
         {
             //ListOptions.CreateAttributesFromDictionary(FileInfo.ReadBonusCaps());
-            ListOptions.CreateBonusCapsFromData(ReadCsv.BonusCaps());
+            ListOptions.CreateBonusCapsFromData(CsvReader.BonusCaps());
         }
 
 

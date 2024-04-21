@@ -12,89 +12,54 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System.Runtime.CompilerServices;
-using DivBuildApp.CsvReadFormats;
+using DivBuildApp.CsvFormats;
 
 namespace DivBuildApp
 {
     public static class FileInfo
     {
-        public static Dictionary<string, List<EquipBonus>> ReadBrandSets()
+        public static Dictionary<string , List<EquipBonus>> CsvBrandBonus()
         {
-            string filePath = "BrandBonusses.txt";
-            string[] brandSetSheet = File.ReadAllLines(filePath);
+            List<BrandBonusesFormat> brandBonusesList = CsvReader.BrandBonuses();
 
             Dictionary<string, List<EquipBonus>> brandSets = new Dictionary<string, List<EquipBonus>>();
 
-            foreach (string brandSet in brandSetSheet)
+            foreach (BrandBonusesFormat brandBonuses in brandBonusesList)
             {
-                string[] brandInfo = brandSet.Split(':'); //[0]=Name, [1]=Values
-                if (brandInfo.Length != 2)
+                if (brandSets.ContainsKey(brandBonuses.Name))
                 {
-                    if (brandInfo.Length > 2) Console.WriteLine($"Error: Invalid brand info format, contains to many ':' in line '{brandInfo[0]}'");
-                    else Console.WriteLine($"Error: Invalid brand info format, contains to little ':' in line '{brandInfo[0]}'");
-                    continue; //Skip brand if format is wrong 
-                }
-                if (string.IsNullOrEmpty(brandInfo[1]))
-                {
-                    Console.WriteLine($"Note: Field was left empty for '{brandInfo[0]}'");
-                    continue; //No characters were added after the ':', probably on purpose.
-                }
-                string[] bonusses = brandInfo[1].Split(',');
-
-                List<EquipBonus> bonusValues = new List<EquipBonus>();
-                foreach (string bonus in bonusses)
-                {
-                    string[] bonusParts = bonus.Split('=');
-                    if (bonusParts.Length != 3)
-                    {
-                        Console.WriteLine($"Error: Incorrect bonus format (x=y=z) in {bonus} from '{brandInfo[0]}'");
-                        continue; //Skip bonus if not enough '=' are present to split.
-                    }
-
-                    bool successIndex = int.TryParse(bonusParts[0], out int bonusIndex);
-                    if (!successIndex)
-                    {
-                        Console.WriteLine($"Error: couldn't parse {bonusParts[0]} to int in {bonus} from '{brandInfo[0]}'");
-                        continue; //Skip bonus if parsing bonusIndex failed.
-                    }
-
-                    bool successValue = double.TryParse(bonusParts[2], out double bonusValue);
-                    if (!successValue)
-                    {
-                        Console.WriteLine($"Error: couldn't parse {bonusParts[1]} to double in {bonus} from '{brandInfo[0]}");
-                        continue; //Skip bonus if parsing bonusValue failed.
-                    }
-                    bool successName = Enum.TryParse(bonusParts[1], true, out BonusType bonusName);
-                    if (!successName)
-                    {
-                        Console.WriteLine($"Error: {bonusParts[1]} isn't a valid bonus type from {brandInfo[0]}");
-                    }
-                    bonusValues.Add(new EquipBonus(bonusIndex, new Bonus(bonusName, bonusValue)));
-                }
-                if (bonusValues.Count < 1)
-                {
-                    Console.WriteLine($"Warn: No valid bonusses found for '{brandInfo[0]}'");
-                    //Most likely a mistake, but doesn't cause problems.
-                }
-                if (brandSets.ContainsKey(brandInfo[0]))
-                {
-                    Console.WriteLine($"Error: Duplicate brand name '{brandInfo[0]}' found. Skipping duplicate entry.");
+                    Console.WriteLine($"Error: Duplicate brand name '{brandBonuses.Name}' found. Skipping duplicate entry.");
                     continue; //Skip if a brand with the same name already exists.
                 }
-                brandSets.Add(brandInfo[0], bonusValues);
+                brandSets.Add(brandBonuses.Name, GetBrandBonuses(brandBonuses));
             }
             return brandSets;
         }
+        public static List<EquipBonus> GetBrandBonuses(BrandBonusesFormat brandBonuses)
+        {
+            string[] slots = { brandBonuses.Slot1, brandBonuses.Slot2, brandBonuses.Slot3 };
+            List<EquipBonus> equipBonuses = new List<EquipBonus>();
 
-        
-        
+            for (int i = 0; i < 3; i++)
+            {
+                foreach (string bonusString in slots[i].Split('+'))
+                {
+                    string[] bonusParts = bonusString.Split('=');
+                    if (bonusParts.Length != 2) continue;
+                    bool success = BonusHandler.TryCreateBonus(bonusParts[0], bonusParts[1], out Bonus bonus);
+                    if (!success) continue;
+                    equipBonuses.Add(new EquipBonus(i + 1, bonus));
+                }
+            }
+            return equipBonuses;
 
+        }
+        
         public static List<StringItem> CsvItemDefaults()
         {
-            string filePath = "data/ItemDefault.csv";
             List<StringItem> expandedItems = new List<StringItem>();
 
-            List<StringItem> tempItems = ReadCsv.ReadCsvFile<StringItem>(filePath, ReadCsv.Config());
+            List<StringItem> tempItems = CsvReader.ItemDefault();
 
             foreach (var item in tempItems)
             {

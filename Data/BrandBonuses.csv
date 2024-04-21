@@ -1,0 +1,67 @@
+name;slot1;slot2;slot3
+5.11 Tactical;Health=30.0;Incoming_Repairs=20.0;Hazard_Protection=20.0
+Airaldi Holdings;MMR_Damage=10.0;Headshot_Damage=15.0;Damage_to_Armor=5.0
+Alps Summit Armament;Repair_Skills=20.0;Skill_Duration=30.0;Skill_Haste=30.0
+Badger Tuff;Shotgun_Damage=10.0;Total_Armor=5.0;Armor_on_Kill=15.0
+Belstone Armory;Armor_Regen=1.0;Armor_on_Kill=10.0;Incoming_Repairs=40.0
+Brazos de Arcabuz;Skill_Haste=10.0;Skill_Tier=1;Magazine_Size=50.0
+Ceska Vyroba s.r.o.;Critical_Hit_Chance=10.0;Hazard_Protection=10.0;Health=90.0
+China Light Industries Corp.;Explosive_Damage=15.0;Skill_Haste=20.0;Status_Effects=20.0
+Douglas & Harding;Pistol_Damage=20.0;Stability=30.0;Accuracy=50.0
+Electrique;Status_Effects=10.0;Electricity_Protection=20.0;SMG_Damage=30.0
+Empress International;Skill_Health=10.0;Skill_Damage=10.0;Skill_Efficiency=10.0
+Fenris Group AB;AR_Damage=10.0;Reload_Speed=30.0;Stability=50.0
+Gila Guard;Total_Armor=5.0;Health=60.0;Armor_Regen=2.0
+Golan Gear Ltd;Status_Effects=10.0;Armor_Regen=1.5;Total_armor=10.0
+Grupo Sombra;Critical_Hit_Damage=15.0;Explosive_Damage=20.0;Headshot_Damage=15.0
+Habsburg Guard;Headshot_Damage=15.0;MMR_Damage=20.0;Status_Effects=20.0
+Hana-U Corporation;Skill_Haste=10.0;Skill_Damage=10.0;Weapon_Damage=10.0
+Lengmo;Explosive_Resistance=20.0;Skill_Health=25.0;LMG_Damage=30.0
+Murakami Industries;Skill_Duration=20.0;Repair_Skills=30.0;Skill_Damage=20.0
+Overlord Armaments;Rifle_Damage=10.0;Accuracy=30.0;Weapon_Handling=30.0
+Palisade Steelworks;Armor_on_Kill=10.0;Health=60.0;Skill_Tier=1
+Petrov Defense Group;LMG_Damage=10.0;Weapon_Handling=15.0;Ammo_Capacity=50.0
+Providence Defense;Headshot_Damage=15.0;Critical_Hit_Chance=10.0;Critical_Hit_Damage=15.0
+Richter & Kaiser GmbH;Incoming_Repairs=20.0;Explosive_Resistance=25.0;Repair_Skills=40.0
+Sokolov Concern;SMG_Damage=10.0;Critical_Hit_Damage=15.0;Critical_Hit_Chance=10.0
+Uzina Getica;Total_Armor=5.0;Armor_on_Kill=10.0;Hazard_Protection=20.0
+Walker, Harris & Co;Weapon_Damage=5.0;Damage_to_Armor=5.0;Damage_to_Health=10.0
+Wyvern Wear;Skill_Damage=10.0;Status_Effects=15.0;Skill_Duration=40.0
+Yaahl Gear;Hazard_Protection=10.0;Weapon_Damage=5.0;Pulse_Resistance=40.0
+Aces & Eights;;MMR_Damage=15.0;Headshot_Damage=30.0
+Aegis;;Health=70.0;Total_armor=15.0
+Eclipse Protocol;;Status_Effects=15.0;Skill_Haste=15.0+Hazard_Protection=30.0
+Foundry Bulwark;;Total_Armor=10.0;Armor_Regen=1.0+Shield_Health=50.0
+Future Initiative;;Repair_Skills=30.0;Skill_Haste=15.0+Skill_Duration=30.0
+Hard Wired;;Skill_Haste=15.0;Skill_Damage=15.0+Skill_Repair=30.0
+Heartbreaker;;AR_Damage=15.0+LMG_Damage=15.0;Weapon_Handling=15.0
+Hotshot;;MMR_Damage=30.0+Weapon_Handling=30.0;Headshot_Damage=30.0
+Hunter's Fury;;Shotgun_Damage=15.0+SMG_Damage=15.0;Armor_on_Kill=20.0+Health_on_Kill=50.0
+Negotiator's Dilemma;;Critical_Hit_Chance=15.0;Critical_Hit_Damage=20.0
+Ortiz Exuro;;Burn_Duration=20.0;Skill_Health=15.0+Burn_Damage=40.0
+Ongoing Directive;;Status_Effects=15.0;Reload_Speed=30.0
+Rigger;;Skill_Haste=15.0;Skill_Duration=15.0
+Striker's Battlegear;;Weapon_Handling=15.0;Rate_of_Fire=15.0
+System Corruption;;Armor_on_Kill=15.0;Disrupt_Resistance=40.0+Pulse_Resistance=40.0
+The Cavalier;;Hazard_Protection=30.0;Incoming_Repairs=40.0
+Tip of the Spear;;Signature_Weapon_Damage=20.0;Weapon_Damage=10.0
+True Patriot;;Ammo_Capacity=30.0;Magazine_Size=30.0
+Umbra Initiative;;Critical_Hit_Chance=15.0;Reload_Speed=30.0
+Catharsis;;;
+Coyote's Mask;;;
+Vile;;;
+Acosta's Go Bag;;;
+Memento;;;
+NinjaBike Backpack;;;
+Collector;;;
+Ridgeway's Pride;;;
+Tardigrade;;;
+Bloody Knuckles;;;
+BTSU Data Gloves;;;
+Rugged Gauntlets;;;
+Dodge City;;;
+Imperial Dynasty;;;
+Shocker Punch;;;
+Waveform;;;
+NinjaBike Kneepads;;;
+Sawyer's Kneepads;;;
