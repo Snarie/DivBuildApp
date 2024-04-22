@@ -73,6 +73,7 @@ namespace DivBuildApp
                 GlovesExpertiece.Items.Add(i);
                 HolsterExpertiece.Items.Add(i);
                 KneepadsExpertiece.Items.Add(i);
+                GlobalExpertiece.Items.Add(i);
             }
         }
         private void AdjustWindowSizeToScreen()
@@ -186,6 +187,19 @@ namespace DivBuildApp
             //DisplayBonusesInBoxes();
         }
 
+        private void GlobalExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox)
+            {
+                MaskExpertiece.SelectedIndex = comboBox.SelectedIndex;
+                BackpackExpertiece.SelectedIndex = comboBox.SelectedIndex;
+                ChestExpertiece.SelectedIndex = comboBox.SelectedIndex;
+                GlovesExpertiece.SelectedIndex = comboBox.SelectedIndex;
+                HolsterExpertiece.SelectedIndex = comboBox.SelectedIndex;
+                KneepadsExpertiece.SelectedIndex = comboBox.SelectedIndex;
+
+            }
+        }
         private void ExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Task.Run(() => ItemArmorControl.SetItemArmorValues());
