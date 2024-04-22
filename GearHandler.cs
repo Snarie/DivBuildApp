@@ -24,6 +24,10 @@ namespace DivBuildApp
             return null;
         }
 
+        public static Gear GearFromSlot(string slot)
+        {
+            return equippedItemList.FirstOrDefault(i => i.Slot == slot);
+        }
         public static void SetEquippedGearList()
         {
             //ItemType[] itemTypes = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Gloves, ItemType.Holster, ItemType.Kneepads };

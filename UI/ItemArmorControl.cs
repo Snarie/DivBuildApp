@@ -20,27 +20,49 @@ namespace DivBuildApp.UI
             [ItemType.Holster] = 111889,
             [ItemType.Kneepads] = 98726
         };
+        public static Dictionary<ItemType, int> expertieceArmorValues = new Dictionary<ItemType, int>()
+        {
+            [ItemType.Mask] = 80297,
+            [ItemType.Backpack] = 130844,
+            [ItemType.Chest] = 157961,
+            [ItemType.Gloves] = 80297,
+            [ItemType.Holster] = 111889,
+            [ItemType.Kneepads] = 98726
+        };
+
+        public static int GetExpertieceArmorValue()
+        {
+            int total = 0;
+            foreach(KeyValuePair<ItemType, int> kvp in expertieceArmorValues)
+            {
+                total += kvp.Value;
+            }
+            return total;
+        }
+
         public static async Task SetItemArmorValues()
         {
-            await Application.Current.Dispatcher.InvokeAsync(() =>
+            ItemType[] items = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Holster, ItemType.Kneepads};
+            Console.WriteLine("wewe");
+            for(int i=0; i<items.Length; i++)
             {
-                SetItemArmorValue(ItemType.Mask);
-                SetItemArmorValue(ItemType.Backpack);
-                SetItemArmorValue(ItemType.Chest);
-                SetItemArmorValue(ItemType.Gloves);
-                SetItemArmorValue(ItemType.Holster);
-                SetItemArmorValue(ItemType.Kneepads);
-            });
+                Label itemArmorLabel = Lib.GetItemArmorLabel(items[i]);
+                ComboBox multiplierBox = Lib.GetExpertieceBox(items[i]);
+                int armorValue = defaultArmorValues[items[i]];
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    int multiplier = 100 + (int)multiplierBox.SelectedValue; //Number ranging between 100 and 125
+                    int multipliedValue = (int)Math.Round(armorValue * multiplier / 100.0);
+                    int roundedValue = (int)Math.Round(multipliedValue / 1000.0);
+                    string text = roundedValue + "k";
+                    expertieceArmorValues[items[i]] = multipliedValue;
+                    SetItemArmorValue(itemArmorLabel, text);
+                });
+            }
         }
-        public static void SetItemArmorValue(ItemType itemType)
+        public static void SetItemArmorValue(Label label, string text)
         {
-            Label itemArmorLabel = Lib.GetItemArmorLabel(itemType);
-            int multiplier = 100 + (int)Lib.GetExpertieceBox(itemType).SelectedValue; //Number ranging between 100 and 125
-            int armorValue = defaultArmorValues[itemType];
-
-            int roundedValue = (int)Math.Round(armorValue * multiplier / 100000.0);
-
-            itemArmorLabel.Content = roundedValue+"k";
+            label.Content = text;
         }
     }
 }

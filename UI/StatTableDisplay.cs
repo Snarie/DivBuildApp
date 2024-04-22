@@ -42,11 +42,13 @@ namespace DivBuildApp.UI
             values[mainWindow.RoFBonus_Value] = $"{activeBonusses[BonusType.Rate_of_Fire]}%";
             values[mainWindow.AmmoCapacity_Value] = $"{activeBonusses[BonusType.Ammo_Capacity]}%";
 
+            values[mainWindow.MaxArmor_Value] = $"{activeBonusses[BonusType.Armor]}";
             values[mainWindow.TotalArmor_Value] = $"{activeBonusses[BonusType.Total_Armor]}%";
             values[mainWindow.HealthOnKill_Value] = $"{activeBonusses[BonusType.Health_on_Kill]}%";
             values[mainWindow.ArmorOnKill_Value] = $"{activeBonusses[BonusType.Armor_on_Kill]}%";
             values[mainWindow.ArmorOnKillSet_Value] = $"{activeBonusses[BonusType.Armor_on_Kill_Stat]}";
 
+            //values[mainWindow.MaxHealth_Value] = $"{activeBonusses[BonusType.???]}";
             values[mainWindow.Health_Value] = $"{activeBonusses[BonusType.Health]}%";
             values[mainWindow.HealthRegen_Value] = $"{activeBonusses[BonusType.Health_Regen]}";
             values[mainWindow.ArmorRegen_Value] = $"{activeBonusses[BonusType.Armor_Regen]}%";

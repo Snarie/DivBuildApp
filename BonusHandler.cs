@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DivBuildApp.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -135,11 +136,11 @@ namespace DivBuildApp
             }
         }
 
-        public static void CalculateBonuses()
+
+        public static void CalculateBrandBonues()
         {
+
             Dictionary<string, int> brandLevels = new Dictionary<string, int>();
-            //Set all bonusses back to 0 to not stack stats from earlier
-            ResetBonuses();
             foreach (Gear equippedItem in GearHandler.equippedItemList)
             {
                 string brandName = equippedItem.BrandName;
@@ -162,18 +163,52 @@ namespace DivBuildApp
                 {
                     activeBonusses[bonus.BonusType] += bonus.Value;
                 }
-                
+
                 //Selected core bonus
                 Bonus coreBonus = equippedItem.CoreAttribute;
                 activeBonusses[coreBonus.BonusType] += coreBonus.Value;
 
             }
 
+            if (GearHandler.GearFromSlot("backpack") != null)
+            {
+                if (GearHandler.GearFromSlot("backpack").Name == "NinjaBike Backpack")
+                {
+                    Console.WriteLine("Correct");
+                    var keysToUpdate = new List<string>(brandLevels.Keys);
+                    foreach (string key in keysToUpdate)
+                    {
+                        brandLevels[key]++;
+                        foreach (Bonus bonus in GetBrandBonus(key, brandLevels[key]))
+                        {
+                            activeBonusses[bonus.BonusType] += bonus.Value;
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Wrong " + GearHandler.GearFromSlot("backpack").Name);
+                }
+            }
+        }
+
+
+        public static void CalculateBonuses()
+        {
+            //Set all bonusses back to 0 to not stack stats from earlier
+            ResetBonuses();
+
+            CalculateBrandBonues();
             //Watch Bonuses
             foreach (Bonus bonus in SHDWatch.WatchBonuses)
             {
                 activeBonusses[bonus.BonusType] += bonus.Value;
             }
+
+
+            activeBonusses[BonusType.Armor] += ItemArmorControl.GetExpertieceArmorValue();
+
+            activeBonusses[BonusType.Armor] = Math.Floor(activeBonusses[BonusType.Armor] * (100 + activeBonusses[BonusType.Total_Armor])/100);
 
         }
 

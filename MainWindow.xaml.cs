@@ -189,11 +189,13 @@ namespace DivBuildApp
         private void ExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Task.Run(() => ItemArmorControl.SetItemArmorValues());
+            Console.WriteLine($"ExpertieceBox_SelectionChanged {sender}");
             UpdateDisplay();
         }
         private void StatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GearHandler.SetEquippedGearList();
+            Console.WriteLine($"StatComboBox_SelectionChanged {sender}");
             UpdateDisplay();
         }
 
@@ -224,79 +226,17 @@ namespace DivBuildApp
                 Task.Run(() => ProcessGearComboBoxChange(selectedItem, baseName));
             }
             GearHandler.SetEquippedGearList();
+            Console.WriteLine($"GearComboBox_SelectionChanged {sender}");
             UpdateDisplay();
         }
 
         public void WatchLevel_TextChanged(object sender, TextChangedEventArgs e)
         {
             SHDWatch.SetWatchBonuses(WatchLevel.Text);
+            Console.WriteLine($"WatchLevel {sender}");
             UpdateDisplay();
         }
-        public void DisplayBonusesInBoxes()
-        {
-
-            //Headshot bonuses: AR=55 LMG=65 Shotgun=45 SMG=50 Rifle=60 MMR=0 Pistol=100
-            //Explosive_Resistance=10 Hazard_Protection=10
-            DisplayBonus(CHC_Value, BonusHandler.activeBonusses[BonusType.Critical_Hit_Chance]);
-            DisplayBonus(CHD_Value, BonusHandler.activeBonusses[BonusType.Critical_Hit_Damage]);
-            DisplayBonus(HeadshotDMG_Value, BonusHandler.activeBonusses[BonusType.Headshot_Damage]);
-            DisplayBonus(DMGooC_Value, BonusHandler.activeBonusses[BonusType.DMG_out_of_Cover]);
-            DisplayBonus(ArmorDMG_Value, BonusHandler.activeBonusses[BonusType.Damage_to_Armor]);
-            DisplayBonus(HealthDMG_Value, BonusHandler.activeBonusses[BonusType.Health_Damage]);
-            DisplayBonus(WeaponHandling_Value, BonusHandler.activeBonusses[BonusType.Weapon_Handling]);
-            DisplayBonus(Accuracy_Value, BonusHandler.activeBonusses[BonusType.Accuracy] + BonusHandler.activeBonusses[BonusType.Weapon_Handling]);
-            DisplayBonus(Stability_Value, BonusHandler.activeBonusses[BonusType.Stability] + BonusHandler.activeBonusses[BonusType.Weapon_Handling]);
-            DisplayBonus(ReloadSpeed_Value, BonusHandler.activeBonusses[BonusType.Reload_Speed] + BonusHandler.activeBonusses[BonusType.Weapon_Handling]);
-            DisplayBonus(SwapSpeed_Value, BonusHandler.activeBonusses[BonusType.Swap_Speed] + BonusHandler.activeBonusses[BonusType.Weapon_Handling]);
-
-            DisplayBonus(WeaponDMG_Value, BonusHandler.activeBonusses[BonusType.Weapon_Damage]);
-            DisplayBonus(MMRDMG_Value, BonusHandler.activeBonusses[BonusType.MMR_Damage]);
-            DisplayBonus(RifleDMG_Value, BonusHandler.activeBonusses[BonusType.Rifle_Damage]);
-            DisplayBonus(SMGDMG_Value, BonusHandler.activeBonusses[BonusType.SMG_Damage]);
-            DisplayBonus(LMGDMG_Value, BonusHandler.activeBonusses[BonusType.LMG_Damage]);
-            DisplayBonus(ARDMG_Value, BonusHandler.activeBonusses[BonusType.AR_Damage]);
-            DisplayBonus(ShotgunDMG_Value, BonusHandler.activeBonusses[BonusType.Shotgun_Damage]);
-            DisplayBonus(PistolDMG_Value, BonusHandler.activeBonusses[BonusType.Pistol_Damage]);
-            DisplayBonus(SignatureDMG_Value, BonusHandler.activeBonusses[BonusType.Signature_Weapon_Damage]);
-            DisplayBonus(RoFBonus_Value, BonusHandler.activeBonusses[BonusType.Rate_of_Fire]);
-            DisplayBonus(AmmoCapacity_Value, BonusHandler.activeBonusses[BonusType.Ammo_Capacity]);
-            
-            DisplayBonus(TotalArmor_Value, BonusHandler.activeBonusses[BonusType.Total_Armor]);
-            DisplayBonus(HealthOnKill_Value, BonusHandler.activeBonusses[BonusType.Health_on_Kill]);
-            DisplayBonus(ArmorOnKill_Value, BonusHandler.activeBonusses[BonusType.Armor_on_Kill]);
-            DisplayBonus(ArmorOnKillSet_Value, BonusHandler.activeBonusses[BonusType.Armor_on_Kill_Stat]);
-
-            DisplayBonus(Health_Value, BonusHandler.activeBonusses[BonusType.Health]);
-            DisplayBonus(HealthRegen_Value, BonusHandler.activeBonusses[BonusType.Health_Regen]);
-            DisplayBonus(ArmorRegen_Value, BonusHandler.activeBonusses[BonusType.Armor_Regen]);
-            DisplayBonus(ArmorRegenSet_Value, BonusHandler.activeBonusses[BonusType.Armor_Regen_HPs]);
-
-            DisplayBonus(SkillTiers_Value, BonusHandler.activeBonusses[BonusType.Skill_Tier]);
-            DisplayBonus(SkillEfficiency_Value, BonusHandler.activeBonusses[BonusType.Skill_Efficiency]);
-            DisplayBonus(SkillDMG_Value, BonusHandler.activeBonusses[BonusType.Skill_Damage] + BonusHandler.activeBonusses[BonusType.Skill_Efficiency]);
-            DisplayBonus(SkillHaste_Value, BonusHandler.activeBonusses[BonusType.Skill_Haste] + BonusHandler.activeBonusses[BonusType.Skill_Efficiency]);
-            DisplayBonus(SkillDuration_Value, BonusHandler.activeBonusses[BonusType.Skill_Duration] + BonusHandler.activeBonusses[BonusType.Skill_Efficiency]);
-
-            DisplayBonus(SkillHealth_Value, BonusHandler.activeBonusses[BonusType.Skill_Health] + BonusHandler.activeBonusses[BonusType.Skill_Efficiency]);
-            DisplayBonus(ShieldHealth_Value, BonusHandler.activeBonusses[BonusType.Shield_Health] + BonusHandler.activeBonusses[BonusType.Skill_Health] + BonusHandler.activeBonusses[BonusType.Skill_Efficiency]);
-            DisplayBonus(SkillRepair_Value, BonusHandler.activeBonusses[BonusType.Repair_Skills] + BonusHandler.activeBonusses[BonusType.Skill_Efficiency]);
-            DisplayBonus(StatusEffects_Value, BonusHandler.activeBonusses[BonusType.Status_Effects] + BonusHandler.activeBonusses[BonusType.Status_Effects]);
-            DisplayBonus(ExplosivesDMG_Value, BonusHandler.activeBonusses[BonusType.Explosive_Damage]);
-
-        }
-        public void DisplayBonus(Label box, double value)
-        {
-            box.Content = "+"+value+"%";
-        }
-        public void DisplayBonuses()
-        {
-            string msg = string.Empty;
-            foreach (KeyValuePair<BonusType, double> bonus in BonusHandler.activeBonusses)
-            {
-                msg += $"{bonus.Key} = {bonus.Value}\n";
-            }
-            DumpBlock.Text = msg;
-        }
+        
 
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
