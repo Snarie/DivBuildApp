@@ -90,7 +90,9 @@ namespace DivBuildApp
         
         public void InitializeItemArmor()
         {
-            Task.Run(() => ItemArmorControl.SetItemArmorValues());
+            //Values are already defined by InitializeOptionsExpertiece selectionchanged triggers
+            //ItemArmorControl.SetItemArmor();
+            Task.Run(() => ItemArmorControl.DisplayItemArmorValues());
         }
 
 
@@ -199,10 +201,19 @@ namespace DivBuildApp
                 KneepadsExpertiece.SelectedIndex = comboBox.SelectedIndex;
 
             }
+            UpdateDisplay();
         }
         private void ExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Task.Run(() => ItemArmorControl.SetItemArmorValues());
+            if (sender is ComboBox comboBox)
+            {
+                string baseName = comboBox.Name.Replace("Expertiece", "");
+                if(Enum.TryParse(baseName, out ItemType itemType))
+                {
+                    ItemArmorControl.SetItemArmor(itemType);
+                }
+            }
+            Task.Run(() => ItemArmorControl.DisplayItemArmorValues());
             Console.WriteLine($"ExpertieceBox_SelectionChanged {sender}");
             UpdateDisplay();
         }

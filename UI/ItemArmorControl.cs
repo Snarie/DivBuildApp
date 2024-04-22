@@ -11,7 +11,7 @@ namespace DivBuildApp.UI
     public static class ItemArmorControl
     {
 
-        public static Dictionary<ItemType, int> defaultArmorValues = new Dictionary<ItemType, int>()
+        public static Dictionary<ItemType, double> defaultArmorValues = new Dictionary<ItemType, double>()
         {
             [ItemType.Mask] = 80297,
             [ItemType.Backpack] = 130844,
@@ -20,7 +20,7 @@ namespace DivBuildApp.UI
             [ItemType.Holster] = 111889,
             [ItemType.Kneepads] = 98726
         };
-        public static Dictionary<ItemType, int> expertieceArmorValues = new Dictionary<ItemType, int>()
+        public static Dictionary<ItemType, double> expertieceArmorValues = new Dictionary<ItemType, double>()
         {
             [ItemType.Mask] = 80297,
             [ItemType.Backpack] = 130844,
@@ -30,32 +30,41 @@ namespace DivBuildApp.UI
             [ItemType.Kneepads] = 98726
         };
 
-        public static int GetExpertieceArmorValue()
+        public static double GetExpertieceArmorValue()
         {
-            int total = 0;
-            foreach(KeyValuePair<ItemType, int> kvp in expertieceArmorValues)
+            double total = 0;
+            foreach(KeyValuePair<ItemType, double> kvp in expertieceArmorValues)
             {
                 total += kvp.Value;
             }
             return total;
         }
-
-        public static async Task SetItemArmorValues()
+        public static void SetItemArmor(ItemType itemType)
+        {
+            double armorValue = defaultArmorValues[itemType];
+            ComboBox multiplierBox = Lib.GetExpertieceBox(itemType);
+            Console.WriteLine(multiplierBox.Name + " " + multiplierBox.HasItems);
+            if (!multiplierBox.HasItems) return;
+            double multiplier = 100 + (int)multiplierBox.SelectedValue;
+            double multipliedValue = armorValue * multiplier / 100.0;
+            expertieceArmorValues[itemType] = multipliedValue;
+        }
+        
+        public static async Task DisplayItemArmorValues()
         {
             ItemType[] items = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Holster, ItemType.Kneepads};
-            Console.WriteLine("wewe");
+            
+
+
             for(int i=0; i<items.Length; i++)
             {
                 Label itemArmorLabel = Lib.GetItemArmorLabel(items[i]);
-                ComboBox multiplierBox = Lib.GetExpertieceBox(items[i]);
-                int armorValue = defaultArmorValues[items[i]];
+                double value = expertieceArmorValues[items[i]];
                 await Application.Current.Dispatcher.InvokeAsync(() =>
                 {
-                    int multiplier = 100 + (int)multiplierBox.SelectedValue; //Number ranging between 100 and 125
-                    int multipliedValue = (int)Math.Round(armorValue * multiplier / 100.0);
-                    int roundedValue = (int)Math.Round(multipliedValue / 1000.0);
+
+                    int roundedValue = (int)Math.Round(value / 1000.0);
                     string text = roundedValue + "k";
-                    expertieceArmorValues[items[i]] = multipliedValue;
                     SetItemArmorValue(itemArmorLabel, text);
                 });
             }

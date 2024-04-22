@@ -80,7 +80,7 @@
                 <ComboBox x:Name="MaskSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="MaskSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="MaskSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="MaskExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
+                <ComboBox x:Name="MaskExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
             <Grid x:Name="BackpackGrid" Grid.Column="2" Grid.Row="4">
                 <Grid.RowDefinitions>
@@ -112,7 +112,7 @@
                 <ComboBox x:Name="BackpackSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="BackpackSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="BackpackSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="BackpackExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
+                <ComboBox x:Name="BackpackExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
 
             <Grid x:Name="ChestGrid" Grid.Column="1" Grid.Row="5">
@@ -144,7 +144,7 @@
                 <ComboBox x:Name="ChestSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="ChestSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="ChestSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="ChestExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
+                <ComboBox x:Name="ChestExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
 
             <Grid x:Name="GlovesGrid" Grid.Column="2" Grid.Row="5">
@@ -176,7 +176,7 @@
                 <ComboBox x:Name="GlovesSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="GlovesSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="GlovesSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="GlovesExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
+                <ComboBox x:Name="GlovesExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
 
             <Grid x:Name="HolsterGrid" Grid.Column="1" Grid.Row="6">
@@ -208,7 +208,7 @@
                 <ComboBox x:Name="HolsterSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="HolsterSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="HolsterSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="HolsterExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
+                <ComboBox x:Name="HolsterExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
 
             <Grid x:Name="KneepadsGrid" Grid.Column="2" Grid.Row="6">
@@ -240,7 +240,7 @@
                 <ComboBox x:Name="KneepadsSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="KneepadsSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="KneepadsSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="KneepadsExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
+                <ComboBox x:Name="KneepadsExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
             
             <TextBlock x:Name="ErrorBlock" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="89,107,0,0" Padding="0,0,0,0" TextWrapping="Wrap" Text="No errors?" VerticalAlignment="Top" FontSize="11"/>
