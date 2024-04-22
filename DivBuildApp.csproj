@@ -81,10 +81,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CsvFormats\BrandBonusesFormat.cs" />
+    <Compile Include="Data\CsvFormats\BrandBonusesFormat.cs" />
     <Compile Include="DataConverter.cs" />
     <Compile Include="Data\CsvReader.cs" />
     <Compile Include="SHDWatch.cs" />
+    <Compile Include="UI\ItemArmorControl.cs" />
     <Compile Include="UI\StatTableDisplay.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -99,7 +100,7 @@
     <Compile Include="ComboBoxItem.cs" />
     <Compile Include="Classes\GearGridContent.cs" />
     <Compile Include="Classes\ItemCore.cs" />
-    <Compile Include="CsvFormats\BonusCapsFormat.cs" />
+    <Compile Include="Data\CsvFormats\BonusCapsFormat.cs" />
     <Compile Include="UI\DisplayControl.cs" />
     <Compile Include="FileInfo.cs" />
     <Compile Include="GearHandler.cs" />

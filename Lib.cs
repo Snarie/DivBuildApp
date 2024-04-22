@@ -26,6 +26,10 @@ namespace DivBuildApp
             // Find label to display item name
             Label itemName = FindChildControl<Label>(grid, $"{baseName}Name");
 
+            Label itemArmor = FindChildControl<Label>(grid, $"{baseName}Armor");
+
+            ComboBox itemExpertiece = FindChildControl<ComboBox>(grid, $"{baseName}Expertiece");
+
             // Find the brandBonusBoxes
             TextBlock bonus1 = FindChildControl<TextBlock>(grid, $"{baseName}Bonus1");
             TextBlock bonus2 = FindChildControl<TextBlock>(grid, $"{baseName}Bonus2");
@@ -44,7 +48,9 @@ namespace DivBuildApp
             if (success)
             {
                 GearGridLinks.Add(itemType, new GearGridContent(
-                    itemBox, itemName, coreStat,
+                    itemBox, 
+                    itemName, itemArmor, itemExpertiece,
+                    coreStat,
                     new ComboBox[] { stat1, stat2, stat3 },
                     new TextBlock[] { bonus1, bonus2, bonus3 },
                     brandImage
@@ -72,6 +78,15 @@ namespace DivBuildApp
             }
             return null;
         }
+        public static ComboBox GetExpertieceBox(ItemType itemType)
+        {
+            //if (GearGridLinks.TryGetValue(itemType, out GearGridContent grid))
+            if (GridExists(itemType, out GearGridContent grid))
+            {
+                return grid.ItemExpertiece;
+            }
+            return null;
+        }
 
         public static Label GetItemNameLabel(ItemType itemType)
         {
@@ -82,6 +97,14 @@ namespace DivBuildApp
             return null;
         }
 
+        public static Label GetItemArmorLabel(ItemType itemType)
+        {
+            if(GridExists(itemType, out GearGridContent grid))
+            {
+                return grid.ItemArmor;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Get the CoreStatBox for holding selected core Stat

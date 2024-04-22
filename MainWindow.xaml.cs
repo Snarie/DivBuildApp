@@ -44,6 +44,8 @@ namespace DivBuildApp
 
             InitializeGearGridLinks();
 
+            InitializeOptionsExpertiece();
+
             // These don't conflict with eachother
             InitializeItems();
             InitializeBrands();
@@ -55,7 +57,23 @@ namespace DivBuildApp
             InitializeOptionsCoreStat();
             InitializeOptionsSideStats();
 
+            InitializeItemArmor();
             
+
+            
+        }
+
+        private void InitializeOptionsExpertiece()
+        {
+            for (int i = 0; i <= 25; i++)
+            {
+                MaskExpertiece.Items.Add(i);
+                BackpackExpertiece.Items.Add(i);
+                ChestExpertiece.Items.Add(i);
+                GlovesExpertiece.Items.Add(i);
+                HolsterExpertiece.Items.Add(i);
+                KneepadsExpertiece.Items.Add(i);
+            }
         }
         private void AdjustWindowSizeToScreen()
         {
@@ -69,6 +87,11 @@ namespace DivBuildApp
             Top = (SystemParameters.WorkArea.Height - Height) / 2;
         }
         
+        public void InitializeItemArmor()
+        {
+            Task.Run(() => ItemArmorControl.SetItemArmorValues());
+        }
+
 
         /// <summary>
         /// Creates all GridLinks so they can be referenced by their ItemType name e.g. 'Mask'
@@ -163,6 +186,11 @@ namespace DivBuildApp
             //DisplayBonusesInBoxes();
         }
 
+        private void ExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Task.Run(() => ItemArmorControl.SetItemArmorValues());
+            UpdateDisplay();
+        }
         private void StatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GearHandler.SetEquippedGearList();

@@ -54,6 +54,9 @@
                     <!--Dummy data-->
                     <Label.Content >Airalidi</Label.Content>
                 </Label>
+                <Label x:Name="MaskArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2">
+                    <Label.Content>130k</Label.Content>
+                </Label>
                 <TextBlock x:Name="MaskBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" >
                     <!--Dummy data-->
                     <Run Text="+15%" Foreground="Goldenrod" /><Run Text="MMR_Damage" Foreground="White"/>
@@ -75,6 +78,7 @@
                 <ComboBox x:Name="MaskSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="MaskSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="MaskSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
             <Grid x:Name="BackpackGrid" Grid.Column="2" Grid.Row="4">
                 <Grid.RowDefinitions>
@@ -92,6 +96,8 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="BackpackBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
                 <Label x:Name="BackpackName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <Label x:Name="BackpackArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
+
                 <TextBlock x:Name="BackpackBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
                 <TextBlock x:Name="BackpackBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
                 <TextBlock x:Name="BackpackBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
@@ -104,6 +110,7 @@
                 <ComboBox x:Name="BackpackSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="BackpackSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="BackpackSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
 
             <Grid x:Name="ChestGrid" Grid.Column="1" Grid.Row="5">
@@ -122,6 +129,7 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="ChestBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
                 <Label x:Name="ChestName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <Label x:Name="ChestArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
                 <TextBlock x:Name="ChestBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
                 <TextBlock x:Name="ChestBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
                 <TextBlock x:Name="ChestBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
@@ -134,6 +142,7 @@
                 <ComboBox x:Name="ChestSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="ChestSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="ChestSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
 
             <Grid x:Name="GlovesGrid" Grid.Column="2" Grid.Row="5">
@@ -152,6 +161,7 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="GlovesBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
                 <Label x:Name="GlovesName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <Label x:Name="GlovesArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
                 <TextBlock x:Name="GlovesBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
                 <TextBlock x:Name="GlovesBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
                 <TextBlock x:Name="GlovesBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
@@ -164,6 +174,7 @@
                 <ComboBox x:Name="GlovesSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="GlovesSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="GlovesSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
 
             <Grid x:Name="HolsterGrid" Grid.Column="1" Grid.Row="6">
@@ -182,6 +193,7 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="HolsterBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
                 <Label x:Name="HolsterName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <Label x:Name="HolsterArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
                 <TextBlock x:Name="HolsterBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
                 <TextBlock x:Name="HolsterBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
                 <TextBlock x:Name="HolsterBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
@@ -194,6 +206,7 @@
                 <ComboBox x:Name="HolsterSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="HolsterSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="HolsterSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
 
             <Grid x:Name="KneepadsGrid" Grid.Column="2" Grid.Row="6">
@@ -212,6 +225,7 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="KneepadsBrandImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
                 <Label x:Name="KneepadsName" Content="" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <Label x:Name="KneepadsArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
                 <TextBlock x:Name="KneepadsBonus1" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,20" Padding="3,1,3,1" />
                 <TextBlock x:Name="KneepadsBonus2" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Margin="0,10,0,10" Padding="3,1,3,1" />
                 <TextBlock x:Name="KneepadsBonus3" Style="{StaticResource BrandBonusTextBlockStyle}" Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Margin="0,20,0,0" Padding="3,1,3,1" />
@@ -224,6 +238,7 @@
                 <ComboBox x:Name="KneepadsSideStat1" Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="KneepadsSideStat2" Grid.Column="3" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 <ComboBox x:Name="KneepadsSideStat3" Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectionChanged="ExpertieceBox_SelectionChanged" />
             </Grid>
             
             <TextBlock x:Name="ErrorBlock" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="89,107,0,0" Padding="0,0,0,0" TextWrapping="Wrap" Text="No errors?" VerticalAlignment="Top" FontSize="11"/>
@@ -451,6 +466,8 @@
                  PreviewTextInput="TextBox_PreviewTextInput"
                  DataObject.Pasting="TextBox_Pasting" 
                  TextChanged="WatchLevel_TextChanged"/>
+
+
         </Grid>
 
     </Viewbox>
