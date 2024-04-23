@@ -219,9 +219,24 @@ namespace DivBuildApp
         }
         private void StatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GearHandler.SetEquippedGearList();
-            Console.WriteLine($"StatComboBox_SelectionChanged {sender}");
-            UpdateDisplay();
+            if (sender is ComboBox comboBox)
+            { 
+                GearHandler.SetEquippedGearList();
+                Console.WriteLine($"StatComboBox_SelectionChanged {sender}");
+                UpdateDisplay();
+                Image image = FindSiblingControl<Image>(comboBox, comboBox.Name + "_Icon");
+                Label label = FindSiblingControl<Label>(comboBox, comboBox.Name + "_Value");
+                if (comboBox.SelectedItem is BonusDisplay bonusDisplay)
+                {
+                    Task.Run(() => DisplayControl.SetStatIconAsync(image, bonusDisplay));
+                    Task.Run(() => DisplayControl.SetStatValueAsync(label, bonusDisplay));
+                }
+                else
+                {
+                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/ItemType Icons/Undefined.png"));
+                    label.Content = "";
+                }
+            }
         }
 
         private async Task ProcessGearComboBoxChange(ComboBoxBrandItem selectedItem, string baseName)
@@ -239,6 +254,7 @@ namespace DivBuildApp
                 Dispatcher.Invoke(() =>
                 {
                     ListOptions.SetOptionsStatBoxes(itemType);
+                    ListOptions.DisplayOptionStatBoxIcons(itemType);
                 });
             }
         }
@@ -250,9 +266,11 @@ namespace DivBuildApp
                 string baseName = comboBox.Name.Replace("Box", ""); // Removes "Box" to get the base name
                 Task.Run(() => ProcessGearComboBoxChange(selectedItem, baseName));
             }
-            GearHandler.SetEquippedGearList();
             Console.WriteLine($"GearComboBox_SelectionChanged {sender}");
-            UpdateDisplay();
+            if (GearHandler.SetEquippedGearList())
+            {
+                UpdateDisplay();
+            }
         }
 
         public void WatchLevel_TextChanged(object sender, TextChangedEventArgs e)

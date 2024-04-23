@@ -28,9 +28,8 @@ namespace DivBuildApp
         {
             return equippedItemList.FirstOrDefault(i => i.Slot == slot);
         }
-        public static void SetEquippedGearList()
+        public static bool SetEquippedGearList()
         {
-            //ItemType[] itemTypes = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Gloves, ItemType.Holster, ItemType.Kneepads };
             List<ComboBox> boxes = new List<ComboBox>();
             foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
             {
@@ -47,11 +46,10 @@ namespace DivBuildApp
             //Check if all items are selected
             if (unselectedItems.Any())
             {
-                string errors = string.Join(", ", unselectedItems);
-                Console.WriteLine(errors);
-                return;
+                //string errors = string.Join(", ", unselectedItems);
+                //Console.WriteLine(errors);
+                return false;
             }
-
 
             equippedItemList = new List<Gear>
             {
@@ -62,6 +60,7 @@ namespace DivBuildApp
                 CreateGear(ItemType.Holster),
                 CreateGear(ItemType.Kneepads),
             };
+            return true;
         }
 
     }

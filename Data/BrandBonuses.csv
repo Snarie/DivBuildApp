@@ -38,7 +38,7 @@ Heartbreaker;;AR_Damage=15.0+LMG_Damage=15.0;Weapon_Handling=15.0
 Hotshot;;MMR_Damage=30.0+Weapon_Handling=30.0;Headshot_Damage=30.0
 Hunter's Fury;;Shotgun_Damage=15.0+SMG_Damage=15.0;Armor_on_Kill=20.0+Health_on_Kill=50.0
 Negotiator's Dilemma;;Critical_Hit_Chance=15.0;Critical_Hit_Damage=20.0
-Ortiz Exuro;;Burn_Duration=20.0;Skill_Health=15.0+Burn_Damage=40.0
+Ortiz Exuro;;Burn_Duration=20.0+Skill_Health=15.0;Burn_Damage=40.0
 Ongoing Directive;;Status_Effects=15.0;Reload_Speed=30.0
 Rigger;;Skill_Haste=15.0;Skill_Duration=15.0
 Striker's Battlegear;;Weapon_Handling=15.0;Rate_of_Fire=15.0

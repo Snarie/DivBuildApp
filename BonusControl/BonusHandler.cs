@@ -1,4 +1,6 @@
-﻿using DivBuildApp.UI;
+﻿//using DivBuildApp.DataContextClasses;
+using CsvHelper.Configuration.Attributes;
+using DivBuildApp.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +17,15 @@ namespace DivBuildApp
 
     public static class BonusHandler
     {
+       
+
 
         public static Dictionary<BonusType, double> activeBonusses = new Dictionary<BonusType, double>();
 
+
+
+
+        
         /// <summary>
         /// Get bonus from its string equivalant.
         /// </summary>
@@ -95,8 +103,9 @@ namespace DivBuildApp
 
         public static Bonus BonusFromBox(ComboBox box)
         {
-            if (box.SelectedItem is Bonus bonus) return bonus;
-            else return new Bonus(BonusType.NoBonus, 1);
+            return BonusDisplayHandler.BonusDisplayFromBox(box).Bonus;
+            //if (box.SelectedItem is BonusDisplay bonusDisplay) return bonusDisplay.Bonus;
+            //else return new Bonus(BonusType.NoBonus, 1);
         }
 
         
@@ -110,6 +119,7 @@ namespace DivBuildApp
         {
             ComboBox[] comboBox = GetSideStatBoxes(itemType);
             return comboBox.Select(box => BonusFromBox(box)).ToArray();
+            //return comboBox.Select(box => BonusFromBox(box)).ToArray();
         }
 
 
@@ -195,6 +205,7 @@ namespace DivBuildApp
 
         public static void CalculateBonuses()
         {
+            Console.WriteLine("CalculateBonuses Called");
             //Set all bonusses back to 0 to not stack stats from earlier
             ResetBonuses();
 

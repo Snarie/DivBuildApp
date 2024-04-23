@@ -81,14 +81,16 @@
         <DataTemplate x:Key="ComboBoxBonusTemplate">
             <TextBlock>
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0} ">
-                        <Binding Path="BonusType"/>
-                        <!--<Binding Path="Value"/>-->
+                    <MultiBinding StringFormat="{}{0}">
+                        <Binding Path="Bonus.BonusType"/>
+                        <!--<Binding Path="Bonus.Value"/>-->
+                        <!--<Binding Path="IconType"/>-->
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
         </DataTemplate>
 
+        <Thickness x:Key="ComboBox.Dropdown.Margin">0,0,0,0</Thickness>
 
         <!---Default: ComboBox items-->
         <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
@@ -277,9 +279,17 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
                 </Grid.ColumnDefinitions>
-                <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="1" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
-                    <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                        <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1">
+                <Popup x:Name="PART_Popup" 
+                       AllowsTransparency="true" 
+                       Grid.ColumnSpan="2" 
+                       IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+                       Placement="Bottom" 
+                       PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                    <theme:SystemDropShadowChrome x:Name="shadow" 
+                                                  Color="Transparent" 
+                                                  MinWidth="{Binding ActualWidth, ElementName=templateRoot}" 
+                                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                        <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" Margin="{DynamicResource ComboBox.Dropdown.Margin}">
                             <Border.Background>
                                 <!--Background inside dropdown-->
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -303,8 +313,7 @@
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
-                    <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
-                    <Setter Property="Color" TargetName="shadow" Value="#71000000"/>
+                    <!--<Setter Property="Color" TargetName="shadow" Value="#71000000"/>-->
                 </Trigger>
                 <Trigger Property="HasItems" Value="false">
                     <Setter Property="Height" TargetName="dropDownBorder" Value="95"/>
@@ -371,7 +380,7 @@
             <Setter Property="Margin" Value="-29,1,1,1"/>
             <Setter Property="Padding" Value="5,3,5,3"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Foreground" Value="Lime"/>
             <Setter Property="SelectedIndex" Value="1"/>
         </Style>
@@ -382,10 +391,14 @@
             <Setter Property="ItemTemplate" Value="{StaticResource ComboBoxBonusTemplate}" />
             <Setter Property="BorderThickness" Value="0,0,0,0" />
             <Setter Property="Margin" Value="1,0,1,0"/>
-            <Setter Property="Padding" Value="3,1,3,1"/>
+            <Setter Property="Padding" Value="90,1,3,8"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Foreground" Value="Cornsilk" />
+            <Style.Resources>
+                <!-- Overides -->
+                <Thickness x:Key="ComboBox.Dropdown.Margin">90,0,0,0</Thickness>
+            </Style.Resources>
         </Style>
 
 
@@ -421,6 +434,13 @@
             <Setter Property="Margin" Value="0,0,30,0"/>
         </Style>
 
+        <Style TargetType="Label" x:Key="StatBoxValueStyle">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="Goldenrod"/>
+            <Setter Property="Margin" Value="30,0,0,7"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
 
         <Style TargetType="Label" x:Key="StatNameDisplayStyle">
             <Setter Property="FontSize" Value="11"/>
@@ -437,9 +457,15 @@
 
         <Style TargetType="Image" x:Key="ImageBrandStyle">
             <Setter Property="Source" Value="/Images/BrandDefault.png"/>
-            <Setter Property="Width" Value="132" />
-            <Setter Property="Height" Value="120" />
+            <Setter Property="Width" Value="176" />
+            <Setter Property="Height" Value="160" />
             <Setter Property="Stretch" Value="Uniform" />
+        </Style>
+
+        <Style TargetType="Image" x:Key="ItemTypeIconStyle">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Source" Value="/Images/ItemType Icons/Undefined.png"/>
+            <Setter Property="Margin" Value="3,3,3,10"/>
         </Style>
         <Style TargetType="Border" x:Key="BorderStyle">
             <Setter Property="BorderBrush" Value="Gray" />

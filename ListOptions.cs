@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 
 namespace DivBuildApp
@@ -14,81 +15,54 @@ namespace DivBuildApp
     public static class ListOptions
     {
 
-        private static List<Bonus> gearCoreAttributes = new List<Bonus>();
-        private static List<Bonus> gearSideAttributes = new List<Bonus>();
-        private static List<Bonus> gearModAttributes = new List<Bonus>();
-        private static List<Bonus> weaponCoreAttributes = new List<Bonus>();
-        private static List<Bonus> weaponPrimaryAttributes = new List<Bonus>();
-        private static List<Bonus> weaponSecondaryAttributes = new List<Bonus>();
+        private static List<BonusDisplay> gearCoreAttributes = new List<BonusDisplay>();
+        private static List<BonusDisplay> gearSideAttributes = new List<BonusDisplay>();
+        private static List<BonusDisplay> gearModAttributes = new List<BonusDisplay>();
+        private static List<BonusDisplay> weaponCoreAttributes = new List<BonusDisplay>();
+        private static List<BonusDisplay> weaponPrimaryAttributes = new List<BonusDisplay>();
+        private static List<BonusDisplay> weaponSecondaryAttributes = new List<BonusDisplay>();
         
+        public static List<BonusCapsFormat> bonusCapsList = new List<BonusCapsFormat>();
         public static void CreateBonusCapsFromData(List<BonusCapsFormat> bonusCapsFormat)
         {
+            bonusCapsList = bonusCapsFormat;
             foreach(BonusCapsFormat bonusCaps in bonusCapsFormat)
             {
                 BonusType name = BonusHandler.StringToBonusType(bonusCaps.Name);
                 if (name == BonusType.NoBonus) continue;
-                TryCreateBonusCap(name, bonusCaps.GearCore, gearCoreAttributes);
-                TryCreateBonusCap(name, bonusCaps.GearSide, gearSideAttributes);
-                TryCreateBonusCap(name, bonusCaps.Mod, gearModAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponCore, weaponCoreAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponPrimary, weaponPrimaryAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponSide, weaponSecondaryAttributes);
+                BonusDisplayHandler.bonusIconType.Add(name, bonusCaps.IconType);
+                TryCreateBonusCap(name, bonusCaps.GearCore, "Core-"+bonusCaps.IconType, gearCoreAttributes);
+                TryCreateBonusCap(name, bonusCaps.GearSide, "Side-"+bonusCaps.IconType, gearSideAttributes);
+                TryCreateBonusCap(name, bonusCaps.Mod, "Mod-"+bonusCaps.IconType, gearModAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponCore, bonusCaps.IconType, weaponCoreAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponPrimary, bonusCaps.IconType, weaponPrimaryAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponSide, bonusCaps.IconType, weaponSecondaryAttributes);
             }
         }
-        public static void TryCreateBonusCap(BonusType name, string stringValue, List<Bonus> holder)
+        public static void TryCreateBonusCap(BonusType name, string stringValue, string iconType, List<BonusDisplay> holder)
         {
             if (string.IsNullOrEmpty(stringValue)) return;
             bool canParse = double.TryParse(stringValue, out double value);
             if (!canParse) return;
-            Bonus bonus = new Bonus(name, value);
+            BonusDisplay bonus = new BonusDisplay(new Bonus(name, value), iconType);
             holder.Add(bonus);
             
         }
-        public static void CreateAttributesFromDictionary(Dictionary<BonusType, Dictionary<string, double>> attributes)
-        {
-            foreach(var attribute in attributes)
-            {
-                foreach(var capType in attribute.Value)
-                {
-                    CreateAttributeio(capType.Key, new Bonus(attribute.Key, capType.Value));
-                }
-            }
-        }
-        public static void CreateAttributeio(string type, Bonus bonus)
-        {
-            switch (type)
-            {
-                case "GC":
-                    gearCoreAttributes.Add(bonus);
-                    break;
-                case "GP":
-                    gearSideAttributes.Add(bonus);
-                    break;
-                case "M":
-                    gearModAttributes.Add(bonus);
-                    break;
-                case "WC":
-                    weaponCoreAttributes.Add(bonus);
-                    break;
-                case "WP":
-                    weaponPrimaryAttributes.Add(bonus);
-                    break;
-                case "WS":
-                    weaponSecondaryAttributes.Add(bonus);
-                    break;
-                default:
-                    Console.WriteLine($"Warn: {type} isn't a valid prefix");
-                    break;
-            }
-        }
-        public static void SetItemsSource(ComboBox statBox, string itemAttribute, List<Bonus> defaultList)
+        
+        
+        public static void SetItemsSource(ComboBox statBox, string itemAttribute)
         {
             int bonusIndex = statBox.SelectedIndex;
             int bonusItemCount = statBox.Items.Count;
-            statBox.ItemsSource = GetBonusOptionsList(itemAttribute, defaultList);
+            statBox.ItemsSource = GetBonusOptionsList(itemAttribute);
             SetBoxSelectedIndex(statBox, bonusIndex, bonusItemCount);
         }
 
+
+        public static void DisplayOptionStatBoxIcons(ItemType itemType)
+        {
+
+        }
         public static void SetOptionsStatBoxes(ItemType itemType)
         {
             ComboBox[] statBoxes = Lib.GetSideStatBoxes(itemType);
@@ -106,7 +80,7 @@ namespace DivBuildApp
             {
                 ComboBox statBox = Lib.GetCoreStatBox(itemType);
                 StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
-                SetItemsSource(statBox, stringItem.CoreAttribute, gearCoreAttributes);
+                SetItemsSource(statBox, stringItem.CoreAttribute);
             }
         }
 
@@ -118,9 +92,9 @@ namespace DivBuildApp
                 ComboBox[] statBoxes = Lib.GetSideStatBoxes(itemType);
                 StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
 
-                SetItemsSource(statBoxes[0], stringItem.SideAttribute1, gearSideAttributes);
-                SetItemsSource(statBoxes[1], stringItem.SideAttribute2, gearSideAttributes);
-                SetItemsSource(statBoxes[2], stringItem.SideAttribute3, gearSideAttributes);
+                SetItemsSource(statBoxes[0], stringItem.SideAttribute1);
+                SetItemsSource(statBoxes[1], stringItem.SideAttribute2);
+                SetItemsSource(statBoxes[2], stringItem.SideAttribute3);
             }
         }
 
@@ -152,6 +126,8 @@ namespace DivBuildApp
             }
             else
             {
+                Image image = Lib.FindSiblingControl<Image>(bonusBox, bonusBox.Name + "_Icon");
+                image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Empty.png"));
                 bonusBox.IsEnabled = false;
             }
         }
@@ -165,19 +141,19 @@ namespace DivBuildApp
         /// <param name="search">Paramater that is checked for presets</param>
         /// <param name="defaultList">List of bonusses when no overrides are done</param>
         /// <returns></returns>
-        public static List<Bonus> GetBonusOptionsList(string search, List<Bonus> defaultList)
+        public static List<BonusDisplay> GetBonusOptionsList(string search)
         {
             string[] parts = search.Split(':');
             if(parts.Length == 1)
             {
                 if (search == "none")
                 {
-                    return new List<Bonus>();
+                    return new List<BonusDisplay>();
                 }
                 else
                 {
                     Console.WriteLine($"ListOptions.GetBonusOptionsList \"{search}\" invalid format :(");
-                    return new List<Bonus>();
+                    return new List<BonusDisplay>();
                 }
             }
             //Omdat leesbaar :)
@@ -195,19 +171,19 @@ namespace DivBuildApp
                             return gearModAttributes;
                         default:
                             Console.WriteLine($"ListOptions.GetBonusOptionsList \"{value}\" is not a recognized list");
-                            return new List<Bonus>();
+                            return new List<BonusDisplay>();
                     }
                 case "locked":
-                    return new List<Bonus>() { BonusHandler.BonusFromString(value) };
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromString(value) };
                 case "core":
-                    return new List<Bonus>() { BonusHandler.BonusFromList(gearCoreAttributes, BonusHandler.StringToBonusType(value)) };
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(gearCoreAttributes, BonusHandler.StringToBonusType(value)) };
                 case "side":
-                    return new List<Bonus>() { BonusHandler.BonusFromList(gearSideAttributes, BonusHandler.StringToBonusType(value)) };
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(gearSideAttributes, BonusHandler.StringToBonusType(value)) };
                 case "mod":
-                    return new List<Bonus>() { BonusHandler.BonusFromList(gearModAttributes, BonusHandler.StringToBonusType(value)) };
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(gearModAttributes, BonusHandler.StringToBonusType(value)) };
                 default:
                     Console.WriteLine($"ListOptions.GetBonusOptionsList: \"{search}\" is not a recognized preset");
-                    return new List<Bonus>();
+                    return new List<BonusDisplay>();
             }
         }
 
@@ -218,7 +194,7 @@ namespace DivBuildApp
                 bool success = Enum.TryParse(item.Slot, true, out ItemType itemType);
                 if (!success) 
                 {
-                    Console.WriteLine($"{item.Slot} cant be converted to itemType"); continue; 
+                    Console.WriteLine($"Slot: \"{item.Slot}\" cant be converted to itemType from {item.Name}"); continue; 
                 }
                 ComboBox bonker = Lib.GetItemBox(itemType);
                 bonker.Items.Add(new ComboBoxBrandItem { Name = item.Name, Preset = $"[{item.Rarity}]", Slot = item.Slot });

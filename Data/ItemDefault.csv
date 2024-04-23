@@ -18,7 +18,7 @@ Habsburg Guard;Habsburg Guard;all;High-End;;;;;
 Hana-U Corporation;Hana-U Corporation;all;High-End;;;;;
 Lengmo;Lengmo;all;High-End;;;;;
 Murakami Industries;Murakami Industries;all;High-End;;;;;
-Overlord Armaments;Overlord Armaments;all ;High-End;;;;;
+Overlord Armaments;Overlord Armaments;all;High-End;;;;;
 Palisade Steelworks;Palisade Steelworks;all;High-End;;;;;
 Petrov Defense Group;Petrov Defense Group;all;High-End;;;;;
 Providence Defense;Providence Defense;all;High-End;;;;;
@@ -122,9 +122,10 @@ Liquid Engineer;Belstone Armory;backpack;Named;;;;;Perfect Bloodsucker
 The Courier;Habsburg Guard;backpack;Named;;;;;Perfect Creeping Death
 Lavoisier;Brazos de Arcabuz;backpack;Named;;;;;Perfect Galvanize
 BackBone;Lengmo;backpack;Named;;;;;Perfectly Unstoppable Force
-Contractor's Gloves;Petrov Defense Group;gloves;Named;;locked:Armor_Damage=8.0;;;
+Contractor's Gloves;Petrov Defense Group;gloves;Named;;locked:Damage_to_Armor=8.0;;;
 Deathgrips;5.11 Tactical;gloves;Named;;locked:Armor_on_Kill=10.0;;;
-Firm Handshake;Sokolov Concern;gloves;Named;;locked:Skill_Health=10.0;;;
+Motherly Love;Alps Summit Armament;gloves;Named;;locked:Skill_Health=10.0;;;
+Firm Handshake;Sokolov Concern;gloves;Named;;locked:Status_Effects=15.0;;;
 Emperor's Guard;Murakami Industries;kneepads;Named;;locked:Armor_Regen=1.0;;;
 Fox's Prayer;Overlord Armaments;kneepads;Named;;locked:DMG_out_of_Cover=10.0;;;
 Catharsis;Catharsis;mask;Exotic;core:Armor;side:Incoming_Repairs;side:Armor_Regen_HPs;;Viscious Cycle

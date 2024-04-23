@@ -47,6 +47,45 @@ namespace DivBuildApp
                 itemLabel.Foreground = brush;
             });
         }
+
+        public static async Task SetStatValueAsync(Label label, BonusDisplay bonusDisplay)
+        {
+            string msg = "+"+bonusDisplay.Bonus.Value;
+            switch (bonusDisplay.Bonus.BonusType)
+            {
+                case BonusType.Armor_on_Kill_Stat:
+                case BonusType.Health:
+                case BonusType.Skill_Tier:
+                case BonusType.Armor:
+                case BonusType.Armor_Regen_HPs:
+                    break;
+                default:
+                    msg += "%";
+                    break;
+            }
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                label.Content = msg;
+            });
+        }
+        public static async Task SetStatIconAsync(Image imageControl, BonusDisplay bonusDisplay)
+        {
+            string resourcePath = $"pack://application:,,,/Images/ItemType Icons/{bonusDisplay.IconType}.png";
+
+            bool exists = ResourceExists(resourcePath);
+            if (!exists)
+            {
+                Console.WriteLine(resourcePath + " Not found");
+                resourcePath = "pack://application:,,,/Images/ItemType Icons/Undefined.png";
+            }
+
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                imageControl.Source = new BitmapImage(new Uri(resourcePath));
+            });
+
+        }
+
         public static async Task SetBrandImageAsync(Image imageControl, string brandName)
         {
             string resourcePath = $"pack://application:,,,/Images/Brand Icons/{brandName}.png";

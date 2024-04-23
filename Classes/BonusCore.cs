@@ -127,6 +127,7 @@ namespace DivBuildApp
         Armor_on_Kill_Stat,
         Armor_on_Kill,
         Health_on_Kill,
+
         Health_Damage,
         Damage_to_Armor,
         DMG_out_of_Cover,
@@ -158,6 +159,17 @@ namespace DivBuildApp
             Value = value;
         }
     }
+    public class BonusDisplay
+    {
+        public Bonus Bonus { get; }
+        public string IconType { get; }
 
-    
+        public BonusDisplay(Bonus bonus, string iconType)
+        {
+            Bonus = bonus;
+            IconType = iconType;
+        }
+    }
+
+
 }

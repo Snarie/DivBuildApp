@@ -22,12 +22,12 @@ namespace DivBuildApp.UI
         };
         public static Dictionary<ItemType, double> expertieceArmorValues = new Dictionary<ItemType, double>()
         {
-            [ItemType.Mask] = 80297,
-            [ItemType.Backpack] = 130844,
-            [ItemType.Chest] = 157961,
-            [ItemType.Gloves] = 80297,
-            [ItemType.Holster] = 111889,
-            [ItemType.Kneepads] = 98726
+            [ItemType.Mask] = 0,
+            [ItemType.Backpack] = 0,
+            [ItemType.Chest] = 0,
+            [ItemType.Gloves] = 0,
+            [ItemType.Holster] = 0,
+            [ItemType.Kneepads] = 0
         };
 
         public static double GetExpertieceArmorValue()
@@ -43,8 +43,11 @@ namespace DivBuildApp.UI
         {
             double armorValue = defaultArmorValues[itemType];
             ComboBox multiplierBox = Lib.GetExpertieceBox(itemType);
-            Console.WriteLine(multiplierBox.Name + " " + multiplierBox.HasItems);
-            if (!multiplierBox.HasItems) return;
+            if (!multiplierBox.HasItems) 
+            { 
+                Console.WriteLine($"{multiplierBox.Name} has no items."); 
+                return; 
+            }
             double multiplier = 100 + (int)multiplierBox.SelectedValue;
             double multipliedValue = armorValue * multiplier / 100.0;
             expertieceArmorValues[itemType] = multipliedValue;

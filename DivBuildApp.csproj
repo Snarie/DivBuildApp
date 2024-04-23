@@ -81,8 +81,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BonusControl\BonusDisplayHandler.cs" />
     <Compile Include="Data\CsvFormats\BrandBonusesFormat.cs" />
-    <Compile Include="DataConverter.cs" />
     <Compile Include="Data\CsvReader.cs" />
     <Compile Include="SHDWatch.cs" />
     <Compile Include="UI\ItemArmorControl.cs" />
@@ -96,7 +96,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\BonusCore.cs" />
-    <Compile Include="BonusHandler.cs" />
+    <Compile Include="BonusControl\BonusHandler.cs" />
     <Compile Include="ComboBoxItem.cs" />
     <Compile Include="Classes\GearGridContent.cs" />
     <Compile Include="Classes\ItemCore.cs" />
@@ -126,6 +126,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\Empty.png" />
+    <Resource Include="Images\ItemType Icons\Mod-Blue.png" />
+    <Resource Include="Images\ItemType Icons\Mod-Red.png" />
+    <Resource Include="Images\ItemType Icons\Mod-Yellow.png" />
+    <Resource Include="Images\ItemType Icons\Side-Blue.png" />
+    <Resource Include="Images\ItemType Icons\Side-Red.png" />
+    <Resource Include="Images\ItemType Icons\Side-Yellow.png" />
+    <Resource Include="Images\ItemType Icons\Undefined.png" />
+    <Resource Include="Images\ItemType Icons\Core-Red.png" />
+    <Resource Include="Images\ItemType Icons\Core-Yellow.png" />
+    <Resource Include="Images\ItemType Icons\Core-Blue.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -297,6 +308,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Brand Icons\Umbra Initiative.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataContextClasses\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

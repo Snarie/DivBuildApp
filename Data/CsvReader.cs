@@ -54,11 +54,6 @@ namespace DivBuildApp
             string filePath = Path.Combine(BaseDirectory(), "Data", "ItemDefault.csv");
             return ReadCsvFile<StringItem>(filePath, Config());
         }
-        /*public static List<StringItem> ItemDefault()
-        {
-            string filePath = "data/ItemDefault.csv";
-            return ReadCsvFile<StringItem>(filePath, Config());
-        }/**/
 
     }
 }
