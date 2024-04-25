@@ -122,12 +122,18 @@ namespace DivBuildApp
                         bonusBox.SelectedIndex = oldIndex;
                     }
                 }
-                
+                if(bonusBox.SelectedIndex == -1)
+                {
+                    Slider slider = Lib.FindSiblingControl<Slider>(bonusBox, bonusBox.Name + "_Slider");
+                    slider.Visibility = System.Windows.Visibility.Hidden;
+                }
             }
             else
             {
                 Image image = Lib.FindSiblingControl<Image>(bonusBox, bonusBox.Name + "_Icon");
                 image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Empty.png"));
+                Slider slider = Lib.FindSiblingControl<Slider>(bonusBox, bonusBox.Name + "_Slider");
+                slider.Visibility = System.Windows.Visibility.Hidden;
                 bonusBox.IsEnabled = false;
             }
         }

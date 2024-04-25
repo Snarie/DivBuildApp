@@ -36,11 +36,11 @@ namespace DivBuildApp
             TextBlock bonus3 = FindChildControl<TextBlock>(grid, $"{baseName}Bonus3");
 
             // Find the coreStatBox
-            ComboBox coreStat = FindChildControl<ComboBox>(grid, $"{baseName}CoreStat");
+            ComboBox coreStat = FindChildControl<ComboBox>(grid, $"{baseName}Stat1");
             // Find the sideStatLabels
-            ComboBox stat1 = FindChildControl<ComboBox>(grid, $"{baseName}SideStat1");
-            ComboBox stat2 = FindChildControl<ComboBox>(grid, $"{baseName}SideStat2");
-            ComboBox stat3 = FindChildControl<ComboBox>(grid, $"{baseName}SideStat3");
+            ComboBox stat1 = FindChildControl<ComboBox>(grid, $"{baseName}Stat2");
+            ComboBox stat2 = FindChildControl<ComboBox>(grid, $"{baseName}Stat3");
+            ComboBox stat3 = FindChildControl<ComboBox>(grid, $"{baseName}Stat4");
 
             Image brandImage = FindChildControl<Image>(grid, $"{baseName}BrandImage");
 
@@ -188,7 +188,7 @@ namespace DivBuildApp
                     return foundChild;
                 }/**/
             }
-
+            Console.WriteLine(targetName + " Not found");
             return null;
         }
 

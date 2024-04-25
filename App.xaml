@@ -391,7 +391,7 @@
             <Setter Property="ItemTemplate" Value="{StaticResource ComboBoxBonusTemplate}" />
             <Setter Property="BorderThickness" Value="0,0,0,0" />
             <Setter Property="Margin" Value="1,0,1,0"/>
-            <Setter Property="Padding" Value="90,1,3,8"/>
+            <Setter Property="Padding" Value="90,1,3,13"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Foreground" Value="Cornsilk" />
@@ -437,7 +437,7 @@
         <Style TargetType="Label" x:Key="StatBoxValueStyle">
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Foreground" Value="Goldenrod"/>
-            <Setter Property="Margin" Value="30,0,0,7"/>
+            <Setter Property="Margin" Value="30,0,0,12"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
@@ -462,13 +462,154 @@
             <Setter Property="Stretch" Value="Uniform" />
         </Style>
 
-        <Style TargetType="Image" x:Key="ItemTypeIconStyle">
+        <Style TargetType="Image" x:Key="BonusTypeIconStyle">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Source" Value="/Images/ItemType Icons/Undefined.png"/>
-            <Setter Property="Margin" Value="3,3,3,10"/>
+            <Setter Property="Margin" Value="3,3,3,15"/>
         </Style>
         <Style TargetType="Border" x:Key="BorderStyle">
             <Setter Property="BorderBrush" Value="Gray" />
         </Style>
+
+
+        
+        
+
+        <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border  BorderThickness="1" BorderBrush="Yellow" Background="Black" Height="3"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderRepeatButton1" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border SnapsToDevicePixels="True" Background="Green"  BorderThickness="1" BorderBrush="YellowGreen" Height="3"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderThumb" TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Ellipse Height="8" Width="8" Fill="Green"/>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="Slider"  TargetType="Slider">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track Grid.Row="1" x:Name="PART_Track"   >
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton1}"  Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb}"  />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton}" Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="Horizontal_Slider" TargetType="Slider">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="MinHeight" Value="21" />
+                    <Setter Property="MinWidth" Value="104" />
+                    <Setter Property="Template" Value="{StaticResource Slider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+        <Style x:Key="RedSliderStyle" TargetType="{x:Type Slider}">
+            <Setter Property="Margin" Value="2,10,2,0"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Visibility" Value="Visible"/>
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Maximum" Value="100"/>
+            <Setter Property="Value" Value="100"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Slider}">
+                        <Grid Height="8">
+                            <Rectangle Fill="Gray" Height="7" Width="1" Margin="0,-1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            <Rectangle Fill="Gray" Height="7" Width="1" Margin="0,-1,0,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                            <Track x:Name="PART_Track" Margin="1,0,1,0" Height="8" VerticalAlignment="Top">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static Slider.DecreaseLarge}">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                <Rectangle x:Name="decreaseRect" Fill="Red" Height="4" Margin="0"/>
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static Slider.IncreaseLarge}">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                <!-- White Background -->
+                                                <Rectangle Fill="LightGray" Height="4"/>
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                <Grid Width="0" Height="4">
+                                                    <Border BorderThickness="1" BorderBrush="Gray" Margin="-1,-3,-1,0" Height="7" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                                                    <Grid Margin="-4,3,-4,-9">
+                                                        <Path Data="M 0,5 L 10,5 5,0 Z" Fill="Goldenrod" Height="10" Width="10" VerticalAlignment="Center"  HorizontalAlignment="Center"/>
+                                                    </Grid>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+        </Style>
+
+
+        
+
+
+
+
     </Application.Resources>
 </Application>

@@ -8,10 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
+using System.Windows.Shapes;
 using System.Xml.Linq;
 
 namespace DivBuildApp
@@ -48,9 +50,10 @@ namespace DivBuildApp
             });
         }
 
-        public static async Task SetStatValueAsync(Label label, BonusDisplay bonusDisplay)
+        public static async Task SetStatValueAsync(Label label, BonusDisplay bonusDisplay, double multiplier)
         {
-            string msg = "+"+bonusDisplay.Bonus.Value;
+            string msg = "+"+(bonusDisplay.Bonus.Value*multiplier/100);
+            Console.WriteLine(msg + " / " + multiplier);
             switch (bonusDisplay.Bonus.BonusType)
             {
                 case BonusType.Armor_on_Kill_Stat:
@@ -68,6 +71,48 @@ namespace DivBuildApp
                 label.Content = msg;
             });
         }
+
+        public static void SetSliderRange(Slider slider, BonusDisplay bonusDisplay)
+        {
+            slider.Visibility = Visibility.Visible;
+
+            Brush brush = Brushes.Pink;
+            if (bonusDisplay.IconType.EndsWith("Red"))
+            {
+                brush = Brushes.Red;
+            }
+            else if (bonusDisplay.IconType.EndsWith("Blue"))
+            {
+                brush = Brushes.DeepSkyBlue;
+            }
+            else if (bonusDisplay.IconType.EndsWith("Yellow"))
+            {
+                brush = Brushes.Yellow;
+            }
+
+            Track track = slider.Template.FindName("PART_Track", slider) as Track;
+            if (track == null)
+            {
+                Console.WriteLine($"track doesn't exist: {slider.Name}");
+                return;
+            }
+            RepeatButton decreaseButton = track.DecreaseRepeatButton;
+            //RepeatButton increaseButton = track.IncreaseRepeatButton;
+
+            if (decreaseButton == null)
+            {
+                Console.WriteLine($"decreaseButton doesn't exist: {slider.Name}");
+                return;
+            }
+            Rectangle rect = decreaseButton.Template.FindName("decreaseRect", decreaseButton) as Rectangle;
+            if( rect == null)
+            {
+                Console.WriteLine($"rect doesn't exist: {slider.Name}");
+                return;
+            }
+            rect.Fill = brush;
+        }
+
         public static async Task SetStatIconAsync(Image imageControl, BonusDisplay bonusDisplay)
         {
             string resourcePath = $"pack://application:,,,/Images/ItemType Icons/{bonusDisplay.IconType}.png";
