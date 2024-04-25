@@ -126,6 +126,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\Brand Icons\Zwiadowka Sp. z o.o..png" />
+    <Resource Include="Images\Brand Icons\Breaking Point.png" />
     <Resource Include="Images\ArrowIcon.png" />
     <Resource Include="Images\Empty.png" />
     <Resource Include="Images\ItemType Icons\Mod-Blue.png" />

@@ -27,6 +27,7 @@ Sokolov Concern;Sokolov Concern;all;High-End;;;;;
 Uzina Getica;Uzina Getica;all;High-End;;;;;
 Walker, Harris & Co;Walker, Harris & Co;all;High-End;;;;;
 Wyvern Wear;Wyvern Wear;all;High-End;;;;;
+Zwiadowka Sp. z o.o.;Zwiadowka Sp. z o.o.;all;High-End;;;;;
 Yaahl Gear;Yaahl Gear;all;High-End;;;;;
 Aces & Eights;Aces & Eights;nontalent;Gear Set;;;none;;
 Aces & Eights;Aces & Eights;backpack;Gear Set;;;none;;Ace in the Sleeve
@@ -34,6 +35,9 @@ Aces & Eights;Aces & Eights;chest;Gear Set;;;none;;No Limit
 Aegis;Aegis;nontalent;Gear Set;;;none;;
 Aegis;Aegis;backpack;Gear Set;;;none;;Polyethylene Plating
 Aegis;Aegis;chest;Gear Set;;;none;;Deceit
+Breaking Point;Breaking Point;nontalent;Gear Set;;;none;;
+Breaking Point;Breaking Point;backpack;Gear Set;;;none;;Point of no Return
+Breaking Point;Breaking Point;chest;Gear Set;;;none;;Point of Honor
 Eclipse Protocol;Eclipse Protocol;nontalent;Gear Set;;;none;;
 Eclipse Protocol;Eclipse Protocol;backpack;Gear Set;;;none;;Symptom Aggravator
 Eclipse Protocol;Eclipse Protocol;chest;Gear Set;;;none;;Proliferation
@@ -104,6 +108,7 @@ Pointman;Gila Guard;chest;Named;;;;;Perfect Vanguard
 Cherished;Habsburg Guard;chest;Named;;;;;Perfect Trauma
 Henri;Electrique;chest;Named;;;;;Perfect Companion
 Carpenter;Lengmo;chest;Named;;;;;Perfectly Mad Bomber
+Bober;Zwiadowka Sp. z o.o.;chest;Named;;;;;Perfect Entrench
 Claws Out;Wyvern Wear;holster;Named;;locked:Melee_Damage=500.0;;locked:Pistol_Damage=9.0;
 Ammo Dump holster;Badger Tuff;holster;Named;;locked:Ammo_Capacity=10.0;;;
 Picaro's hoslter;Brazos de Arcabuz;holster;Named;;;locked:Weapon_Damage=15.0;;
@@ -125,6 +130,7 @@ BackBone;Lengmo;backpack;Named;;;;;Perfectly Unstoppable Force
 Contractor's Gloves;Petrov Defense Group;gloves;Named;;locked:Damage_to_Armor=8.0;;;
 Deathgrips;5.11 Tactical;gloves;Named;;locked:Armor_on_Kill=10.0;;;
 Motherly Love;Alps Summit Armament;gloves;Named;;locked:Skill_Health=10.0;;;
+Eagle's Grasp;Zwiadowka Sp. z o.o.;gloves;Named;;locked:Weapon_Handling=15.0;;;
 Firm Handshake;Sokolov Concern;gloves;Named;;locked:Status_Effects=15.0;;;
 Emperor's Guard;Murakami Industries;kneepads;Named;;locked:Armor_Regen=1.0;;;
 Fox's Prayer;Overlord Armaments;kneepads;Named;;locked:DMG_out_of_Cover=10.0;;;
