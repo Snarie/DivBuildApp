@@ -551,10 +551,10 @@
 
 
         <Style x:Key="RedSliderStyle" TargetType="{x:Type Slider}">
-            <Setter Property="Margin" Value="2,10,2,0"/>
+            <Setter Property="Margin" Value="3,10,3,0"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
             <Setter Property="Visibility" Value="Visible"/>
-            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Minimum" Value="1"/>
             <Setter Property="Maximum" Value="100"/>
             <Setter Property="Value" Value="100"/>
             <Setter Property="Template">

@@ -31,7 +31,7 @@ Yaahl Gear;Hazard_Protection=10.0;Weapon_Damage=5.0;Pulse_Resistance=40.0
 Zwiadowka Sp. z o.o.;Magazine_Size=15.0;Rifle_Damage=20.0;Weapon_Handling=30.0
 Aces & Eights;;MMR_Damage=15.0;Headshot_Damage=30.0
 Aegis;;Health=70.0;Total_armor=15.0
-Breaking Point;;Rilfe_Damage=25.0+MMR_Damage=25.0;Headshot_Damage=30.0+Weapon_Handling=15.0
+Breaking Point;;Rifle_Damage=25.0+MMR_Damage=25.0;Headshot_Damage=30.0+Weapon_Handling=15.0
 Eclipse Protocol;;Status_Effects=15.0;Skill_Haste=15.0+Hazard_Protection=30.0
 Foundry Bulwark;;Total_Armor=10.0;Armor_Regen=1.0+Shield_Health=50.0
 Future Initiative;;Repair_Skills=30.0;Skill_Haste=15.0+Skill_Duration=30.0
