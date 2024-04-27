@@ -50,9 +50,9 @@ namespace DivBuildApp
                 itemLabel.Foreground = brush;
             });
         }
-        public static void SetStatValue(Label label, BonusDisplay bonusDisplay, double mutliplier)
+        public static void SetStatValue(Label label, BonusDisplay bonusDisplay, double multiplier)
         {
-            Bonus bonus = bonusDisplay.Bonus;
+            Bonus bonus = new Bonus(bonusDisplay.Bonus.BonusType, bonusDisplay.Bonus.Value, bonusDisplay.Bonus.DisplayType);
             switch (bonus.BonusType) 
             {
                 case BonusType.Skill_Tier:
@@ -63,52 +63,19 @@ namespace DivBuildApp
                 case BonusType.Skill_Stinger_Charges:
                     break;
                 default:
-                    bonus.Value *= mutliplier / 100;
+                    bonus.Value *= multiplier / 100;
                     break;
             }
             label.DataContext = bonus;
+            label.Content = bonus.DisplayValue;
             //label.Content = bonus;
-            Console.WriteLine(bonus.DisplayValue + " " + bonus.DisplayType + " " + bonus.BonusType);
+            Console.WriteLine(bonus.DisplayValue + " " + bonus.BonusType + " " + multiplier);
         }
-        public static async Task SetStatValueAsync(TextBlock label, BonusDisplay bonusDisplay, double multiplier)
-        {
-            string msg = "+"+(bonusDisplay.Bonus.Value*multiplier/100);
-            Console.WriteLine(msg + " / " + multiplier);
-            switch (bonusDisplay.Bonus.BonusType)
-            {
-                case BonusType.Armor_on_Kill_Stat:
-                case BonusType.Health:
-                case BonusType.Skill_Tier:
-                case BonusType.Armor:
-                case BonusType.Armor_Regen_HPs:
-                    break;
-                default:
-                    msg += "%";
-                    break;
-            }
-            await Application.Current.Dispatcher.InvokeAsync(() =>
-            {
-                label.Text = msg;
-            });
-        }
+        
 
         public static void SetSliderRange(Slider slider, BonusDisplay bonusDisplay)
         {
             slider.Visibility = Visibility.Visible;
-
-            Brush brush = Brushes.Pink;
-            if (bonusDisplay.IconType.EndsWith("Red"))
-            {
-                brush = Brushes.Red;
-            }
-            else if (bonusDisplay.IconType.EndsWith("Blue"))
-            {
-                brush = Brushes.DeepSkyBlue;
-            }
-            else if (bonusDisplay.IconType.EndsWith("Yellow"))
-            {
-                brush = Brushes.Yellow;
-            }
 
             Track track = slider.Template.FindName("PART_Track", slider) as Track;
             if (track == null)
@@ -129,6 +96,36 @@ namespace DivBuildApp
             {
                 Console.WriteLine($"rect doesn't exist: {slider.Name}");
                 return;
+            }
+
+            Brush brush = Brushes.Pink;
+            if (bonusDisplay.IconType.EndsWith("Red"))
+            {
+                brush = Brushes.Red;
+            }
+            else if (bonusDisplay.IconType.EndsWith("Blue"))
+            {
+                brush = Brushes.DeepSkyBlue;
+            }
+            else if (bonusDisplay.IconType.EndsWith("Yellow"))
+            {
+                brush = Brushes.Yellow;
+            }
+
+            switch(bonusDisplay.Bonus.BonusType)
+            {
+                case BonusType.Skill_Tier:
+                case BonusType.Armor_Kit_Capacity:
+                case BonusType.Grenade_Capacity:
+                case BonusType.Skill_Repair_Charges:
+                case BonusType.Skill_Stim_Charges:
+                case BonusType.Skill_Stinger_Charges:
+                    slider.Minimum = 100;
+                    slider.Value = 100;
+                    break;
+                default:
+                    slider.Minimum = 1;
+                    break;
             }
             rect.Fill = brush;
         }
@@ -183,9 +180,6 @@ namespace DivBuildApp
             }
         }
 
-
-        
-
         public static async Task DisplayBrandBonusesAsync(ItemType itemType, string brandName)
         {
             TextBlock[] bonusBoxes = Lib.GetBrandBonusTextBlocks(itemType);
@@ -208,7 +202,7 @@ namespace DivBuildApp
                 DisplayBrandBonus(bonusBoxes[2], bonuses[2]);
             });
         }
-        //Place Dispatcher to correct space, does alot on the UI thread now
+        
         public static void DisplayBrandBonus(TextBlock textBlock, List<Bonus> Bonuses)
         {
             textBlock.Inlines.Clear();

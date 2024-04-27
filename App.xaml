@@ -441,7 +441,7 @@
             <Setter Property="Margin" Value="30,0,0,12"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Content" Value="{Binding DisplayValue}"/>
+            <Setter Property="Content" Value="{Binding Value}"/>
         </Style>
            
 

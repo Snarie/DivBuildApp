@@ -28,30 +28,26 @@ namespace DivBuildApp
             bonusCapsList = bonusCapsFormat;
             foreach(BonusCapsFormat bonusCaps in bonusCapsFormat)
             {
-                string displayType = !string.IsNullOrEmpty(bonusCaps.DisplayType) ? bonusCaps.DisplayType : "percentage";
 
                 BonusType name = BonusHandler.StringToBonusType(bonusCaps.Name);
+
                 if (name == BonusType.NoBonus) continue;
                 BonusDisplayHandler.bonusIconType.Add(name, bonusCaps.IconType);
-                TryCreateBonusCap(name, bonusCaps.GearCore, "Core-"+bonusCaps.IconType, displayType, gearCoreAttributes);
-                TryCreateBonusCap(name, bonusCaps.GearSide, "Side-"+bonusCaps.IconType, displayType, gearSideAttributes);
-                TryCreateBonusCap(name, bonusCaps.Mod, "Mod-"+bonusCaps.IconType, displayType, gearModAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponCore, bonusCaps.IconType, displayType, weaponCoreAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponPrimary, bonusCaps.IconType, displayType, weaponPrimaryAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponSide, bonusCaps.IconType, displayType, weaponSecondaryAttributes);
+                TryCreateBonusCap(name, bonusCaps.GearCore, "Core-"+bonusCaps.IconType, gearCoreAttributes);
+                TryCreateBonusCap(name, bonusCaps.GearSide, "Side-"+bonusCaps.IconType, gearSideAttributes);
+                TryCreateBonusCap(name, bonusCaps.Mod, "Mod-"+bonusCaps.IconType, gearModAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponCore, bonusCaps.IconType, weaponCoreAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponPrimary, bonusCaps.IconType, weaponPrimaryAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponSide, bonusCaps.IconType, weaponSecondaryAttributes);
 
-                if (name == BonusType.Weapon_Damage || name == BonusType.Signature_Weapon_Damage)
-                {
-                    //
-                }
             }
         }
-        public static void TryCreateBonusCap(BonusType name, string stringValue, string iconType, string displayType, List<BonusDisplay> holder)
+        public static void TryCreateBonusCap(BonusType name, string stringValue, string iconType, List<BonusDisplay> holder)
         {
             if (string.IsNullOrEmpty(stringValue)) return;
             bool canParse = double.TryParse(stringValue, out double value);
             if (!canParse) return;
-            BonusDisplay bonus = new BonusDisplay(new Bonus(name, value, displayType), iconType);
+            BonusDisplay bonus = new BonusDisplay(new Bonus(name, value), iconType);
             holder.Add(bonus);
             
         }

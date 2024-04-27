@@ -50,7 +50,8 @@ namespace DivBuildApp
             InitializeItems();
             InitializeBrands();
             InitializeActiveBonusses();
-            InitializeGearBonusCaps();
+            InitializeBonusDisplayTypes();
+            InitializeBonusCaps();
 
             //No order but must be done last
             InitializeGearOptions();
@@ -134,10 +135,14 @@ namespace DivBuildApp
             BonusHandler.ResetBonuses();
         }
 
+        private void InitializeBonusDisplayTypes()
+        {
+            BonusHandler.SetBonusDisplayTypes(CsvReader.BonusDisplayType());
+        }
         /// <summary>
         /// Create default bonus caps for items types
         /// </summary>
-        private void InitializeGearBonusCaps()
+        private void InitializeBonusCaps()
         {
             //ListOptions.CreateAttributesFromDictionary(FileInfo.ReadBonusCaps());
             ListOptions.CreateBonusCapsFromData(CsvReader.BonusCaps());

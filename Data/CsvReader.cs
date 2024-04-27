@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,10 @@ namespace DivBuildApp
         private static string BaseDirectory()
         {
             return AppDomain.CurrentDomain.BaseDirectory;
+        }
+        private static string CsvDirectory()
+        {
+            return Path.Combine(BaseDirectory(), "Data", "CsvFiles");
         }
         public static CsvConfiguration Config()
         {
@@ -41,19 +46,23 @@ namespace DivBuildApp
 
         public static List<BonusCapsFormat> BonusCaps()
         {
-            string filePath = Path.Combine(BaseDirectory(), "Data", "BonusCaps.csv");
+            string filePath = Path.Combine(CsvDirectory(), "BonusCaps.csv");
             return ReadCsvFile<BonusCapsFormat>(filePath, Config());
         }
         public static List<BrandBonusesFormat> BrandBonuses()
         {
-            string filePath = Path.Combine(BaseDirectory(), "Data", "BrandBonuses.csv");
+            string filePath = Path.Combine(CsvDirectory(), "BrandBonuses.csv");
             return ReadCsvFile<BrandBonusesFormat>(filePath, Config());
         }
         public static List<StringItem> ItemDefault()
         {
-            string filePath = Path.Combine(BaseDirectory(), "Data", "ItemDefault.csv");
+            string filePath = Path.Combine(CsvDirectory(), "ItemDefault.csv");
             return ReadCsvFile<StringItem>(filePath, Config());
         }
-
+        public static List<BonusDisplayTypeFormat> BonusDisplayType()
+        {
+            string filePath = Path.Combine(CsvDirectory(), "BonusDisplayType.csv");
+            return ReadCsvFile<BonusDisplayTypeFormat>(filePath, Config());
+        }
     }
 }

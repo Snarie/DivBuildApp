@@ -16,9 +16,8 @@ namespace DivBuildApp.CsvFormats
         public string WeaponCore { get; set; }
         public string WeaponPrimary { get; set; }
         public string WeaponSide { get; set; }
-        public string DisplayType { get; set; }
 
-        public BonusCapsFormat(string name, string iconType, string gearCore, string gearSide, string mod, string weaponCore, string weaponPrimary, string weaponSide, string displayType)
+        public BonusCapsFormat(string name, string iconType, string gearCore, string gearSide, string mod, string weaponCore, string weaponPrimary, string weaponSide)
         {
             Name = name;
             IconType = iconType;
@@ -28,7 +27,6 @@ namespace DivBuildApp.CsvFormats
             WeaponCore = weaponCore;
             WeaponPrimary = weaponPrimary;
             WeaponSide = weaponSide;
-            DisplayType = displayType;
 
         }
     }

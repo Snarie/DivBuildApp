@@ -135,7 +135,6 @@ namespace DivBuildApp
 
     }
 
-    
 
     public class EquipBonus
     {
@@ -158,6 +157,7 @@ namespace DivBuildApp
         {
             BonusType = bonusType;
             Value = value;
+            DisplayType = BonusHandler.getBonusDisplayType(BonusType);
         }
         public Bonus(BonusType bonusType, double value, string displayType)
         {
@@ -165,22 +165,28 @@ namespace DivBuildApp
             Value = value;
             DisplayType = displayType;
         }
+        public double BonusValue
+        {
+            get
+            {
+                if(DisplayType == "percentage")
+                {
+                    return Math.Round(Value, 1);
+                }
+                return Math.Round(Value, 0);
+            }
+        }
 
         public string DisplayValue
         {
             get
             {
-                return getDisplayValue();
+                if (DisplayType == "percentage")
+                {
+                    return "+" + BonusValue + "%";
+                }
+                return "+" + BonusValue;
             }
-        }
-
-        public string getDisplayValue()
-        {
-            if (DisplayType == "percentage")
-            {
-                return "+" + Value + "%";
-            }
-            return "+"+Value;
         }
     }
     public class BonusDisplay
@@ -188,13 +194,13 @@ namespace DivBuildApp
         public Bonus Bonus { get; }
         public string IconType { get; }
 
-        public string DisplayType { get;}
-
         public BonusDisplay(Bonus bonus, string iconType)
         {
             Bonus = bonus;
             IconType = iconType;
         }
+
+        
 
     }
 

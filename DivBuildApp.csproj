@@ -82,6 +82,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BonusControl\BonusDisplayHandler.cs" />
+    <Compile Include="Data\CsvFormats\BonusDisplayTypeFormat.cs" />
     <Compile Include="Data\CsvFormats\BrandBonusesFormat.cs" />
     <Compile Include="Data\CsvReader.cs" />
     <Compile Include="SHDWatch.cs" />
@@ -144,13 +145,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="Data\ItemDefault.csv">
+    <Content Include="Data\CsvFiles\ItemDefault.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\BonusCaps.csv">
+    <Content Include="Data\CsvFiles\BonusCaps.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\BrandBonuses.csv">
+    <Content Include="Data\CsvFiles\BrandBonuses.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\CsvFiles\BonusDisplayType.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

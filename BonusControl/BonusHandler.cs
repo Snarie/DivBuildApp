@@ -1,5 +1,6 @@
 ﻿//using DivBuildApp.DataContextClasses;
 using CsvHelper.Configuration.Attributes;
+using DivBuildApp.CsvFormats;
 using DivBuildApp.UI;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,33 @@ namespace DivBuildApp
         public static Dictionary<BonusType, double> activeBonusses = new Dictionary<BonusType, double>();
 
 
+        public static Dictionary<BonusType, string> bonusDisplayTypes = new Dictionary<BonusType, string>();
 
 
-        
+        public static void SetBonusDisplayTypes(List<BonusDisplayTypeFormat> formats)
+        {
+            foreach(BonusDisplayTypeFormat format in formats)
+            {
+                BonusType bonusType = StringToBonusType(format.Name);
+                if(bonusType == BonusType.NoBonus)
+                {
+                    continue;
+                }
+                string displayType = !string.IsNullOrEmpty(format.DisplayType) ? format.DisplayType : "percentage";
+                bonusDisplayTypes.Add(bonusType, displayType);
+            }
+        }
+
+        public static string getBonusDisplayType(BonusType bonusType)
+        {
+            if(bonusDisplayTypes.TryGetValue(bonusType, out string displayType))
+            {
+                return displayType;
+            }
+            //If bonusDisplayType was never created
+            return "percentage";
+        }
+
         /// <summary>
         /// Get bonus from its string equivalant.
         /// </summary>
