@@ -217,52 +217,44 @@ namespace DivBuildApp
             Console.WriteLine($"ExpertieceBox_SelectionChanged {sender}");
             UpdateDisplay();
         }
-        
-        private void StatComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+
+
+        private void StatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            Console.WriteLine("DataContextChanged called");
-            if(sender is ComboBox comboBox)
+            if(sender is Slider slider)
             {
-                Slider slider = FindSiblingControl<Slider>(comboBox, comboBox.Name + "_Slider");
-                Image image = FindSiblingControl<Image>(comboBox, comboBox.Name + "_Icon");
-                Label label = FindSiblingControl<Label>(comboBox, comboBox.Name + "_Value");
-                if (comboBox.SelectedItem is BonusDisplay bonusDisplay)
+                string baseName = slider.Name.Replace("_Slider", "");
+                if(Enum.TryParse(baseName, out ItemType itemType))
                 {
-                    slider.Visibility = Visibility.Visible;
-                    Task.Run(() => DisplayControl.SetStatIconAsync(image, bonusDisplay));
-                    Task.Run(() => DisplayControl.SetStatValueAsync(label, bonusDisplay, slider.Value));
-                }
-                else
-                {
-                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/ItemType Icons/Undefined.png"));
-                    label.Content = "";
-                    slider.Visibility = Visibility.Hidden;
+                    //
                 }
             }
         }
+
         private void StatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
-            { 
+            {
                 GearHandler.SetEquippedGearList();
                 Console.WriteLine($"StatComboBox_SelectionChanged {sender}");
-                UpdateDisplay();
                 Image image = FindSiblingControl<Image>(comboBox, comboBox.Name + "_Icon");
-                Label label = FindSiblingControl<Label>(comboBox, comboBox.Name + "_Value");
+                Label statValue = FindSiblingControl<Label>(comboBox, comboBox.Name + "_Value");
                 Slider slider = FindSiblingControl<Slider>(comboBox, comboBox.Name + "_Slider");
                 if (comboBox.SelectedItem is BonusDisplay bonusDisplay)
                 {
                     DisplayControl.SetSliderRange(slider, bonusDisplay);
                     Task.Run(() => DisplayControl.SetStatIconAsync(image, bonusDisplay));
                     double multiplier = slider.Value;
-                    Task.Run(() => DisplayControl.SetStatValueAsync(label, bonusDisplay, multiplier));
+                    //Task.Run(() => DisplayControl.SetStatValueAsync(label, bonusDisplay, multiplier));
+                    DisplayControl.SetStatValue(statValue, bonusDisplay, multiplier);
                 }
                 else
                 {
                     image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/ItemType Icons/Undefined.png"));
-                    label.Content = "";
+                    statValue.Content = "";
                     slider.Visibility = Visibility.Collapsed;
                 }
+                UpdateDisplay();
             }
         }
 
@@ -339,6 +331,5 @@ namespace DivBuildApp
             return regex.IsMatch(text);
         }
 
-       
     }
 }

@@ -108,7 +108,17 @@ namespace DivBuildApp
             //else return new Bonus(BonusType.NoBonus, 1);
         }
 
-        
+
+        /// <summary>
+        /// Gets all the StatBox bonusses
+        /// </summary>
+        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
+        /// <returns>The Bonus collection containing all selected Stats</returns>
+        public static Bonus[] StatBoxBonuses(ItemType itemType)
+        {
+            ComboBox[] comboBoxes = GetStatBoxes(itemType);
+            return comboBoxes.Select(box => BonusFromBox(box)).ToArray();
+        }
 
         /// <summary>
         /// Gets all the side bonusses
@@ -147,6 +157,28 @@ namespace DivBuildApp
         }
 
 
+        public static void CalculateStatAttributes()
+        {
+            foreach (ItemType gearType in GearHandler.gearTypes)
+            {
+                ComboBox[] statBoxes = Lib.GetStatBoxes(gearType);
+                Label[] statValues = Lib.GetStatValues(gearType);
+                for (int i=0; i < 4; i++)
+                {
+                    if (statBoxes[i].SelectedItem is BonusDisplay bonusDisplay)
+                    {
+                        if (statValues[i].DataContext is Bonus bonus)
+                        {
+                            activeBonusses[bonusDisplay.Bonus.BonusType] += bonus.Value;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{statValues[i].Name} is not a Bonus");
+                        }
+                    }
+                }
+            }
+        }
         public static void CalculateBrandBonues()
         {
 
@@ -168,15 +200,6 @@ namespace DivBuildApp
                 {
                     activeBonusses[bonus.BonusType] += bonus.Value;
                 }
-                //Selected side bonuses
-                foreach (Bonus bonus in equippedItem.SideAttributes)
-                {
-                    activeBonusses[bonus.BonusType] += bonus.Value;
-                }
-
-                //Selected core bonus
-                Bonus coreBonus = equippedItem.CoreAttribute;
-                activeBonusses[coreBonus.BonusType] += coreBonus.Value;
 
             }
 
@@ -210,6 +233,7 @@ namespace DivBuildApp
             ResetBonuses();
 
             CalculateBrandBonues();
+            CalculateStatAttributes();
             //Watch Bonuses
             foreach (Bonus bonus in SHDWatch.WatchBonuses)
             {

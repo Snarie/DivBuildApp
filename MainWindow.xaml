@@ -67,14 +67,14 @@
                 <ComboBox x:Name="MaskStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
                 
                 <Label    x:Name="MaskStat1_Value" Grid.Row="1" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
-                <Label    x:Name="MaskStat2_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+                <Label    x:Name="MaskStat2_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>    
                 <Label    x:Name="MaskStat3_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="MaskStat4_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
 
-                <Slider   x:Name="MaskStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="MaskStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="MaskStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="MaskStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="MaskStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="MaskStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="MaskStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="MaskStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
 
                 <Image    x:Name="MaskStat1_Icon" Grid.Row="1" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
                 <Image    x:Name="MaskStat2_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
@@ -123,10 +123,10 @@
                 <Label    x:Name="BackpackStat3_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="BackpackStat4_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
 
-                <Slider   x:Name="BackpackStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="BackpackStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="BackpackStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="BackpackStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="BackpackStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="BackpackStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="BackpackStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="BackpackStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
 
                 <Image    x:Name="BackpackStat1_Icon" Grid.Row="1" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
                 <Image    x:Name="BackpackStat2_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
@@ -177,10 +177,10 @@
                 <Label    x:Name="ChestStat3_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="ChestStat4_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
 
-                <Slider   x:Name="ChestStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="ChestStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="ChestStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="ChestStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="ChestStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="ChestStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="ChestStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="ChestStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
 
                 <Image    x:Name="ChestStat1_Icon" Grid.Row="1" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
                 <Image    x:Name="ChestStat2_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
@@ -230,10 +230,10 @@
                 <Label    x:Name="GlovesStat3_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="GlovesStat4_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
 
-                <Slider   x:Name="GlovesStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="GlovesStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="GlovesStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="GlovesStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="GlovesStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="GlovesStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="GlovesStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="GlovesStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
 
                 <Image    x:Name="GlovesStat1_Icon" Grid.Row="1" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
                 <Image    x:Name="GlovesStat2_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
@@ -283,10 +283,10 @@
                 <Label    x:Name="HolsterStat3_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="HolsterStat4_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
 
-                <Slider   x:Name="HolsterStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="HolsterStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="HolsterStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="HolsterStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="HolsterStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="HolsterStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="HolsterStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="HolsterStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
 
                 <Image    x:Name="HolsterStat1_Icon" Grid.Row="1" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
                 <Image    x:Name="HolsterStat2_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
@@ -325,20 +325,21 @@
                 <ComboBox x:Name="KneepadsBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
                 <ComboBox x:Name="KneepadsExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
 
-                <ComboBox x:Name="KneepadsStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged" DataContextChanged="StatComboBox_DataContextChanged"/>
-                <ComboBox x:Name="KneepadsStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged" DataContextChanged="StatComboBox_DataContextChanged"/>
-                <ComboBox x:Name="KneepadsStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged" DataContextChanged="StatComboBox_DataContextChanged"/>
-                <ComboBox x:Name="KneepadsStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged" DataContextChanged="StatComboBox_DataContextChanged"/>
-                
+                <ComboBox x:Name="KneepadsStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+
                 <Label    x:Name="KneepadsStat1_Value" Grid.Row="1" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+
                 <Label    x:Name="KneepadsStat2_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="KneepadsStat3_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="KneepadsStat4_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
 
-                <Slider   x:Name="KneepadsStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="KneepadsStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="KneepadsStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
-                <Slider   x:Name="KneepadsStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="KneepadsStat1_Slider" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="KneepadsStat2_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="KneepadsStat3_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
+                <Slider   x:Name="KneepadsStat4_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}" ValueChanged="StatSlider_ValueChanged"/>
 
                 <Image    x:Name="KneepadsStat1_Icon" Grid.Row="1" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
                 <Image    x:Name="KneepadsStat2_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>

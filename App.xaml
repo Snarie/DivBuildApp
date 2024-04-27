@@ -78,6 +78,7 @@
             </DataGridRow>
         </DataTemplate>
 
+        
         <DataTemplate x:Key="ComboBoxBonusTemplate">
             <TextBlock>
                 <TextBlock.Text>
@@ -440,7 +441,9 @@
             <Setter Property="Margin" Value="30,0,0,12"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Content" Value="{Binding DisplayValue}"/>
         </Style>
+           
 
         <Style TargetType="Label" x:Key="StatNameDisplayStyle">
             <Setter Property="FontSize" Value="11"/>

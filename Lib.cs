@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace DivBuildApp
 {
@@ -14,7 +15,7 @@ namespace DivBuildApp
         
         public static Dictionary<ItemType, GearGridContent> GearGridLinks = new Dictionary<ItemType, GearGridContent>();
 
-
+        
 
         public static void CreateGearGridLink(Grid grid)
         {
@@ -35,12 +36,21 @@ namespace DivBuildApp
             TextBlock bonus2 = FindChildControl<TextBlock>(grid, $"{baseName}Bonus2");
             TextBlock bonus3 = FindChildControl<TextBlock>(grid, $"{baseName}Bonus3");
 
-            // Find the coreStatBox
-            ComboBox coreStat = FindChildControl<ComboBox>(grid, $"{baseName}Stat1");
-            // Find the sideStatLabels
-            ComboBox stat1 = FindChildControl<ComboBox>(grid, $"{baseName}Stat2");
-            ComboBox stat2 = FindChildControl<ComboBox>(grid, $"{baseName}Stat3");
-            ComboBox stat3 = FindChildControl<ComboBox>(grid, $"{baseName}Stat4");
+            // Find the Stats
+            ComboBox stat1 = FindChildControl<ComboBox>(grid, $"{baseName}Stat1");
+            ComboBox stat2 = FindChildControl<ComboBox>(grid, $"{baseName}Stat2");
+            ComboBox stat3 = FindChildControl<ComboBox>(grid, $"{baseName}Stat3");
+            ComboBox stat4 = FindChildControl<ComboBox>(grid, $"{baseName}Stat4");
+            // Find the Stat_Values
+            Label stat1_Value = FindChildControl<Label>(grid, $"{baseName}Stat1_Value");
+            Label stat2_Value = FindChildControl<Label>(grid, $"{baseName}Stat2_Value");
+            Label stat3_Value = FindChildControl<Label>(grid, $"{baseName}Stat3_Value");
+            Label stat4_Value = FindChildControl<Label>(grid, $"{baseName}Stat4_Value");
+            // Find the Stat_Sliders
+            Slider stat1_Slider = FindChildControl<Slider>(grid, $"{baseName}Stat1_Slider");
+            Slider stat2_Slider = FindChildControl<Slider>(grid, $"{baseName}Stat2_Slider");
+            Slider stat3_Slider = FindChildControl<Slider>(grid, $"{baseName}Stat3_Slider");
+            Slider stat4_Slider = FindChildControl<Slider>(grid, $"{baseName}Stat4_Slider");
 
             Image brandImage = FindChildControl<Image>(grid, $"{baseName}BrandImage");
 
@@ -50,11 +60,12 @@ namespace DivBuildApp
                 GearGridLinks.Add(itemType, new GearGridContent(
                     itemBox, 
                     itemName, itemArmor, itemExpertiece,
-                    coreStat,
-                    new ComboBox[] { stat1, stat2, stat3 },
+                    new ComboBox[] { stat1, stat2, stat3, stat4},
+                    new Label[] {stat1_Value, stat2_Value, stat3_Value, stat4_Value},
+                    new Slider[] { stat1_Slider, stat2_Slider, stat3_Slider, stat4_Slider },
                     new TextBlock[] { bonus1, bonus2, bonus3 },
                     brandImage
-                ));
+                ));;
             }
         }
 
@@ -71,39 +82,51 @@ namespace DivBuildApp
         /// <returns>the ComboBox of the selected Item, or null if grid link doesn't exist</returns>
         public static ComboBox GetItemBox(ItemType itemType)
         {
-            //if (GearGridLinks.TryGetValue(itemType, out GearGridContent grid))
-            if (GridExists(itemType, out GearGridContent grid))
-            {
-                return grid.ItemBox;
-            }
-            return null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.ItemBox : null;
         }
         public static ComboBox GetExpertieceBox(ItemType itemType)
         {
-            //if (GearGridLinks.TryGetValue(itemType, out GearGridContent grid))
-            if (GridExists(itemType, out GearGridContent grid))
-            {
-                return grid.ItemExpertiece;
-            }
-            return null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.ItemExpertiece : null;
         }
 
         public static Label GetItemNameLabel(ItemType itemType)
         {
-            if (GridExists(itemType, out GearGridContent grid))
-            {
-                return grid.ItemName;
-            }
-            return null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.ItemName : null;
         }
 
         public static Label GetItemArmorLabel(ItemType itemType)
         {
-            if(GridExists(itemType, out GearGridContent grid))
-            {
-                return grid.ItemArmor;
-            }
-            return null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.ItemArmor : null;
+        }
+
+        /// <summary>
+        /// Get all StatSliders containing it's StatBox's selected BonusDisplay Max and minimum Value
+        /// </summary>
+        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
+        /// <returns>The Slider collection of StatSliders, or null if grid link doesn't exist</returns>
+        public static Slider[] GetStatSliders(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatSliders : null;
+        }
+
+        /// <summary>
+        /// Get all StatValues containing it's StatBox's selected BonusDisplay Value
+        /// </summary>
+        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
+        /// <returns>The Label collection of StatValues, or null if grid link doesn't exist</returns>
+        public static Label[] GetStatValues(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatValues : null;
+        }
+
+        /// <summary>
+        /// Get all StatBoxes for holding selected BonusDisplay
+        /// </summary>
+        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
+        /// <returns>The ComboBox collection of StatBoxes with a list of BonusDisplays, or null if grid link doesn't exist</returns>
+        public static ComboBox[] GetStatBoxes(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatBoxes : null;
         }
 
         /// <summary>
@@ -113,15 +136,9 @@ namespace DivBuildApp
         /// <returns>The ComboBox of the coreStat, or null if grid link doens't exist</returns>
         public static ComboBox GetCoreStatBox(ItemType itemType)
         {
-            if (GridExists(itemType, out GearGridContent grid))
-            {
-                return grid.CoreStatBox;
-            }
-            return null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatBoxes[0] : null;
         }
         
-
-
         /// <summary>
         /// Get all SideBonusBoxes for holding selected side Stats
         /// </summary>
@@ -129,11 +146,7 @@ namespace DivBuildApp
         /// <returns>The ComboBox collection of sideStats, or null if grid link doesn't exist</returns>
         public static ComboBox[] GetSideStatBoxes(ItemType itemType)
         {
-            if (GridExists(itemType, out GearGridContent grid))
-            {
-                return new ComboBox[] { grid.SideStatBoxes[0], grid.SideStatBoxes[1], grid.SideStatBoxes[2] };
-            }
-            return null;
+            return GridExists(itemType, out GearGridContent grid) ? new ComboBox[] { grid.StatBoxes[1], grid.StatBoxes[2], grid.StatBoxes[3] } : null;
         }
 
 

@@ -48,18 +48,16 @@ namespace DivBuildApp
         public string BrandName { get; set; }
         public string Slot { get; set; }
         public string Rarity { get; set; }
-        public Bonus CoreAttribute { get; set; }
-        public Bonus[] SideAttributes { get; set; } 
+        public Bonus[] StatAttributes { get; set; }
         public string Talent { get; set; }
 
-        public Gear(string name, string brandName, string slot, string rarity, Bonus coreAttribute, Bonus[] sideAttributes, string talent)
+        public Gear(string name, string brandName, string slot, string rarity, Bonus[] statAttributes, string talent)
         {
             Name = name;
             BrandName = brandName;
             Slot = slot;
             Rarity = rarity;
-            CoreAttribute = coreAttribute;
-            SideAttributes = sideAttributes;
+            StatAttributes = statAttributes;
             Talent = talent;
         }
     }

@@ -9,17 +9,18 @@ namespace DivBuildApp
 {
     internal class GearHandler
     {
+        public static ItemType[] gearTypes = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Kneepads, ItemType.Holster };
+
         public static List<Gear> equippedItemList = new List<Gear>();
 
         public static Gear CreateGear(ItemType itemType)
         {
             ComboBox itemBox = Lib.GetItemBox(itemType);
-            Bonus coreBoxValue = BonusHandler.CoreBonus(itemType);
-            Bonus[] sideBoxValues = BonusHandler.SideBonuses(itemType);
+            Bonus[] statBoxValues = BonusHandler.StatBoxBonuses(itemType);
             if (itemBox.SelectedItem is ComboBoxBrandItem selectedItem)
             {
                 StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
-                return new Gear(stringItem.Name, stringItem.BrandName, stringItem.Slot, stringItem.Rarity, coreBoxValue, sideBoxValues, stringItem.Talent);
+                return new Gear(stringItem.Name, stringItem.BrandName, stringItem.Slot, stringItem.Rarity, statBoxValues, stringItem.Talent);
             }
             return null;
         }
@@ -43,11 +44,8 @@ namespace DivBuildApp
                     unselectedItems.Add(box.Name);
                 }
             }
-            //Check if all items are selected
             if (unselectedItems.Any())
             {
-                //string errors = string.Join(", ", unselectedItems);
-                //Console.WriteLine(errors);
                 return false;
             }
 

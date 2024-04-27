@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
@@ -49,8 +50,27 @@ namespace DivBuildApp
                 itemLabel.Foreground = brush;
             });
         }
-
-        public static async Task SetStatValueAsync(Label label, BonusDisplay bonusDisplay, double multiplier)
+        public static void SetStatValue(Label label, BonusDisplay bonusDisplay, double mutliplier)
+        {
+            Bonus bonus = bonusDisplay.Bonus;
+            switch (bonus.BonusType) 
+            {
+                case BonusType.Skill_Tier:
+                case BonusType.Armor_Kit_Capacity:
+                case BonusType.Grenade_Capacity:
+                case BonusType.Skill_Repair_Charges:
+                case BonusType.Skill_Stim_Charges:
+                case BonusType.Skill_Stinger_Charges:
+                    break;
+                default:
+                    bonus.Value *= mutliplier / 100;
+                    break;
+            }
+            label.DataContext = bonus;
+            //label.Content = bonus;
+            Console.WriteLine(bonus.DisplayValue + " " + bonus.DisplayType + " " + bonus.BonusType);
+        }
+        public static async Task SetStatValueAsync(TextBlock label, BonusDisplay bonusDisplay, double multiplier)
         {
             string msg = "+"+(bonusDisplay.Bonus.Value*multiplier/100);
             Console.WriteLine(msg + " / " + multiplier);
@@ -68,7 +88,7 @@ namespace DivBuildApp
             }
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                label.Content = msg;
+                label.Text = msg;
             });
         }
 
