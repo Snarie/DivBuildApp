@@ -176,13 +176,32 @@ namespace DivBuildApp
             return null;
         }
 
+        public static string GetPrefixFromElement(FrameworkElement element)
+        {
+            string elementName = element.Name;
+            string[] prefixes = { "Mask", "Backpack", "Chest", "Gloves", "Holster", "Kneepads" };
+            return prefixes.FirstOrDefault(prefix => elementName.StartsWith(prefix));
+
+        }
+
         /// <summary>
-        /// Returns the child with the specified targetName if it exists
+        /// 
+        /// </summary>
+        /// <param name="element">the element of </param>
+        /// <returns></returns>
+        public static ItemType GetBonusTypeFromElement(FrameworkElement element)
+        {
+            return (ItemType)Enum.Parse(typeof(ItemType), GetPrefixFromElement(element));
+        }
+
+
+        /// <summary>
+        /// Returns the first <see cref="FrameworkElement"/> that represents the starElements child with targetName
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="startElement"></param>
-        /// <param name="targetName"></param>
-        /// <returns>FrameworkElement of first correct Child objecct</returns>
+        /// <param name="startElement">the element whose child is returned</param>
+        /// <param name="targetName">the name of the child ojbect</param>
+        /// <returns>The child object</returns>
         public static T FindChildControl<T>(FrameworkElement startElement, string targetName) where T : FrameworkElement
         {
             // Directly search the children of the startElement
@@ -205,15 +224,13 @@ namespace DivBuildApp
             return null;
         }
 
-
-
         /// <summary>
-        /// Search for siblings with specified targetName inside a grid container
+        /// Returns the first <see cref="FrameworkElement"/> that represents the starElements sibling with targetName
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="startElement"></param>
-        /// <param name="targetName"></param>
-        /// <returns>FrameworkElement of first correct Sibling object</returns>
+        /// <param name="startElement">the element whose sibling is returned</param>
+        /// <param name="targetName">the name of the sibling ojbect</param>
+        /// <returns>The sibling object</returns>
         public static T FindSiblingControl<T>(FrameworkElement startElement, string targetName) where T : FrameworkElement
         {
             var parent = VisualTreeHelper.GetParent(startElement);
@@ -237,6 +254,23 @@ namespace DivBuildApp
             Console.WriteLine($"{targetName} sibling not found");
             return null;
         }
+
+        /// <summary>
+        /// Returns a <see cref="FrameworkElement"/> that represents the startElements parent object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="startElement">the element whose parent is returned</param>
+        /// <returns>The parent object</returns>
+        public static T FindParentControl<T>(FrameworkElement startElement) where T : FrameworkElement
+        {
+            var parent = VisualTreeHelper.GetParent(startElement);
+            if (parent is FrameworkElement parentContainer)
+            {
+                return parentContainer as T;
+            }
+            return null;
+        }
+
 
     }
 }

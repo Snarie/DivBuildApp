@@ -36,8 +36,10 @@ namespace DivBuildApp
 
         public static Dictionary<string, List<EquipBonus>> brandSets = new Dictionary<string, List<EquipBonus>>();
 
+        public static bool Initializing;
         public MainWindow()
         {
+            Initializing = true;
             // Order is important !!!!
             InitializeComponent();
             AdjustWindowSizeToScreen();
@@ -59,9 +61,9 @@ namespace DivBuildApp
             InitializeOptionsSideStats();
 
             InitializeItemArmor();
-            
 
-            
+            Initializing = false;
+
         }
 
         private void InitializeOptionsExpertiece()
@@ -224,16 +226,42 @@ namespace DivBuildApp
         }
 
 
-        private void StatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void StatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e, int index)
         {
+            if(Initializing) return;
             if(sender is Slider slider)
             {
-                string baseName = slider.Name.Replace("_Slider", "");
-                if(Enum.TryParse(baseName, out ItemType itemType))
+                ItemType itemType = GetBonusTypeFromElement(slider);
+                ComboBox comboBox = GetStatBoxes(itemType)[index];
+                Label statValue = GetStatValues(itemType)[index];
+                if(comboBox.SelectedItem is BonusDisplay bonusDisplay)
                 {
-                    //
+                    DisplayControl.SetStatValue(statValue, bonusDisplay, e.NewValue);
+                    UpdateDisplay();
                 }
+
+                
             }
+        }
+        private void Stat1Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Initializing) return;
+            StatSlider_ValueChanged(sender, e, 0);
+        }
+        private void Stat2Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Initializing) return;
+            StatSlider_ValueChanged(sender, e, 1);
+        }
+        private void Stat3Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Initializing) return;
+            StatSlider_ValueChanged(sender, e, 2);
+        }
+        private void Stat4Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Initializing) return;
+            StatSlider_ValueChanged(sender, e, 3);
         }
 
         private void StatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -241,7 +269,6 @@ namespace DivBuildApp
             if (sender is ComboBox comboBox)
             {
                 GearHandler.SetEquippedGearList();
-                Console.WriteLine($"StatComboBox_SelectionChanged {sender}");
                 Image image = FindSiblingControl<Image>(comboBox, comboBox.Name + "_Icon");
                 Label statValue = FindSiblingControl<Label>(comboBox, comboBox.Name + "_Value");
                 Slider slider = FindSiblingControl<Slider>(comboBox, comboBox.Name + "_Slider");
