@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp.CsvFormats
 {
-    public class BonusDisplayTypeFormat
+    internal class BonusDisplayTypeFormat
     {
         public string Name { get; set; }
         public string DisplayType { get; set; }

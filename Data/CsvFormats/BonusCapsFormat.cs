@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp.CsvFormats
 {
-    public class BonusCapsFormat
+    internal class BonusCapsFormat
     {
         public string Name { get; set; }
         public string IconType {  get; set; }

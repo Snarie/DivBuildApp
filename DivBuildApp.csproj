@@ -86,6 +86,7 @@
     <Compile Include="Data\CsvFormats\BrandBonusesFormat.cs" />
     <Compile Include="Data\CsvReader.cs" />
     <Compile Include="SHDWatch.cs" />
+    <Compile Include="UI\BonusSliderControl.cs" />
     <Compile Include="UI\ItemArmorControl.cs" />
     <Compile Include="UI\StatTableDisplay.cs" />
     <Page Include="MainWindow.xaml">
@@ -316,8 +317,6 @@
   <ItemGroup>
     <Resource Include="Images\Brand Icons\Umbra Initiative.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataContextClasses\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp
 {
-    public class ComboBoxBrandItem
+    internal class ComboBoxBrandItem
     {
         public string Name { get; set; }
         public string Preset { get; set; }

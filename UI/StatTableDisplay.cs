@@ -10,7 +10,7 @@ using static DivBuildApp.BonusHandler;
 
 namespace DivBuildApp.UI
 {
-    public static class StatTableDisplay
+    internal static class StatTableDisplay
     {
 
         public static async Task DisplayBonusesInBoxes(MainWindow mainWindow)
@@ -76,12 +76,6 @@ namespace DivBuildApp.UI
 
             });
 
-        }
-
-
-        public static void DisplayBonus(Label box, string str)
-        {
-            box.Content = str;
         }
     }
 }

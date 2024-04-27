@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp
 {
-    public static class SHDWatch
+    internal static class SHDWatch
     {
         public static int WatchLevel { get;set; }
 

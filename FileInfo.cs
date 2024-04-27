@@ -16,7 +16,7 @@ using DivBuildApp.CsvFormats;
 
 namespace DivBuildApp
 {
-    public static class FileInfo
+    internal static class FileInfo
     {
         public static Dictionary<string , List<EquipBonus>> CsvBrandBonus()
         {

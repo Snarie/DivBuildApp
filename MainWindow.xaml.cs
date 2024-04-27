@@ -247,7 +247,7 @@ namespace DivBuildApp
                 Slider slider = FindSiblingControl<Slider>(comboBox, comboBox.Name + "_Slider");
                 if (comboBox.SelectedItem is BonusDisplay bonusDisplay)
                 {
-                    DisplayControl.SetSliderRange(slider, bonusDisplay);
+                    BonusSliderControl.SetRange(slider, bonusDisplay);
                     Task.Run(() => DisplayControl.SetStatIconAsync(image, bonusDisplay));
                     double multiplier = slider.Value;
                     //Task.Run(() => DisplayControl.SetStatValueAsync(label, bonusDisplay, multiplier));

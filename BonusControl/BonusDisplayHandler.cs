@@ -8,7 +8,7 @@ using System.Windows.Documents;
 
 namespace DivBuildApp
 {
-    public class BonusDisplayHandler
+    internal static class BonusDisplayHandler
     {
 
         public static Dictionary<BonusType, string> bonusIconType = new Dictionary<BonusType, string>();

@@ -10,7 +10,7 @@ using System.Windows.Navigation;
 
 namespace DivBuildApp
 {
-    public static class Lib
+    internal static class Lib
     {
         
         public static Dictionary<ItemType, GearGridContent> GearGridLinks = new Dictionary<ItemType, GearGridContent>();

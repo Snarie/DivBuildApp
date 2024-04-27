@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp.CsvFormats
 {
-    public class BrandBonusesFormat
+    internal class BrandBonusesFormat
     {
         public string Name { get; set; }
         public string Slot1 {  get; set; }

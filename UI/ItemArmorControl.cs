@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace DivBuildApp.UI
 {
-    public static class ItemArmorControl
+    internal static class ItemArmorControl
     {
 
         public static Dictionary<ItemType, double> defaultArmorValues = new Dictionary<ItemType, double>()

@@ -17,9 +17,9 @@ using System.Windows.Resources;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 
-namespace DivBuildApp
+namespace DivBuildApp.UI
 {
-    public static class DisplayControl
+    internal static class DisplayControl
     {
 
         public static async Task SetItemNameLabelAsync(Label itemLabel, ComboBoxBrandItem selectedItem)
@@ -73,62 +73,7 @@ namespace DivBuildApp
         }
         
 
-        public static void SetSliderRange(Slider slider, BonusDisplay bonusDisplay)
-        {
-            slider.Visibility = Visibility.Visible;
-
-            Track track = slider.Template.FindName("PART_Track", slider) as Track;
-            if (track == null)
-            {
-                Console.WriteLine($"track doesn't exist: {slider.Name}");
-                return;
-            }
-            RepeatButton decreaseButton = track.DecreaseRepeatButton;
-            //RepeatButton increaseButton = track.IncreaseRepeatButton;
-
-            if (decreaseButton == null)
-            {
-                Console.WriteLine($"decreaseButton doesn't exist: {slider.Name}");
-                return;
-            }
-            Rectangle rect = decreaseButton.Template.FindName("decreaseRect", decreaseButton) as Rectangle;
-            if( rect == null)
-            {
-                Console.WriteLine($"rect doesn't exist: {slider.Name}");
-                return;
-            }
-
-            Brush brush = Brushes.Pink;
-            if (bonusDisplay.IconType.EndsWith("Red"))
-            {
-                brush = Brushes.Red;
-            }
-            else if (bonusDisplay.IconType.EndsWith("Blue"))
-            {
-                brush = Brushes.DeepSkyBlue;
-            }
-            else if (bonusDisplay.IconType.EndsWith("Yellow"))
-            {
-                brush = Brushes.Yellow;
-            }
-
-            switch(bonusDisplay.Bonus.BonusType)
-            {
-                case BonusType.Skill_Tier:
-                case BonusType.Armor_Kit_Capacity:
-                case BonusType.Grenade_Capacity:
-                case BonusType.Skill_Repair_Charges:
-                case BonusType.Skill_Stim_Charges:
-                case BonusType.Skill_Stinger_Charges:
-                    slider.Minimum = 100;
-                    slider.Value = 100;
-                    break;
-                default:
-                    slider.Minimum = 1;
-                    break;
-            }
-            rect.Fill = brush;
-        }
+        
 
         public static async Task SetStatIconAsync(Image imageControl, BonusDisplay bonusDisplay)
         {

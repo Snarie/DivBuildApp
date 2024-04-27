@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace DivBuildApp
 {
-    public static class ItemHandler
+    internal static class ItemHandler
     {
 
         public static List<StringItem> AllItemList = new List<StringItem>();

@@ -11,16 +11,12 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using static DivBuildApp.Lib;
 
 namespace DivBuildApp
 {
-
-    public static class BonusHandler
+    internal static class BonusHandler
     {
        
-
-
         public static Dictionary<BonusType, double> activeBonusses = new Dictionary<BonusType, double>();
 
 
@@ -141,7 +137,7 @@ namespace DivBuildApp
         /// <returns>The Bonus collection containing all selected Stats</returns>
         public static Bonus[] StatBoxBonuses(ItemType itemType)
         {
-            ComboBox[] comboBoxes = GetStatBoxes(itemType);
+            ComboBox[] comboBoxes = Lib.GetStatBoxes(itemType);
             return comboBoxes.Select(box => BonusFromBox(box)).ToArray();
         }
 
@@ -152,7 +148,7 @@ namespace DivBuildApp
         /// <returns>The Bonus collection containing all selected SideStats</returns>
         public static Bonus[] SideBonuses(ItemType itemType)
         {
-            ComboBox[] comboBox = GetSideStatBoxes(itemType);
+            ComboBox[] comboBox = Lib.GetSideStatBoxes(itemType);
             return comboBox.Select(box => BonusFromBox(box)).ToArray();
             //return comboBox.Select(box => BonusFromBox(box)).ToArray();
         }
@@ -166,7 +162,7 @@ namespace DivBuildApp
         /// <returns>The Bonus containing the selected CoreStat</returns>
         public static Bonus CoreBonus(ItemType itemType)
         {
-            ComboBox comboBox = GetCoreStatBox(itemType);
+            ComboBox comboBox = Lib.GetCoreStatBox(itemType);
             return BonusFromBox(comboBox);
         }
 

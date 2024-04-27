@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace DivBuildApp
 {
-    public static class ListOptions
+    internal static class ListOptions
     {
 
         private static List<BonusDisplay> gearCoreAttributes = new List<BonusDisplay>();
