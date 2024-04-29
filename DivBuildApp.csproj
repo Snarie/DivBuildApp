@@ -130,6 +130,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\Weapon Type Icons\Exotic_AR.png" />
+    <Resource Include="Images\Weapon Type Icons\Exotic_LMG.png" />
+    <Resource Include="Images\Weapon Type Icons\Exotic_MMR.png" />
+    <Resource Include="Images\Weapon Type Icons\Exotic_Pistol.png" />
+    <Resource Include="Images\Weapon Type Icons\Exotic_Rifle.png" />
+    <Resource Include="Images\Weapon Type Icons\Exotic_Shotgun.png" />
+    <Resource Include="Images\Weapon Type Icons\Exotic_SMG.png" />
+    <Resource Include="Images\Weapon Type Icons\High-End_AR.png" />
+    <Resource Include="Images\Weapon Type Icons\High-End_LMG.png" />
+    <Resource Include="Images\Weapon Type Icons\High-End_MMR.png" />
+    <Resource Include="Images\Weapon Type Icons\High-End_Pistol.png" />
+    <Resource Include="Images\Weapon Type Icons\High-End_Rifle.png" />
+    <Resource Include="Images\Weapon Type Icons\High-End_Shotgun.png" />
+    <Resource Include="Images\Weapon Type Icons\High-End_SMG.png" />
     <Resource Include="Images\Brand Icons\Zwiadowka Sp. z o.o..png" />
     <Resource Include="Images\Brand Icons\Breaking Point.png" />
     <Resource Include="Images\ArrowIcon.png" />

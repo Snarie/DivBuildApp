@@ -15,8 +15,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
-                <RowDefinition Height="160"/>
-                <RowDefinition Height="160"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="200"/>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="200"/>
@@ -356,8 +356,16 @@
             
             <TextBlock x:Name="ErrorBlock" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="89,107,0,0" Padding="0,0,0,0" TextWrapping="Wrap" Text="No errors?" VerticalAlignment="Top" FontSize="11"/>
 
-            <Grid Grid.Column="4" Grid.Row="3" Grid.RowSpan="2">
+            <Grid Grid.Column="4" Grid.Row="4" Grid.RowSpan="3">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -374,204 +382,177 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Border BorderThickness="0" Grid.ColumnSpan="2" Background="Crimson" />
-                <Border BorderBrush="White" BorderThickness="1,0,1,0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="12"/>
-                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="11"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="0" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="2" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="4" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="5" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="6" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="7" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="8" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="9" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="10" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="11" Grid.ColumnSpan="2"/>
-                
-                <Label x:Name="CHC_Name" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Critical Hit Chance"/>
-                <Label x:Name="CHC_Value" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="CHD_Name" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Critical Hit Damage"/>
-                <Label x:Name="CHD_Value" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="HeadshotDMG_Name" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Headshot Damage"/>
-                <Label x:Name="HeadshotDMG_Value" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="DMGooC_Name" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Damage out of Cover"/>
-                <Label x:Name="DMGooC_Value" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="ArmorDMG_Name" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Damage" />
-                <Label x:Name="ArmorDMG_Value" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="HealthDMG_Name" Grid.Column="0" Grid.Row="6" Style="{StaticResource StatNameDisplayStyle}" Content="Health Damage" />
-                <Label x:Name="HealthDMG_Value" Grid.Column="0" Grid.Row="6" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="WeaponHandling_Name" Grid.Column="0" Grid.Row="7" Style="{StaticResource StatNameDisplayStyle}" Content="Weapon Handling"/>
-                <Label x:Name="WeaponHandling_Value" Grid.Column="0" Grid.Row="7" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="Accuracy_Name" Grid.Column="0" Grid.Row="8" Style="{StaticResource StatNameDisplayStyle}" Content="Accuracy"/>
-                <Label x:Name="Accuracy_Value" Grid.Column="0" Grid.Row="8" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="Stability_Name" Grid.Column="0" Grid.Row="9" Style="{StaticResource StatNameDisplayStyle}" Content="Stability"/>
-                <Label x:Name="Stability_Value" Grid.Column="0" Grid.Row="9" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="ReloadSpeed_Name" Grid.Column="0" Grid.Row="10" Style="{StaticResource StatNameDisplayStyle}" Content="Reload Speed"/>
-                <Label x:Name="ReloadSpeed_Value" Grid.Column="0" Grid.Row="10" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SwapSpeed_Name" Grid.Column="0" Grid.Row="11" Style="{StaticResource StatNameDisplayStyle}" Content="Swap Speed"/>
-                <Label x:Name="SwapSpeed_Value" Grid.Column="0" Grid.Row="11" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="WeaponDMG_Name" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="All Weapon Damage"/>
-                <Label x:Name="WeaponDMG_Value" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="MMRDMG_Name" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="MMR Damage"/>
-                <Label x:Name="MMRDMG_Value" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="RifleDMG_Name" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Rifle Damage"/>
-                <Label x:Name="RifleDMG_Value" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SMGDMG_Name" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="SMG Damage"/>
-                <Label x:Name="SMGDMG_Value" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="LMGDMG_Name" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="LMG Damage"/>
-                <Label x:Name="LMGDMG_Value" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="ARDMG_Name" Grid.Column="1" Grid.Row="6" Style="{StaticResource StatNameDisplayStyle}" Content="AR Damage"/>
-                <Label x:Name="ARDMG_Value" Grid.Column="1" Grid.Row="6" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="ShotgunDMG_Name" Grid.Column="1" Grid.Row="7" Style="{StaticResource StatNameDisplayStyle}" Content="Shotgun Damage"/>
-                <Label x:Name="ShotgunDMG_Value" Grid.Column="1" Grid.Row="7" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="PistolDMG_Name" Grid.Column="1" Grid.Row="8" Style="{StaticResource StatNameDisplayStyle}" Content="Pistol Damage"/>
-                <Label x:Name="PistolDMG_Value" Grid.Column="1" Grid.Row="8" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SignatureDMG_Name" Grid.Column="1" Grid.Row="9" Style="{StaticResource StatNameDisplayStyle}" Content="Signature Damage"/>
-                <Label x:Name="SignatureDMG_Value" Grid.Column="1" Grid.Row="9" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="RoFBonus_Name" Grid.Column="1" Grid.Row="10" Style="{StaticResource StatNameDisplayStyle}" Content="Rate of Fire"/>
-                <Label x:Name="RoFBonus_Value" Grid.Column="1" Grid.Row="10" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="AmmoCapacity_Name" Grid.Column="1" Grid.Row="11" Style="{StaticResource StatNameDisplayStyle}" Content="Ammo Capacity"/>
-                <Label x:Name="AmmoCapacity_Value" Grid.Column="1" Grid.Row="11" Style="{StaticResource StatValueDisplayStyle}"/>
-
-            </Grid>
-            
-            <Grid Grid.Column="4" Grid.Row="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Border BorderThickness="0" Grid.ColumnSpan="2" Background="Blue" />
-                <Border BorderBrush="White" BorderThickness="1,1,1,0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="6"/>
-                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="5"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="0" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="2" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="4" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="5" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="6" Grid.ColumnSpan="2"/>
 
-                <Label x:Name="MaxArmor_Name" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Max Armor"/>
-                <Label x:Name="MaxArmor_Value" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
+                <Border BorderThickness="0" Grid.ColumnSpan="3" Background="Crimson" />
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="9" Grid.Column="0"/>
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="9" Grid.Column="1"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="0" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="2" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="3" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="4" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="5" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="6" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="7" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="8" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="9" Grid.ColumnSpan="3"/>
 
-                <Label x:Name="TotalArmor_Name" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Total Armor"/>
-                <Label x:Name="TotalArmor_Value" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+                <Border BorderThickness="0" Grid.Row="10" Grid.ColumnSpan="3" Background="Blue"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="10" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="11" Grid.RowSpan="4" Grid.Column="0"/>
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="11" Grid.RowSpan="4" Grid.Column="1"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="11" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="12" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="13" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="14" Grid.ColumnSpan="3"/>
 
-                <Label x:Name="HealthOnKill_Name" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Health on Kill"/>
-                <Label x:Name="HealthOnKill_Value" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+                <Border BorderThickness="0" Grid.Row="15" Grid.ColumnSpan="3" Background="Yellow" />
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="15" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="16" Grid.RowSpan="4" Grid.Column="0"/>
+                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="16" Grid.RowSpan="4" Grid.Column="1"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="16" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="17" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="18" Grid.ColumnSpan="3"/>
+                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="19" Grid.ColumnSpan="3"/>
 
-                <Label x:Name="ArmorOnKill_Name" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Armor on Kill"/>
-                <Label x:Name="ArmorOnKill_Value" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+                <Border BorderBrush="White" BorderThickness="1,0,1,0" Grid.Row="0" Grid.RowSpan="20" Grid.Column="0" Grid.ColumnSpan="3" />
 
-                <Label x:Name="ArmorOnKillSet_Name" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Armor on Kill Amount"/>
-                <Label x:Name="ArmorOnKillSet_Value" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
 
-                <Label x:Name="MaxHealth_Name" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Max Health"/>
-                <Label x:Name="MaxHealth_Value" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
-                
-                <Label x:Name="Health_Name" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Health"/>
-                <Label x:Name="Health_Value" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+                <Label x:Name="WeaponDMG_Name" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="All Weapon Damage"/>
+                <Label x:Name="WeaponDMG_Value" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
 
-                <Label x:Name="HealthRegen_Name" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Health Regeneration"/>
-                <Label x:Name="HealthRegen_Value" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+                <Label x:Name="PistolDMG_Name" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Pistol Damage"/>
+                <Label x:Name="PistolDMG_Value" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
 
-                <Label x:Name="ArmorRegen_Name" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Regeneration %"/>
-                <Label x:Name="ArmorRegen_Value" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+                <Label x:Name="SignatureDMG_Name" Grid.Column="2" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Signature Damage"/>
+                <Label x:Name="SignatureDMG_Value" Grid.Column="2" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
 
-                <Label x:Name="ArmorRegenSet_Name" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Regeneration"/>
-                <Label x:Name="ArmorRegenSet_Value" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+                <Label x:Name="ARDMG_Name" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="AR Damage"/>
+                <Label x:Name="ARDMG_Value" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
 
-                
-                
+                <Label x:Name="LMGDMG_Name" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="LMG Damage"/>
+                <Label x:Name="LMGDMG_Value" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="MMRDMG_Name" Grid.Column="2" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="MMR Damage"/>
+                <Label x:Name="MMRDMG_Value" Grid.Column="2" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="RifleDMG_Name" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Rifle Damage"/>
+                <Label x:Name="RifleDMG_Value" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ShotgunDMG_Name" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Shotgun Damage"/>
+                <Label x:Name="ShotgunDMG_Value" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SMGDMG_Name" Grid.Column="2" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="SMG Damage"/>
+                <Label x:Name="SMGDMG_Value" Grid.Column="2" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="CHC_Name" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Critical Hit Chance"/>
+                <Label x:Name="CHC_Value" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="CHD_Name" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Critical Hit Damage"/>
+                <Label x:Name="CHD_Value" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="HeadshotDMG_Name" Grid.Column="2" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Headshot Damage"/>
+                <Label x:Name="HeadshotDMG_Value" Grid.Column="2" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="DMGooC_Name" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Damage out of Cover"/>
+                <Label x:Name="DMGooC_Value" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorDMG_Name" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Damage" />
+                <Label x:Name="ArmorDMG_Value" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="HealthDMG_Name" Grid.Column="2" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Health Damage" />
+                <Label x:Name="HealthDMG_Value" Grid.Column="2" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="WeaponHandling_Name" Grid.Column="0" Grid.Row="6" Style="{StaticResource StatNameDisplayStyle}" Content="Weapon Handling"/>
+                <Label x:Name="WeaponHandling_Value" Grid.Column="0" Grid.Row="6" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="Accuracy_Name" Grid.Column="1" Grid.Row="6" Style="{StaticResource StatNameDisplayStyle}" Content="Accuracy"/>
+                <Label x:Name="Accuracy_Value" Grid.Column="1" Grid.Row="6" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="Stability_Name" Grid.Column="2" Grid.Row="6" Style="{StaticResource StatNameDisplayStyle}" Content="Stability"/>
+                <Label x:Name="Stability_Value" Grid.Column="2" Grid.Row="6" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ReloadSpeed_Name" Grid.Column="0" Grid.Row="7" Style="{StaticResource StatNameDisplayStyle}" Content="Reload Speed"/>
+                <Label x:Name="ReloadSpeed_Value" Grid.Column="0" Grid.Row="7" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SwapSpeed_Name" Grid.Column="1" Grid.Row="7" Style="{StaticResource StatNameDisplayStyle}" Content="Swap Speed"/>
+                <Label x:Name="SwapSpeed_Value" Grid.Column="1" Grid.Row="7" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="RoFBonus_Name" Grid.Column="2" Grid.Row="7" Style="{StaticResource StatNameDisplayStyle}" Content="Rate of Fire"/>
+                <Label x:Name="RoFBonus_Value" Grid.Column="2" Grid.Row="7" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="AmmoCapacity_Name" Grid.Column="0" Grid.Row="8" Style="{StaticResource StatNameDisplayStyle}" Content="Ammo Capacity"/>
+                <Label x:Name="AmmoCapacity_Value" Grid.Column="0" Grid.Row="8" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="MagazineSize_Name" Grid.Column="1" Grid.Row="8" Style="{StaticResource StatNameDisplayStyle}" Content="Magazine Size"/>
+                <Label x:Name="MagaineSize_Value" Grid.Column="1" Grid.Row="8" Style="{StaticResource StatValueDisplayStyle}"/>
+
+
+
+                <Label x:Name="MaxArmor_Name" Grid.Column="0" Grid.Row="11" Style="{StaticResource StatNameDisplayStyle}" Content="Max Armor"/>
+                <Label x:Name="MaxArmor_Value" Grid.Column="0" Grid.Row="11" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="MaxHealth_Name" Grid.Column="1" Grid.Row="11" Style="{StaticResource StatNameDisplayStyle}" Content="Max Health"/>
+                <Label x:Name="MaxHealth_Value" Grid.Column="1" Grid.Row="11" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="TotalArmor_Name" Grid.Column="0" Grid.Row="12" Style="{StaticResource StatNameDisplayStyle}" Content="Total Armor"/>
+                <Label x:Name="TotalArmor_Value" Grid.Column="0" Grid.Row="12" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="Health_Name" Grid.Column="1" Grid.Row="12" Style="{StaticResource StatNameDisplayStyle}" Content="Health"/>
+                <Label x:Name="Health_Value" Grid.Column="1" Grid.Row="12" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="HealthOnKill_Name" Grid.Column="0" Grid.Row="13" Style="{StaticResource StatNameDisplayStyle}" Content="Health on Kill"/>
+                <Label x:Name="HealthOnKill_Value" Grid.Column="0" Grid.Row="13" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorOnKill_Name" Grid.Column="1" Grid.Row="13" Style="{StaticResource StatNameDisplayStyle}" Content="Armor on Kill"/>
+                <Label x:Name="ArmorOnKill_Value" Grid.Column="1" Grid.Row="13" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorOnKillSet_Name" Grid.Column="2" Grid.Row="13" Style="{StaticResource StatNameDisplayStyle}" Content="Armor on Kill Amount"/>
+                <Label x:Name="ArmorOnKillSet_Value" Grid.Column="2" Grid.Row="13" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="HealthRegen_Name" Grid.Column="0" Grid.Row="14" Style="{StaticResource StatNameDisplayStyle}" Content="Health Regeneration"/>
+                <Label x:Name="HealthRegen_Value" Grid.Column="0" Grid.Row="14" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorRegen_Name" Grid.Column="1" Grid.Row="14" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Regeneration %"/>
+                <Label x:Name="ArmorRegen_Value" Grid.Column="1" Grid.Row="14" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ArmorRegenSet_Name" Grid.Column="2" Grid.Row="14" Style="{StaticResource StatNameDisplayStyle}" Content="Armor Regeneration"/>
+                <Label x:Name="ArmorRegenSet_Value" Grid.Column="2" Grid.Row="14" Style="{StaticResource StatValueDisplayStyle}"/>
+
+
+                <Label x:Name="SkillTiers_Name" Grid.Column="0" Grid.Row="16" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Tiers"/>
+                <Label x:Name="SkillTiers_Value" Grid.Column="0" Grid.Row="16" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillEfficiency_Name" Grid.Column="1" Grid.Row="16" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Efficiency"/>
+                <Label x:Name="SkillEfficiency_Value" Grid.Column="1" Grid.Row="16" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillDMG_Name" Grid.Column="2" Grid.Row="16" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Damage"/>
+                <Label x:Name="SkillDMG_Value" Grid.Column="2" Grid.Row="16" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillHaste_Name" Grid.Column="0" Grid.Row="17" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Haste"/>
+                <Label x:Name="SkillHaste_Value" Grid.Column="0" Grid.Row="17" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillDuration_Name" Grid.Column="1" Grid.Row="17" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Duration"/>
+                <Label x:Name="SkillDuration_Value" Grid.Column="1" Grid.Row="17" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillRepair_Name" Grid.Column="2" Grid.Row="17" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Repair"/>
+                <Label x:Name="SkillRepair_Value" Grid.Column="2" Grid.Row="17" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="SkillHealth_Name" Grid.Column="0" Grid.Row="18" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Health"/>
+                <Label x:Name="SkillHealth_Value" Grid.Column="0" Grid.Row="18" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ShieldHealth_Name" Grid.Column="1" Grid.Row="18" Style="{StaticResource StatNameDisplayStyle}" Content="Shield Health"/>
+                <Label x:Name="ShieldHealth_Value" Grid.Column="1" Grid.Row="18" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="StatusEffects_Name" Grid.Column="2" Grid.Row="18" Style="{StaticResource StatNameDisplayStyle}" Content="Status Effects"/>
+                <Label x:Name="StatusEffects_Value" Grid.Column="2" Grid.Row="18" Style="{StaticResource StatValueDisplayStyle}"/>
+
+                <Label x:Name="ExplosivesDMG_Name" Grid.Column="0" Grid.Row="19" Style="{StaticResource StatNameDisplayStyle}" Content="Explosive Damage"/>
+                <Label x:Name="ExplosivesDMG_Value" Grid.Column="0" Grid.Row="19" Style="{StaticResource StatValueDisplayStyle}"/>
             </Grid>
-            
-            <Grid Grid.Column="4" Grid.Row="6">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Border BorderThickness="0" Grid.ColumnSpan="2" Background="Yellow" />
-                <Border BorderBrush="White" BorderThickness="1,1,1,0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="6"/>
-                <Border BorderBrush="White" BorderThickness="0,0,1,0" Grid.Row="1" Grid.RowSpan="5"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="0" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="1" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="2" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="4" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="5" Grid.ColumnSpan="2"/>
-                <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="6" Grid.ColumnSpan="2"/>
 
-                <Label x:Name="SkillTiers_Name" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Tiers"/>
-                <Label x:Name="SkillTiers_Value" Grid.Column="0" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SkillEfficiency_Name" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Efficiency"/>
-                <Label x:Name="SkillEfficiency_Value" Grid.Column="0" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SkillDMG_Name" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Damage"/>
-                <Label x:Name="SkillDMG_Value" Grid.Column="0" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SkillHaste_Name" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Haste"/>
-                <Label x:Name="SkillHaste_Value" Grid.Column="0" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SkillDuration_Name" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Duration"/>
-                <Label x:Name="SkillDuration_Value" Grid.Column="0" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SkillHealth_Name" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Health"/>
-                <Label x:Name="SkillHealth_Value" Grid.Column="1" Grid.Row="1" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="ShieldHealth_Name" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatNameDisplayStyle}" Content="Shield Health"/>
-                <Label x:Name="ShieldHealth_Value" Grid.Column="1" Grid.Row="2" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="SkillRepair_Name" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatNameDisplayStyle}" Content="Skill Repair"/>
-                <Label x:Name="SkillRepair_Value" Grid.Column="1" Grid.Row="3" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="StatusEffects_Name" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatNameDisplayStyle}" Content="Status Effects"/>
-                <Label x:Name="StatusEffects_Value" Grid.Column="1" Grid.Row="4" Style="{StaticResource StatValueDisplayStyle}"/>
-
-                <Label x:Name="ExplosivesDMG_Name" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatNameDisplayStyle}" Content="Explosive Damage"/>
-                <Label x:Name="ExplosivesDMG_Value" Grid.Column="1" Grid.Row="5" Style="{StaticResource StatValueDisplayStyle}"/>
-            </Grid>
-            
             <Border BorderBrush="White" BorderThickness="0,1,0,0" Grid.Row="8" Grid.Column="4"/>
 
 
