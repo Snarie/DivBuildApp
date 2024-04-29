@@ -11,36 +11,8 @@ using System.Windows;
 
 namespace DivBuildApp.UI
 {
-    internal class BonusSliderControl
+    internal static class StatSliderControl
     {
-        private static bool FillRectangleExists(Slider slider, out Rectangle rectangle)
-        {
-            rectangle = null;
-
-            Track track = slider.Template.FindName("PART_Track", slider) as Track;
-            if (track == null)
-            {
-                Console.WriteLine($"track doesn't exist: {slider.Name}");
-                return false;
-            }
-            RepeatButton decreaseButton = track.DecreaseRepeatButton;
-            //RepeatButton increaseButton = track.IncreaseRepeatButton;
-
-            if (decreaseButton == null)
-            {
-                Console.WriteLine($"decreaseButton doesn't exist: {slider.Name}");
-                return false;
-            }
-            rectangle = decreaseButton.Template.FindName("decreaseRect", decreaseButton) as Rectangle;
-            if (rectangle == null)
-            {
-                Console.WriteLine($"rect doesn't exist: {slider.Name}");
-                return false;
-            }
-            return true;
-        }
-
-
         public static void SetRange(Slider slider, BonusDisplay bonusDisplay)
         {
             slider.Visibility = Visibility.Visible;
@@ -81,6 +53,31 @@ namespace DivBuildApp.UI
                     break;
             }
             rect.Fill = brush;
+        }
+        private static bool FillRectangleExists(Slider slider, out Rectangle rectangle)
+        {
+            rectangle = null;
+
+            if (!(slider.Template.FindName("PART_Track", slider) is Track track))
+            {
+                Console.WriteLine($"track doesn't exist: {slider.Name}");
+                return false;
+            }
+            RepeatButton decreaseButton = track.DecreaseRepeatButton;
+            //RepeatButton increaseButton = track.IncreaseRepeatButton;
+
+            if (decreaseButton == null)
+            {
+                Console.WriteLine($"decreaseButton doesn't exist: {slider.Name}");
+                return false;
+            }
+            rectangle = decreaseButton.Template.FindName("decreaseRect", decreaseButton) as Rectangle;
+            if (rectangle == null)
+            {
+                Console.WriteLine($"rect doesn't exist: {slider.Name}");
+                return false;
+            }
+            return true;
         }
     }
 }

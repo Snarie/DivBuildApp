@@ -231,16 +231,9 @@ namespace DivBuildApp
             if(Initializing) return;
             if(sender is Slider slider)
             {
-                ItemType itemType = GetBonusTypeFromElement(slider);
-                ComboBox comboBox = GetStatBoxes(itemType)[index];
-                Label statValue = GetStatValues(itemType)[index];
-                if(comboBox.SelectedItem is BonusDisplay bonusDisplay)
-                {
-                    DisplayControl.SetStatValue(statValue, bonusDisplay, e.NewValue);
-                    UpdateDisplay();
-                }
-
-                
+                ItemType itemType = GetItemTypeFromElement(slider);
+                StatValueLabelControl.SetValue(itemType, index);
+                UpdateDisplay();
             }
         }
         private void Stat1Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -264,30 +257,46 @@ namespace DivBuildApp
             StatSlider_ValueChanged(sender, e, 3);
         }
 
-        private void StatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void StatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e, int index)
         {
             if (sender is ComboBox comboBox)
             {
+                // Can potentially remove SetEquippedGearList
                 GearHandler.SetEquippedGearList();
+                ItemType itemType = GetItemTypeFromElement(comboBox);
+                StatValueLabelControl.SetValue(itemType, index);
+                Task.Run(() => IconControl.SetStatIcon(itemType, index));
+
                 Image image = FindSiblingControl<Image>(comboBox, comboBox.Name + "_Icon");
-                Label statValue = FindSiblingControl<Label>(comboBox, comboBox.Name + "_Value");
                 Slider slider = FindSiblingControl<Slider>(comboBox, comboBox.Name + "_Slider");
                 if (comboBox.SelectedItem is BonusDisplay bonusDisplay)
                 {
-                    BonusSliderControl.SetRange(slider, bonusDisplay);
-                    Task.Run(() => DisplayControl.SetStatIconAsync(image, bonusDisplay));
-                    double multiplier = slider.Value;
-                    //Task.Run(() => DisplayControl.SetStatValueAsync(label, bonusDisplay, multiplier));
-                    DisplayControl.SetStatValue(statValue, bonusDisplay, multiplier);
+                    StatSliderControl.SetRange(slider, bonusDisplay);
+                    //Task.Run(() => IconControl.SetStatIcon(image, bonusDisplay));
                 }
                 else
                 {
-                    image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/ItemType Icons/Undefined.png"));
-                    statValue.Content = "";
+                    //image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/ItemType Icons/Undefined.png"));
                     slider.Visibility = Visibility.Collapsed;
                 }
                 UpdateDisplay();
             }
+        }
+        private void Stat1ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StatComboBox_SelectionChanged(sender, e, 0);
+        }
+        private void Stat2ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StatComboBox_SelectionChanged(sender, e, 1);
+        }
+        private void Stat3ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StatComboBox_SelectionChanged(sender, e, 2);
+        }
+        private void Stat4ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            StatComboBox_SelectionChanged(sender, e, 3);
         }
 
         private async Task ProcessGearComboBoxChange(ComboBoxBrandItem selectedItem, string baseName)
@@ -298,9 +307,8 @@ namespace DivBuildApp
 
                 // Async operations can be awaited normally
                 await DisplayControl.SetItemNameLabelAsync(GetItemNameLabel(itemType), selectedItem);
-                await DisplayControl.SetBrandImageAsync(GetBrandImage(itemType), brandName);
+                await IconControl.SetBrandImage(GetBrandImage(itemType), brandName);
                 await DisplayControl.DisplayBrandBonusesAsync(itemType, brandName);
-
                 // Dispatch other UI updates or CPU-bound work to the UI thread
                 Dispatcher.Invoke(() =>
                 {

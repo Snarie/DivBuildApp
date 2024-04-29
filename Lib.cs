@@ -52,6 +52,11 @@ namespace DivBuildApp
             Slider stat3_Slider = FindChildControl<Slider>(grid, $"{baseName}Stat3_Slider");
             Slider stat4_Slider = FindChildControl<Slider>(grid, $"{baseName}Stat4_Slider");
 
+            Image stat1_Icon = FindChildControl<Image>(grid, $"{baseName}Stat1_Icon");
+            Image stat2_Icon = FindChildControl<Image>(grid, $"{baseName}Stat2_Icon");
+            Image stat3_Icon = FindChildControl<Image>(grid, $"{baseName}Stat3_Icon");
+            Image stat4_Icon = FindChildControl<Image>(grid, $"{baseName}Stat4_Icon");
+
             Image brandImage = FindChildControl<Image>(grid, $"{baseName}BrandImage");
 
             bool success = Enum.TryParse(baseName, out ItemType itemType);
@@ -60,102 +65,78 @@ namespace DivBuildApp
                 GearGridLinks.Add(itemType, new GearGridContent(
                     itemBox, 
                     itemName, itemArmor, itemExpertiece,
+                    new TextBlock[] { bonus1, bonus2, bonus3 },
                     new ComboBox[] { stat1, stat2, stat3, stat4},
                     new Label[] {stat1_Value, stat2_Value, stat3_Value, stat4_Value},
                     new Slider[] { stat1_Slider, stat2_Slider, stat3_Slider, stat4_Slider },
-                    new TextBlock[] { bonus1, bonus2, bonus3 },
+                    new Image[] { stat1_Icon, stat2_Icon, stat3_Icon, stat4_Icon },
                     brandImage
                 ));;
             }
         }
 
+
+        /// <summary>
+        /// Gets the <see cref="GearGridContent"/> associated with the <paramref name="itemType"/>
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> key</param>
+        /// <returns><see langword="true"/> <see cref="GearGridLinks"/> contains the specified <paramref name="itemType"/>; otherwise, <see langword="false"/></returns>
         public static bool GridExists(ItemType itemType, out GearGridContent grid)
         {
             bool exists = GearGridLinks.TryGetValue(itemType, out grid);
             return exists;
         }
 
+
         /// <summary>
-        /// Get the ItemBox for holding selected Item
+        /// Gets the <see cref="ComboBox"/> that represents the ItemBox
         /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>the ComboBox of the selected Item, or null if grid link doesn't exist</returns>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns><see cref="ComboBox"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static ComboBox GetItemBox(ItemType itemType)
         {
             return GridExists(itemType, out GearGridContent grid) ? grid.ItemBox : null;
         }
-        public static ComboBox GetExpertieceBox(ItemType itemType)
-        {
-            return GridExists(itemType, out GearGridContent grid) ? grid.ItemExpertiece : null;
-        }
 
+
+        /// <summary>
+        /// Gets the <see cref="Label"/> that represents the ItemName
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>ItemName <see cref="Label"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static Label GetItemNameLabel(ItemType itemType)
         {
             return GridExists(itemType, out GearGridContent grid) ? grid.ItemName : null;
         }
 
+
+        /// <summary>
+        /// Gets the <see cref="Label"/> that represents the ItemArmor
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>ItemArmor <see cref="Label"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static Label GetItemArmorLabel(ItemType itemType)
         {
             return GridExists(itemType, out GearGridContent grid) ? grid.ItemArmor : null;
         }
 
-        /// <summary>
-        /// Get all StatSliders containing it's StatBox's selected BonusDisplay Max and minimum Value
-        /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>The Slider collection of StatSliders, or null if grid link doesn't exist</returns>
-        public static Slider[] GetStatSliders(ItemType itemType)
-        {
-            return GridExists(itemType, out GearGridContent grid) ? grid.StatSliders : null;
-        }
 
         /// <summary>
-        /// Get all StatValues containing it's StatBox's selected BonusDisplay Value
+        /// Gets the <see cref="ComboBox"/> that represents the ExpertieceBox
         /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>The Label collection of StatValues, or null if grid link doesn't exist</returns>
-        public static Label[] GetStatValues(ItemType itemType)
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>ExpertieceBox <see cref="ComboBox"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static ComboBox GetExpertieceBox(ItemType itemType)
         {
-            return GridExists(itemType, out GearGridContent grid) ? grid.StatValues : null;
-        }
-
-        /// <summary>
-        /// Get all StatBoxes for holding selected BonusDisplay
-        /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>The ComboBox collection of StatBoxes with a list of BonusDisplays, or null if grid link doesn't exist</returns>
-        public static ComboBox[] GetStatBoxes(ItemType itemType)
-        {
-            return GridExists(itemType, out GearGridContent grid) ? grid.StatBoxes : null;
-        }
-
-        /// <summary>
-        /// Get the CoreStatBox for holding selected core Stat
-        /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>The ComboBox of the coreStat, or null if grid link doens't exist</returns>
-        public static ComboBox GetCoreStatBox(ItemType itemType)
-        {
-            return GridExists(itemType, out GearGridContent grid) ? grid.StatBoxes[0] : null;
-        }
-        
-        /// <summary>
-        /// Get all SideBonusBoxes for holding selected side Stats
-        /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>The ComboBox collection of sideStats, or null if grid link doesn't exist</returns>
-        public static ComboBox[] GetSideStatBoxes(ItemType itemType)
-        {
-            return GridExists(itemType, out GearGridContent grid) ? new ComboBox[] { grid.StatBoxes[1], grid.StatBoxes[2], grid.StatBoxes[3] } : null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.ItemExpertiece : null;
         }
 
 
-
         /// <summary>
-        /// Get all BrandBonusBoxes for displaying brandbonus
+        /// Gets the <see cref="TextBlock"/> array that represents the BrandBonusText
         /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>The ContentControl Collection of Labels, or null if grid link doesn't exist </returns>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>BrandBonusText <see cref="TextBlock"/>[] if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static TextBlock[] GetBrandBonusTextBlocks(ItemType itemType)
         {
             if (GridExists(itemType, out GearGridContent grid))
@@ -164,9 +145,130 @@ namespace DivBuildApp
             }
             return null;
         }
+        /// <summary>
+        /// Gets the <see cref="TextBlock"/> with the specific <paramref name="index"/> that represents the BrandBonusText
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <param name="index">The index 0-3</param>
+        /// <returns>BrandBonusText <see cref="TextBlock"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static TextBlock GetBrandBonusTextBlock(ItemType itemType, int index)
+        {
+            TextBlock[] textBlocks = GetBrandBonusTextBlocks(itemType);
+            return textBlocks?[index];
+        }
 
 
+        /// <summary>
+        /// Gets the <see cref="ComboBox"/> array that represents the StatBox
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>StatBox <see cref="ComboBox"/>[] if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static ComboBox[] GetStatBoxes(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatBoxes : null;
+        }
+        /// <summary>
+        /// Gets the <see cref="ComboBox"/> with the specific <paramref name="index"/> that represents the StatBox
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <param name="index">The index 0-3</param>
+        /// <returns>StatBox <see cref="ComboBox"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static ComboBox GetStatBox(ItemType itemType, int index)
+        {
+            ComboBox[] comboBoxes = GetStatBoxes(itemType);
+            return comboBoxes?[index];
+        }
+        /// <summary>
+        /// Gets the <see cref="ComboBox"/> defined as Core Stat that represents the StatBox
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>StatBox <see cref="ComboBox"/>[] if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static ComboBox GetCoreStatBox(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatBoxes[0] : null;
+        }
+        /// <summary>
+        /// Gets the <see cref="ComboBox"/> array defined as Side Stat that represents the StatBox
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>StatBox <see cref="ComboBox"/>[] if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static ComboBox[] GetSideStatBoxes(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? new ComboBox[] { grid.StatBoxes[1], grid.StatBoxes[2], grid.StatBoxes[3] } : null;
+        }
 
+
+        /// <summary>
+        /// Gets the <see cref="Label"/> array that represents the StatValue
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>StatValue <see cref="Label"/>[] if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static Label[] GetStatValues(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatValues : null;
+        }
+        /// <summary>
+        /// Gets the <see cref="Label"/> with the specific <paramref name="index"/> that represents the StatValue
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <param name="index">The index 0-3</param>
+        /// <returns>StatValue <see cref="Label"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static Label GetStatValue(ItemType itemType, int index)
+        {
+            Label[] labels = GetStatValues(itemType);
+            return labels?[index];
+        }
+
+
+        /// <summary>
+        /// Gets the <see cref="Slider"/> array that represents the StatSlider
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>StatValue <see cref="Slider"/>[] if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static Slider[] GetStatSliders(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatSliders : null;
+        }
+        /// <summary>
+        /// Gets the <see cref="Slider"/> with the specific <paramref name="index"/> that represents the StatSlider
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <param name="index">The index 0-3</param>
+        /// <returns>StatSlider <see cref="Slider"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static Slider GetStatSlider(ItemType itemType, int index)
+        {
+            Slider[] sliders = GetStatSliders(itemType);
+            return sliders?[index];
+        }
+
+
+        /// <summary>
+        /// Gets the <see cref="Image"/> array that represents the StatIcon
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>StatIcon <see cref="Image"/>[] if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static Image[] GetStatIcons(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid.StatIcons : null;
+        }
+        /// <summary>
+        /// Gets the <see cref="Image"/> with the specific <paramref name="index"/> that represents the StatIcon
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <param name="index">The index 0-3</param>
+        /// <returns>StatIcon <see cref="Image"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
+        public static Image GetStatIcon(ItemType itemType, int index)
+        {
+            Image[] images = GetStatIcons(itemType);
+            return images?[index];
+        }
+
+
+        /// <summary>
+        /// Gets the <see cref="Image"/> that represents the BrandImage
+        /// </summary>
+        /// <param name="itemType">The <see cref="ItemType"/> whose grid is searched</param>
+        /// <returns>BrandImage <see cref="Image"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static Image GetBrandImage(ItemType itemType)
         {
             if (GridExists(itemType, out GearGridContent grid))
@@ -176,6 +278,12 @@ namespace DivBuildApp
             return null;
         }
 
+
+        /// <summary>
+        /// Gets the (<see cref="string"/>)prefix that (<see cref="FrameworkElement"/>)<paramref name="element"/> starts with
+        /// </summary>
+        /// <param name="element">The <see cref="FrameworkElement"/> whose Prefix is searched</param>
+        /// <returns><see cref="string"/> if <paramref name="element"/> starts with a correct prefix; otherwise, <see langword="default"/></returns>
         public static string GetPrefixFromElement(FrameworkElement element)
         {
             string elementName = element.Name;
@@ -185,23 +293,23 @@ namespace DivBuildApp
         }
 
         /// <summary>
-        /// 
+        /// Gets the <see cref="ItemType"/> prefix that (<see cref="FrameworkElement"/>)<paramref name="element"/> starts with
         /// </summary>
-        /// <param name="element">the element of </param>
-        /// <returns></returns>
-        public static ItemType GetBonusTypeFromElement(FrameworkElement element)
+        /// <param name="element">The <see cref="FrameworkElement"/> whose Prefix is searched</param>
+        /// <returns><see cref="ItemType"/> if <paramref name="element"/> starts with a correct prefix; otherwise, <see langword="default"/></returns>
+        public static ItemType GetItemTypeFromElement(FrameworkElement element)
         {
             return (ItemType)Enum.Parse(typeof(ItemType), GetPrefixFromElement(element));
         }
 
 
         /// <summary>
-        /// Returns the first <see cref="FrameworkElement"/> that represents the starElements child with targetName
+        /// Returns the first immediate <see cref="FrameworkElement"/> child of specified <paramref name="startElement"/> where the name equals <paramref name="targetName"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="startElement">the element whose child is returned</param>
+        /// <param name="startElement">the <see cref="FrameworkElement"/> whose child is returned</param>
         /// <param name="targetName">the name of the child ojbect</param>
-        /// <returns>The child object</returns>
+        /// <returns>The child object or <see langword="null"/> if no child doesn't exist</returns>
         public static T FindChildControl<T>(FrameworkElement startElement, string targetName) where T : FrameworkElement
         {
             // Directly search the children of the startElement
@@ -225,12 +333,12 @@ namespace DivBuildApp
         }
 
         /// <summary>
-        /// Returns the first <see cref="FrameworkElement"/> that represents the starElements sibling with targetName
+        /// Returns the first <see cref="FrameworkElement"/> sibling of specified <paramref name="startElement"/> where the name equals <paramref name="targetName"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="startElement">the element whose sibling is returned</param>
+        /// <param name="startElement">the <see cref="FrameworkElement"/> whose sibling is returned</param>
         /// <param name="targetName">the name of the sibling ojbect</param>
-        /// <returns>The sibling object</returns>
+        /// <returns>The sibling object or <see langword="null"/> if no sibling doesn't exist</returns>
         public static T FindSiblingControl<T>(FrameworkElement startElement, string targetName) where T : FrameworkElement
         {
             var parent = VisualTreeHelper.GetParent(startElement);
@@ -256,11 +364,11 @@ namespace DivBuildApp
         }
 
         /// <summary>
-        /// Returns a <see cref="FrameworkElement"/> that represents the startElements parent object
+        /// Returns the parent <see cref="FrameworkElement"/> of specified <paramref name="startElement"/>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="startElement">the element whose parent is returned</param>
-        /// <returns>The parent object</returns>
+        /// <param name="startElement">the <see cref="FrameworkElement"/> whose parent is returned</param>
+        /// <returns>The parent object or <see langword="null"/> if parent doesn't exist</returns>
         public static T FindParentControl<T>(FrameworkElement startElement) where T : FrameworkElement
         {
             var parent = VisualTreeHelper.GetParent(startElement);

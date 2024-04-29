@@ -50,80 +50,9 @@ namespace DivBuildApp.UI
                 itemLabel.Foreground = brush;
             });
         }
-        public static void SetStatValue(Label label, BonusDisplay bonusDisplay, double multiplier)
-        {
-            Bonus bonus = new Bonus(bonusDisplay.Bonus.BonusType, bonusDisplay.Bonus.Value, bonusDisplay.Bonus.DisplayType);
-            switch (bonus.BonusType) 
-            {
-                case BonusType.Skill_Tier:
-                case BonusType.Armor_Kit_Capacity:
-                case BonusType.Grenade_Capacity:
-                case BonusType.Skill_Repair_Charges:
-                case BonusType.Skill_Stim_Charges:
-                case BonusType.Skill_Stinger_Charges:
-                    break;
-                default:
-                    bonus.Value *= multiplier / 100;
-                    break;
-            }
-            label.DataContext = bonus;
-            label.Content = bonus.DisplayValue;
-            //label.Content = bonus;
-            Console.WriteLine(bonus.DisplayValue + " " + bonus.BonusType + " " + multiplier);
-        }
         
-
         
-
-        public static async Task SetStatIconAsync(Image imageControl, BonusDisplay bonusDisplay)
-        {
-            string resourcePath = $"pack://application:,,,/Images/ItemType Icons/{bonusDisplay.IconType}.png";
-
-            bool exists = ResourceExists(resourcePath);
-            if (!exists)
-            {
-                Console.WriteLine(resourcePath + " Not found");
-                resourcePath = "pack://application:,,,/Images/ItemType Icons/Undefined.png";
-            }
-
-            await Application.Current.Dispatcher.InvokeAsync(() =>
-            {
-                imageControl.Source = new BitmapImage(new Uri(resourcePath));
-            });
-
-        }
-
-        public static async Task SetBrandImageAsync(Image imageControl, string brandName)
-        {
-            string resourcePath = $"pack://application:,,,/Images/Brand Icons/{brandName}.png";
-
-            // Check if the resource exists
-            bool exists = ResourceExists(resourcePath);
-            if (!exists)
-            {
-                Console.WriteLine(resourcePath + " Not found");
-                resourcePath = "pack://application:,,,/Images/Brand Icons/Improvised.png";
-            }
-
-            await Application.Current.Dispatcher.InvokeAsync(() =>
-            {
-                imageControl.Source = new BitmapImage(new Uri(resourcePath));
-            });
-        }
-
-        private static bool ResourceExists(string resourcePath)
-        {
-            try
-            {
-                Uri resourceUri = new Uri(resourcePath, UriKind.Absolute);
-                StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
-                return streamInfo != null;
-            }
-            catch
-            {
-                return false; // Resource not found
-            }
-        }
+        
 
         public static async Task DisplayBrandBonusesAsync(ItemType itemType, string brandName)
         {
@@ -133,7 +62,6 @@ namespace DivBuildApp.UI
                 Console.WriteLine("One or more text boxes are null.");
                 return;
             }
-            // Assuming GetBrandBonus is an I/O operation or might benefit from being run asynchronously
             var bonusesTask1 = Task.Run(() => BonusHandler.GetBrandBonus(brandName, 1));
             var bonusesTask2 = Task.Run(() => BonusHandler.GetBrandBonus(brandName, 2));
             var bonusesTask3 = Task.Run(() => BonusHandler.GetBrandBonus(brandName, 3));
@@ -173,24 +101,6 @@ namespace DivBuildApp.UI
             }
   
         }
-
-        public static void DisplayBonus(Label label, Bonus bonus)
-        {
-
-            string name = bonus.BonusType.ToString().Replace('_', ' ');
-            label.Content = $"{name} = {bonus.Value}";
-        }
-        public static void DisplayBonusses(TextBlock textBlock)
-        {
-            string msg = string.Empty;
-            foreach (KeyValuePair<BonusType, double> bonus in BonusHandler.activeBonusses)
-            {
-                msg += $"{bonus.Key} = {bonus.Value}\n";
-            }
-            textBlock.Text = msg;
-        }
-
-
         
         public static string ConvertBonusValue(Bonus bonus)
         {
@@ -208,46 +118,6 @@ namespace DivBuildApp.UI
         public static string ConvertBonusType(Bonus bonus)
         {
             return bonus.BonusType.ToString().Replace('_', ' ');
-        }
-
-
-        public static string[] BonusToStringJoined(List<Bonus> bonuses, string separator, bool flipped = false)
-        {
-            var (left, right) = BonusesToString(bonuses);
-            if(flipped) (left, right) = (right, left);
-            if (left.Length != right.Length)
-            {
-                throw new ArgumentException("Names and values arrays must have the same length.");
-            }
-            string[] result = new string[left.Length];
-
-            for (int i = 0; i < left.Length; i++)
-            {
-                result[i] = $"{left[i]}{separator}{right[i]}";
-            }
-            
-            
-            return result;
-        }
-
-
-        /// <summary>
-        /// Converts the values of the bonusses to their string variants.
-        /// </summary>
-        /// <param name="bonusses"></param>
-        /// <returns>The string representations of the name and value of the Bonuses inside a Dictionary</returns>
-        public static (string[] names, string[] values) BonusesToString(IEnumerable<Bonus> bonuses)
-        {
-            var names = new List<string>();
-            var values = new List<string>();
-
-            foreach (var bonus in bonuses)
-            {
-                names.Add(ConvertBonusType(bonus));
-                values.Add(ConvertBonusValue(bonus));
-            }
-
-            return (names.ToArray(), values.ToArray());
         }
 
         /// <summary>

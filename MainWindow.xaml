@@ -61,10 +61,10 @@
                 <ComboBox x:Name="MaskBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
                 <ComboBox x:Name="MaskExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
 
-                <ComboBox x:Name="MaskStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="MaskStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="MaskStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="MaskStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat1ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat2ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat3ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="MaskStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat4ComboBox_SelectionChanged"/>
                 
                 <Label    x:Name="MaskStat1_Value" Grid.Row="1" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="MaskStat2_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>    
@@ -113,10 +113,10 @@
                 <ComboBox x:Name="BackpackBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
                 <ComboBox x:Name="BackpackExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
 
-                <ComboBox x:Name="BackpackStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="BackpackStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="BackpackStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="BackpackStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat1ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat2ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat3ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="BackpackStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat4ComboBox_SelectionChanged"/>
 
                 <Label    x:Name="BackpackStat1_Value" Grid.Row="1" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="BackpackStat2_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
@@ -167,10 +167,10 @@
                 <ComboBox x:Name="ChestBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
                 <ComboBox x:Name="ChestExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
 
-                <ComboBox x:Name="ChestStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="ChestStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="ChestStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="ChestStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat1ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat2ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat3ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="ChestStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat4ComboBox_SelectionChanged"/>
 
                 <Label    x:Name="ChestStat1_Value" Grid.Row="1" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="ChestStat2_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
@@ -220,10 +220,10 @@
                 <ComboBox x:Name="GlovesBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
                 <ComboBox x:Name="GlovesExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
 
-                <ComboBox x:Name="GlovesStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="GlovesStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="GlovesStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="GlovesStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat1ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat2ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat3ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="GlovesStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat4ComboBox_SelectionChanged"/>
 
                 <Label    x:Name="GlovesStat1_Value" Grid.Row="1" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="GlovesStat2_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
@@ -273,10 +273,10 @@
                 <ComboBox x:Name="HolsterBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
                 <ComboBox x:Name="HolsterExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
 
-                <ComboBox x:Name="HolsterStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="HolsterStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="HolsterStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="HolsterStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat1ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat2ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat3ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="HolsterStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat4ComboBox_SelectionChanged"/>
 
                 <Label    x:Name="HolsterStat1_Value" Grid.Row="1" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
                 <Label    x:Name="HolsterStat2_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
@@ -325,10 +325,10 @@
                 <ComboBox x:Name="KneepadsBox"       Grid.Column="3" Grid.Row="0" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
                 <ComboBox x:Name="KneepadsExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
 
-                <ComboBox x:Name="KneepadsStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="KneepadsStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="KneepadsStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
-                <ComboBox x:Name="KneepadsStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="StatComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsStat1" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat1ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsStat2" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat2ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsStat3" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat3ComboBox_SelectionChanged"/>
+                <ComboBox x:Name="KneepadsStat4" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}" SelectionChanged="Stat4ComboBox_SelectionChanged"/>
 
                 <Label    x:Name="KneepadsStat1_Value" Grid.Row="1" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
 
