@@ -13,6 +13,12 @@ namespace DivBuildApp.UI
 {
     internal static class StatValueLabelControl
     {
+        public static event EventHandler ValueSet;
+        private static void OnValueSet()
+        {
+            ValueSet?.Invoke(null, EventArgs.Empty);
+        }
+
         public static void SetValue(ItemType itemType, int index)
         {
             Label label = Lib.GetStatValue(itemType, index);
@@ -26,6 +32,7 @@ namespace DivBuildApp.UI
             {
                 label.Content = "";
             }
+            OnValueSet();
         }
         public static void SetValue(Label label, BonusDisplay bonusDisplay, double multiplier)
         {
