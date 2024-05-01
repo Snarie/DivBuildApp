@@ -30,26 +30,10 @@ namespace DivBuildApp
     }
     internal static class BonusHandler
     {
-        static BonusHandler()
-        {
-            StatValueLabelControl.ValueSet += HandleValueSet;
-        }
-        private static void HandleValueSet(object sender, EventArgs e)
-        {
-            CalculateStatAttributes();
-            Console.WriteLine("BonusHandler noticed StatValueLabelControl");
-        }
 
-        public static List<BonusSource> expertieceBonuses = new List<BonusSource>();
-        public static List<BonusSource> brandSetBonuses =  new List<BonusSource>();
-        public static List<BonusSource> statAttributeBonuses = new List<BonusSource>();
-        public static List<BonusSource> watchBonuses = new List<BonusSource>();
+        public static Dictionary<string, List<EquipBonus>> brandSets = new Dictionary<string, List<EquipBonus>>();
 
-        public static Dictionary<BonusType, double> activeBonusses = new Dictionary<BonusType, double>();
-
-
-        public static Dictionary<BonusType, string> bonusDisplayTypes = new Dictionary<BonusType, string>();
-
+        private static readonly Dictionary<BonusType, string> bonusDisplayTypes = new Dictionary<BonusType, string>();
 
         public static void SetBonusDisplayTypes(List<BonusDisplayTypeFormat> formats)
         {
@@ -65,7 +49,7 @@ namespace DivBuildApp
             }
         }
 
-        public static string getBonusDisplayType(BonusType bonusType)
+        public static string GetBonusDisplayType(BonusType bonusType)
         {
             if(bonusDisplayTypes.TryGetValue(bonusType, out string displayType))
             {
@@ -131,13 +115,11 @@ namespace DivBuildApp
 
         public static List<Bonus> GetBrandBonus(string brandName, int pieceNumber)
         {
-            bool keyExists = MainWindow.brandSets.TryGetValue(brandName, out List<EquipBonus> equipBonuses);
+            bool keyExists = brandSets.TryGetValue(brandName, out List<EquipBonus> equipBonuses);
             if (!keyExists)
             {
                 return new List<Bonus>();
             }
-            //if(equipBonusses.KeyExist())
-            //List<EquipBonus> equipBonusses = MainWindow.brandSets[brandName];
             List<Bonus> bonusses = new List<Bonus>();
             foreach (EquipBonus equipBonus in equipBonuses)
             {
@@ -158,6 +140,7 @@ namespace DivBuildApp
         }
 
 
+
         /// <summary>
         /// Gets all the StatBox bonusses
         /// </summary>
@@ -167,159 +150,6 @@ namespace DivBuildApp
         {
             ComboBox[] comboBoxes = Lib.GetStatBoxes(itemType);
             return comboBoxes.Select(box => BonusFromBox(box)).ToArray();
-        }
-
-        /// <summary>
-        /// Gets all the side bonusses
-        /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>The Bonus collection containing all selected SideStats</returns>
-        public static Bonus[] SideBonuses(ItemType itemType)
-        {
-            ComboBox[] comboBox = Lib.GetSideStatBoxes(itemType);
-            return comboBox.Select(box => BonusFromBox(box)).ToArray();
-            //return comboBox.Select(box => BonusFromBox(box)).ToArray();
-        }
-
-
-
-        /// <summary>
-        /// Gets the core bonus
-        /// </summary>
-        /// <param name="itemType">Mask/Backpack/Chest/Gloves/Holster/Kneepads</param>
-        /// <returns>The Bonus containing the selected CoreStat</returns>
-        public static Bonus CoreBonus(ItemType itemType)
-        {
-            ComboBox comboBox = Lib.GetCoreStatBox(itemType);
-            return BonusFromBox(comboBox);
-        }
-
-        
-        public static void ResetBonuses()
-        {
-            //Set all bonusses back to being at 0
-            activeBonusses = new Dictionary<BonusType, double>();
-            foreach (BonusType bonusTypes in Enum.GetValues(typeof(BonusType)))
-            {
-                activeBonusses[bonusTypes] = 0;
-            }
-        }
-
-        public static void CalculateExpertieceBonuses()
-        {
-            expertieceBonuses.Clear();
-            expertieceBonuses.Add(new BonusSource("Gear Expertiece", new Bonus(BonusType.Armor, ItemArmorControl.GetExpertieceArmorValue())));
-        }
-        public static void CalculateWatchBonuses()
-        {
-            watchBonuses.Clear();
-            foreach (Bonus bonus in SHDWatch.WatchBonuses)
-            {
-                watchBonuses.Add(new BonusSource("Watch Bonus", new Bonus(bonus.BonusType, bonus.Value)));
-            }
-        }
-        public static void CalculateStatAttributes()
-        {
-            statAttributeBonuses.Clear();
-            foreach (ItemType gearType in GearHandler.gearTypes)
-            {
-                ComboBox[] statBoxes = Lib.GetStatBoxes(gearType);
-                Label[] statValues = Lib.GetStatValues(gearType);
-                for (int i=0; i < 4; i++)
-                {
-                    
-                    if (statBoxes[i].SelectedItem is BonusDisplay bonusDisplay)
-                    {
-                        if (statValues[i].DataContext is Bonus bonus)
-                        {
-                            statAttributeBonuses.Add(new BonusSource($"{statBoxes[i].Name}", new Bonus(bonusDisplay.Bonus.BonusType, bonus.BonusValue)));
-                            //activeBonusses[bonusDisplay.Bonus.BonusType] += bonus.Value;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{statValues[i].Name} is not a Bonus");
-                        }
-                    }
-                }
-            }
-        }
-        public static void CalculateBrandBonues()
-        {
-            brandSetBonuses.Clear();
-            Dictionary<string, int> brandLevels = new Dictionary<string, int>();
-            foreach (Gear equippedItem in GearHandler.equippedItemList)
-            {
-                string brandName = equippedItem.BrandName;
-                if (brandLevels.ContainsKey(brandName))
-                {
-                    brandLevels[brandName]++;
-                }
-                else
-                {
-                    brandLevels.Add(brandName, 1);
-                }
-
-                //BrandSet Bonuses
-                foreach (Bonus bonus in GetBrandBonus(brandName, brandLevels[brandName]))
-                {
-                    brandSetBonuses.Add(new BonusSource("Brand Set", new Bonus(bonus.BonusType, bonus.Value)));
-                    //activeBonusses[bonus.BonusType] += bonus.Value;
-                }
-
-            }
-
-            if (GearHandler.GearFromSlot("backpack") != null)
-            {
-                if (GearHandler.GearFromSlot("backpack").Name == "NinjaBike Backpack")
-                {
-                    Console.WriteLine("Correct");
-                    var keysToUpdate = new List<string>(brandLevels.Keys);
-                    foreach (string key in keysToUpdate)
-                    {
-                        brandLevels[key]++;
-                        foreach (Bonus bonus in GetBrandBonus(key, brandLevels[key]))
-                        {
-                            brandSetBonuses.Add(new BonusSource("NinjaBike Backpack", new Bonus(bonus.BonusType, bonus.Value)));
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Wrong " + GearHandler.GearFromSlot("backpack").Name);
-                }
-            }
-        }
-        public static void CalculateBonuses()
-        {
-            //Set all bonusses back to 0
-            //Could be deleted later but here just to be 100% sure
-            ResetBonuses();
-
-            CalculateBrandBonues();
-            foreach(Bonus bonus in brandSetBonuses.Select(b => b.Bonus))
-            {
-                activeBonusses[bonus.BonusType] += bonus.BonusValue;
-            }
-            //CalculateStatAttributes();
-            foreach(Bonus bonus in statAttributeBonuses.Select(b => b.Bonus))
-            {
-                activeBonusses[bonus.BonusType] += bonus.BonusValue;
-            }
-
-            CalculateWatchBonuses();
-            foreach(Bonus bonus in watchBonuses.Select(b => b.Bonus))
-            {
-                activeBonusses[bonus.BonusType] += bonus.BonusValue;
-            }
-
-            CalculateExpertieceBonuses();
-            foreach(Bonus bonus in expertieceBonuses.Select(b => b.Bonus))
-            {
-                activeBonusses[bonus.BonusType] += bonus.BonusValue;
-            }
-
-            activeBonusses[BonusType.Armor] = Math.Floor(activeBonusses[BonusType.Armor] * (100 + activeBonusses[BonusType.Total_Armor])/100);
-
         }
 
 

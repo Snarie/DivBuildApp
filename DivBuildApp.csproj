@@ -81,6 +81,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BonusControl\ActiveBonuses.cs" />
+    <Compile Include="BonusControl\BonusCaps.cs" />
     <Compile Include="BonusControl\BonusDisplayHandler.cs" />
     <Compile Include="Data\CsvFormats\BonusDisplayTypeFormat.cs" />
     <Compile Include="Data\CsvFormats\BrandBonusesFormat.cs" />
@@ -89,7 +91,7 @@
     <Compile Include="UI\IconControl.cs" />
     <Compile Include="UI\StatSliderControl.cs" />
     <Compile Include="UI\ItemArmorControl.cs" />
-    <Compile Include="UI\StatTableDisplay.cs" />
+    <Compile Include="UI\StatTableControl.cs" />
     <Compile Include="UI\StatValueLabelControl.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -9,51 +9,14 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
+using DivBuildApp.BonusControl;
 
 namespace DivBuildApp
 {
     internal static class ListOptions
     {
-
-        private static List<BonusDisplay> gearCoreAttributes = new List<BonusDisplay>();
-        private static List<BonusDisplay> gearSideAttributes = new List<BonusDisplay>();
-        private static List<BonusDisplay> gearModAttributes = new List<BonusDisplay>();
-        private static List<BonusDisplay> weaponCoreAttributes = new List<BonusDisplay>();
-        private static List<BonusDisplay> weaponPrimaryAttributes = new List<BonusDisplay>();
-        private static List<BonusDisplay> weaponSecondaryAttributes = new List<BonusDisplay>();
         
-        public static List<BonusCapsFormat> bonusCapsList = new List<BonusCapsFormat>();
-        public static void CreateBonusCapsFromData(List<BonusCapsFormat> bonusCapsFormat)
-        {
-            bonusCapsList = bonusCapsFormat;
-            foreach(BonusCapsFormat bonusCaps in bonusCapsFormat)
-            {
-
-                BonusType name = BonusHandler.StringToBonusType(bonusCaps.Name);
-
-                if (name == BonusType.NoBonus) continue;
-                BonusDisplayHandler.bonusIconType.Add(name, bonusCaps.IconType);
-                TryCreateBonusCap(name, bonusCaps.GearCore, "Core-"+bonusCaps.IconType, gearCoreAttributes);
-                TryCreateBonusCap(name, bonusCaps.GearSide, "Side-"+bonusCaps.IconType, gearSideAttributes);
-                TryCreateBonusCap(name, bonusCaps.Mod, "Mod-"+bonusCaps.IconType, gearModAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponCore, bonusCaps.IconType, weaponCoreAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponPrimary, bonusCaps.IconType, weaponPrimaryAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponSide, bonusCaps.IconType, weaponSecondaryAttributes);
-
-            }
-        }
-        public static void TryCreateBonusCap(BonusType name, string stringValue, string iconType, List<BonusDisplay> holder)
-        {
-            if (string.IsNullOrEmpty(stringValue)) return;
-            bool canParse = double.TryParse(stringValue, out double value);
-            if (!canParse) return;
-            BonusDisplay bonus = new BonusDisplay(new Bonus(name, value), iconType);
-            holder.Add(bonus);
-            
-        }
-        
-        
-        public static void SetItemsSource(ComboBox statBox, string itemAttribute)
+        private static void SetItemsSource(ComboBox statBox, string itemAttribute)
         {
             int bonusIndex = statBox.SelectedIndex;
             int bonusItemCount = statBox.Items.Count;
@@ -61,43 +24,37 @@ namespace DivBuildApp
             SetBoxSelectedIndex(statBox, bonusIndex, bonusItemCount);
         }
 
-
-        public static void DisplayOptionStatBoxIcons(ItemType itemType)
+        public static void SetAllOptionsStatBoxes()
         {
-
+            SetOptionsStatBoxes(ItemType.Mask);
+            SetOptionsStatBoxes(ItemType.Backpack);
+            SetOptionsStatBoxes(ItemType.Chest);
+            SetOptionsStatBoxes(ItemType.Gloves);
+            SetOptionsStatBoxes(ItemType.Holster);
+            SetOptionsStatBoxes(ItemType.Kneepads);
         }
+
         public static void SetOptionsStatBoxes(ItemType itemType)
         {
-            ComboBox[] statBoxes = Lib.GetSideStatBoxes(itemType);
+            ComboBox itemBox = Lib.GetItemBox(itemType);
+            ComboBox[] statBoxes = Lib.GetStatBoxes(itemType);
 
-            if (statBoxes[0] != null && statBoxes[1] != null && statBoxes[2] != null)
+            if (statBoxes[0] != null && statBoxes[1] != null && statBoxes[2] != null && statBoxes[3] != null)
             {
-                OptionsCoreStat(itemType);
-                OptionsSideStats(itemType);
+                OptionsStatAttributes(itemBox, statBoxes);
             }
         }
-        public static void OptionsCoreStat(ItemType itemType)
+        
+        private static void OptionsStatAttributes(ComboBox itemBox, ComboBox[] statBoxes)
         {
-            ComboBox itemBox = Lib.GetItemBox(itemType);
-            if (itemBox.SelectedItem is ComboBoxBrandItem selectedItem)
+            if(itemBox.SelectedItem is ComboBoxBrandItem selectedItem)
             {
-                ComboBox statBox = Lib.GetCoreStatBox(itemType);
-                StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
-                SetItemsSource(statBox, stringItem.CoreAttribute);
-            }
-        }
-
-        public static void OptionsSideStats(ItemType itemType)
-        {
-            ComboBox itemBox = Lib.GetItemBox(itemType);
-            if (itemBox.SelectedItem is ComboBoxBrandItem selectedItem)
-            {
-                ComboBox[] statBoxes = Lib.GetSideStatBoxes(itemType);
                 StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
 
-                SetItemsSource(statBoxes[0], stringItem.SideAttribute1);
-                SetItemsSource(statBoxes[1], stringItem.SideAttribute2);
-                SetItemsSource(statBoxes[2], stringItem.SideAttribute3);
+                SetItemsSource(statBoxes[0], stringItem.CoreAttribute);
+                SetItemsSource(statBoxes[1], stringItem.SideAttribute1);
+                SetItemsSource(statBoxes[2], stringItem.SideAttribute2);
+                SetItemsSource(statBoxes[3], stringItem.SideAttribute3);
             }
         }
 
@@ -173,11 +130,11 @@ namespace DivBuildApp
                     switch (value)
                     {
                         case "core":
-                            return gearCoreAttributes;
+                            return BonusCaps.GearCoreAttributes;
                         case "side":
-                            return gearSideAttributes;
+                            return BonusCaps.GearSideAttributes;
                         case "mod":
-                            return gearModAttributes;
+                            return BonusCaps.GearModAttributes;
                         default:
                             Console.WriteLine($"ListOptions.GetBonusOptionsList \"{value}\" is not a recognized list");
                             return new List<BonusDisplay>();
@@ -185,11 +142,11 @@ namespace DivBuildApp
                 case "locked":
                     return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromString(value) };
                 case "core":
-                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(gearCoreAttributes, BonusHandler.StringToBonusType(value)) };
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.GearCoreAttributes, BonusHandler.StringToBonusType(value)) };
                 case "side":
-                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(gearSideAttributes, BonusHandler.StringToBonusType(value)) };
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.GearSideAttributes, BonusHandler.StringToBonusType(value)) };
                 case "mod":
-                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(gearModAttributes, BonusHandler.StringToBonusType(value)) };
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.GearModAttributes, BonusHandler.StringToBonusType(value)) };
                 default:
                     Console.WriteLine($"ListOptions.GetBonusOptionsList: \"{search}\" is not a recognized preset");
                     return new List<BonusDisplay>();

@@ -157,7 +157,7 @@ namespace DivBuildApp
         {
             BonusType = bonusType;
             Value = value;
-            DisplayType = BonusHandler.getBonusDisplayType(BonusType);
+            DisplayType = BonusHandler.GetBonusDisplayType(BonusType);
         }
         public Bonus(BonusType bonusType, double value, string displayType)
         {

@@ -9,6 +9,11 @@ namespace DivBuildApp
 {
     internal static class SHDWatch
     {
+        public static event EventHandler WatchSet;
+        private static void OnWatchSet()
+        {
+            WatchSet?.Invoke(null, EventArgs.Empty);
+        }
         public static int WatchLevel { get;set; }
 
         public static List<Bonus> WatchBonuses = new List<Bonus>();
@@ -41,6 +46,7 @@ namespace DivBuildApp
             WatchBonuses.Add(new Bonus(BonusType.Repair_Skills, 10 * watchLevelPerc));
             WatchBonuses.Add(new Bonus(BonusType.Skill_Duration, 10 * watchLevelPerc));
 
+            OnWatchSet();
         }
     }
 }

@@ -24,6 +24,7 @@ using System.Xml.Linq;
 using static DivBuildApp.Lib;
 using System.Text.RegularExpressions;
 using DivBuildApp.UI;
+using DivBuildApp.BonusControl;
 //using static DivBuildApp.ItemHandler;
 //using static DivBuildApp.BonusHandler;
 
@@ -34,7 +35,7 @@ namespace DivBuildApp
     {
 
 
-        public static Dictionary<string, List<EquipBonus>> brandSets = new Dictionary<string, List<EquipBonus>>();
+        //public static Dictionary<string, List<EquipBonus>> brandSets = new Dictionary<string, List<EquipBonus>>();
 
         public static bool Initializing;
         public MainWindow()
@@ -51,14 +52,12 @@ namespace DivBuildApp
             // These don't conflict with eachother
             InitializeItems();
             InitializeBrands();
-            InitializeActiveBonusses();
             InitializeBonusDisplayTypes();
             InitializeBonusCaps();
 
             //No order but must be done last
             InitializeGearOptions();
-            InitializeOptionsCoreStat();
-            InitializeOptionsSideStats();
+            InitializeOptionsStatAttributes();
 
             InitializeItemArmor();
 
@@ -68,7 +67,7 @@ namespace DivBuildApp
 
         private void InitializeOptionsExpertiece()
         {
-            for (int i = 0; i <= 25; i++)
+            for (int i = 0; i <= 26; i++)
             {
                 MaskExpertiece.Items.Add(i);
                 BackpackExpertiece.Items.Add(i);
@@ -126,16 +125,10 @@ namespace DivBuildApp
         /// </summary>
         private void InitializeBrands()
         {
-            brandSets = FileInfo.CsvBrandBonus();
+            BonusHandler.brandSets = FileInfo.CsvBrandBonus();
         }
 
-        /// <summary>
-        /// Create all the bonusses and set them to 0
-        /// </summary>
-        private void InitializeActiveBonusses()
-        {
-            BonusHandler.ResetBonuses();
-        }
+        
 
         private void InitializeBonusDisplayTypes()
         {
@@ -147,7 +140,8 @@ namespace DivBuildApp
         private void InitializeBonusCaps()
         {
             //ListOptions.CreateAttributesFromDictionary(FileInfo.ReadBonusCaps());
-            ListOptions.CreateBonusCapsFromData(CsvReader.BonusCaps());
+            //ListOptions.bonusCapsList = FileInfo.CsvBonusCaps();
+            BonusCaps.CreateBonusCapsFromData(CsvReader.BonusCaps());
         }
 
 
@@ -159,30 +153,9 @@ namespace DivBuildApp
             ListOptions.OptionsGearBox();
         }
 
-        /// <summary>
-        /// Create all options for the CoreStatBoxes
-        /// </summary>
-        private void InitializeOptionsCoreStat()
+        private void InitializeOptionsStatAttributes()
         {
-            ListOptions.OptionsCoreStat(ItemType.Mask);
-            ListOptions.OptionsCoreStat(ItemType.Backpack);
-            ListOptions.OptionsCoreStat(ItemType.Chest);
-            ListOptions.OptionsCoreStat(ItemType.Gloves);
-            ListOptions.OptionsCoreStat(ItemType.Holster);
-            ListOptions.OptionsCoreStat(ItemType.Kneepads);
-        }
-
-        /// <summary>
-        /// Create all options for the SideStatBoxes
-        /// </summary>
-        private void InitializeOptionsSideStats()
-        {
-            ListOptions.OptionsSideStats(ItemType.Mask);
-            ListOptions.OptionsSideStats(ItemType.Backpack);
-            ListOptions.OptionsSideStats(ItemType.Chest);
-            ListOptions.OptionsSideStats(ItemType.Gloves);
-            ListOptions.OptionsSideStats(ItemType.Gloves);
-            ListOptions.OptionsSideStats(ItemType.Kneepads);
+            ListOptions.SetAllOptionsStatBoxes();
         }
         
 
@@ -190,10 +163,8 @@ namespace DivBuildApp
 
         private void UpdateDisplay()
         {
-            BonusHandler.CalculateBonuses();
-            Task.Run(() => StatTableDisplay.DisplayBonusesInBoxes(this));
-
-            //DisplayBonusesInBoxes();
+            ActiveBonuses.CalculateBonuses();
+            Task.Run(() => StatTableControl.DisplayBonusesInBoxes(this));
         }
 
         private void GlobalExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -228,7 +199,6 @@ namespace DivBuildApp
 
         private void StatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e, int index)
         {
-            if(Initializing) return;
             if(sender is Slider slider)
             {
                 ItemType itemType = GetItemTypeFromElement(slider);
@@ -261,8 +231,6 @@ namespace DivBuildApp
         {
             if (sender is ComboBox comboBox)
             {
-                // Can potentially remove SetEquippedGearList
-                GearHandler.SetEquippedGearList();
                 ItemType itemType = GetItemTypeFromElement(comboBox);
                 StatValueLabelControl.SetValue(itemType, index);
                 Task.Run(() => IconControl.SetStatIcon(itemType, index));
@@ -313,7 +281,6 @@ namespace DivBuildApp
                 Dispatcher.Invoke(() =>
                 {
                     ListOptions.SetOptionsStatBoxes(itemType);
-                    ListOptions.DisplayOptionStatBoxIcons(itemType);
                 });
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,7 +11,11 @@ namespace DivBuildApp.UI
 {
     internal static class ItemArmorControl
     {
-
+        public static event EventHandler ItemArmorSet;
+        private static void OnSetItemArmor()
+        {
+            ItemArmorSet?.Invoke(null, EventArgs.Empty);
+        }
         public static Dictionary<ItemType, double> defaultArmorValues = new Dictionary<ItemType, double>()
         {
             [ItemType.Mask] = 80297,
@@ -51,6 +56,7 @@ namespace DivBuildApp.UI
             double multiplier = 100 + (int)multiplierBox.SelectedValue;
             double multipliedValue = armorValue * multiplier / 100.0;
             expertieceArmorValues[itemType] = multipliedValue;
+            OnSetItemArmor();
         }
         
         public static async Task DisplayItemArmorValues()

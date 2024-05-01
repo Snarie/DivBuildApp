@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp
 {
-    internal class CsvReader
+    internal static class CsvReader
     {
         private static string BaseDirectory()
         {

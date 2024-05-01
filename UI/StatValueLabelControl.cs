@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls.Primitives;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using System.Windows;
 
 namespace DivBuildApp.UI
 {
+    internal class ValueSetEventArgs : EventArgs
+    {
+        public ItemType ItemType { get; }
+        public ValueSetEventArgs(ItemType itemType)
+        {
+            ItemType = itemType;
+        }
+    }
     internal static class StatValueLabelControl
     {
-        public static event EventHandler ValueSet;
-        private static void OnValueSet()
+        public static event EventHandler<ValueSetEventArgs> ValueSet;
+        private static void OnValueSet(ItemType itemType)
         {
-            ValueSet?.Invoke(null, EventArgs.Empty);
+            ValueSet?.Invoke(null, new ValueSetEventArgs(itemType));
         }
 
         public static void SetValue(ItemType itemType, int index)
@@ -26,15 +30,15 @@ namespace DivBuildApp.UI
             Slider slider = Lib.GetStatSlider(itemType, index);
             if(comboBox.SelectedItem is BonusDisplay bonusDisplay)
             {
-                SetValue(label, bonusDisplay, slider.Value);
+                SetValueRouted(label, bonusDisplay, slider.Value);
             }
             else
             {
                 label.Content = "";
             }
-            OnValueSet();
+            OnValueSet(itemType);
         }
-        public static void SetValue(Label label, BonusDisplay bonusDisplay, double multiplier)
+        private static void SetValueRouted(Label label, BonusDisplay bonusDisplay, double multiplier)
         {
             Bonus bonus = new Bonus(bonusDisplay.Bonus.BonusType, bonusDisplay.Bonus.Value, bonusDisplay.Bonus.DisplayType);
             switch (bonus.BonusType)
