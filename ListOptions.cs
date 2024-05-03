@@ -24,20 +24,11 @@ namespace DivBuildApp
             SetBoxSelectedIndex(statBox, bonusIndex, bonusItemCount);
         }
 
-        public static void SetAllOptionsStatBoxes()
-        {
-            SetOptionsStatBoxes(ItemType.Mask);
-            SetOptionsStatBoxes(ItemType.Backpack);
-            SetOptionsStatBoxes(ItemType.Chest);
-            SetOptionsStatBoxes(ItemType.Gloves);
-            SetOptionsStatBoxes(ItemType.Holster);
-            SetOptionsStatBoxes(ItemType.Kneepads);
-        }
 
-        public static void SetOptionsStatBoxes(ItemType itemType)
+        public static void SetOptionsStatBoxes(GridEventArgs e)
         {
-            ComboBox itemBox = Lib.GetItemBox(itemType);
-            ComboBox[] statBoxes = Lib.GetStatBoxes(itemType);
+            ComboBox itemBox = e.Grid.ItemBox;
+            ComboBox[] statBoxes = e.Grid.StatBoxes;
 
             if (statBoxes[0] != null && statBoxes[1] != null && statBoxes[2] != null && statBoxes[3] != null)
             {
@@ -118,7 +109,8 @@ namespace DivBuildApp
                 }
                 else
                 {
-                    Console.WriteLine($"ListOptions.GetBonusOptionsList \"{search}\" invalid format :(");
+
+                    Task.Run(() => Logger.LogError($"\"{search}\" invalid format"));
                     return new List<BonusDisplay>();
                 }
             }
@@ -136,11 +128,12 @@ namespace DivBuildApp
                         case "mod":
                             return BonusCaps.GearModAttributes;
                         default:
-                            Console.WriteLine($"ListOptions.GetBonusOptionsList \"{value}\" is not a recognized list");
+
+                            Task.Run(() => Logger.LogError($"\"{value}\" is not a recognized list"));
                             return new List<BonusDisplay>();
                     }
                 case "locked":
-                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromString(value) };
+                    return new List<BonusDisplay>() { new BonusDisplay(new Bonus(value)) };
                 case "core":
                     return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.GearCoreAttributes, BonusHandler.StringToBonusType(value)) };
                 case "side":
@@ -148,19 +141,21 @@ namespace DivBuildApp
                 case "mod":
                     return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.GearModAttributes, BonusHandler.StringToBonusType(value)) };
                 default:
-                    Console.WriteLine($"ListOptions.GetBonusOptionsList: \"{search}\" is not a recognized preset");
+
+                    Task.Run(() => Logger.LogError($"\"{search}\" is not a recognized preset"));
                     return new List<BonusDisplay>();
             }
         }
 
-        public static void OptionsGearBox()
+        public static void OptionsGearBox(List<StringItem> items)
         {
-            foreach(StringItem item in ItemHandler.AllItemList)
+            foreach(StringItem item in items)
             {
                 bool success = Enum.TryParse(item.Slot, true, out ItemType itemType);
                 if (!success) 
                 {
-                    Console.WriteLine($"Slot: \"{item.Slot}\" cant be converted to itemType from {item.Name}"); continue; 
+                    Task.Run(() => Logger.LogError($"\"{item.Slot}\" can't be converted to ItemType from {item.Name}"));
+                    continue; 
                 }
                 ComboBox bonker = Lib.GetItemBox(itemType);
                 bonker.Items.Add(new ComboBoxBrandItem { Name = item.Name, Preset = $"[{item.Rarity}]", Slot = item.Slot });

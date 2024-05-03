@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DivBuildApp.Data.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace DivBuildApp
 {
@@ -157,13 +159,27 @@ namespace DivBuildApp
         {
             BonusType = bonusType;
             Value = value;
-            DisplayType = BonusHandler.GetBonusDisplayType(BonusType);
+            DisplayType = BonusDisplayTypes.GetBonusDisplayType(BonusType);
         }
         public Bonus(BonusType bonusType, double value, string displayType)
         {
             BonusType = bonusType;
             Value = value;
             DisplayType = displayType;
+        }
+        public Bonus(string bonusType, string value)
+        {
+            BonusType = Enum.TryParse(bonusType, true, out BonusType b) ? b : BonusType.NoBonus;
+            Value = double.TryParse(value, out double v) ? v : 0;
+            DisplayType = BonusDisplayTypes.GetBonusDisplayType(b);
+        }
+        public Bonus(string format)
+        {
+            string[] parts = format.Split('=');
+            BonusType = Enum.TryParse(parts[0], true, out BonusType b) ? b : BonusType.NoBonus;
+            Value = double.TryParse(parts[1], out double v) ? v : 0;
+            DisplayType = BonusDisplayTypes.GetBonusDisplayType(b);
+
         }
         public double BonusValue
         {
@@ -177,6 +193,13 @@ namespace DivBuildApp
             }
         }
 
+        public string DisplayBonusType
+        {
+            get
+            {
+                return BonusType.ToString().Replace('_', ' ');
+            }
+        }
         public string DisplayValue
         {
             get
@@ -198,6 +221,11 @@ namespace DivBuildApp
         {
             Bonus = bonus;
             IconType = iconType;
+        }
+        public BonusDisplay(Bonus bonus)
+        {
+            Bonus = bonus;
+            IconType = "Side-"+BonusDisplayHandler.GetIconType(bonus.BonusType);
         }
 
         

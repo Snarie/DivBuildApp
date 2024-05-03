@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,14 +16,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using DivBuildApp.Data.Tables;
 
 namespace DivBuildApp.UI
 {
     internal static class DisplayControl
     {
 
-        public static async Task SetItemNameLabelAsync(Label itemLabel, ComboBoxBrandItem selectedItem)
+        public static async Task SetItemNameLabelAsync(GridEventArgs e, ComboBoxBrandItem selectedItem)
         {
+            Label itemLabel = e.Grid.ItemName;
             Brush brush = Brushes.Red;
             switch (selectedItem.Preset)
             {
@@ -54,17 +56,20 @@ namespace DivBuildApp.UI
         
         
 
-        public static async Task DisplayBrandBonusesAsync(ItemType itemType, string brandName)
+        public static async Task DisplayBrandBonusesAsync(GridEventArgs e, string brandName)
         {
-            TextBlock[] bonusBoxes = Lib.GetBrandBonusTextBlocks(itemType);
+            TextBlock[] bonusBoxes = e.Grid.BrandBonusTextBlocks;
+            //TextBlock[] bonusBoxes = Lib.GetBrandBonusTextBlocks(itemType);
             if (bonusBoxes[0] == null || bonusBoxes[1] == null || bonusBoxes[2] == null)
             {
-                Console.WriteLine("One or more text boxes are null.");
+#pragma warning disable CS4014
+                Task.Run(() => Logger.LogError($"One or more text boxes are null"));
+#pragma warning restore CS4014
                 return;
             }
-            var bonusesTask1 = Task.Run(() => BonusHandler.GetBrandBonus(brandName, 1));
-            var bonusesTask2 = Task.Run(() => BonusHandler.GetBrandBonus(brandName, 2));
-            var bonusesTask3 = Task.Run(() => BonusHandler.GetBrandBonus(brandName, 3));
+            var bonusesTask1 = Task.Run(() => BrandSets.GetBrandBonus(brandName, 1));
+            var bonusesTask2 = Task.Run(() => BrandSets.GetBrandBonus(brandName, 2));
+            var bonusesTask3 = Task.Run(() => BrandSets.GetBrandBonus(brandName, 3));
 
             List<Bonus>[] bonuses = await Task.WhenAll(bonusesTask1, bonusesTask2, bonusesTask3);
 
@@ -76,18 +81,17 @@ namespace DivBuildApp.UI
             });
         }
         
-        public static void DisplayBrandBonus(TextBlock textBlock, List<Bonus> Bonuses)
+        private static void DisplayBrandBonus(TextBlock textBlock, List<Bonus> Bonuses)
         {
             textBlock.Inlines.Clear();
 
             foreach(Bonus bonus in Bonuses)
             {
-                var (names, values) = BonusToString(bonus);
-                Run run1 = new Run(values)
+                Run run1 = new Run(bonus.DisplayValue)
                 {
                     Foreground = Brushes.Goldenrod
                 };
-                Run run2 = new Run(" " + names)
+                Run run2 = new Run(" " + bonus.DisplayBonusType)
                 {
                     Foreground = Brushes.White
                 };
@@ -100,36 +104,6 @@ namespace DivBuildApp.UI
                 }
             }
   
-        }
-        
-        public static string ConvertBonusValue(Bonus bonus)
-        {
-            switch (bonus.BonusType)
-            {
-                case BonusType.Skill_Tier:
-                case BonusType.Grenade_Capacity:
-                case BonusType.Armor_Kit_Capacity:
-                    return $"{bonus.Value}";
-                default:
-                    return $"{bonus.Value}%";
-            }
-            
-        }
-        public static string ConvertBonusType(Bonus bonus)
-        {
-            return bonus.BonusType.ToString().Replace('_', ' ');
-        }
-
-        /// <summary>
-        /// Converts the bonus to its string varient
-        /// </summary>
-        /// <param name="bonus"></param>
-        /// <returns>the string representation of the name and value of the BOnus</returns>
-        public static (string, string) BonusToString(Bonus bonus)
-        {
-            // If you only need the values:
-            //var (_, values) = BonusToString(bonuses);
-            return (ConvertBonusType(bonus), ConvertBonusValue(bonus));
         }
     }
 }

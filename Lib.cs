@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -67,8 +68,8 @@ namespace DivBuildApp
                     itemName, itemArmor, itemExpertiece,
                     new TextBlock[] { bonus1, bonus2, bonus3 },
                     new ComboBox[] { stat1, stat2, stat3, stat4},
-                    new Label[] {stat1_Value, stat2_Value, stat3_Value, stat4_Value},
-                    new Slider[] { stat1_Slider, stat2_Slider, stat3_Slider, stat4_Slider },
+                    new Label[] { stat1_Value, stat2_Value, stat3_Value, stat4_Value},
+                    new Slider[] {stat1_Slider, stat2_Slider, stat3_Slider, stat4_Slider},
                     new Image[] { stat1_Icon, stat2_Icon, stat3_Icon, stat4_Icon },
                     brandImage
                 ));;
@@ -88,6 +89,11 @@ namespace DivBuildApp
         }
 
 
+        public static GearGridContent GetGridContent(ItemType itemType)
+        {
+            return GridExists(itemType, out GearGridContent grid) ? grid : null;
+        }
+
         /// <summary>
         /// Gets the <see cref="ComboBox"/> that represents the ItemBox
         /// </summary>
@@ -97,7 +103,6 @@ namespace DivBuildApp
         {
             return GridExists(itemType, out GearGridContent grid) ? grid.ItemBox : null;
         }
-
 
         /// <summary>
         /// Gets the <see cref="Label"/> that represents the ItemName
@@ -178,6 +183,7 @@ namespace DivBuildApp
             ComboBox[] comboBoxes = GetStatBoxes(itemType);
             return comboBoxes?[index];
         }
+        /*
         /// <summary>
         /// Gets the <see cref="ComboBox"/> defined as Core Stat that represents the StatBox
         /// </summary>
@@ -195,7 +201,7 @@ namespace DivBuildApp
         public static ComboBox[] GetSideStatBoxes(ItemType itemType)
         {
             return GridExists(itemType, out GearGridContent grid) ? new ComboBox[] { grid.StatBoxes[1], grid.StatBoxes[2], grid.StatBoxes[3] } : null;
-        }
+        }*/
 
 
         /// <summary>

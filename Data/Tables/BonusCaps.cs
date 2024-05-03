@@ -16,6 +16,12 @@ namespace DivBuildApp.BonusControl
         public static List<BonusDisplay> WeaponCoreAttributes = new List<BonusDisplay>();
         public static List<BonusDisplay> WeaponPrimaryAttributes = new List<BonusDisplay>();
         public static List<BonusDisplay> WeaponSecondaryAttributes = new List<BonusDisplay>();
+
+        public static void Initialize()
+        {
+            CreateBonusCapsFromData(CsvReader.BonusCaps());
+
+        }
         public static void CreateBonusCapsFromData(List<BonusCapsFormat> bonusCapsFormat)
         {
             foreach (BonusCapsFormat bonusCaps in bonusCapsFormat)

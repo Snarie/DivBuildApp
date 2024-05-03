@@ -35,7 +35,7 @@ Breaking Point;;Rifle_Damage=25.0+MMR_Damage=25.0;Headshot_Damage=30.0+Weapon_Ha
 Eclipse Protocol;;Status_Effects=15.0;Skill_Haste=15.0+Hazard_Protection=30.0
 Foundry Bulwark;;Total_Armor=10.0;Armor_Regen=1.0+Shield_Health=50.0
 Future Initiative;;Repair_Skills=30.0;Skill_Haste=15.0+Skill_Duration=30.0
-Hard Wired;;Skill_Haste=15.0;Skill_Damage=15.0+Skill_Repair=30.0
+Hard Wired;;Skill_Haste=15.0;Skill_Damage=15.0+Repair_Skills=30.0
 Heartbreaker;;AR_Damage=15.0+LMG_Damage=15.0;Weapon_Handling=15.0
 Hotshot;;MMR_Damage=30.0+Weapon_Handling=30.0;Headshot_Damage=30.0
 Hunter's Fury;;Shotgun_Damage=15.0+SMG_Damage=15.0;Armor_on_Kill=20.0+Health_on_Kill=50.0

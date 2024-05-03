@@ -13,8 +13,16 @@ namespace DivBuildApp.UI
 {
     internal static class StatSliderControl
     {
-        public static void SetRange(Slider slider, BonusDisplay bonusDisplay)
+        public static void SetRange(GridEventArgs e)
         {
+            Slider slider = e.Grid.StatSliders[e.Index];
+            ComboBox statBox = e.Grid.StatBoxes[e.Index];
+
+            if (!(statBox.SelectedItem is BonusDisplay bonusDisplay))
+            {
+                slider.Visibility = Visibility.Collapsed;
+                return;
+            }
             slider.Visibility = Visibility.Visible;
 
             bool success = FillRectangleExists(slider, out Rectangle rect);
@@ -60,7 +68,7 @@ namespace DivBuildApp.UI
 
             if (!(slider.Template.FindName("PART_Track", slider) is Track track))
             {
-                Console.WriteLine($"track doesn't exist: {slider.Name}");
+                Task.Run(() => Logger.LogWarning($"track doesn't exist: {slider.Name}"));
                 return false;
             }
             RepeatButton decreaseButton = track.DecreaseRepeatButton;
@@ -68,13 +76,13 @@ namespace DivBuildApp.UI
 
             if (decreaseButton == null)
             {
-                Console.WriteLine($"decreaseButton doesn't exist: {slider.Name}");
+                Task.Run(() => Logger.LogError($"decreaseButton doesn't exist: {slider.Name}"));
                 return false;
             }
             rectangle = decreaseButton.Template.FindName("decreaseRect", decreaseButton) as Rectangle;
             if (rectangle == null)
             {
-                Console.WriteLine($"rect doesn't exist: {slider.Name}");
+                Task.Run(() => Logger.LogError($"rectangle doesn't exist: {decreaseButton.Name}"));
                 return false;
             }
             return true;

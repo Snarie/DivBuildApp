@@ -16,7 +16,7 @@ namespace DivBuildApp.UI
         {
             ItemArmorSet?.Invoke(null, EventArgs.Empty);
         }
-        public static Dictionary<ItemType, double> defaultArmorValues = new Dictionary<ItemType, double>()
+        private static readonly Dictionary<ItemType, double> defaultArmorValues = new Dictionary<ItemType, double>()
         {
             [ItemType.Mask] = 80297,
             [ItemType.Backpack] = 130844,
@@ -25,7 +25,7 @@ namespace DivBuildApp.UI
             [ItemType.Holster] = 111889,
             [ItemType.Kneepads] = 98726
         };
-        public static Dictionary<ItemType, double> expertieceArmorValues = new Dictionary<ItemType, double>()
+        private static readonly Dictionary<ItemType, double> expertieceArmorValues = new Dictionary<ItemType, double>()
         {
             [ItemType.Mask] = 0,
             [ItemType.Backpack] = 0,
@@ -44,18 +44,18 @@ namespace DivBuildApp.UI
             }
             return total;
         }
-        public static void SetItemArmor(ItemType itemType)
+        public static void SetItemArmor(GridEventArgs e)
         {
-            double armorValue = defaultArmorValues[itemType];
-            ComboBox multiplierBox = Lib.GetExpertieceBox(itemType);
-            if (!multiplierBox.HasItems) 
-            { 
-                Console.WriteLine($"{multiplierBox.Name} has no items."); 
+            double armorValue = defaultArmorValues[e.ItemType];
+            ComboBox multiplierBox = e.Grid.ItemExpertiece;
+            if (!multiplierBox.HasItems)
+            {
+                Task.Run(() => Logger.LogError($"{multiplierBox.Name} has no items"));
                 return; 
             }
             double multiplier = 100 + (int)multiplierBox.SelectedValue;
             double multipliedValue = armorValue * multiplier / 100.0;
-            expertieceArmorValues[itemType] = multipliedValue;
+            expertieceArmorValues[e.ItemType] = multipliedValue;
             OnSetItemArmor();
         }
         
@@ -74,13 +74,9 @@ namespace DivBuildApp.UI
 
                     int roundedValue = (int)Math.Round(value / 1000.0);
                     string text = roundedValue + "k";
-                    SetItemArmorValue(itemArmorLabel, text);
+                    itemArmorLabel.Content = text;
                 });
             }
-        }
-        public static void SetItemArmorValue(Label label, string text)
-        {
-            label.Content = text;
         }
     }
 }

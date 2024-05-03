@@ -25,6 +25,7 @@ using static DivBuildApp.Lib;
 using System.Text.RegularExpressions;
 using DivBuildApp.UI;
 using DivBuildApp.BonusControl;
+using DivBuildApp.Data.Tables;
 //using static DivBuildApp.ItemHandler;
 //using static DivBuildApp.BonusHandler;
 
@@ -46,25 +47,37 @@ namespace DivBuildApp
             AdjustWindowSizeToScreen();
 
             InitializeGearGridLinks();
+            Initializer();
 
-            InitializeOptionsExpertiece();
-
-            // These don't conflict with eachother
-            InitializeItems();
-            InitializeBrands();
-            InitializeBonusDisplayTypes();
-            InitializeBonusCaps();
-
-            //No order but must be done last
-            InitializeGearOptions();
-            InitializeOptionsStatAttributes();
-
-            InitializeItemArmor();
 
             Initializing = false;
 
         }
+        private void InitializeGearGridLinks()
+        {
+            CreateGearGridLink(MaskGrid);
+            CreateGearGridLink(BackpackGrid);
+            CreateGearGridLink(ChestGrid);
+            CreateGearGridLink(GlovesGrid);
+            CreateGearGridLink(HolsterGrid);
+            CreateGearGridLink(KneepadsGrid);
+        }
+        private void Initializer()
+        {
+            //Stays private
+            InitializeOptionsExpertiece();
 
+            BonusDisplayTypes.Initialize();
+
+            ItemHandler.Initialize();
+            BrandSets.Initialize();
+            BonusCaps.Initialize();
+
+            ListOptions.OptionsGearBox(ItemHandler.AllItemList);
+            //ListOptions.SetAllOptionsStatBoxes();
+
+            Task.Run(() => ItemArmorControl.DisplayItemArmorValues());
+        }
         private void InitializeOptionsExpertiece()
         {
             for (int i = 0; i <= 26; i++)
@@ -90,74 +103,12 @@ namespace DivBuildApp
             Top = (SystemParameters.WorkArea.Height - Height) / 2;
         }
         
-        public void InitializeItemArmor()
-        {
-            //Values are already defined by InitializeOptionsExpertiece selectionchanged triggers
-            //ItemArmorControl.SetItemArmor();
-            Task.Run(() => ItemArmorControl.DisplayItemArmorValues());
-        }
-
-
-        /// <summary>
-        /// Creates all GridLinks so they can be referenced by their ItemType name e.g. 'Mask'
-        /// </summary>
-        private void InitializeGearGridLinks()
-        {
-            CreateGearGridLink(MaskGrid);
-            CreateGearGridLink(BackpackGrid);
-            CreateGearGridLink(ChestGrid);
-            CreateGearGridLink(GlovesGrid);
-            CreateGearGridLink(HolsterGrid);
-            CreateGearGridLink(KneepadsGrid);
-
-        }
-        /// <summary>
-        /// Fills the AllItemList Dictionary with all StringItems in ItemDefault.txt
-        /// </summary>
-        private void InitializeItems()
-        {
-            //ItemHandler.AllItemList = FileInfo.ReadItems();
-            ItemHandler.AllItemList = FileInfo.ConvertItem(FileInfo.CsvItemDefaults());
-        }
-
-        /// <summary>
-        /// Fills the brandSets Dictionary with all brand sets in BrandBonusses.txt
-        /// </summary>
-        private void InitializeBrands()
-        {
-            BonusHandler.brandSets = FileInfo.CsvBrandBonus();
-        }
 
         
 
-        private void InitializeBonusDisplayTypes()
-        {
-            BonusHandler.SetBonusDisplayTypes(CsvReader.BonusDisplayType());
-        }
-        /// <summary>
-        /// Create default bonus caps for items types
-        /// </summary>
-        private void InitializeBonusCaps()
-        {
-            //ListOptions.CreateAttributesFromDictionary(FileInfo.ReadBonusCaps());
-            //ListOptions.bonusCapsList = FileInfo.CsvBonusCaps();
-            BonusCaps.CreateBonusCapsFromData(CsvReader.BonusCaps());
-        }
-
-
-        /// <summary>
-        /// Create all options for the GearBoxes
-        /// </summary>
-        private void InitializeGearOptions()
-        {
-            ListOptions.OptionsGearBox();
-        }
-
-        private void InitializeOptionsStatAttributes()
-        {
-            ListOptions.SetAllOptionsStatBoxes();
-        }
         
+
+
 
 
 
@@ -185,15 +136,13 @@ namespace DivBuildApp
         {
             if (sender is ComboBox comboBox)
             {
-                string baseName = comboBox.Name.Replace("Expertiece", "");
-                if(Enum.TryParse(baseName, out ItemType itemType))
-                {
-                    ItemArmorControl.SetItemArmor(itemType);
-                }
+                GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(comboBox)), -1);
+
+                ItemArmorControl.SetItemArmor(ge);
+                Task.Run(() => ItemArmorControl.DisplayItemArmorValues());
+
+                UpdateDisplay();
             }
-            Task.Run(() => ItemArmorControl.DisplayItemArmorValues());
-            Console.WriteLine($"ExpertieceBox_SelectionChanged {sender}");
-            UpdateDisplay();
         }
 
 
@@ -201,8 +150,10 @@ namespace DivBuildApp
         {
             if(sender is Slider slider)
             {
-                ItemType itemType = GetItemTypeFromElement(slider);
-                StatValueLabelControl.SetValue(itemType, index);
+                GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(slider)), index);
+
+                StatValueLabelControl.SetValue(ge);
+
                 UpdateDisplay();
             }
         }
@@ -231,22 +182,12 @@ namespace DivBuildApp
         {
             if (sender is ComboBox comboBox)
             {
-                ItemType itemType = GetItemTypeFromElement(comboBox);
-                StatValueLabelControl.SetValue(itemType, index);
-                Task.Run(() => IconControl.SetStatIcon(itemType, index));
+                GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(comboBox)), index);
 
-                Image image = FindSiblingControl<Image>(comboBox, comboBox.Name + "_Icon");
-                Slider slider = FindSiblingControl<Slider>(comboBox, comboBox.Name + "_Slider");
-                if (comboBox.SelectedItem is BonusDisplay bonusDisplay)
-                {
-                    StatSliderControl.SetRange(slider, bonusDisplay);
-                    //Task.Run(() => IconControl.SetStatIcon(image, bonusDisplay));
-                }
-                else
-                {
-                    //image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/ItemType Icons/Undefined.png"));
-                    slider.Visibility = Visibility.Collapsed;
-                }
+                StatValueLabelControl.SetValue(ge);
+                Task.Run(() => IconControl.SetStatIcon(ge));
+                StatSliderControl.SetRange(ge);
+
                 UpdateDisplay();
             }
         }
@@ -267,32 +208,28 @@ namespace DivBuildApp
             StatComboBox_SelectionChanged(sender, e, 3);
         }
 
-        private async Task ProcessGearComboBoxChange(ComboBoxBrandItem selectedItem, string baseName)
+        private async Task ProcessGearComboBoxChange(ComboBoxBrandItem selectedItem, GridEventArgs e)
         {
-            if (Enum.TryParse(baseName, out ItemType itemType))
-            {
-                string brandName = ItemHandler.BrandFromName(selectedItem.Name);
+            string brandName = ItemHandler.BrandFromName(selectedItem.Name);
 
-                // Async operations can be awaited normally
-                await DisplayControl.SetItemNameLabelAsync(GetItemNameLabel(itemType), selectedItem);
-                await IconControl.SetBrandImage(GetBrandImage(itemType), brandName);
-                await DisplayControl.DisplayBrandBonusesAsync(itemType, brandName);
-                // Dispatch other UI updates or CPU-bound work to the UI thread
-                Dispatcher.Invoke(() =>
-                {
-                    ListOptions.SetOptionsStatBoxes(itemType);
-                });
-            }
+            // Async operations can be awaited normally
+            await DisplayControl.SetItemNameLabelAsync(e, selectedItem);
+            await IconControl.SetBrandImage(e, brandName);
+            await DisplayControl.DisplayBrandBonusesAsync(e, brandName);
+            // Dispatch other UI updates or CPU-bound work to the UI thread
+            Dispatcher.Invoke(() =>
+            {
+                ListOptions.SetOptionsStatBoxes(e);
+            });
         }
         private void GearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             if(sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxBrandItem selectedItem)
             {
-                string baseName = comboBox.Name.Replace("Box", ""); // Removes "Box" to get the base name
-                Task.Run(() => ProcessGearComboBoxChange(selectedItem, baseName));
+
+                GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(comboBox)), -1);
+                Task.Run(() => ProcessGearComboBoxChange(selectedItem, ge));
             }
-            Console.WriteLine($"GearComboBox_SelectionChanged {sender}");
             if (GearHandler.SetEquippedGearList())
             {
                 UpdateDisplay();
@@ -302,12 +239,9 @@ namespace DivBuildApp
         public void WatchLevel_TextChanged(object sender, TextChangedEventArgs e)
         {
             SHDWatch.SetWatchBonuses(WatchLevel.Text);
-            Console.WriteLine($"WatchLevel {sender}");
             UpdateDisplay();
         }
         
-
-
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             // Regex to match numeric input only

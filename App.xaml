@@ -83,7 +83,7 @@
             <TextBlock>
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0}">
-                        <Binding Path="Bonus.BonusType"/>
+                        <Binding Path="Bonus.DisplayBonusType"/>
                         <!--<Binding Path="Bonus.Value"/>-->
                         <!--<Binding Path="IconType"/>-->
                     </MultiBinding>

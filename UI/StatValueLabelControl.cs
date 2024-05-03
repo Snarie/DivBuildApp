@@ -7,37 +7,31 @@ using System.Windows.Controls;
 
 namespace DivBuildApp.UI
 {
-    internal class ValueSetEventArgs : EventArgs
-    {
-        public ItemType ItemType { get; }
-        public ValueSetEventArgs(ItemType itemType)
-        {
-            ItemType = itemType;
-        }
-    }
+    
     internal static class StatValueLabelControl
     {
-        public static event EventHandler<ValueSetEventArgs> ValueSet;
-        private static void OnValueSet(ItemType itemType)
+        public static event EventHandler<GridEventArgs> ValueSet;
+        private static void OnValueSet(GridEventArgs e)
         {
-            ValueSet?.Invoke(null, new ValueSetEventArgs(itemType));
+            ValueSet?.Invoke(null, e);
         }
 
-        public static void SetValue(ItemType itemType, int index)
+        public static void SetValue(GridEventArgs e)
         {
-            Label label = Lib.GetStatValue(itemType, index);
-            ComboBox comboBox = Lib.GetStatBox(itemType, index);
-            Slider slider = Lib.GetStatSlider(itemType, index);
-            if(comboBox.SelectedItem is BonusDisplay bonusDisplay)
+            Label statValueLabel = e.Grid.StatValues[e.Index];
+            ComboBox statBox = e.Grid.StatBoxes[e.Index];
+            Slider statSlider = e.Grid.StatSliders[e.Index];
+            if (statBox.SelectedItem is BonusDisplay bonusDisplay)
             {
-                SetValueRouted(label, bonusDisplay, slider.Value);
+                SetValueRouted(statValueLabel, bonusDisplay, statSlider.Value);
             }
             else
             {
-                label.Content = "";
+                statValueLabel.Content = "";
             }
-            OnValueSet(itemType);
+            OnValueSet(e);
         }
+        
         private static void SetValueRouted(Label label, BonusDisplay bonusDisplay, double multiplier)
         {
             Bonus bonus = new Bonus(bonusDisplay.Bonus.BonusType, bonusDisplay.Bonus.Value, bonusDisplay.Bonus.DisplayType);

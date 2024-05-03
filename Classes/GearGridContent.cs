@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ namespace DivBuildApp
         public Label ItemName { get; set; }
         public Label ItemArmor { get; set; }
         public ComboBox ItemExpertiece { get; set; }
+        
         public TextBlock[] BrandBonusTextBlocks { get; set; }
         public ComboBox[] StatBoxes { get; set; }
         public Label[] StatValues { get; set; }

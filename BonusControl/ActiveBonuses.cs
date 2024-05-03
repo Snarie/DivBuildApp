@@ -1,4 +1,5 @@
-﻿using DivBuildApp.UI;
+﻿using DivBuildApp.Data.Tables;
+using DivBuildApp.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,22 +21,22 @@ namespace DivBuildApp.BonusControl
         private static void HandleGearSet(object sender, EventArgs e)
         {
             CalculateBrandBonues();
-            Console.WriteLine("ActiveBonuses noticed GearHandler.GearSet");
+            Task.Run(() => Logger.LogEvent("GearHandler.GearSet"));
         }
         private static void HandleGearAttributeSet(object sender, EventArgs e)
         {
             CalculateStatAttributes();
-            Console.WriteLine("ActiveBonuses noticed GearHandler.GearAttributeSet");
+            Task.Run(() => Logger.LogEvent("GearHandler.GearAttributeSet"));
         }
         private static void HandleWatchSet(object sender, EventArgs e)
         {
             CalculateWatchBonuses();
-            Console.WriteLine("ActiveBonuses noticed SHDWatch.WatchSet");
+            Task.Run(() => Logger.LogEvent("SHDWatch.WatchSet"));
         }
         private static void HandleItemArmorSet(object sender, EventArgs e)
         {
             CalculateExpertieceBonuses();
-            Console.WriteLine("ActiveBonuses noticed ItemArmorControl.ItemArmorSet");
+            Task.Run(()=> Logger.LogEvent("ItemArmorControl.ItemArmorSet"));
         }
 
 
@@ -64,7 +65,7 @@ namespace DivBuildApp.BonusControl
                 }
 
                 //BrandSet Bonuses
-                foreach (Bonus bonus in BonusHandler.GetBrandBonus(brandName, brandLevels[brandName]))
+                foreach (Bonus bonus in BrandSets.GetBrandBonus(brandName, brandLevels[brandName]))
                 {
                     brandSetBonuses.Add(new BonusSource("Brand Set", new Bonus(bonus.BonusType, bonus.Value)));
                     //activeBonusses[bonus.BonusType] += bonus.Value;
@@ -76,12 +77,11 @@ namespace DivBuildApp.BonusControl
             {
                 if (GearHandler.GearFromSlot(ItemType.Backpack).Name == "NinjaBike Backpack")
                 {
-                    Console.WriteLine("Correct");
                     var keysToUpdate = new List<string>(brandLevels.Keys);
                     foreach (string key in keysToUpdate)
                     {
                         brandLevels[key]++;
-                        foreach (Bonus bonus in BonusHandler.GetBrandBonus(key, brandLevels[key]))
+                        foreach (Bonus bonus in BrandSets.GetBrandBonus(key, brandLevels[key]))
                         {
                             brandSetBonuses.Add(new BonusSource("NinjaBike Backpack", new Bonus(bonus.BonusType, bonus.Value)));
                         }

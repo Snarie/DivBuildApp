@@ -21,12 +21,6 @@ namespace DivBuildApp
             }
             return "undifined";
         }
-        public static BonusDisplay BonusDisplayFromString(string str, string iconGroup = "Side-")
-        {
-            Bonus bonus = BonusHandler.BonusFromString(str);
-            return new BonusDisplay(bonus, "Side-"+GetIconType(bonus.BonusType));
-            
-        }
         public static BonusDisplay BonusDisplayFromList(List<BonusDisplay> list, BonusType bonusType)
         {
             return list.FirstOrDefault(b => b.Bonus.BonusType == bonusType);

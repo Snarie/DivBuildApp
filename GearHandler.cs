@@ -12,6 +12,7 @@ namespace DivBuildApp
     {
         public static event EventHandler GearSet;
         public static event EventHandler GearAttributeSet;
+        public static event EventHandler EquippedGearSet;
         private static void OnGearSet()
         {
             GearSet?.Invoke(null, EventArgs.Empty);
@@ -20,14 +21,18 @@ namespace DivBuildApp
         {
             GearAttributeSet?.Invoke(null, EventArgs.Empty);
         }
+        private static void OnEquippedGearSet()
+        {
+            EquippedGearSet?.Invoke(null, EventArgs.Empty);
+        }
         static GearHandler()
         {
             StatValueLabelControl.ValueSet += HandleValueSet;
         }
-        private static void HandleValueSet(object sender, ValueSetEventArgs e)
+        private static void HandleValueSet(object sender, GridEventArgs e)
         {
-            SetGearStatAttributes(e.ItemType);
-            Console.WriteLine($"GearHandler noticed StatValueLabelControl {e.ItemType}");
+            SetGearStatAttributes(e);
+            Task.Run(() => Logger.LogEvent($"StatValueLabelControl.ValueSet({e.ItemType})"));
             OnGearAttributeSet();
         }
 
@@ -48,10 +53,10 @@ namespace DivBuildApp
             return null;
         }
 
-        public static void SetGearStatAttributes(ItemType itemType)
+        public static void SetGearStatAttributes(GridEventArgs e)
         {
-            ComboBox[] statBoxes = Lib.GetStatBoxes(itemType);
-            Label[] statValues = Lib.GetStatValues(itemType);
+            ComboBox[] statBoxes = e.Grid.StatBoxes;
+            Label[] statValues = e.Grid.StatValues;
             List<Bonus> bonusList = new List<Bonus>();
             for (int i = 0; i < 4; i++)
             {
@@ -63,11 +68,11 @@ namespace DivBuildApp
                     }
                     else
                     {
-                        Console.WriteLine($"{statValues[i].Name} is not a Bonus");
+                        Task.Run(() => Logger.LogEvent($"{statValues[i].Name} is not a Bonus"));
                     }
                 }
             }
-            GearFromSlot(itemType).StatAttributes = bonusList.ToArray();
+            GearFromSlot(e.ItemType).StatAttributes = bonusList.ToArray();
         }
 
         public static Gear GearFromSlot(ItemType slot)
