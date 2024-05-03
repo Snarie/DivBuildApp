@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
 
@@ -12,6 +13,16 @@ namespace DivBuildApp.UI
 {
     internal static class IconControl
     {
+        public static void Initialize()
+        {
+            GearHandler.GearSet += HandleGearSet;
+            //Creates the eventHandlers
+        }
+        private static void HandleGearSet(object sender, GridEventArgs e)
+        {
+            Task.Run(() => SetBrandImage(e));
+            Task.Run(() => Logger.LogEvent("IconControl <= GearHandler.GearSet"));
+        }
         private static bool ResourceExists(string resourcePath)
         {
             try
@@ -22,22 +33,28 @@ namespace DivBuildApp.UI
             }
             catch
             {
+                Task.Run(() => Logger.LogError($"{resourcePath} is not a recognized ResourceStream"));
                 return false; // Resource not found
             }
         }
-        public static async Task SetBrandImage(GridEventArgs e, string brandName)
+        public static async Task SetBrandImage(GridEventArgs e)
         {
             Image imageControl = e.Grid.BrandImage;
-            string resourcePath = $"pack://application:,,,/Images/Brand Icons/{brandName}.png";
 
-            // Check if the resource exists
-            bool exists = ResourceExists(resourcePath);
-            if (!exists)
+            object selectedItem = null;
+            await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-#pragma warning disable CS4014
-                Task.Run(() => Logger.LogError($"{resourcePath} Not found"));
-#pragma warning restore CS4014
-                resourcePath = "pack://application:,,,/Images/Brand Icons/Improvised.png";
+                selectedItem = e.Grid.ItemBox.SelectedItem;
+            });
+            string resourcePath = $"pack://application:,,,/Images/Brand Icons/Improvised.png";
+            if (selectedItem is ComboBoxBrandItem item)
+            {
+                string brandName = ItemHandler.BrandFromName(item.Name);
+                string newPath = $"pack://application:,,,/Images/Brand Icons/{brandName}.png";
+                if (ResourceExists(newPath))
+                {
+                    resourcePath = newPath;
+                }
             }
 
             await Application.Current.Dispatcher.InvokeAsync(() =>

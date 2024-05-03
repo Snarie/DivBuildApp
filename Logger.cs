@@ -45,7 +45,7 @@ namespace DivBuildApp
             try
             {
                 string logEntry = $"{DateTime.Now} [{logLevel}] {GetCallingMethodInfo()} - {message}";
-                //Console.WriteLine(logEntry); // Print to console for debugging
+                Console.WriteLine(logEntry); // Print to console for debugging
 
                 // Append the log entry to the log file asynchronously
                 try
@@ -66,7 +66,8 @@ namespace DivBuildApp
             }
         }
 
-        // Get calling method information
+        // Doesn't work right now
+        // Get calling method information 
         private static string GetCallingMethodInfo()
         {
             // Get the stack trace of the calling method

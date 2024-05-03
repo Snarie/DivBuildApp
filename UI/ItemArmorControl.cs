@@ -57,26 +57,34 @@ namespace DivBuildApp.UI
             double multipliedValue = armorValue * multiplier / 100.0;
             expertieceArmorValues[e.ItemType] = multipliedValue;
             OnSetItemArmor();
+            Task.Run(() => DisplayItemArmorValue(e));
         }
-        
-        public static async Task DisplayItemArmorValues()
+        public static async Task SetItemArmorAsync(GridEventArgs e)
         {
-            ItemType[] items = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Holster, ItemType.Kneepads};
-            
-
-
-            for(int i=0; i<items.Length; i++)
+            double armorValue = defaultArmorValues[e.ItemType];
+            ComboBox multiplierBox = e.Grid.ItemExpertiece;
+            if (!multiplierBox.HasItems)
             {
-                Label itemArmorLabel = Lib.GetItemArmorLabel(items[i]);
-                double value = expertieceArmorValues[items[i]];
-                await Application.Current.Dispatcher.InvokeAsync(() =>
-                {
-
-                    int roundedValue = (int)Math.Round(value / 1000.0);
-                    string text = roundedValue + "k";
-                    itemArmorLabel.Content = text;
-                });
+                 _ = Logger.LogError($"{multiplierBox.Name} has no items");
+                return;
             }
+            double multiplier = 100 + (int)multiplierBox.SelectedValue;
+            double multipliedValue = armorValue * multiplier / 100.0;
+            expertieceArmorValues[e.ItemType] = multipliedValue;
+            OnSetItemArmor();
+            await DisplayItemArmorValue(e);
+        }
+        private static async Task DisplayItemArmorValue(GridEventArgs e)
+        {
+            Label itemArmorLabel = e.Grid.ItemArmor;
+            double value = expertieceArmorValues[e.ItemType];
+
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                int roundedValue = (int)Math.Round(value / 1000.0);
+                string text = roundedValue + "k";
+                itemArmorLabel.Content = text;
+            });
         }
     }
 }

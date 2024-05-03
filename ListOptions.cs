@@ -15,7 +15,16 @@ namespace DivBuildApp
 {
     internal static class ListOptions
     {
-        
+        public static void Initialize()
+        {
+            GearHandler.GearSet += HandleGearSet;
+            //Creates the eventHandlers
+        }
+        private static void HandleGearSet(object sender, GridEventArgs e)
+        {
+            SetOptionsStatBoxes(e);
+            Task.Run(() => Logger.LogEvent("ListOptions <= GearHandler.GearSet"));
+        }
         private static void SetItemsSource(ComboBox statBox, string itemAttribute)
         {
             int bonusIndex = statBox.SelectedIndex;

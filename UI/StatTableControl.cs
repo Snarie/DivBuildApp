@@ -7,17 +7,34 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using static DivBuildApp.BonusControl.ActiveBonuses;
+//using static DivBuildApp.MainWindow;
 
 namespace DivBuildApp.UI
 {
     internal static class StatTableControl
     {
+        static StatTableControl()
+        {
+            CalculateBonusesSet += HandleCalculateBonusesSet;
+        }
+        private static void HandleCalculateBonusesSet(object sender, EventArgs e)
+        {
+            Task.Run(() => DisplayBonusesInBoxes());
+            Task.Run(() => Logger.LogEvent("StatTableControl <= ActiveBonuses.CalculateBonuses"));
+        }
 
-        public static async Task DisplayBonusesInBoxes(MainWindow mainWindow)
+
+        private static MainWindow mainWindow;
+        public static void Initialize(MainWindow main)
+        {
+            mainWindow = main;
+        }
+
+        public static async Task DisplayBonusesInBoxes()
         {
             Dictionary<Label, string> values = new Dictionary<Label, string>
             {
-
+                
                 [mainWindow.WeaponDMG_Value] = $"{activeBonuses[BonusType.Weapon_Damage]}%",
                 [mainWindow.PistolDMG_Value] = $"{activeBonuses[BonusType.Pistol_Damage] + activeBonuses[BonusType.Weapon_Damage]}%",
                 [mainWindow.SignatureDMG_Value] = $"{activeBonuses[BonusType.Signature_Weapon_Damage] + activeBonuses[BonusType.Signature_Weapon_Damage]}%",

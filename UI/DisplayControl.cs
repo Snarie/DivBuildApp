@@ -22,12 +22,34 @@ namespace DivBuildApp.UI
 {
     internal static class DisplayControl
     {
-
-        public static async Task SetItemNameLabelAsync(GridEventArgs e, ComboBoxBrandItem selectedItem)
+        public static void Initialize()
         {
+            GearHandler.GearSet += HandleGearSet;
+            //Creates the eventHandlers
+        }
+        private static void HandleGearSet(object sender, GridEventArgs e)
+        {
+            Task.Run(() => SetItemNameLabelAsync(e));
+            Task.Run(() => DisplayBrandBonusesAsync(e));
+            Task.Run(() => Logger.LogEvent("DisplayControl <= GearHandler.GearSet"));
+        }
+
+        public static async Task SetItemNameLabelAsync(GridEventArgs e)
+        {
+            object selectedItem = null;
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                selectedItem = e.Grid.ItemBox.SelectedItem;
+            });
+            if (!(selectedItem is ComboBoxBrandItem item))
+            {
+                _ = Logger.LogError($"\"{selectedItem}\" is not a ComboBoxBrandItem");
+                return;
+            }
+
             Label itemLabel = e.Grid.ItemName;
             Brush brush = Brushes.Red;
-            switch (selectedItem.Preset)
+            switch (item.Preset)
             {
                 case "[High-End]":
                     brush = Brushes.White;
@@ -48,7 +70,7 @@ namespace DivBuildApp.UI
             }
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                itemLabel.Content = selectedItem.Name;
+                itemLabel.Content = item.Name;
                 itemLabel.Foreground = brush;
             });
         }
@@ -56,15 +78,25 @@ namespace DivBuildApp.UI
         
         
 
-        public static async Task DisplayBrandBonusesAsync(GridEventArgs e, string brandName)
+        public static async Task DisplayBrandBonusesAsync(GridEventArgs e)
         {
+            object selectedItem = null;
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                selectedItem = e.Grid.ItemBox.SelectedItem;
+            });
+            if (!(selectedItem is ComboBoxBrandItem item))
+            {
+                _ = Logger.LogError($"\"{selectedItem}\" is not a ComboBoxBrandItem");
+                return;
+            }
+            string brandName = ItemHandler.BrandFromName(item.Name);
+
             TextBlock[] bonusBoxes = e.Grid.BrandBonusTextBlocks;
             //TextBlock[] bonusBoxes = Lib.GetBrandBonusTextBlocks(itemType);
             if (bonusBoxes[0] == null || bonusBoxes[1] == null || bonusBoxes[2] == null)
             {
-#pragma warning disable CS4014
-                Task.Run(() => Logger.LogError($"One or more text boxes are null"));
-#pragma warning restore CS4014
+                _ = Logger.LogError($"One or more text boxes are null");
                 return;
             }
             var bonusesTask1 = Task.Run(() => BrandSets.GetBrandBonus(brandName, 1));

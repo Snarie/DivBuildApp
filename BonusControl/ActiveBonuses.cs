@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DivBuildApp.BonusControl
 {
-    internal class ActiveBonuses
+    internal static class ActiveBonuses
     {
         static ActiveBonuses()
         {
@@ -18,7 +19,14 @@ namespace DivBuildApp.BonusControl
             SHDWatch.WatchSet += HandleWatchSet;
             ItemArmorControl.ItemArmorSet += HandleItemArmorSet;
         }
-        private static void HandleGearSet(object sender, EventArgs e)
+
+        public static event EventHandler CalculateBonusesSet;
+        private static void OnCalculateBonuses()
+        {
+            CalculateBonusesSet?.Invoke(null, EventArgs.Empty);
+        }
+
+        private static void HandleGearSet(object sender, GridEventArgs e)
         {
             CalculateBrandBonues();
             Task.Run(() => Logger.LogEvent("GearHandler.GearSet"));
@@ -153,7 +161,8 @@ namespace DivBuildApp.BonusControl
             }
 
             activeBonuses[BonusType.Armor] = Math.Floor(activeBonuses[BonusType.Armor] * (100 + activeBonuses[BonusType.Total_Armor]) / 100);
-
+            
+            OnCalculateBonuses();
         }
     }
 }

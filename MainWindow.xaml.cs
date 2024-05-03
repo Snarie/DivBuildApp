@@ -46,6 +46,7 @@ namespace DivBuildApp
             InitializeComponent();
             AdjustWindowSizeToScreen();
 
+            StatTableControl.Initialize(this);
             InitializeGearGridLinks();
             Initializer();
 
@@ -67,6 +68,9 @@ namespace DivBuildApp
             //Stays private
             InitializeOptionsExpertiece();
 
+            IconControl.Initialize();
+            ListOptions.Initialize();
+            DisplayControl.Initialize();
             BonusDisplayTypes.Initialize();
 
             ItemHandler.Initialize();
@@ -74,9 +78,6 @@ namespace DivBuildApp
             BonusCaps.Initialize();
 
             ListOptions.OptionsGearBox(ItemHandler.AllItemList);
-            //ListOptions.SetAllOptionsStatBoxes();
-
-            Task.Run(() => ItemArmorControl.DisplayItemArmorValues());
         }
         private void InitializeOptionsExpertiece()
         {
@@ -115,7 +116,6 @@ namespace DivBuildApp
         private void UpdateDisplay()
         {
             ActiveBonuses.CalculateBonuses();
-            Task.Run(() => StatTableControl.DisplayBonusesInBoxes(this));
         }
 
         private void GlobalExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -139,7 +139,6 @@ namespace DivBuildApp
                 GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(comboBox)), -1);
 
                 ItemArmorControl.SetItemArmor(ge);
-                Task.Run(() => ItemArmorControl.DisplayItemArmorValues());
 
                 UpdateDisplay();
             }
@@ -208,31 +207,17 @@ namespace DivBuildApp
             StatComboBox_SelectionChanged(sender, e, 3);
         }
 
-        private async Task ProcessGearComboBoxChange(ComboBoxBrandItem selectedItem, GridEventArgs e)
-        {
-            string brandName = ItemHandler.BrandFromName(selectedItem.Name);
-
-            // Async operations can be awaited normally
-            await DisplayControl.SetItemNameLabelAsync(e, selectedItem);
-            await IconControl.SetBrandImage(e, brandName);
-            await DisplayControl.DisplayBrandBonusesAsync(e, brandName);
-            // Dispatch other UI updates or CPU-bound work to the UI thread
-            Dispatcher.Invoke(() =>
-            {
-                ListOptions.SetOptionsStatBoxes(e);
-            });
-        }
+        
         private void GearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxBrandItem selectedItem)
             {
-
                 GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(comboBox)), -1);
-                Task.Run(() => ProcessGearComboBoxChange(selectedItem, ge));
-            }
-            if (GearHandler.SetEquippedGearList())
-            {
-                UpdateDisplay();
+
+                if (GearHandler.SetEquippedGearList(ge))
+                {
+                    UpdateDisplay();
+                }
             }
         }
 

@@ -10,24 +10,20 @@ namespace DivBuildApp
 {
     internal class GearHandler
     {
-        public static event EventHandler GearSet;
+        public static event EventHandler<GridEventArgs> GearSet;
         public static event EventHandler GearAttributeSet;
-        public static event EventHandler EquippedGearSet;
-        private static void OnGearSet()
+        private static void OnGearSet(GridEventArgs e)
         {
-            GearSet?.Invoke(null, EventArgs.Empty);
+            GearSet?.Invoke(null, e);
         }
         private static void OnGearAttributeSet()
         {
             GearAttributeSet?.Invoke(null, EventArgs.Empty);
         }
-        private static void OnEquippedGearSet()
-        {
-            EquippedGearSet?.Invoke(null, EventArgs.Empty);
-        }
         static GearHandler()
         {
             StatValueLabelControl.ValueSet += HandleValueSet;
+
         }
         private static void HandleValueSet(object sender, GridEventArgs e)
         {
@@ -79,7 +75,7 @@ namespace DivBuildApp
         {
             return equippedItemList.FirstOrDefault(i => i.Slot == slot);
         }
-        public static bool SetEquippedGearList()
+        public static bool SetEquippedGearList(GridEventArgs e)
         {
             List<ComboBox> boxes = new List<ComboBox>();
             foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
@@ -96,7 +92,7 @@ namespace DivBuildApp
             }
             if (unselectedItems.Any())
             {
-                OnGearSet();
+                OnGearSet(e);
                 return false;
             }
 
@@ -109,7 +105,7 @@ namespace DivBuildApp
                 CreateGear(ItemType.Holster),
                 CreateGear(ItemType.Kneepads),
             };
-            OnGearSet();
+            OnGearSet(e);
             return true;
         }
 
