@@ -16,12 +16,18 @@ namespace DivBuildApp.UI
         public static void Initialize()
         {
             GearHandler.GearSet += HandleGearSet;
+            StatValueLabelControl.ValueSet += HandleValueSet;
             //Creates the eventHandlers
         }
         private static void HandleGearSet(object sender, GridEventArgs e)
         {
             Task.Run(() => SetBrandImage(e));
             Task.Run(() => Logger.LogEvent("IconControl <= GearHandler.GearSet"));
+        }
+        private static void HandleValueSet(object sender, GridEventArgs e)
+        {
+            Task.Run(() => SetStatIcon(e));
+            Task.Run(() => Logger.LogEvent("IconControl <= StatValueLabelControl.ValueSet"));
         }
         private static bool ResourceExists(string resourcePath)
         {

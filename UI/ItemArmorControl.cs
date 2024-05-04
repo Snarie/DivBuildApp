@@ -11,6 +11,10 @@ namespace DivBuildApp.UI
 {
     internal static class ItemArmorControl
     {
+        public static void Initialize()
+        {
+            // Set eventHandlers
+        }
         public static event EventHandler ItemArmorSet;
         private static void OnSetItemArmor()
         {
@@ -63,16 +67,21 @@ namespace DivBuildApp.UI
         {
             double armorValue = defaultArmorValues[e.ItemType];
             ComboBox multiplierBox = e.Grid.ItemExpertiece;
-            if (!multiplierBox.HasItems)
+            double multiplier = 100;
+            await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                 _ = Logger.LogError($"{multiplierBox.Name} has no items");
-                return;
-            }
-            double multiplier = 100 + (int)multiplierBox.SelectedValue;
+                if (!multiplierBox.HasItems)
+                {
+                    _ = Logger.LogError($"{multiplierBox.Name} has no items");
+                    return;
+                }
+                multiplier += (int)multiplierBox.SelectedValue;
+            });
+            
             double multipliedValue = armorValue * multiplier / 100.0;
             expertieceArmorValues[e.ItemType] = multipliedValue;
-            OnSetItemArmor();
             await DisplayItemArmorValue(e);
+            OnSetItemArmor();
         }
         private static async Task DisplayItemArmorValue(GridEventArgs e)
         {

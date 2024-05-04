@@ -309,6 +309,11 @@ namespace DivBuildApp
         }
 
 
+        public static GearGridContent GetGridContentFromElement(FrameworkElement element)
+        {
+            return GetGridContent(GetItemTypeFromElement(element));
+        }
+
         /// <summary>
         /// Returns the first immediate <see cref="FrameworkElement"/> child of specified <paramref name="startElement"/> where the name equals <paramref name="targetName"/>
         /// </summary>

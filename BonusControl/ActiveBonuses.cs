@@ -96,12 +96,14 @@ namespace DivBuildApp.BonusControl
                     }
                 }
             }
+            CalculateBonuses();
         }
 
         private static void CalculateExpertieceBonuses()
         {
             expertieceBonuses.Clear();
             expertieceBonuses.Add(new BonusSource("Gear Expertiece", new Bonus(BonusType.Armor, ItemArmorControl.GetExpertieceArmorValue())));
+            CalculateBonuses();
         }
 
         private static void CalculateStatAttributes()
@@ -114,6 +116,7 @@ namespace DivBuildApp.BonusControl
                     statAttributeBonuses.Add(new BonusSource(gear.Name, bonus));
                 }
             }
+            CalculateBonuses();
         }
 
         private static void CalculateWatchBonuses()
@@ -123,6 +126,7 @@ namespace DivBuildApp.BonusControl
             {
                 watchBonuses.Add(new BonusSource("Watch Bonus", new Bonus(bonus.BonusType, bonus.Value)));
             }
+            CalculateBonuses();
         }
 
 
@@ -136,7 +140,7 @@ namespace DivBuildApp.BonusControl
             }
         }
 
-        public static void CalculateBonuses()
+        private static void CalculateBonuses()
         {
             ResetBonuses();
 

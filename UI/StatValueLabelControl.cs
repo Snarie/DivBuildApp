@@ -10,6 +10,17 @@ namespace DivBuildApp.UI
     
     internal static class StatValueLabelControl
     {
+        public static void Initialize()
+        {
+            StatSliderControl.SliderRangeSet += HandleSliderRangeSet;
+            //Creates the eventHandlers
+        }
+        private static void HandleSliderRangeSet(object sender, GridEventArgs e)
+        {
+            SetValue(e);
+            Task.Run(() => Logger.LogEvent("StatValueLabelControl <= StatSliderControl.SliderRangeSet"));
+        }
+
         public static event EventHandler<GridEventArgs> ValueSet;
         private static void OnValueSet(GridEventArgs e)
         {
@@ -50,7 +61,6 @@ namespace DivBuildApp.UI
             }
             label.DataContext = bonus;
             label.Content = bonus.DisplayValue;
-            //Console.WriteLine(bonus.DisplayValue + " " + bonus.BonusType + " " + multiplier);
         }
     }
 

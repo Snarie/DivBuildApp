@@ -13,6 +13,15 @@ namespace DivBuildApp.UI
 {
     internal static class StatSliderControl
     {
+        public static void Initialize()
+        {
+            // Set eventHandlers
+        }
+        public static event EventHandler<GridEventArgs> SliderRangeSet;
+        private static void OnSliderRangeSet(GridEventArgs e)
+        {
+            SliderRangeSet?.Invoke(null, e);
+        }
         public static void SetRange(GridEventArgs e)
         {
             Slider slider = e.Grid.StatSliders[e.Index];
@@ -44,7 +53,7 @@ namespace DivBuildApp.UI
             {
                 brush = Brushes.Yellow;
             }
-
+            rect.Fill = brush;
             switch (bonusDisplay.Bonus.BonusType)
             {
                 case BonusType.Skill_Tier:
@@ -60,7 +69,7 @@ namespace DivBuildApp.UI
                     slider.Minimum = 1;
                     break;
             }
-            rect.Fill = brush;
+            OnSliderRangeSet(e);
         }
         private static bool FillRectangleExists(Slider slider, out Rectangle rectangle)
         {

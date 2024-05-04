@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DivBuildApp.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -9,6 +10,10 @@ namespace DivBuildApp
 {
     internal static class SHDWatch
     {
+        public static void Initialize()
+        {
+            //Set the eventHandlers
+        }
         public static event EventHandler WatchSet;
         private static void OnWatchSet()
         {

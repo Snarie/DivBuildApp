@@ -13,10 +13,13 @@ namespace DivBuildApp.UI
 {
     internal static class StatTableControl
     {
-        static StatTableControl()
+        public static void Initialize(MainWindow main)
         {
+            mainWindow = main;
             CalculateBonusesSet += HandleCalculateBonusesSet;
+
         }
+        
         private static void HandleCalculateBonusesSet(object sender, EventArgs e)
         {
             Task.Run(() => DisplayBonusesInBoxes());
@@ -25,10 +28,6 @@ namespace DivBuildApp.UI
 
 
         private static MainWindow mainWindow;
-        public static void Initialize(MainWindow main)
-        {
-            mainWindow = main;
-        }
 
         public static async Task DisplayBonusesInBoxes()
         {

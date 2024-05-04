@@ -35,9 +35,6 @@ namespace DivBuildApp
     public partial class MainWindow : Window
     {
 
-
-        //public static Dictionary<string, List<EquipBonus>> brandSets = new Dictionary<string, List<EquipBonus>>();
-
         public static bool Initializing;
         public MainWindow()
         {
@@ -46,7 +43,6 @@ namespace DivBuildApp
             InitializeComponent();
             AdjustWindowSizeToScreen();
 
-            StatTableControl.Initialize(this);
             InitializeGearGridLinks();
             Initializer();
 
@@ -68,7 +64,13 @@ namespace DivBuildApp
             //Stays private
             InitializeOptionsExpertiece();
 
+            GearHandler.Initialize();
+            ItemArmorControl.Initialize();
+            StatTableControl.Initialize(this);
+            StatValueLabelControl.Initialize();
+            StatSliderControl.Initialize();
             IconControl.Initialize();
+            SHDWatch.Initialize();
             ListOptions.Initialize();
             DisplayControl.Initialize();
             BonusDisplayTypes.Initialize();
@@ -110,14 +112,6 @@ namespace DivBuildApp
         
 
 
-
-
-
-        private void UpdateDisplay()
-        {
-            ActiveBonuses.CalculateBonuses();
-        }
-
         private void GlobalExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
@@ -130,17 +124,15 @@ namespace DivBuildApp
                 KneepadsExpertiece.SelectedIndex = comboBox.SelectedIndex;
 
             }
-            UpdateDisplay();
         }
         private void ExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
             {
-                GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(comboBox)), -1);
+                GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), -1);
 
-                ItemArmorControl.SetItemArmor(ge);
-
-                UpdateDisplay();
+                Task.Run(() => ItemArmorControl.SetItemArmorAsync(ge));
+                //ItemArmorControl.SetItemArmor(ge);
             }
         }
 
@@ -149,11 +141,9 @@ namespace DivBuildApp
         {
             if(sender is Slider slider)
             {
-                GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(slider)), index);
+                GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(slider), index);
 
                 StatValueLabelControl.SetValue(ge);
-
-                UpdateDisplay();
             }
         }
         private void Stat1Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -181,13 +171,9 @@ namespace DivBuildApp
         {
             if (sender is ComboBox comboBox)
             {
-                GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(comboBox)), index);
+                GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), index);
 
-                StatValueLabelControl.SetValue(ge);
-                Task.Run(() => IconControl.SetStatIcon(ge));
                 StatSliderControl.SetRange(ge);
-
-                UpdateDisplay();
             }
         }
         private void Stat1ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -210,21 +196,17 @@ namespace DivBuildApp
         
         private void GearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxBrandItem selectedItem)
+            if(sender is ComboBox comboBox)
             {
-                GridEventArgs ge = new GridEventArgs(GetGridContent(GetItemTypeFromElement(comboBox)), -1);
+                GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), -1);
 
-                if (GearHandler.SetEquippedGearList(ge))
-                {
-                    UpdateDisplay();
-                }
+                GearHandler.SetEquippedGearList(ge);
             }
         }
 
         public void WatchLevel_TextChanged(object sender, TextChangedEventArgs e)
         {
             SHDWatch.SetWatchBonuses(WatchLevel.Text);
-            UpdateDisplay();
         }
         
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
