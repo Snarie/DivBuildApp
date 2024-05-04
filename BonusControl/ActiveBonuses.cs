@@ -28,7 +28,7 @@ namespace DivBuildApp.BonusControl
 
         private static void HandleGearSet(object sender, GridEventArgs e)
         {
-            CalculateBrandBonues();
+            CalculateBrandBonuses();
             Task.Run(() => Logger.LogEvent("GearHandler.GearSet"));
         }
         private static void HandleGearAttributeSet(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace DivBuildApp.BonusControl
         public static Dictionary<BonusType, double> activeBonuses = new Dictionary<BonusType, double>();
 
 
-        private static void CalculateBrandBonues()
+        private static void CalculateBrandBonuses()
         {
             brandSetBonuses.Clear();
             Dictionary<string, int> brandLevels = new Dictionary<string, int>();
