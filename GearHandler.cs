@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -34,7 +35,8 @@ namespace DivBuildApp
 
         public static ItemType[] gearTypes = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Kneepads, ItemType.Holster };
 
-        public static List<Gear> equippedItemList = new List<Gear>();
+        public static Dictionary<ItemType, Gear> equippedItemDict = new Dictionary<ItemType, Gear>();
+        
 
         private static Gear CreateGear(ItemType itemType)
         {
@@ -73,38 +75,74 @@ namespace DivBuildApp
 
         public static Gear GearFromSlot(ItemType slot)
         {
-            return equippedItemList.FirstOrDefault(i => i.Slot == slot);
+            Dictionary<ItemType, Gear> eww = equippedItemDict;
+            if (equippedItemDict.ContainsKey(slot))
+            {
+                return equippedItemDict[slot];
+            }
+            return null;
         }
-        public static void SetEquippedGearList(GridEventArgs e)
+
+
+        private static readonly SemaphoreSlim EquippedGearListSemaphore = new SemaphoreSlim(1);
+        public static async void SetEquippedGearListAsync(GridEventArgs e)
         {
-            List<ComboBox> boxes = new List<ComboBox>();
-            foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
+            await EquippedGearListSemaphore.WaitAsync();
+            try
             {
-                boxes.Add(Lib.GetItemBox(itemType));
-            }
-            List<string> unselectedItems = new List<string>();
-            foreach (ComboBox box in boxes)
-            {
-                if (box.SelectedValue == null)
+                if (equippedItemDict.ContainsKey(e.ItemType))
                 {
-                    unselectedItems.Add(box.Name);
+                    equippedItemDict[e.ItemType] = CreateGear(e.ItemType);
                 }
-            }
-            if (unselectedItems.Any())
-            {
+                else
+                {
+                    equippedItemDict.Add(e.ItemType, CreateGear(e.ItemType));
+                }
+
+                /*bool unselected = false;
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
+                    {
+                        ComboBox box = Lib.GetItemBox(itemType);
+                        if (box.SelectedValue == null)
+                        {
+                            unselected = true;
+                            return;
+                        }
+                    }
+                });
+                if (unselected) { };*/
+                
                 OnGearSet(e);
                 return;
             }
-
-            equippedItemList = new List<Gear>
+            finally
             {
-                CreateGear(ItemType.Mask),
-                CreateGear(ItemType.Backpack),
-                CreateGear(ItemType.Chest),
-                CreateGear(ItemType.Gloves),
-                CreateGear(ItemType.Holster),
-                CreateGear(ItemType.Kneepads),
-            };
+                EquippedGearListSemaphore.Release();
+            }
+        }
+        public static void SetEquippedGearList(GridEventArgs e)
+        {
+            if (equippedItemDict.ContainsKey(e.ItemType))
+            {
+                equippedItemDict[e.ItemType] = CreateGear(e.ItemType);
+            }
+            else
+            {
+                equippedItemDict.Add(e.ItemType, CreateGear(e.ItemType));
+            }
+
+            /*foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
+            {
+                ComboBox box = Lib.GetItemBox(itemType);
+                if(box.SelectedValue == null)
+                {
+                    OnGearSet(e);
+                    return;
+                }
+            }*/
+            
             OnGearSet(e);
             return;
         }

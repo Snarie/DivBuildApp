@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -28,22 +29,22 @@ namespace DivBuildApp.BonusControl
 
         private static void HandleGearSet(object sender, GridEventArgs e)
         {
-            CalculateBrandBonuses();
+            Task.Run(() => CalculateBrandBonuses());
             Task.Run(() => Logger.LogEvent("GearHandler.GearSet"));
         }
         private static void HandleGearAttributeSet(object sender, EventArgs e)
         {
-            CalculateStatAttributes();
+            Task.Run(() => CalculateStatAttributes());
             Task.Run(() => Logger.LogEvent("GearHandler.GearAttributeSet"));
         }
         private static void HandleWatchSet(object sender, EventArgs e)
         {
-            CalculateWatchBonuses();
+            Task.Run(() => CalculateWatchBonuses());
             Task.Run(() => Logger.LogEvent("SHDWatch.WatchSet"));
         }
         private static void HandleItemArmorSet(object sender, EventArgs e)
         {
-            CalculateExpertieceBonuses();
+            Task.Run(() => CalculateExpertieceBonuses());
             Task.Run(()=> Logger.LogEvent("ItemArmorControl.ItemArmorSet"));
         }
 
@@ -56,77 +57,113 @@ namespace DivBuildApp.BonusControl
         public static Dictionary<BonusType, double> activeBonuses = new Dictionary<BonusType, double>();
 
 
-        private static void CalculateBrandBonuses()
+        private static readonly SemaphoreSlim BrandBonusesSemaphore = new SemaphoreSlim(1);
+        private static async void CalculateBrandBonuses()
         {
-            brandSetBonuses.Clear();
-            Dictionary<string, int> brandLevels = new Dictionary<string, int>();
-            foreach (Gear equippedItem in GearHandler.equippedItemList)
+            await BrandBonusesSemaphore.WaitAsync();
+            try
             {
-                string brandName = equippedItem.BrandName;
-                if (brandLevels.ContainsKey(brandName))
+                brandSetBonuses.Clear();
+                Dictionary<string, int> brandLevels = new Dictionary<string, int>();
+                foreach (Gear equippedItem in GearHandler.equippedItemDict.Values)
                 {
-                    brandLevels[brandName]++;
-                }
-                else
-                {
-                    brandLevels.Add(brandName, 1);
-                }
-
-                //BrandSet Bonuses
-                foreach (Bonus bonus in BrandSets.GetBrandBonus(brandName, brandLevels[brandName]))
-                {
-                    brandSetBonuses.Add(new BonusSource("Brand Set", new Bonus(bonus.BonusType, bonus.Value)));
-                    //activeBonusses[bonus.BonusType] += bonus.Value;
-                }
-
-            }
-
-            if (GearHandler.GearFromSlot(ItemType.Backpack) != null)
-            {
-                if (GearHandler.GearFromSlot(ItemType.Backpack).Name == "NinjaBike Backpack")
-                {
-                    var keysToUpdate = new List<string>(brandLevels.Keys);
-                    foreach (string key in keysToUpdate)
+                    string brandName = equippedItem.BrandName;
+                    if (brandLevels.ContainsKey(brandName))
                     {
-                        brandLevels[key]++;
-                        foreach (Bonus bonus in BrandSets.GetBrandBonus(key, brandLevels[key]))
+                        brandLevels[brandName]++;
+                    }
+                    else
+                    {
+                        brandLevels.Add(brandName, 1);
+                    }
+
+                    //BrandSet Bonuses
+                    foreach (Bonus bonus in BrandSets.GetBrandBonus(brandName, brandLevels[brandName]))
+                    {
+                        brandSetBonuses.Add(new BonusSource("Brand Set", new Bonus(bonus.BonusType, bonus.Value)));
+                        //activeBonusses[bonus.BonusType] += bonus.Value;
+                    }
+
+                }
+
+                if (GearHandler.GearFromSlot(ItemType.Backpack) != null)
+                {
+                    if (GearHandler.GearFromSlot(ItemType.Backpack).Name == "NinjaBike Backpack")
+                    {
+                        var keysToUpdate = new List<string>(brandLevels.Keys);
+                        foreach (string key in keysToUpdate)
                         {
-                            brandSetBonuses.Add(new BonusSource("NinjaBike Backpack", new Bonus(bonus.BonusType, bonus.Value)));
+                            brandLevels[key]++;
+                            foreach (Bonus bonus in BrandSets.GetBrandBonus(key, brandLevels[key]))
+                            {
+                                brandSetBonuses.Add(new BonusSource("NinjaBike Backpack", new Bonus(bonus.BonusType, bonus.Value)));
+                            }
                         }
                     }
                 }
+                await CalculateBonuses();
             }
-            CalculateBonuses();
-        }
-
-        private static void CalculateExpertieceBonuses()
-        {
-            expertieceBonuses.Clear();
-            expertieceBonuses.Add(new BonusSource("Gear Expertiece", new Bonus(BonusType.Armor, ItemArmorControl.GetExpertieceArmorValue())));
-            CalculateBonuses();
-        }
-
-        private static void CalculateStatAttributes()
-        {
-            statAttributeBonuses.Clear();
-            foreach (Gear gear in GearHandler.equippedItemList)
+            finally
             {
-                foreach (Bonus bonus in gear.StatAttributes)
+                BrandBonusesSemaphore.Release();
+            }
+        }
+
+        private static readonly SemaphoreSlim ExpertieceBonusesSemaphore = new SemaphoreSlim(1);
+        private static async void CalculateExpertieceBonuses()
+        {
+            await ExpertieceBonusesSemaphore.WaitAsync();
+            try
+            {
+                expertieceBonuses.Clear();
+                expertieceBonuses.Add(new BonusSource("Gear Expertiece", new Bonus(BonusType.Armor, ItemArmorControl.GetExpertieceArmorValue())));
+                await CalculateBonuses();
+            }
+            finally
+            {
+                ExpertieceBonusesSemaphore.Release();
+            }
+        }
+
+        private static readonly SemaphoreSlim StatAttributesSemaphore = new SemaphoreSlim(1);
+        private static async void CalculateStatAttributes()
+        {
+            await StatAttributesSemaphore.WaitAsync();
+            try
+            {
+                statAttributeBonuses.Clear();
+                foreach (Gear gear in GearHandler.equippedItemDict.Values)
                 {
-                    statAttributeBonuses.Add(new BonusSource(gear.Name, bonus));
+                    foreach (Bonus bonus in gear.StatAttributes)
+                    {
+                        statAttributeBonuses.Add(new BonusSource(gear.Name, bonus));
+                    }
                 }
+                await CalculateBonuses();
             }
-            CalculateBonuses();
+            finally
+            {
+                StatAttributesSemaphore.Release();
+            }
         }
 
-        private static void CalculateWatchBonuses()
+        private static readonly SemaphoreSlim WatchBonusesSemaphore = new SemaphoreSlim(1);
+        private static async void CalculateWatchBonuses()
         {
-            watchBonuses.Clear();
-            foreach (Bonus bonus in SHDWatch.WatchBonuses)
+            await WatchBonusesSemaphore.WaitAsync();
+            try
             {
-                watchBonuses.Add(new BonusSource("Watch Bonus", new Bonus(bonus.BonusType, bonus.Value)));
+                watchBonuses.Clear();
+                foreach (Bonus bonus in SHDWatch.WatchBonuses)
+                {
+                    watchBonuses.Add(new BonusSource("Watch Bonus", new Bonus(bonus.BonusType, bonus.Value)));
+                }
+                await CalculateBonuses();
             }
-            CalculateBonuses();
+            finally
+            {
+                WatchBonusesSemaphore.Release();
+            }
         }
 
 
@@ -140,33 +177,52 @@ namespace DivBuildApp.BonusControl
             }
         }
 
-        private static void CalculateBonuses()
+        private static readonly SemaphoreSlim CalculateSemaphore = new SemaphoreSlim(1);
+
+        private static async Task CalculateBonuses()
         {
-            ResetBonuses();
-
-            foreach (Bonus bonus in brandSetBonuses.Select(b => b.Bonus))
+            Console.WriteLine("Before Semaphore");
+            await CalculateSemaphore.WaitAsync();
+            try
             {
-                activeBonuses[bonus.BonusType] += bonus.BonusValue;
-            }
+                Console.WriteLine("During Semaphore");
+                ResetBonuses();
+                Console.WriteLine("Armor(Reset) = " + activeBonuses[BonusType.Armor]);
 
-            foreach (Bonus bonus in statAttributeBonuses.Select(b => b.Bonus))
+                foreach (Bonus bonus in brandSetBonuses.Select(b => b.Bonus))
+                {
+                    activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                }
+                Console.WriteLine("Armor(BrandSet) = " + activeBonuses[BonusType.Armor]);
+
+                foreach (Bonus bonus in statAttributeBonuses.Select(b => b.Bonus))
+                {
+                    activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                }
+                Console.WriteLine("Armor(Attribute) = " + activeBonuses[BonusType.Armor]);
+
+                foreach (Bonus bonus in watchBonuses.Select(b => b.Bonus))
+                {
+                    activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                }
+                Console.WriteLine("Armor(Watch) = " + activeBonuses[BonusType.Armor]);
+
+                foreach (Bonus bonus in expertieceBonuses.Select(b => b.Bonus))
+                {
+                    Console.WriteLine("  added = " + bonus.BonusValue);
+                    activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                }
+                Console.WriteLine("Armor(Expertiece) = " + activeBonuses[BonusType.Armor]);
+                activeBonuses[BonusType.Armor] = Math.Floor(activeBonuses[BonusType.Armor] * (100 + activeBonuses[BonusType.Total_Armor]) / 100);
+
+                Console.WriteLine("Armor(Mult) = " + activeBonuses[BonusType.Armor]);
+                OnCalculateBonuses();
+            }
+            finally
             {
-                activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                CalculateSemaphore.Release();
             }
-
-            foreach (Bonus bonus in watchBonuses.Select(b => b.Bonus))
-            {
-                activeBonuses[bonus.BonusType] += bonus.BonusValue;
-            }
-
-            foreach (Bonus bonus in expertieceBonuses.Select(b => b.Bonus))
-            {
-                activeBonuses[bonus.BonusType] += bonus.BonusValue;
-            }
-
-            activeBonuses[BonusType.Armor] = Math.Floor(activeBonuses[BonusType.Armor] * (100 + activeBonuses[BonusType.Total_Armor]) / 100);
             
-            OnCalculateBonuses();
         }
     }
 }

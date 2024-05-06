@@ -30,30 +30,30 @@ namespace DivBuildApp.UI
             if (!(statBox.SelectedItem is BonusDisplay bonusDisplay))
             {
                 slider.Visibility = Visibility.Collapsed;
+                OnSliderRangeSet(e);
                 return;
             }
             slider.Visibility = Visibility.Visible;
 
             bool success = FillRectangleExists(slider, out Rectangle rect);
-            if(!success) 
+            if(success) 
             {
-                return;
+                Brush brush = Brushes.Pink;
+                if (bonusDisplay.IconType.EndsWith("Red"))
+                {
+                    brush = Brushes.Red;
+                }
+                else if (bonusDisplay.IconType.EndsWith("Blue"))
+                {
+                    brush = Brushes.DeepSkyBlue;
+                }
+                else if (bonusDisplay.IconType.EndsWith("Yellow"))
+                {
+                    brush = Brushes.Yellow;
+                }
+                rect.Fill = brush;
             }
 
-            Brush brush = Brushes.Pink;
-            if (bonusDisplay.IconType.EndsWith("Red"))
-            {
-                brush = Brushes.Red;
-            }
-            else if (bonusDisplay.IconType.EndsWith("Blue"))
-            {
-                brush = Brushes.DeepSkyBlue;
-            }
-            else if (bonusDisplay.IconType.EndsWith("Yellow"))
-            {
-                brush = Brushes.Yellow;
-            }
-            rect.Fill = brush;
             switch (bonusDisplay.Bonus.BonusType)
             {
                 case BonusType.Skill_Tier:

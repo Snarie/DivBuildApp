@@ -41,12 +41,8 @@ namespace DivBuildApp.UI
 
         public static double GetExpertieceArmorValue()
         {
-            double total = 0;
-            foreach(KeyValuePair<ItemType, double> kvp in expertieceArmorValues)
-            {
-                total += kvp.Value;
-            }
-            return total;
+            //Console.WriteLine($"{expertieceArmorValues[ItemType.Mask]}/{expertieceArmorValues[ItemType.Backpack]}/{expertieceArmorValues[ItemType.Chest]}/{expertieceArmorValues[ItemType.Gloves]}/{expertieceArmorValues[ItemType.Holster]}/{expertieceArmorValues[ItemType.Kneepads]}");
+            return expertieceArmorValues.Values.Sum();
         }
         public static void SetItemArmor(GridEventArgs e)
         {
@@ -80,8 +76,8 @@ namespace DivBuildApp.UI
             
             double multipliedValue = armorValue * multiplier / 100.0;
             expertieceArmorValues[e.ItemType] = multipliedValue;
-            await DisplayItemArmorValue(e);
             OnSetItemArmor();
+            await DisplayItemArmorValue(e);
         }
         private static async Task DisplayItemArmorValue(GridEventArgs e)
         {

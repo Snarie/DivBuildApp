@@ -131,7 +131,7 @@ namespace DivBuildApp
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), -1);
 
-                Task.Run(() => ItemArmorControl.SetItemArmorAsync(ge));
+                Task.Run(() =>ItemArmorControl.SetItemArmorAsync(ge));
                 //ItemArmorControl.SetItemArmor(ge);
             }
         }
@@ -203,6 +203,7 @@ namespace DivBuildApp
                 GearHandler.SetEquippedGearList(ge);
             }
         }
+        
 
         public void WatchLevel_TextChanged(object sender, TextChangedEventArgs e)
         {

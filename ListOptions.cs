@@ -25,42 +25,37 @@ namespace DivBuildApp
             SetOptionsStatBoxes(e);
             Task.Run(() => Logger.LogEvent("ListOptions <= GearHandler.GearSet"));
         }
-        private static void SetItemsSource(ComboBox statBox, string itemAttribute)
-        {
-            int bonusIndex = statBox.SelectedIndex;
-            int bonusItemCount = statBox.Items.Count;
-            statBox.ItemsSource = GetBonusOptionsList(itemAttribute);
-            SetBoxSelectedIndex(statBox, bonusIndex, bonusItemCount);
-        }
-
 
         public static void SetOptionsStatBoxes(GridEventArgs e)
         {
-            ComboBox itemBox = e.Grid.ItemBox;
             ComboBox[] statBoxes = e.Grid.StatBoxes;
 
             if (statBoxes[0] != null && statBoxes[1] != null && statBoxes[2] != null && statBoxes[3] != null)
             {
-                OptionsStatAttributes(itemBox, statBoxes);
+                ComboBox itemBox = e.Grid.ItemBox;
+                if(itemBox.SelectedItem is ComboBoxBrandItem selectedItem)
+                {
+                    StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
+
+                    SetItemsSource(new GridEventArgs(e.Grid, e.ItemType, 0), stringItem.CoreAttribute);
+                    SetItemsSource(new GridEventArgs(e.Grid, e.ItemType, 1), stringItem.SideAttribute1);
+                    SetItemsSource(new GridEventArgs(e.Grid, e.ItemType, 2), stringItem.SideAttribute2);
+                    SetItemsSource(new GridEventArgs(e.Grid, e.ItemType, 3), stringItem.SideAttribute3);
+                }
             }
         }
-        
-        private static void OptionsStatAttributes(ComboBox itemBox, ComboBox[] statBoxes)
+        private static void SetItemsSource(GridEventArgs e, string itemAttribute)
         {
-            if(itemBox.SelectedItem is ComboBoxBrandItem selectedItem)
-            {
-                StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
-
-                SetItemsSource(statBoxes[0], stringItem.CoreAttribute);
-                SetItemsSource(statBoxes[1], stringItem.SideAttribute1);
-                SetItemsSource(statBoxes[2], stringItem.SideAttribute2);
-                SetItemsSource(statBoxes[3], stringItem.SideAttribute3);
-            }
+            ComboBox statBox = e.Grid.StatBoxes[e.Index];
+            int bonusIndex = statBox.SelectedIndex;
+            int bonusItemCount = statBox.Items.Count;
+            statBox.ItemsSource = GetBonusOptionsList(itemAttribute);
+            SetBoxSelectedIndex(e, bonusIndex, bonusItemCount);
         }
-
-        private static void SetBoxSelectedIndex(ComboBox bonusBox, int oldIndex, int oldItemCount)
+        private static void SetBoxSelectedIndex(GridEventArgs e, int oldIndex, int oldItemCount)
         {
-            //TODO: add a saver if it switches away from a list (to go back to the saved index when you go back to lists)
+            ComboBox bonusBox = e.Grid.StatBoxes[e.Index];
+            // TODO: add a saver if it switches away from a list (to go back to the saved index when you go back to lists)
             if (bonusBox.Items.Count > 0)
             {
                 if (bonusBox.Items.Count == 1)
@@ -84,15 +79,17 @@ namespace DivBuildApp
                 }
                 if(bonusBox.SelectedIndex == -1)
                 {
-                    Slider slider = Lib.FindSiblingControl<Slider>(bonusBox, bonusBox.Name + "_Slider");
+                    // TODO: integrate image into IconControl
+                    Slider slider = e.Grid.StatSliders[e.Index];
                     slider.Visibility = System.Windows.Visibility.Hidden;
                 }
             }
             else
             {
-                Image image = Lib.FindSiblingControl<Image>(bonusBox, bonusBox.Name + "_Icon");
+                // TODO: integrate image and slider into IconControl and SliderControl respectively
+                Image image = e.Grid.StatIcons[e.Index];
                 image.Source = new BitmapImage(new Uri("pack://application:,,,/Images/Empty.png"));
-                Slider slider = Lib.FindSiblingControl<Slider>(bonusBox, bonusBox.Name + "_Slider");
+                Slider slider = e.Grid.StatSliders[e.Index];
                 slider.Visibility = System.Windows.Visibility.Hidden;
                 bonusBox.IsEnabled = false;
             }
@@ -150,7 +147,6 @@ namespace DivBuildApp
                 case "mod":
                     return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.GearModAttributes, BonusHandler.StringToBonusType(value)) };
                 default:
-
                     Task.Run(() => Logger.LogError($"\"{search}\" is not a recognized preset"));
                     return new List<BonusDisplay>();
             }
