@@ -71,6 +71,65 @@ namespace DivBuildApp.UI
             }
             OnSliderRangeSet(e);
         }
+
+
+        private static readonly SynchronizedIndexGroupedTaskRunner RangeSetTaskRunner = new SynchronizedIndexGroupedTaskRunner(TimeSpan.FromSeconds(0.05));
+        public static async void SetRangeAsync(GridEventArgs e)
+        {
+            await RangeSetTaskRunner.ExecuteTaskAsync(e.ItemType, e.Index, () =>
+            {
+                Slider slider = e.Grid.StatSliders[e.Index];
+                ComboBox statBox = e.Grid.StatBoxes[e.Index];
+
+                if (!(statBox.SelectedItem is BonusDisplay bonusDisplay))
+                {
+                    slider.Visibility = Visibility.Collapsed;
+                    OnSliderRangeSet(e);
+                    return Task.CompletedTask;
+                }
+                slider.Visibility = Visibility.Visible;
+
+                bool success = FillRectangleExists(slider, out Rectangle rect);
+                if (success)
+                {
+                    Brush brush = Brushes.Pink;
+                    if (bonusDisplay.IconType.EndsWith("Red"))
+                    {
+                        brush = Brushes.Red;
+                    }
+                    else if (bonusDisplay.IconType.EndsWith("Blue"))
+                    {
+                        brush = Brushes.DeepSkyBlue;
+                    }
+                    else if (bonusDisplay.IconType.EndsWith("Yellow"))
+                    {
+                        brush = Brushes.Yellow;
+                    }
+                    rect.Fill = brush;
+                }
+
+                switch (bonusDisplay.Bonus.BonusType)
+                {
+                    case BonusType.Skill_Tier:
+                    case BonusType.Armor_Kit_Capacity:
+                    case BonusType.Grenade_Capacity:
+                    case BonusType.Skill_Repair_Charges:
+                    case BonusType.Skill_Stim_Charges:
+                    case BonusType.Skill_Stinger_Charges:
+                        slider.Minimum = 100;
+                        slider.Value = 100;
+                        break;
+                    default:
+                        slider.Minimum = 1;
+                        break;
+                }
+                OnSliderRangeSet(e);
+
+                // Return a completed task because lambda must return a Task
+                return Task.CompletedTask;
+            });
+            
+        }
         private static bool FillRectangleExists(Slider slider, out Rectangle rectangle)
         {
             rectangle = null;

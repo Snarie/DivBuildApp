@@ -17,7 +17,7 @@ namespace DivBuildApp.UI
         }
         private static void HandleSliderRangeSet(object sender, GridEventArgs e)
         {
-            SetValue(e);
+            SetValueAsync(e);
             Task.Run(() => Logger.LogEvent("StatValueLabelControl <= StatSliderControl.SliderRangeSet"));
         }
 
@@ -27,8 +27,10 @@ namespace DivBuildApp.UI
             ValueSet?.Invoke(null, e);
         }
 
+
         public static void SetValue(GridEventArgs e)
         {
+            
             Label statValueLabel = e.Grid.StatValues[e.Index];
             ComboBox statBox = e.Grid.StatBoxes[e.Index];
             Slider statSlider = e.Grid.StatSliders[e.Index];
@@ -42,7 +44,29 @@ namespace DivBuildApp.UI
             }
             OnValueSet(e);
         }
-        
+
+        private static readonly SynchronizedIndexGroupedTaskRunner ValueSetTaskRunner = new SynchronizedIndexGroupedTaskRunner(TimeSpan.FromSeconds(0));
+        public static async void SetValueAsync(GridEventArgs e)
+        {
+            await ValueSetTaskRunner.ExecuteTaskAsync(e.ItemType, e.Index, () =>
+            {
+                Label statValueLabel = e.Grid.StatValues[e.Index];
+                ComboBox statBox = e.Grid.StatBoxes[e.Index];
+                Slider statSlider = e.Grid.StatSliders[e.Index];
+                if (statBox.SelectedItem is BonusDisplay bonusDisplay)
+                {
+                    SetValueRouted(statValueLabel, bonusDisplay, statSlider.Value);
+                }
+                else
+                {
+                    statValueLabel.Content = "";
+                }
+                OnValueSet(e);
+
+                // Return a completed task because lambda must return a Task
+                return Task.CompletedTask;
+            });
+        }
         private static void SetValueRouted(Label label, BonusDisplay bonusDisplay, double multiplier)
         {
             Bonus bonus = new Bonus(bonusDisplay.Bonus.BonusType, bonusDisplay.Bonus.Value, bonusDisplay.Bonus.DisplayType);

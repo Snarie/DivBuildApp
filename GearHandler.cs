@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace DivBuildApp
 {
@@ -29,7 +31,6 @@ namespace DivBuildApp
         private static void HandleValueSet(object sender, GridEventArgs e)
         {
             SetGearStatAttributes(e);
-            Task.Run(() => Logger.LogEvent($"StatValueLabelControl.ValueSet({e.ItemType})"));
             OnGearAttributeSet();
         }
 
@@ -73,22 +74,51 @@ namespace DivBuildApp
             GearFromSlot(e.ItemType).StatAttributes = bonusList.ToArray();
         }
 
-        public static Gear GearFromSlot(ItemType slot)
+
+        private static readonly SynchronizedGroupedTaskRunner GearAttibuteSetTaskRunner = new SynchronizedGroupedTaskRunner(TimeSpan.FromSeconds(0.1));
+        public static async void SetGearStatAttributesAsync(GridEventArgs e)
         {
-            Dictionary<ItemType, Gear> eww = equippedItemDict;
-            if (equippedItemDict.ContainsKey(slot))
+            await GearAttibuteSetTaskRunner.ExecuteTaskAsync(e.ItemType, async () =>
             {
-                return equippedItemDict[slot];
-            }
-            return null;
+                ComboBox[] statBoxes = e.Grid.StatBoxes;
+                Label[] statValues = e.Grid.StatValues;
+                List<Bonus> bonusList = new List<Bonus>();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    object selectedItem = null;
+                    await Application.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        selectedItem = statBoxes[i].SelectedItem;
+                    });
+                    if (!(selectedItem is BonusDisplay))
+                    {
+                        continue;
+                    }
+
+                    object dataContext = null;
+                    await Application.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        dataContext = statValues[i].DataContext;
+                    });
+                    if (!(dataContext is Bonus bonus))
+                    {
+                        _ = Logger.LogEvent($"{statValues[i].Name} is not a Bonus");
+                        continue;
+                    }
+
+                    bonusList.Add(new Bonus(bonus.BonusType, bonus.BonusValue));
+                }
+                GearFromSlot(e.ItemType).StatAttributes = bonusList.ToArray();
+            });
+            
         }
 
 
-        private static readonly SemaphoreSlim EquippedGearListSemaphore = new SemaphoreSlim(1);
+        private static readonly SynchronizedGroupedTaskRunner GearSetTaskRunner = new SynchronizedGroupedTaskRunner(TimeSpan.FromSeconds(0.05));
         public static async void SetEquippedGearListAsync(GridEventArgs e)
         {
-            await EquippedGearListSemaphore.WaitAsync();
-            try
+            await GearSetTaskRunner.ExecuteTaskAsync(e.ItemType, () =>
             {
                 if (equippedItemDict.ContainsKey(e.ItemType))
                 {
@@ -98,54 +128,21 @@ namespace DivBuildApp
                 {
                     equippedItemDict.Add(e.ItemType, CreateGear(e.ItemType));
                 }
+                OnGearSet(e); //Notify other parts of the program
 
-                /*bool unselected = false;
-                await Application.Current.Dispatcher.InvokeAsync(() =>
-                {
-                    foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
-                    {
-                        ComboBox box = Lib.GetItemBox(itemType);
-                        if (box.SelectedValue == null)
-                        {
-                            unselected = true;
-                            return;
-                        }
-                    }
-                });
-                if (unselected) { };*/
-                
-                OnGearSet(e);
-                return;
-            }
-            finally
-            {
-                EquippedGearListSemaphore.Release();
-            }
+                // Return a completed task because lambda must return a Task
+                return Task.CompletedTask;
+            });
         }
-        public static void SetEquippedGearList(GridEventArgs e)
+        
+        public static Gear GearFromSlot(ItemType slot)
         {
-            if (equippedItemDict.ContainsKey(e.ItemType))
+            Dictionary<ItemType, Gear> eww = equippedItemDict;
+            if (equippedItemDict.ContainsKey(slot))
             {
-                equippedItemDict[e.ItemType] = CreateGear(e.ItemType);
+                return equippedItemDict[slot];
             }
-            else
-            {
-                equippedItemDict.Add(e.ItemType, CreateGear(e.ItemType));
-            }
-
-            /*foreach (ItemType itemType in Enum.GetValues(typeof(ItemType)))
-            {
-                ComboBox box = Lib.GetItemBox(itemType);
-                if(box.SelectedValue == null)
-                {
-                    OnGearSet(e);
-                    return;
-                }
-            }*/
-            
-            OnGearSet(e);
-            return;
+            return null;
         }
-
     }
 }

@@ -10,12 +10,12 @@ namespace DivBuildApp
 {
     internal class SynchronizedTaskRunner
     {
-        private SemaphoreSlim semaphore;
+        private readonly SemaphoreSlim semaphore;
         private TaskCompletionSource<bool> waitingTaskSource;
         private DateTime lastStartTime;
         private TimeSpan minimumDelay;
         private readonly object lockObject = new object();
-        
+
         public SynchronizedTaskRunner(TimeSpan minDelay)
         {
             semaphore = new SemaphoreSlim(1, 1);
@@ -23,11 +23,29 @@ namespace DivBuildApp
             minimumDelay = minDelay;
         }
 
+        public async Task ExecuteAsync(Func<Task> taskFunc)
+        {
+            if (await TryEnterAsync())
+            {
+                try
+                {
+                    ResetLastStartTime();
+                    await taskFunc();
+                }
+                finally
+                {
+                    Release();
+                }
+            }
+            else
+            {
+                _ = Logger.LogInfo("Exiting early due to queue");
+            }
+        }
+
         public async Task<bool> TryEnterAsync()
         {
-            //TaskCompletionSource<bool> localTaskSource = null;
-
-            lock (lockObject) 
+            lock (lockObject)
             {
                 if (waitingTaskSource != null)
                 {
@@ -86,4 +104,95 @@ namespace DivBuildApp
         }
 
     }
+
+    internal class SynchronizedGroupedTaskRunner
+    {
+        public SemaphoreSlim GlobalSemaphore;
+        public Dictionary<ItemType, SynchronizedTaskRunner> Runners;
+
+        public SynchronizedGroupedTaskRunner(TimeSpan minimumDelay, int initialCount = 1, int maxCount = 1)
+        {
+            GlobalSemaphore = new SemaphoreSlim(initialCount, maxCount);
+            Runners = Enum.GetValues(typeof(ItemType))
+                .Cast<ItemType>()
+                .ToDictionary(itemType => itemType, itemType => new SynchronizedTaskRunner(minimumDelay));
+        }
+
+        public async Task ExecuteTaskAsync(ItemType itemType, Func<Task> taskFunc)
+        {
+            var runner = Runners[itemType];
+            // Try to enter the item-specific runner first.
+            if (await runner.TryEnterAsync())
+            {
+                // Wait on the global semaphore only after successfully entering.
+                await GlobalSemaphore.WaitAsync();
+                try
+                {
+                    runner.ResetLastStartTime();
+                    await taskFunc(); // Execute the task.
+                }
+                finally
+                {
+                    GlobalSemaphore.Release();
+                    runner.Release();
+                }
+            }
+            else
+            {
+                // Log if unable to enter runner
+                _ = Logger.LogInfo("Exiting early due to queue for " + itemType);
+            }
+        }
+    }
+
+        internal class SynchronizedIndexGroupedTaskRunner
+        {
+            public SemaphoreSlim GlobalSemaphore;
+            public Dictionary<(ItemType, int), SynchronizedTaskRunner> Runners;
+
+            public SynchronizedIndexGroupedTaskRunner(TimeSpan minimumDelay, int initialCount = 1, int maxCount = 1)
+            {
+                GlobalSemaphore = new SemaphoreSlim(initialCount, maxCount);
+
+                Runners = new Dictionary<(ItemType, int), SynchronizedTaskRunner>();
+                foreach(ItemType itemType in Enum.GetValues(typeof(ItemType)))
+                {
+                    for(int i = 0; i < 4; i++)
+                    {
+                        Runners[(itemType, i)] = new SynchronizedTaskRunner(minimumDelay);
+                    }
+                }
+            }
+
+            public async Task ExecuteTaskAsync(ItemType itemType, int index, Func<Task> taskFunc)
+            {
+                var key = (itemType, index);
+                if(!Runners.ContainsKey(key))
+                {
+                    throw new ArgumentException($"No runner available for ItemType {itemType} at index {index}.");
+                }
+                var runner = Runners[key];
+                // Try to enter the item-specific runner first.
+                if (await runner.TryEnterAsync())
+                {
+                    // Wait on the global semaphore only after successfully entering.
+                    await GlobalSemaphore.WaitAsync();
+                    try
+                    {
+                        runner.ResetLastStartTime();
+                        await taskFunc(); // Execute the task.
+                    }
+                    finally
+                    {
+                        GlobalSemaphore.Release();
+                        runner.Release();
+                    }
+                }
+                else
+                {
+                    // Log if unable to enter runner
+                    _ = Logger.LogInfo("Exiting early due to queue for " + itemType);
+                }
+            }
+        }
 }

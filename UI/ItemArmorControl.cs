@@ -16,10 +16,6 @@ namespace DivBuildApp.UI
         public static void Initialize()
         {
             // Set
-            foreach(ItemType itemType in ItemHandler.GearTypes)
-            {
-                runners[itemType] = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.3));
-            }
         }
         public static event EventHandler ItemArmorSet;
         private static void OnSetItemArmor()
@@ -47,7 +43,6 @@ namespace DivBuildApp.UI
 
         public static double GetExpertieceArmorValue()
         {
-            //Console.WriteLine($"{expertieceArmorValues[ItemType.Mask]}/{expertieceArmorValues[ItemType.Backpack]}/{expertieceArmorValues[ItemType.Chest]}/{expertieceArmorValues[ItemType.Gloves]}/{expertieceArmorValues[ItemType.Holster]}/{expertieceArmorValues[ItemType.Kneepads]}");
             return expertieceArmorValues.Values.Sum();
         }
         public static void SetItemArmor(GridEventArgs e)
@@ -78,15 +73,40 @@ namespace DivBuildApp.UI
                 itemArmorLabel.Content = text;
             });
         }
-
-        private static readonly Dictionary<ItemType, SynchronizedTaskRunner> runners = new Dictionary<ItemType, SynchronizedTaskRunner>();
-        private static readonly SemaphoreSlim globalSemaphore = new SemaphoreSlim(1, 1);
-        public static async Task SetItemArmorAsync(GridEventArgs e)
+        private static readonly SynchronizedGroupedTaskRunner ItemArmorSyncTask = new SynchronizedGroupedTaskRunner(TimeSpan.FromSeconds(0.2));
+        public static async void SetItemArmorAsync(GridEventArgs e)
         {
-            SynchronizedTaskRunner runner = runners[e.ItemType];
+            await ItemArmorSyncTask.ExecuteTaskAsync(e.ItemType, async () =>
+            {
+                // Fetch default armor values and UI controls
+                double armorValue = defaultArmorValues[e.ItemType];
+                ComboBox multiplierBox = e.Grid.ItemExpertiece;
+                double multiplier = 100;
+
+                // UI thread work to fetch selected value from combo box
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    if (!multiplierBox.HasItems)
+                    {
+                        _ = Logger.LogError($"{multiplierBox.Name} has no items");
+                        return; // Exit if the combo box is empty
+                    }
+                    // Adjust multiplier based on selected value
+                    multiplier += (int)multiplierBox.SelectedValue;
+                });
+
+                double multipliedValue = armorValue * multiplier / 100.0; // Calculate the new armor value
+                expertieceArmorValues[e.ItemType] = multipliedValue; // Store calculated value
+                OnSetItemArmor(); // Notify other parts of the program
+                await DisplayItemArmorValue(e); // Update UI with new value
+            });
+            /*SynchronizedTaskRunner runner = ItemArmorSync.Runners[e.ItemType];
+            SemaphoreSlim globalSemaphore = ItemArmorSync.GlobalSemaphore;
+            //SynchronizedTaskRunner runner = runners[e.ItemType];
+
             if(!await runner.TryEnterAsync())
             {
-                Console.WriteLine("Exiting early due to queue for " + e.ItemType);
+                _ = Logger.LogInfo("Exiting early due to queue for " + e.ItemType);
                 return;
             }
             try
@@ -119,18 +139,15 @@ namespace DivBuildApp.UI
                 }
                 finally
                 {
+                    // Release the global semaphore
                     globalSemaphore.Release();
                 }
-
-                 
             }
             finally
             {
+                // Release the ItemType specific semaphore
                 runner.Release();
-            }
-
-
-
+            }*/
         }
 
     }

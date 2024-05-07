@@ -126,7 +126,7 @@ namespace DivBuildApp
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(slider), index);
 
-                StatValueLabelControl.SetValue(ge);
+                StatValueLabelControl.SetValueAsync(ge);
             }
         }
         private void Stat1Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -156,7 +156,8 @@ namespace DivBuildApp
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), index);
 
-                StatSliderControl.SetRange(ge);
+                // async task
+                StatSliderControl.SetRangeAsync(ge);
             }
         }
         private void Stat1ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -183,8 +184,10 @@ namespace DivBuildApp
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), -1);
 
-                
-                GearHandler.SetEquippedGearList(ge);
+
+                // async task
+                GearHandler.SetEquippedGearListAsync(ge);
+                //GearHandler.SetEquippedGearList(ge);
             }
         }
         
@@ -192,6 +195,7 @@ namespace DivBuildApp
         public void WatchLevel_TextChanged(object sender, TextChangedEventArgs e)
         {
             string level = WatchLevel.Text;
+            // GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(WatchLevel), -1);
             Task.Run(() => SHDWatch.SetWatchBonusesAsync(level));
         }
         
