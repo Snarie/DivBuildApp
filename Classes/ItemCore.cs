@@ -16,6 +16,7 @@ namespace DivBuildApp
         Holster,
         Kneepads
     }
+
     public class StringItem
     {
         public string Name { get; set; }

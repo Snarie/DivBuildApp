@@ -1,26 +1,9 @@
-﻿using CsvHelper;
-using System;
-using System.Data;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net.NetworkInformation;
+﻿using System;
 //using System.Reflection.Emit;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Linq;
 using static DivBuildApp.Lib;
 using System.Text.RegularExpressions;
 using DivBuildApp.UI;
@@ -31,7 +14,7 @@ using DivBuildApp.Data.Tables;
 
 namespace DivBuildApp
 {
-    
+
     public partial class MainWindow : Window
     {
 
@@ -62,10 +45,10 @@ namespace DivBuildApp
         private void Initializer()
         {
             //Stays private
+            ItemArmorControl.Initialize();
             InitializeOptionsExpertiece();
 
             GearHandler.Initialize();
-            ItemArmorControl.Initialize();
             StatTableControl.Initialize(this);
             StatValueLabelControl.Initialize();
             StatSliderControl.Initialize();
@@ -131,7 +114,7 @@ namespace DivBuildApp
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), -1);
 
-                Task.Run(() =>ItemArmorControl.SetItemArmorAsync(ge));
+                Task.Run(() => ItemArmorControl.SetItemArmorAsync(ge));
                 //ItemArmorControl.SetItemArmor(ge);
             }
         }
@@ -200,6 +183,7 @@ namespace DivBuildApp
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), -1);
 
+                
                 GearHandler.SetEquippedGearList(ge);
             }
         }
@@ -207,7 +191,8 @@ namespace DivBuildApp
 
         public void WatchLevel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            SHDWatch.SetWatchBonuses(WatchLevel.Text);
+            string level = WatchLevel.Text;
+            Task.Run(() => SHDWatch.SetWatchBonusesAsync(level));
         }
         
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)

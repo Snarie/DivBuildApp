@@ -89,9 +89,11 @@
     <Compile Include="Data\CsvFormats\BrandBonusesFormat.cs" />
     <Compile Include="Data\CsvReader.cs" />
     <Compile Include="Data\Tables\BonusDisplayTypes.cs" />
+    <Compile Include="GlobalSynchronizationManager.cs" />
     <Compile Include="GridEventArgs.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="SHDWatch.cs" />
+    <Compile Include="SynchronizedTaskRunner.cs" />
     <Compile Include="UI\IconControl.cs" />
     <Compile Include="UI\StatSliderControl.cs" />
     <Compile Include="UI\ItemArmorControl.cs" />

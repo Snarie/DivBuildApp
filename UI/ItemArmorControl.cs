@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +15,11 @@ namespace DivBuildApp.UI
     {
         public static void Initialize()
         {
-            // Set eventHandlers
+            // Set
+            foreach(ItemType itemType in ItemHandler.GearTypes)
+            {
+                runners[itemType] = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.3));
+            }
         }
         public static event EventHandler ItemArmorSet;
         private static void OnSetItemArmor()
@@ -59,26 +65,7 @@ namespace DivBuildApp.UI
             OnSetItemArmor();
             Task.Run(() => DisplayItemArmorValue(e));
         }
-        public static async Task SetItemArmorAsync(GridEventArgs e)
-        {
-            double armorValue = defaultArmorValues[e.ItemType];
-            ComboBox multiplierBox = e.Grid.ItemExpertiece;
-            double multiplier = 100;
-            await Application.Current.Dispatcher.InvokeAsync(() =>
-            {
-                if (!multiplierBox.HasItems)
-                {
-                    _ = Logger.LogError($"{multiplierBox.Name} has no items");
-                    return;
-                }
-                multiplier += (int)multiplierBox.SelectedValue;
-            });
-            
-            double multipliedValue = armorValue * multiplier / 100.0;
-            expertieceArmorValues[e.ItemType] = multipliedValue;
-            OnSetItemArmor();
-            await DisplayItemArmorValue(e);
-        }
+
         private static async Task DisplayItemArmorValue(GridEventArgs e)
         {
             Label itemArmorLabel = e.Grid.ItemArmor;
@@ -91,5 +78,60 @@ namespace DivBuildApp.UI
                 itemArmorLabel.Content = text;
             });
         }
+
+        private static readonly Dictionary<ItemType, SynchronizedTaskRunner> runners = new Dictionary<ItemType, SynchronizedTaskRunner>();
+        private static readonly SemaphoreSlim globalSemaphore = new SemaphoreSlim(1, 1);
+        public static async Task SetItemArmorAsync(GridEventArgs e)
+        {
+            SynchronizedTaskRunner runner = runners[e.ItemType];
+            if(!await runner.TryEnterAsync())
+            {
+                Console.WriteLine("Exiting early due to queue for " + e.ItemType);
+                return;
+            }
+            try
+            {
+                runner.ResetLastStartTime();
+                await globalSemaphore.WaitAsync();
+                try
+                {
+                    // Fetch default armor values and UI controls
+                    double armorValue = defaultArmorValues[e.ItemType];
+                    ComboBox multiplierBox = e.Grid.ItemExpertiece;
+                    double multiplier = 100;
+
+                    // UI thread work to fetch selected value from combo box
+                    await Application.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        if (!multiplierBox.HasItems)
+                        {
+                            _ = Logger.LogError($"{multiplierBox.Name} has no items");
+                            return; // Exit if the combo box is empty
+                        }
+                        // Adjust multiplier based on selected value
+                        multiplier += (int)multiplierBox.SelectedValue;
+                    });
+
+                    double multipliedValue = armorValue * multiplier / 100.0; // Calculate the new armor value
+                    expertieceArmorValues[e.ItemType] = multipliedValue; // Store calculated value
+                    OnSetItemArmor(); // Notify other parts of the program
+                    await DisplayItemArmorValue(e); // Update UI with new value
+                }
+                finally
+                {
+                    globalSemaphore.Release();
+                }
+
+                 
+            }
+            finally
+            {
+                runner.Release();
+            }
+
+
+
+        }
+
     }
 }

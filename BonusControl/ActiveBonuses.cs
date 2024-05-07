@@ -29,6 +29,7 @@ namespace DivBuildApp.BonusControl
 
         private static void HandleGearSet(object sender, GridEventArgs e)
         {
+
             Task.Run(() => CalculateBrandBonuses());
             Task.Run(() => Logger.LogEvent("GearHandler.GearSet"));
         }
@@ -58,55 +59,47 @@ namespace DivBuildApp.BonusControl
 
 
         private static readonly SemaphoreSlim BrandBonusesSemaphore = new SemaphoreSlim(1);
-        private static async void CalculateBrandBonuses()
+        private static void CalculateBrandBonuses()
         {
-            await BrandBonusesSemaphore.WaitAsync();
-            try
+            brandSetBonuses.Clear();
+            Dictionary<string, int> brandLevels = new Dictionary<string, int>();
+            foreach (Gear equippedItem in GearHandler.equippedItemDict.Values)
             {
-                brandSetBonuses.Clear();
-                Dictionary<string, int> brandLevels = new Dictionary<string, int>();
-                foreach (Gear equippedItem in GearHandler.equippedItemDict.Values)
+                string brandName = equippedItem.BrandName;
+                if (brandLevels.ContainsKey(brandName))
                 {
-                    string brandName = equippedItem.BrandName;
-                    if (brandLevels.ContainsKey(brandName))
-                    {
-                        brandLevels[brandName]++;
-                    }
-                    else
-                    {
-                        brandLevels.Add(brandName, 1);
-                    }
-
-                    //BrandSet Bonuses
-                    foreach (Bonus bonus in BrandSets.GetBrandBonus(brandName, brandLevels[brandName]))
-                    {
-                        brandSetBonuses.Add(new BonusSource("Brand Set", new Bonus(bonus.BonusType, bonus.Value)));
-                        //activeBonusses[bonus.BonusType] += bonus.Value;
-                    }
-
+                    brandLevels[brandName]++;
+                }
+                else
+                {
+                    brandLevels.Add(brandName, 1);
                 }
 
-                if (GearHandler.GearFromSlot(ItemType.Backpack) != null)
+                //BrandSet Bonuses
+                foreach (Bonus bonus in BrandSets.GetBrandBonus(brandName, brandLevels[brandName]))
                 {
-                    if (GearHandler.GearFromSlot(ItemType.Backpack).Name == "NinjaBike Backpack")
+                    brandSetBonuses.Add(new BonusSource("Brand Set", new Bonus(bonus.BonusType, bonus.Value)));
+                    //activeBonusses[bonus.BonusType] += bonus.Value;
+                }
+
+            }
+
+            if (GearHandler.GearFromSlot(ItemType.Backpack) != null)
+            {
+                if (GearHandler.GearFromSlot(ItemType.Backpack).Name == "NinjaBike Backpack")
+                {
+                    var keysToUpdate = new List<string>(brandLevels.Keys);
+                    foreach (string key in keysToUpdate)
                     {
-                        var keysToUpdate = new List<string>(brandLevels.Keys);
-                        foreach (string key in keysToUpdate)
+                        brandLevels[key]++;
+                        foreach (Bonus bonus in BrandSets.GetBrandBonus(key, brandLevels[key]))
                         {
-                            brandLevels[key]++;
-                            foreach (Bonus bonus in BrandSets.GetBrandBonus(key, brandLevels[key]))
-                            {
-                                brandSetBonuses.Add(new BonusSource("NinjaBike Backpack", new Bonus(bonus.BonusType, bonus.Value)));
-                            }
+                            brandSetBonuses.Add(new BonusSource("NinjaBike Backpack", new Bonus(bonus.BonusType, bonus.Value)));
                         }
                     }
                 }
-                await CalculateBonuses();
             }
-            finally
-            {
-                BrandBonusesSemaphore.Release();
-            }
+            Task.Run(() => CalculateBonuses());
         }
 
         private static readonly SemaphoreSlim ExpertieceBonusesSemaphore = new SemaphoreSlim(1);

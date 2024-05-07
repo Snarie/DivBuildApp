@@ -16,6 +16,8 @@ namespace DivBuildApp
         {
             SetAllItemList(CsvReader.ItemDefault());
         }
+
+        public static ItemType[] GearTypes = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Holster, ItemType.Kneepads};
         public static void SetAllItemList(List<StringItem> tempItems)
         {
             List<StringItem> expandedItems = new List<StringItem>();
