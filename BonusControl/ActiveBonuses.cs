@@ -51,6 +51,7 @@ namespace DivBuildApp.BonusControl
         private static readonly List<BonusSource> statAttributeBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> watchBonuses = new List<BonusSource>();
 
+        public static List<BonusSource> activeBonusSources = new List<BonusSource>();
         public static Dictionary<BonusType, double> activeBonuses = new Dictionary<BonusType, double>();
 
 
@@ -121,7 +122,7 @@ namespace DivBuildApp.BonusControl
             });
         }
 
-        private static readonly SemaphoreSlim StatAttributesSemaphore = new SemaphoreSlim(1);
+
         private static readonly SynchronizedTaskRunner StatAttributeBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
         private static async Task CalculateStatAttributes()
         {
@@ -137,26 +138,9 @@ namespace DivBuildApp.BonusControl
                 }
                 await CalculateBonuses();
             });
-            /*await StatAttributesSemaphore.WaitAsync();
-            try
-            {
-                statAttributeBonuses.Clear();
-                foreach (Gear gear in GearHandler.equippedItemDict.Values)
-                {
-                    foreach (Bonus bonus in gear.StatAttributes)
-                    {
-                        statAttributeBonuses.Add(new BonusSource(gear.Name, bonus));
-                    }
-                }
-                await CalculateBonuses();
-            }
-            finally
-            {
-                StatAttributesSemaphore.Release();
-            }*/
         }
 
-        private static readonly SemaphoreSlim WatchBonusesSemaphore = new SemaphoreSlim(1);
+
         private static readonly SynchronizedTaskRunner WatchBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
         private static async Task CalculateWatchBonuses()
         {
@@ -169,20 +153,6 @@ namespace DivBuildApp.BonusControl
                 }
                 await CalculateBonuses();
             });
-            /*await WatchBonusesSemaphore.WaitAsync();
-            try
-            {
-                watchBonuses.Clear();
-                foreach (Bonus bonus in SHDWatch.WatchBonuses)
-                {
-                    watchBonuses.Add(new BonusSource("Watch Bonus", new Bonus(bonus.BonusType, bonus.Value)));
-                }
-                await CalculateBonuses();
-            }
-            finally
-            {
-                WatchBonusesSemaphore.Release();
-            }*/
         }
 
 
@@ -204,25 +174,29 @@ namespace DivBuildApp.BonusControl
             try
             {
                 ResetBonuses();
-
-                foreach (Bonus bonus in brandSetBonuses.Select(b => b.Bonus))
+                activeBonusSources.Clear();
+                foreach (BonusSource bonusSource in brandSetBonuses)
                 {
-                    activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                    activeBonusSources.Add(bonusSource);
+                    activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
                 }
 
-                foreach (Bonus bonus in statAttributeBonuses.Select(b => b.Bonus))
+                foreach (BonusSource bonusSource in statAttributeBonuses)
                 {
-                    activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                    activeBonusSources.Add(bonusSource);
+                    activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
                 }
 
-                foreach (Bonus bonus in watchBonuses.Select(b => b.Bonus))
+                foreach (BonusSource bonusSource in watchBonuses)
                 {
-                    activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                    activeBonusSources.Add(bonusSource);
+                    activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
                 }
 
-                foreach (Bonus bonus in expertieceBonuses.Select(b => b.Bonus))
+                foreach (BonusSource bonusSource in expertieceBonuses)
                 {
-                    activeBonuses[bonus.BonusType] += bonus.BonusValue;
+                    activeBonusSources.Add(bonusSource);
+                    activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
                 }
 
                 activeBonuses[BonusType.Armor] = Math.Floor(activeBonuses[BonusType.Armor] * (100 + activeBonuses[BonusType.Total_Armor]) / 100);
