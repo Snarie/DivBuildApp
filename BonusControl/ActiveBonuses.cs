@@ -30,21 +30,19 @@ namespace DivBuildApp.BonusControl
 
         private static async void HandleGearSet(object sender, GridEventArgs e)
         {
-            Console.WriteLine("Before Call");
             await CalculateBrandBonuses();
-            Console.WriteLine("After Call");
         }
-        private static void HandleGearAttributeSet(object sender, EventArgs e)
+        private static async void HandleGearAttributeSet(object sender, EventArgs e)
         {
-            Task.Run(() => CalculateStatAttributes());
+            await CalculateStatAttributes();
         }
-        private static void HandleWatchSet(object sender, EventArgs e)
+        private static async void HandleWatchSet(object sender, EventArgs e)
         {
-            Task.Run(() => CalculateWatchBonuses());
+            await CalculateWatchBonuses();
         }
-        private static void HandleItemArmorSet(object sender, EventArgs e)
+        private static async void HandleItemArmorSet(object sender, EventArgs e)
         {
-            Task.Run(() => CalculateExpertieceBonuses());
+            await CalculateExpertieceBonuses();
         }
 
 
@@ -57,7 +55,7 @@ namespace DivBuildApp.BonusControl
 
 
 
-        private static readonly SynchronizedTaskRunner BrandBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.2));
+        private static readonly SynchronizedTaskRunner BrandBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
         private static async Task CalculateBrandBonuses()
         {
             await BrandBonusesTaskRunner.ExecuteAsync(() =>
@@ -111,26 +109,35 @@ namespace DivBuildApp.BonusControl
             
         }
 
-        private static readonly SemaphoreSlim ExpertieceBonusesSemaphore = new SemaphoreSlim(1);
-        private static async void CalculateExpertieceBonuses()
+
+        private static readonly SynchronizedTaskRunner ExpertieceBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
+        private static async Task CalculateExpertieceBonuses()
         {
-            await ExpertieceBonusesSemaphore.WaitAsync();
-            try
+            await ExpertieceBonusesTaskRunner.ExecuteAsync(async () =>
             {
                 expertieceBonuses.Clear();
-                expertieceBonuses.Add(new BonusSource("Gear Expertiece", new Bonus(BonusType.Armor, ItemArmorControl.GetExpertieceArmorValue())));
+                expertieceBonuses.Add(new BonusSource("Gear Expertiecem", new Bonus(BonusType.Armor, ItemArmorControl.GetExpertieceArmorValue())));
                 await CalculateBonuses();
-            }
-            finally
-            {
-                ExpertieceBonusesSemaphore.Release();
-            }
+            });
         }
 
         private static readonly SemaphoreSlim StatAttributesSemaphore = new SemaphoreSlim(1);
-        private static async void CalculateStatAttributes()
+        private static readonly SynchronizedTaskRunner StatAttributeBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
+        private static async Task CalculateStatAttributes()
         {
-            await StatAttributesSemaphore.WaitAsync();
+            await StatAttributeBonusesTaskRunner.ExecuteAsync(async () =>
+            {
+                statAttributeBonuses.Clear();
+                foreach (Gear gear in GearHandler.equippedItemDict.Values)
+                {
+                    foreach (Bonus bonus in gear.StatAttributes)
+                    {
+                        statAttributeBonuses.Add(new BonusSource(gear.Name, bonus));
+                    }
+                }
+                await CalculateBonuses();
+            });
+            /*await StatAttributesSemaphore.WaitAsync();
             try
             {
                 statAttributeBonuses.Clear();
@@ -146,13 +153,23 @@ namespace DivBuildApp.BonusControl
             finally
             {
                 StatAttributesSemaphore.Release();
-            }
+            }*/
         }
 
         private static readonly SemaphoreSlim WatchBonusesSemaphore = new SemaphoreSlim(1);
-        private static async void CalculateWatchBonuses()
+        private static readonly SynchronizedTaskRunner WatchBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
+        private static async Task CalculateWatchBonuses()
         {
-            await WatchBonusesSemaphore.WaitAsync();
+            await WatchBonusesTaskRunner.ExecuteAsync(async () =>
+            {
+                watchBonuses.Clear();
+                foreach (Bonus bonus in SHDWatch.WatchBonuses)
+                {
+                    watchBonuses.Add(new BonusSource("Watch Bonus", new Bonus(bonus.BonusType, bonus.Value)));
+                }
+                await CalculateBonuses();
+            });
+            /*await WatchBonusesSemaphore.WaitAsync();
             try
             {
                 watchBonuses.Clear();
@@ -165,7 +182,7 @@ namespace DivBuildApp.BonusControl
             finally
             {
                 WatchBonusesSemaphore.Release();
-            }
+            }*/
         }
 
 
