@@ -133,7 +133,7 @@ Motherly Love;Alps Summit Armament;gloves;Named;;locked:Skill_Health=10.0;;;
 Eagle's Grasp;Zwiadowka Sp. z o.o.;gloves;Named;;locked:Weapon_Handling=15.0;;;
 Firm Handshake;Sokolov Concern;gloves;Named;;locked:Status_Effects=15.0;;;
 Emperor's Guard;Murakami Industries;kneepads;Named;;locked:Armor_Regen=1.0;;;
-Fox's Prayer;Overlord Armaments;kneepads;Named;;locked:DMG_out_of_Cover=10.0;;;
+Fox's Prayer;Overlord Armaments;kneepads;Named;;locked:DMG_out_of_Cover=8.0;;;
 Catharsis;Catharsis;mask;Exotic;core:Armor;side:Incoming_Repairs;side:Armor_Regen_HPs;;Viscious Cycle
 Coyote's Mask;Coyote's Mask;mask;Exotic;core:Weapon_Damage;side:Critical_Hit_Chance;side:Critical_Hit_Damage;;Pack Instincts
 Vile;Vile;mask;Exotic;core:Skill_Tier;side:Status_Effects;side:Hazard_Protection;;Toxic Delivery
