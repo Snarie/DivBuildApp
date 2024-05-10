@@ -14,9 +14,9 @@
         <Grid x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
                 <RowDefinition Height="120"/>
                 <RowDefinition Height="200"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="200"/>
@@ -36,6 +36,156 @@
             <TextBlock x:Name="DumpBlock" Foreground="white" HorizontalAlignment="Left" Margin="120,0,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Width="200" Grid.Column="3" Grid.Row="0" Grid.RowSpan="5" FontSize="8"/>
 
             <Border BorderBrush="Black" BorderThickness="0,0,1,0" Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,39,0,0" />
+
+            <Grid x:Name="PrimaryWeaponGrid" Grid.Column="1" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="176"/>
+                    <ColumnDefinition Width="174"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="160"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="PrimaryWeaponName" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <Label x:Name="PrimaryWeaponArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
+
+                <ComboBox x:Name="PrimaryWeaponBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="PrimaryWeaponExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
+
+                <ComboBox x:Name="PrimaryWeaponOpticalRail" Grid.Column="1" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="PrimaryWeaponMagazine" Grid.Column="1" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="PrimaryWeaponUnderbarrel" Grid.Column="1" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="PrimaryWeaponMuzzle" Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}"/>
+
+                <ComboBox x:Name="PrimaryWeaponStat1" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="PrimaryWeaponStat2" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="PrimaryWeaponStat3" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+
+                <Label    x:Name="PrimaryWeaponStat1_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+                <Label    x:Name="PrimaryWeaponStat2_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+                <Label    x:Name="PrimaryWeaopnStat3_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+
+                <Slider   x:Name="PrimaryWeaponStat1_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="PrimaryWeaponStat2_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="PrimaryWeaponStat3_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+
+                <Image    x:Name="PrimaryWeaponStat1_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+                <Image    x:Name="PrimaryWeaponStat2_Icon" Grid.Row="3" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+                <Image    x:Name="PrimaryWeaponStat3_Icon" Grid.Row="4" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+
+                <Image x:Name="PrimaryWeaponImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+            </Grid>
+            
+            <Grid x:Name="SecondaryWeaponGrid" Grid.Column="2" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="176"/>
+                    <ColumnDefinition Width="174"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="160"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="SecondaryWeaponName" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <Label x:Name="SecondaryWeaponArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
+
+                <ComboBox x:Name="SecondaryWeaponBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="SecondaryWeaponExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
+
+                <ComboBox x:Name="SecondaryWeaponOpticalRail" Grid.Column="1" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SecondaryWeaponMagazine" Grid.Column="1" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SecondaryWeaponUnderbarrel" Grid.Column="1" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SecondaryWeaponMuzzle" Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}"/>
+
+                <ComboBox x:Name="SecondaryWeaponStat1" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SecondaryWeaponStat2" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SecondaryWeaponStat3" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+
+                <Label    x:Name="SecondaryWeaponStat1_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+                <Label    x:Name="SecondaryWeaponStat2_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+                <Label    x:Name="SecondaryWeaopnStat3_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+
+                <Slider   x:Name="SecondaryWeaponStat1_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="SecondaryWeaponStat2_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="SecondaryWeaponStat3_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+
+                <Image    x:Name="SecondaryWeaponStat1_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+                <Image    x:Name="SecondaryWeaponStat2_Icon" Grid.Row="3" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+                <Image    x:Name="SecondaryWeaponStat3_Icon" Grid.Row="4" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+
+                <Image x:Name="SecondaryWeaponImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+            </Grid>
+            
+            <Grid x:Name="SideArmGrid" Grid.Column="4" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="176"/>
+                    <ColumnDefinition Width="174"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="160"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="SideArmName" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
+                <Label x:Name="SideArmArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
+
+                <ComboBox x:Name="SideArmBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxGearStyle}" SelectionChanged="GearComboBox_SelectionChanged"/>
+                <ComboBox x:Name="SideArmExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="ExpertieceBox_SelectionChanged" />
+
+                <ComboBox x:Name="SideArmOpticalRail" Grid.Column="1" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SideArmMagazine" Grid.Column="1" Grid.Row="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SideArmUnderbarrel" Grid.Column="1" Grid.Row="3" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SideArmMuzzle" Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxBonusStyle}"/>
+
+                <ComboBox x:Name="SideArmStat1" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SideArmStat2" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+                <ComboBox x:Name="SideArmStat3" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource ComboBoxBonusStyle}"/>
+
+                <Label    x:Name="SideArmStat1_Value" Grid.Row="2" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+                <Label    x:Name="SideArmStat2_Value" Grid.Row="3" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+                <Label    x:Name="SideArmStat3_Value" Grid.Row="4" Grid.Column="2" Style="{StaticResource StatBoxValueStyle}"/>
+
+                <Slider   x:Name="SideArmStat1_Slider" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="SideArmStat2_Slider" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+                <Slider   x:Name="SideArmStat3_Slider" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RedSliderStyle}"/>
+
+                <Image    x:Name="SideArmStat1_Icon" Grid.Row="2" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+                <Image    x:Name="SideArmStat2_Icon" Grid.Row="3" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+                <Image    x:Name="SideArmStat3_Icon" Grid.Row="4" Grid.Column="2" Style="{StaticResource BonusTypeIconStyle}"/>
+
+                <Image x:Name="SideArmImage" Style="{StaticResource ImageBrandStyle}" Grid.Row="1" Grid.RowSpan="4"/>
+
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" BorderThickness="0,0,0,1" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,0,0" BorderThickness="1,0,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Grid.RowSpan="1" Grid.Column="3" Grid.ColumnSpan="1" Margin="-30,0,0,0" BorderThickness="1,1,1,0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="4" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,-1" BorderThickness="0,0,0,1" />
+            </Grid>
 
             <Grid x:Name="MaskGrid" Grid.Column="1" Grid.Row="4">
                 <Grid.RowDefinitions>

@@ -183,6 +183,8 @@
     <Content Include="Data\CsvFiles\BonusDisplayType.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Data\CsvFiles\WeaponList.csv" />
+    <None Include="Data\CsvFiles\WeaponStats.csv" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
