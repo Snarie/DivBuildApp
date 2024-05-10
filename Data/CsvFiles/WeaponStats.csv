@@ -1,0 +1,99 @@
+name	bonusWeaponDamage	coreAttribute	sideAttribute	talent
+Shield Splinterer				Perfect Optimist
+Invisible Hand				Perfect Allegro
+Manic				Perfect Overflowing
+Burnout				Perfect On Empty
+Born Great				Perfect Stabilize
+Pyromaniac				Perfectly Ignited
+Savage Wolverine				Perfectly Close & Personal
+Glory Daze				Perfect Near Sighted
+The Railsplitter				Perfectly Accurate
+Mechanical Animal				Future Perfection
+Test Subject				Perfectly In Sync
+Kingbreaker				Perfect Flatline
+Eagle Bearer				Eagle's Strike
+Chameleon				Adaptive Instincts
+Capacitor		core:Damage_to_Armor=12.0		Capacitance
+The Bighorn				Big Game Hunter
+St. Elmo's Engine				Actum Est
+Big Show				Perfect Thunder Strike
+Sleipnir				Perfect Frenzy
+Quiet Roar				Perfect Overwhelm
+Black Friday				Perfectly Unhinged
+The Stinger				Swift
+Good Times				Perfect Fast Hands
+New Reliable				Perfectly Optimized
+Tabula Raba				Perfectly Steady Handed
+Carnage				Perfect Sadist
+Dare				Perfect Flatline
+Pestilence				Plague of the Outcasts
+Bullet King				Bullet Hell
+Bluescreen				Disruptor Rounds
+Iron Lung				Ardent
+Rock 'n' Roll				Perfectly Extra
+Lefty				Perfected Sledgehammer
+Tsunami				Perfect Pummel
+Enforcer			none	Perfect Pummel
+Backup Boomstick	locked:17			
+Firestarter	locked:11.6	none	locked:Damage_to_Health=10.0	Primer Rounds
+Boomstick				Perfectly Pumped Up
+The Send-Off				Perfect Distance
+Cuélebre				Perfect Jazz Hands
+The Mop			locked:Armor_on_Kill=10.0	
+Lullaby				Sandman
+Sweet Dreams				Sandman
+Scorpio				Septic Shock
+Cabaret				Perfect Thunder Strike
+Cold Relations				Perfectly Strained
+Dark Winter				Perfect Killer
+Swap Chain				Perfectly Unwavering
+Grown Greaet				Perfect Stabilize
+The Sleigher				Hidden Rock
+Emeline's Guard				Perfect Preservation
+Safety Distance				Perfect Outsider
+The Apartment				Perfectly Measured
+The Grudge				Perfect Vindictive
+The Chatterbox				Incessant Chatter
+Lady Death				Breathe Free
+Backfire				Payment In Kind
+Ouroboros				Rule Them All
+Whisper				Perfectly Behind You
+Baker's Dozen				Perfect Lucky Shot
+Stage Left				Perfected Sledgehammer
+Surge				Perfect Spike
+Everlasting Gaze				Perfect Perpetuation
+Artist's Tool				Perfect Rifleman
+The Virginian				Perfect Boomerang
+Harmony				Perfectly In Sync
+Ruthless				Binary Trigger
+Merciless				Binary Trigger
+Diamondback				Agonizing Bite
+The Ravenous				Geri and Freki
+Doctor Home				Doctor Home
+Vindicator				Ortiz Assault Interface
+Relic				Perfect Determined
+The Darkness				Perfect Eyeless
+Brutus				Perfectly Behind You
+Ekim's Long Stick				Perfect Ranger
+Commando				Perfectly Naked
+Pinprick				Perfect First Blood
+The White Death		locked:Headshot_Damage=137.0		
+Designated Hitter				Perfect Reformation
+Scalpel				Future Perfection
+Nemesis				Electromagnetic Accelerator
+Mantis				In Plain Sight
+Dread Edict				Full Stop
+Sacrum Imperium				The Trap
+Survivalist D50	locked:11.6		locked:DMG_out_of_Cover=10.0	Perfect Sadist
+Mozambique Special				Perfect Bread Basket
+Maxim 9	locked:11.6		locked:Headshot_Damage=10.0	Perfect Spike
+Lightning Rod				Perfect Salvage
+Diceros Special	locked:11.6		locked:Reload_Speed=20.0	Perfectly Unwavering
+Orbit				Perfect Finisher
+Prophet				Perfect Determined
+P320 Xcompact	locked:11.6		locked:Damage_to_Armor=30.0	Perfect Preservation
+"TDI ""Kard"" Custom "		locked:Skill_Tier=1		
+Liberty				Liberty or Death
+Mosquito				Mosquito Song
+Regulus				Regicide
+Busy Little Bee				Busy Little Bee
