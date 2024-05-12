@@ -9,6 +9,8 @@ using System.Text.RegularExpressions;
 using DivBuildApp.UI;
 using DivBuildApp.BonusControl;
 using DivBuildApp.Data.Tables;
+using DivBuildApp.Data.CsvFormats;
+using DivBuildApp.Classes;
 //using static DivBuildApp.ItemHandler;
 //using static DivBuildApp.BonusHandler;
 
@@ -61,7 +63,11 @@ namespace DivBuildApp
             ItemHandler.Initialize();
             BrandSets.Initialize();
             BonusCaps.Initialize();
+            WeaponList.Initialize();
 
+
+            InitializeWeaponTypeBox();
+            //ListOptions.OptionsWeaponBox(WeaponType.SMG, PrimaryWeaponBox, SecondaryWeaponBox);
             ListOptions.OptionsGearBox(ItemHandler.AllItemList);
         }
         private void InitializeOptionsExpertiece()
@@ -75,6 +81,14 @@ namespace DivBuildApp
                 HolsterExpertiece.Items.Add(i);
                 KneepadsExpertiece.Items.Add(i);
                 GlobalExpertiece.Items.Add(i);
+            }
+        }
+        private void InitializeWeaponTypeBox()
+        {
+            foreach(WeaponType weaponType in Enum.GetValues(typeof(WeaponType)))
+            {
+                PrimaryWeaponType.Items.Add(weaponType);
+                SecondaryWeaponType.Items.Add(weaponType);
             }
         }
         private void AdjustWindowSizeToScreen()
@@ -93,7 +107,20 @@ namespace DivBuildApp
         
 
         
-
+        private void WeaponType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(sender is ComboBox comboBox)
+            {
+                if(comboBox.SelectedItem is WeaponType weaponType)
+                {
+                    ListOptions.OptionsWeaponBox(weaponType, PrimaryWeaponBox, SecondaryWeaponBox);
+                }
+                else
+                {
+                    Console.WriteLine("Not a weaponType");
+                }
+            }
+        }
 
         private void GlobalExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

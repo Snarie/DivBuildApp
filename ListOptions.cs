@@ -10,6 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using DivBuildApp.BonusControl;
+using DivBuildApp.Data.CsvFormats;
+using DivBuildApp.Classes;
+using DivBuildApp.Data.Tables;
 
 namespace DivBuildApp
 {
@@ -166,6 +169,18 @@ namespace DivBuildApp
                 bonker.Items.Add(new ComboBoxBrandItem { Name = item.Name, Preset = $"[{item.Rarity}]", Slot = item.Slot });
             }
             
+        }
+
+        public static void OptionsWeaponBox(WeaponType weaponType, ComboBox primaryWeapon, ComboBox secondaryWeapon)
+        {
+            List<WeaponListFormat> weapons = WeaponList.TypeList[weaponType];
+            primaryWeapon.Items.Clear();
+            secondaryWeapon.Items.Clear();
+            foreach(WeaponListFormat weapon in weapons)
+            {
+                primaryWeapon.Items.Add(weapon);
+                secondaryWeapon.Items.Add(weapon);
+            }
         }
     }
 }

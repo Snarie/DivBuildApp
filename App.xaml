@@ -19,6 +19,17 @@
             </TextBlock>
         </DataTemplate>
 
+        <DataTemplate x:Key="ComboBoxWeaponTemplate">
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}[{0}] {1}">
+                        <Binding Path="Rarity"/>
+                        <Binding Path="Name"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
+
         <DataTemplate x:Key="ComboBoxGridDynamicTemplate">
             <StackPanel>
                 <!-- Display only the name when the item is selected -->
@@ -372,6 +383,18 @@
                 <!-- Overides -->
                 <SolidColorBrush x:Key="ComboBox.Static.Background" Color="Transparent"/>
             </Style.Resources>
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="ComboBoxWeaponStyle">
+            <Setter Property="Template" Value="{StaticResource ComboBoxPreset}"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}"/>
+            <Setter Property="ItemTemplate" Value="{StaticResource ComboBoxWeaponTemplate}"/>
+            <Setter Property="Margin" Value="-29,1,1,1"/>
+            <Setter Property="Padding" Value="5,3,5,3"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="Lime"/>
+            <Setter Property="SelectedIndex" Value="1"/>
         </Style>
 
         <Style TargetType="ComboBox" x:Key="ComboBoxGearStyle">

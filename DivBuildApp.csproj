@@ -82,6 +82,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BonusControl\ActiveBonuses.cs" />
+    <Compile Include="Classes\WeaponCore.cs" />
+    <Compile Include="Data\CsvFormats\WeaponListFormat.cs" />
+    <Compile Include="Data\CsvFormats\WeaponStatsFormat.cs" />
     <Compile Include="Data\Tables\BonusCaps.cs" />
     <Compile Include="BonusControl\BonusDisplayHandler.cs" />
     <Compile Include="Data\Tables\BrandSets.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="Data\CsvFormats\BrandBonusesFormat.cs" />
     <Compile Include="Data\CsvReader.cs" />
     <Compile Include="Data\Tables\BonusDisplayTypes.cs" />
+    <Compile Include="Data\Tables\WeaponList.cs" />
     <Compile Include="GlobalSynchronizationManager.cs" />
     <Compile Include="GridEventArgs.cs" />
     <Compile Include="Logger.cs" />
@@ -183,8 +187,18 @@
     <Content Include="Data\CsvFiles\BonusDisplayType.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Data\CsvFiles\WeaponList.csv" />
-    <None Include="Data\CsvFiles\WeaponStats.csv" />
+    <Content Include="Data\CsvFiles\WeaponList.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\CsvFiles\WeaponStats.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\CsvFiles\WeaponModSlots.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\CsvFiles\WeaponAttributes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

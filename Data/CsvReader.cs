@@ -1,6 +1,7 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using DivBuildApp.CsvFormats;
+using DivBuildApp.Data.CsvFormats;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -44,6 +45,16 @@ namespace DivBuildApp
             }
         }
 
+        public static List<WeaponListFormat> WeaponList()
+        {
+            string filePath = Path.Combine(CsvDirectory(), "WeaponList.csv");
+            return ReadCsvFile<WeaponListFormat>(filePath, Config());
+        }
+        public static List<WeaponStatsFormat> WeaponStats()
+        {
+            string filePath = Path.Combine(CsvDirectory(), "WeaponStats.csv");
+            return ReadCsvFile<WeaponStatsFormat>(filePath, Config());
+        }
         public static List<BonusCapsFormat> BonusCaps()
         {
             string filePath = Path.Combine(CsvDirectory(), "BonusCaps.csv");

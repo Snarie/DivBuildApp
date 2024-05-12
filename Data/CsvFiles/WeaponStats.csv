@@ -1,99 +1,277 @@
-name	bonusWeaponDamage	coreAttribute	sideAttribute	talent
-Shield Splinterer				Perfect Optimist
-Invisible Hand				Perfect Allegro
-Manic				Perfect Overflowing
-Burnout				Perfect On Empty
-Born Great				Perfect Stabilize
-Pyromaniac				Perfectly Ignited
-Savage Wolverine				Perfectly Close & Personal
-Glory Daze				Perfect Near Sighted
-The Railsplitter				Perfectly Accurate
-Mechanical Animal				Future Perfection
-Test Subject				Perfectly In Sync
-Kingbreaker				Perfect Flatline
-Eagle Bearer				Eagle's Strike
-Chameleon				Adaptive Instincts
-Capacitor		core:Damage_to_Armor=12.0		Capacitance
-The Bighorn				Big Game Hunter
-St. Elmo's Engine				Actum Est
-Big Show				Perfect Thunder Strike
-Sleipnir				Perfect Frenzy
-Quiet Roar				Perfect Overwhelm
-Black Friday				Perfectly Unhinged
-The Stinger				Swift
-Good Times				Perfect Fast Hands
-New Reliable				Perfectly Optimized
-Tabula Raba				Perfectly Steady Handed
-Carnage				Perfect Sadist
-Dare				Perfect Flatline
-Pestilence				Plague of the Outcasts
-Bullet King				Bullet Hell
-Bluescreen				Disruptor Rounds
-Iron Lung				Ardent
-Rock 'n' Roll				Perfectly Extra
-Lefty				Perfected Sledgehammer
-Tsunami				Perfect Pummel
-Enforcer			none	Perfect Pummel
-Backup Boomstick	locked:17			
-Firestarter	locked:11.6	none	locked:Damage_to_Health=10.0	Primer Rounds
-Boomstick				Perfectly Pumped Up
-The Send-Off				Perfect Distance
-Cuélebre				Perfect Jazz Hands
-The Mop			locked:Armor_on_Kill=10.0	
-Lullaby				Sandman
-Sweet Dreams				Sandman
-Scorpio				Septic Shock
-Cabaret				Perfect Thunder Strike
-Cold Relations				Perfectly Strained
-Dark Winter				Perfect Killer
-Swap Chain				Perfectly Unwavering
-Grown Greaet				Perfect Stabilize
-The Sleigher				Hidden Rock
-Emeline's Guard				Perfect Preservation
-Safety Distance				Perfect Outsider
-The Apartment				Perfectly Measured
-The Grudge				Perfect Vindictive
-The Chatterbox				Incessant Chatter
-Lady Death				Breathe Free
-Backfire				Payment In Kind
-Ouroboros				Rule Them All
-Whisper				Perfectly Behind You
-Baker's Dozen				Perfect Lucky Shot
-Stage Left				Perfected Sledgehammer
-Surge				Perfect Spike
-Everlasting Gaze				Perfect Perpetuation
-Artist's Tool				Perfect Rifleman
-The Virginian				Perfect Boomerang
-Harmony				Perfectly In Sync
-Ruthless				Binary Trigger
-Merciless				Binary Trigger
-Diamondback				Agonizing Bite
-The Ravenous				Geri and Freki
-Doctor Home				Doctor Home
-Vindicator				Ortiz Assault Interface
-Relic				Perfect Determined
-The Darkness				Perfect Eyeless
-Brutus				Perfectly Behind You
-Ekim's Long Stick				Perfect Ranger
-Commando				Perfectly Naked
-Pinprick				Perfect First Blood
-The White Death		locked:Headshot_Damage=137.0		
-Designated Hitter				Perfect Reformation
-Scalpel				Future Perfection
-Nemesis				Electromagnetic Accelerator
-Mantis				In Plain Sight
-Dread Edict				Full Stop
-Sacrum Imperium				The Trap
-Survivalist D50	locked:11.6		locked:DMG_out_of_Cover=10.0	Perfect Sadist
-Mozambique Special				Perfect Bread Basket
-Maxim 9	locked:11.6		locked:Headshot_Damage=10.0	Perfect Spike
-Lightning Rod				Perfect Salvage
-Diceros Special	locked:11.6		locked:Reload_Speed=20.0	Perfectly Unwavering
-Orbit				Perfect Finisher
-Prophet				Perfect Determined
-P320 Xcompact	locked:11.6		locked:Damage_to_Armor=30.0	Perfect Preservation
-"TDI ""Kard"" Custom "		locked:Skill_Tier=1		
-Liberty				Liberty or Death
-Mosquito				Mosquito Song
-Regulus				Regicide
-Busy Little Bee				Busy Little Bee
+name;damage;rpm;magazineSize;reloadSpeed;optimalRange
+ACR;59,329;650;30;2.3;27
+ACR-E;59,329;650;30;2.3;27
+F2000;45,132;900;40;2.1;27
+F2000 R;45,132;900;40;2.1;27
+Shield Splinterer;45,132;900;40;2.1;27
+AUG A3-CQC;56,367;680;30;2.1;27
+Invisible Hand;51,243;680;30;2.1;27
+AK-M;67,227;600;30;2.5;31
+Military AK-M;65,676;600;30;2.5;31
+Black Market AK-M;65,676;600;30;2.5;31
+Black Market AK-M R;65,676;600;30;2.5;31
+Manic;60,645;600;30;2.5;31
+FAL;59,705;650;20;2.3;32
+FAL SA-58;59,705;650;20;2.3;32
+FAL SA-58 Para;59,705;650;20;2.3;32
+FAL SA-58 Para R;59,705;650;20;2.3;32
+FAMAS 2010;44,191;900;30;2.2;28
+FAMAS 2010 R;44,191;900;30;2.2;28
+Burnout;44,191;900;30;2.2;28
+Military G36;48,892;800;30;2.3;32
+Born Great;48,892;800;30;2.3;32
+G36 C;48,892;800;30;2.3;32
+G36 Enhanced;48,892;800;30;2.3;32
+G36 Enhanced R;48,892;800;30;2.3;32
+Police M4;44,191;850;30;2.4;35
+Police M4 R;44,191;850;30;2.4;35
+Pyromaniac;44,191;850;30;2.4;35
+Carbine 7;47,012;790;30;2.4;35
+Honey Badger;47,952;790;35;2.4;35
+Savage Wolverine;47,952;790;35;2.4;35
+Military P416;47,952;800;30;2.3;26
+Custom P416 G3;47,952;800;30;2.3;26
+Glory Daze;47,952;800;30;2.3;26
+Mk16;60,457;625;30;2.3;35
+SOCOM Mk16;60,457;625;30;2.3;35
+Tactical Mk16;60,457;625;30;2.3;35
+Tactical Mk16 R;60,457;625;30;2.3;35
+CTAR-21;41,371;900;40;2.1;35
+The Railsplitter;41,371;900;40;2.1;35
+SIG 556;50,773;720;30;2.5;35
+Mechanical Animal;50,773;720;30;2.5;35
+PDR;56,845;700;30;2.2;28
+Test Subject;51,713;700;30;2.2;28
+TKB-408;58,765;650;30;2.4;31
+Kingbreaker;58,765;650;30;2.4;31
+Eagle Bearer;51,713;800;30;2.5;35
+Chameleon;39,960;900;30;2.4;20
+Capacitor;56,885;700;30;2.2;28
+The Bighorn;56,367;800;40;2.1;27
+St. Elmo’s Engine;44,191;850;40;2.4;35
+MG5;53,546;800;50;5.6;30
+Infantry MG5;51,854;800;50;5.6;30
+Infantry MG5 R;51,854;800;50;5.6;30
+Big Show;53,546;800;50;5.6;30
+Sleipnir;53,546;800;50;5.6;30
+Stoner LAMG;57,495;580;200;4.7;40
+Quiet Roar;47,952;580;200;4.7;40
+M249 B;67,697;550;100;5.6;35
+Tactical M249 Para;67,697;550;100;5.6;35
+Military Mk46;67,697;550;100;5.6;35
+Military Mk46 R;67,697;550;100;5.6;35
+October Fifth - M249 B;67,697;550;100;5.6;35
+Black Friday;56,414;550;100;5.6;35
+The Stinger;56,414;550;100;5.6;35
+Classic M60;76,159;500;100;5.8;40
+Military M60 E4;73,338;500;100;5.8;40
+Black Market M60 E6;73,338;500;100;5.8;40
+Classic M60 R;76,159;500;100;5.8;40
+Black Market M60 E6 R;73,338;500;100;5.8;40
+Good Times;73,338;500;100;5.8;40
+Classic RPK-74;66,521;650;45;3;28
+Military RPK-74 M;66,521;650;45;3;28
+Black Market RPK-74 E;66,521;650;45;3;28
+Black Market RPK-74 R;66,521;650;45;3;28
+New Reliable;66,521;650;45;3;28
+Military L86 LSW;71,646;610;30;3;32
+Custom L86 A2;71,646;610;30;3;32
+Custom L86 A2 R;71,646;610;30;3;32
+Tabula Rasa;71,646;610;30;3;32
+IWI NEGEV;45,084;850;100;5.8;40
+Carnage;45,084;850;100;5.8;40
+GR9;47,905;750;200;4.6;30
+Dare;47,905;750;200;4.6;30
+Pestilence;47,012;550;100;5.6;35
+Bullet King;45,084;850;100;0;40
+Bluescreen;62,008;660;100;4.7;40
+Iron Lung;59,094;800;50;5.1;30
+ACS-12;169,243;300;20;2.3;14
+Rock 'n' Roll;169,243;300;20;2.3;14
+Lefty;169,243;300;20;2.3;14
+Black Market SASG-12 S;364,812;180;7;2.7;14
+Black Market SASG-12 S R;364,812;180;7;2.7;14
+SASG-12;364,812;180;7;2.7;14
+Tactical SASG-12 K;364,812;180;7;2.7;14
+Tsunami;364,812;180;7;2.7;14
+Marine Super 90;440,032;160;8;4.8;16
+Super 90;440,032;160;8;4.8;16
+Super 90 R;440,032;160;8;4.8;16
+Tactical Super 90 SBS;440,032;160;8;4.8;16
+Tactical Super 90 SBS R;440,032;160;8;4.8;16
+Enforcer;440,032;160;8;4.8;16
+Double Barrel Sawed Off;620,556;200;2;2.2;11
+Backup Boomstick;620,556;200;2;2.2;11
+Firestarter;620,556;200;2;2.2;11
+Double Barrel Shotgun;620,556;200;2;2.2;11
+Double Barrel Shotgun R;620,556;200;2;2.2;11
+Boomstick;620,556;200;2;2.2;11
+KSG Shotgun;594,228;70;12;8.1;16
+The Send-Off;594,228;70;12;8.1;16
+Custom M870 MCS;695,776;75;5;3.7;14
+Custom M870 MCS R;695,776;75;5;3.7;14
+M870 Express;695,775;75;5;3.7;14
+M870 Express R;695,775;75;5;3.7;14
+Military M870;695,775;75;5;3.7;14
+Cuélebre;695,775;75;5;3.7;14
+SPAS-12;646,884;70;8;5.4;16
+SPAS-12 R;646,884;70;8;5.4;16
+SIX-12;451,321;130;7;1.8;16
+The Mop;451,321;130;7;1.8;16
+Lullaby;646,884;70;8;5.4;13
+Sweet Dreams;646,884;70;8;5.4;13
+Scorpio;451,321;130;7;1.8;16
+Converted SMG-9;51,713;875;30;2;20
+Converted SMG-9 R;51,713;875;30;2;20
+Converted SMG-9 A2;49,833;875;30;2;20
+MP5A2;51,713;800;36;2.1;16
+MP5-N;51,713;800;36;2.1;16
+MP5 ST;51,713;800;36;2.1;16
+MP5 ST R;51,713;800;36;2.1;16
+Cabaret;51,713;800;36;2.1;16
+PP-19;59,705;700;53;2.5;16
+Enhanced PP-19;59,705;700;53;2.5;16
+Cold Relations;59,705;700;53;2.5;16
+AUG A3 Para XS;63,560;750;25;2.1;18
+Enhanced AUG A3P;63,560;750;25;2.1;18
+Tactical AUG A3P;63,560;750;25;2.1;18
+Tactical AUG A3P R;63,560;750;25;2.1;18
+Tactical Vector SBR 9mm;42,311;1200;19;1.9;15
+Vector SBR 9mm;37,139;1200;33;1.9;15
+Vector SBR.45 ACP;40,430;1200;25;1.9;15
+Vector SBR.45 ACP R;40,430;1200;25;1.9;15
+Dark Winter;40,430;1200;25;1.9;15
+MP7;50,303;1000;40;1.9;19
+Swap Chain;47,952;1000;40;1.9;19
+Black Market T821;73,433;550;32;1.9;17
+Black Market T821 R;73,433;550;32;1.9;17
+Police T821;73,433;550;32;1.9;17
+Police UMP-45;72,304;600;30;2.3;14
+Tactical UMP-45;72,304;600;30;2.3;14
+Tactical UMP-45 R;72,304;600;30;2.3;14
+M1928;77,570;600;30;2.3;16
+Tommy Gun;60,975;800;50;2.3;16
+Grown Great;60,975;800;50;2.3;16
+The Sleigher;92,989;250;50;2.3;16
+P90;48,892;900;50;2.2;15
+P90 R;48,892;900;50;2.2;15
+Emeline's Guard;48,892;900;50;2.2;15
+SIG MPX;53,124;850;30;2.3;22
+Safety Distance;53,124;850;30;2.3;22
+The Apartment;53,124;850;30;2.3;22
+CMMG Banshee;52,779;950;32;2.4;16
+The Grudge;50,303;950;32;2.4;16
+The Chatterbox;42,781;700;50;1.7;15
+Lady Death;41,371;900;32;2.4;16
+Backfire;53,124;850;30;2.3;22
+Ouroboros;40,430;1350;50;1.9;15
+ACR SS;101,828;420;30;2.3;50
+UIC15 MOD2;133,890;240;30;1.9;50
+M16A2;97,737;300;30;2.4;36
+M16A2 R;97,737;300;30;2.4;36
+Whisper;75,219;300;30;2.4;36
+Classic M1A;205,442;180;10;2.7;60
+Baker's Dozen;205,442;180;10;2.7;60
+SOCOM M1A;141,036;320;10;2.7;60
+Stage Left;141,036;320;10;2.7;60
+M1A CQB;156,080;320;10;2.7;60
+M1A CQB R;156,080;320;10;2.7;60
+Lightweight M4;114,333;360;30;2.4;50
+LVOA-C;110,102;380;30;2.4;50
+LVOA-C R;110,102;380;30;2.4;50
+Surge;110,102;380;30;2.4;50
+Urban MDR;107,469;380;20;1.9;28
+Urban MDR R;107,469;380;20;1.9;28
+Military Mk17;145,079;275;20;2.2;50
+Police Mk17;145,079;275;20;2.2;50
+Police Mk17 R;145,079;275;20;2.2;50
+Everlasting Gaze;145,079;275;20;2.2;50
+SIG 716 CQB;124,487;320;20;2.4;60
+SIG 716;122,184;320;20;2.4;60
+SIG 716 R;122,184;320;20;2.4;60
+Artist's Tool;122,184;320;20;2.4;60
+USC .45 ACP;107,892;420;20;2.3;50
+USC .45 ACP R;107,892;420;20;2.3;50
+1886;342,247;100;5;3.4;28
+The Virginian;342,247;100;5;3.4;28
+Resolute MK47;125,710;300;30;2.3;60
+Harmony;125,710;300;30;2.3;60
+Ruthless;84,622;400;30;2.5;50
+Merciless;92,989;400;30;2.5;50
+Diamondback;329,084;100;5;3.4;28
+The Ravenous;134,360;240;60;2.4;50
+Doctor Home;156,080;200;15;2.7;60
+Vindicator;107,469;380;20;1.9;28
+G28;146,677;275;20;2.4;60
+Relic;146,677;275;20;2.4;60
+SOCOM Mk20 SSR;143,857;275;20;2.2;60
+SOCOM Mk20 SSR R;143,857;275;20;2.2;60
+The Darkness;143,857;275;20;2.2;60
+M700 Carbon;439,797;54;7;3.3;50
+M700 Carbon R;439,797;54;7;3.3;50
+Brutus;439,797;54;7;3.3;50
+M700 Tactical;439,797;54;7;3.3;50
+Model 700;499,361;54;7;7.2;50
+Model 700 R;499,361;54;7;7.2;50
+Ekim's Long Stick;499,361;54;7;7.2;50
+Paratrooper SVD;183,723;260;10;2.6;34
+Surplus SVD;183,723;260;10;2.6;34
+Commando;183,723;260;10;2.6;34
+Covert SRS;338,957;60;7;3;42
+SRS A1;440,596;60;7;3;42
+SRS A1 R;440,596;60;7;3;42
+Pinprick;440,596;60;7;3;42
+Classic M44 Carbine;423,108;55;5;4.2;60
+Classic M44 Carbine R;423,108;55;5;4.2;60
+The White Death;423,108;55;5;4.2;60
+Hunting M44;416,056;55;5;4.2;60
+Custom M44;376,096;55;5;3.2;60
+Custom M44 R;376,096;55;5;3.2;60
+SR-1;464,385;60;5;3.2;60
+SR-1 R;464,385;60;5;3.2;60
+Adrestia;464,385;60;5;3.2;60
+Designated Hitter;464,385;60;5;3.2;60
+Tactical .308;324,383;90;7;3.2;50
+Scalpel;324,383;90;7;3.2;50
+Nemesis;940,240;50;5;3.2;60
+Mantis;385,310;60;7;3.2;42
+Dread Edict;183,723;260;10;2.6;34
+Sacrum Imperium;146,677;290;15;2.4;60
+Px4 Storm Type-F;79,920;380;17;1.9;16
+Px4 Storm Type-T;79,920;380;17;1.9;16
+Px4 Storm Type-T R;79,920;380;17;1.9;16
+X-45;76,630;400;10;1.9;16
+X-45 Tactical;76,630;400;15;1.9;16
+X-45 Tactical R;76,630;400;15;1.9;16
+Military M9;81,801;350;15;1.7;16
+Military M9 R;81,801;350;15;1.7;16
+Officer M9 A1;79,920;350;20;1.9;16
+D50;220,956;150;8;1.9;16
+Survivalist D50;220,956;150;8;1.9;16
+M1911;101,076;310;7;1.7;12
+M45A1;98,725;310;7;1.7;12
+Mozambique Special;98,725;310;7;1.9;12
+Tactical M1911;98,725;310;7;1.9;12
+Tactical M1911 R;98,725;310;7;1.9;12
+Maxim 9;98,725;280;17;1.9;16
+First Wave PF45;82,741;370;12;1.7;14
+Custom PF45;79,920;370;15;1.7;14
+Lightning Rod;79,920;370;15;1.7;14
+93R;32,908;1100;20;1.9;16
+Sharpshooter 93R;32,908;1100;20;1.9;16
+Diceros;169,243;180;6;1.8;18
+Diceros R;169,243;180;6;1.8;18
+Snubnosed Diceros;170,183;180;6;1.8;18
+Diceros Special;169,243;180;6;1.8;18
+586 Magnum;190,399;160;6;1.8;18
+Orbit;190,399;160;6;1.8;18
+Police 686 Magnum;190,399;160;6;1.8;18
+Police 686 Magnum R;190,399;160;6;1.8;18
+Prophet;190,399;160;6;1.8;18
+P320 XCompact;79,920;380;15;1.7;16
+KARD-45;109,068;310;7;1.9;12
+"TDI ""Kard"" Custom";109,068;310;7;1.9;12
+Liberty;235,060;150;8;2;16
+Mosquito;81,801;350;15;1.7;16
+Regulus;282,072;160;6;1.8;18
+Busy Little Bee;79,920;400;30;1.7;14

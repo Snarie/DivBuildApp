@@ -23,11 +23,5 @@ namespace DivBuildApp
             ItemType = Lib.GetItemTypeFromElement(grid.ItemBox);
             Index = index;
         }
-        /*public GridEventArgs(GearGridContent grid)
-        {
-            Grid = grid;
-            ItemType = Lib.GetItemTypeFromElement(grid.ItemBox);
-            Index = -1;
-        }*/
     }
 }
