@@ -105,6 +105,7 @@
     <Compile Include="UI\StatTableControl.cs" />
     <Compile Include="UI\StatValueLabelControl.cs" />
     <Compile Include="WeaponEventArgs.cs" />
+    <Compile Include="WeaponHandler.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

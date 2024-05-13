@@ -61,7 +61,7 @@ namespace DivBuildApp
                 new Label[] { SecondaryWeaponStat1_Value, SecondaryWeaponStat2_Value, SecondaryWeaponStat3_Value },
                 new Slider[] { SecondaryWeaponStat1_Slider, SecondaryWeaponStat2_Slider, SecondaryWeaponStat3_Slider },
                 new Image[] { SecondaryWeaponStat1_Icon, SecondaryWeaponStat2_Icon, SecondaryWeaponStat3_Icon },
-                PrimaryWeaponImage
+                SecondaryWeaponImage
             )); WeaponGridLinks.Add("SideArm", new WeaponGridContent(
                 SideArmBox, SideArmName, SideArmArmor,
                 SideArmExpertiece, SideArmType,
@@ -70,7 +70,7 @@ namespace DivBuildApp
                 new Label[] { SideArmStat1_Value, SideArmStat2_Value, SideArmStat3_Value },
                 new Slider[] { SideArmStat1_Slider, SideArmStat2_Slider, SideArmStat3_Slider },
                 new Image[] { SideArmStat1_Icon, SideArmStat2_Icon, SideArmStat3_Icon },
-                PrimaryWeaponImage
+                SideArmImage
             ));
         }
         private void InitializeGearGridLinks()
@@ -89,6 +89,7 @@ namespace DivBuildApp
             //Lib.Initialize(this);
             InitializeOptionsExpertiece();
 
+            WeaponHandler.Initialize();
             GearHandler.Initialize();
             StatTableControl.Initialize(this);
             StatValueLabelControl.Initialize();
@@ -150,16 +151,20 @@ namespace DivBuildApp
         
         private void WeaponType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // if (Initializing) return;
             if (sender is ComboBox comboBox)
             {
-
-                string baseName = GetGridBaseNameFromChild(comboBox);
-                WeaponEventArgs we = new WeaponEventArgs(baseName);
+                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox));
                 ListOptions.OptionsWeaponBox(we);
             }
         }
-
+        private void WeaponBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(sender is ComboBox comboBox)
+            {
+                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox));
+                WeaponHandler.SetEquippedWeapon(we);
+            }
+        }
         private void GlobalExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
@@ -170,7 +175,6 @@ namespace DivBuildApp
                 GlovesExpertiece.SelectedIndex = comboBox.SelectedIndex;
                 HolsterExpertiece.SelectedIndex = comboBox.SelectedIndex;
                 KneepadsExpertiece.SelectedIndex = comboBox.SelectedIndex;
-
             }
         }
         private void ExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -178,9 +182,7 @@ namespace DivBuildApp
             if (sender is ComboBox comboBox)
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), -1);
-
                 Task.Run(() => ItemArmorControl.SetItemArmorAsync(ge));
-                //ItemArmorControl.SetItemArmor(ge);
             }
         }
 
@@ -190,7 +192,6 @@ namespace DivBuildApp
             if(sender is Slider slider)
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(slider), index);
-
                 StatValueLabelControl.SetValueAsync(ge);
             }
         }
@@ -220,8 +221,6 @@ namespace DivBuildApp
             if (sender is ComboBox comboBox)
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), index);
-
-                // async task
                 StatSliderControl.SetRangeAsync(ge);
             }
         }
@@ -248,11 +247,7 @@ namespace DivBuildApp
             if(sender is ComboBox comboBox)
             {
                 GridEventArgs ge = new GridEventArgs(GetGridContentFromElement(comboBox), -1);
-
-
-                // async task
                 GearHandler.SetEquippedGearListAsync(ge);
-                //GearHandler.SetEquippedGearList(ge);
             }
         }
         
@@ -294,5 +289,6 @@ namespace DivBuildApp
             return regex.IsMatch(text);
         }
 
+        
     }
 }

@@ -22,9 +22,9 @@ namespace DivBuildApp
         public Label[] StatValues { get; set; }
         public Slider[] StatSliders { get; set; }
         public Image[] StatIcons { get; set; }
-        public Image BrandImage { get; set; }
+        public Image Image { get; set; }
 
-        public WeaponGridContent(ComboBox box, Label name, Label armor, ComboBox expertiece, ComboBox weaponType, ComboBox opticalRail, ComboBox magazine, ComboBox underbarrel, ComboBox muzzle, ComboBox[] statBoxes, Label[] statValues, Slider[] statSliders, Image[] statIcons, Image brandImage)
+        public WeaponGridContent(ComboBox box, Label name, Label armor, ComboBox expertiece, ComboBox weaponType, ComboBox opticalRail, ComboBox magazine, ComboBox underbarrel, ComboBox muzzle, ComboBox[] statBoxes, Label[] statValues, Slider[] statSliders, Image[] statIcons, Image image)
         {
             Box = box;
             Name = name;
@@ -39,7 +39,7 @@ namespace DivBuildApp
             StatValues = statValues;
             StatSliders = statSliders;
             StatIcons = statIcons;
-            BrandImage = brandImage;
+            Image = image;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DivBuildApp.Data.CsvFormats;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,17 +18,20 @@ namespace DivBuildApp.UI
         {
             GearHandler.GearSet += HandleGearSet;
             StatValueLabelControl.ValueSet += HandleValueSet;
+            WeaponHandler.WeaponSet += HandleWeaponSet;
             //Creates the eventHandlers
         }
         private static void HandleGearSet(object sender, GridEventArgs e)
         {
             Task.Run(() => SetBrandImage(e));
-            Task.Run(() => Logger.LogEvent("IconControl <= GearHandler.GearSet"));
         }
         private static void HandleValueSet(object sender, GridEventArgs e)
         {
             Task.Run(() => SetStatIcon(e));
-            Task.Run(() => Logger.LogEvent("IconControl <= StatValueLabelControl.ValueSet"));
+        }
+        private static void HandleWeaponSet(object sender, WeaponEventArgs e)
+        {
+            Task.Run(() => SetWeaponImage(e));
         }
         private static bool ResourceExists(string resourcePath)
         {
@@ -42,6 +46,32 @@ namespace DivBuildApp.UI
                 Task.Run(() => Logger.LogError($"{resourcePath} is not a recognized ResourceStream"));
                 return false; // Resource not found
             }
+        }
+        public static async Task SetWeaponImage(WeaponEventArgs e)
+        {
+            Image imageControl = e.Grid.Image;
+
+            object selectedItem = null;
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                selectedItem = e.Grid.Box.SelectedItem;
+            });
+            string resourcePath = $"pack://application:,,,/Images/BrandDefault.png";
+            if(selectedItem is WeaponListFormat weapon)
+            {
+                string imageName = weapon.Rarity+"_"+weapon.Type;
+
+                string newPath = $"pack://application:,,,/Images/Weapon Type Icons/{imageName}.png";
+                if (ResourceExists(newPath))
+                {
+                    resourcePath = newPath;
+                }
+            }
+
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                imageControl.Source = new BitmapImage(new Uri(resourcePath));
+            });
         }
         public static async Task SetBrandImage(GridEventArgs e)
         {

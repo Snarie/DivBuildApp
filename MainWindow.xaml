@@ -55,7 +55,7 @@
                 <Label x:Name="PrimaryWeaponName" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
                 <Label x:Name="PrimaryWeaponArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
 
-                <ComboBox x:Name="PrimaryWeaponBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxWeaponStyle}"/>
+                <ComboBox x:Name="PrimaryWeaponBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxWeaponStyle}" SelectionChanged="WeaponBox_SelectionChanged"/>
                 <ComboBox x:Name="PrimaryWeaponExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0"/>
                 <ComboBox x:Name="PrimaryWeaponType" Grid.Row="0" Grid.Column="1"  SelectedIndex="0" SelectionChanged="WeaponType_SelectionChanged" />
                 
@@ -106,7 +106,7 @@
                 <Label x:Name="SecondaryWeaponName" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
                 <Label x:Name="SecondaryWeaponArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
 
-                <ComboBox x:Name="SecondaryWeaponBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxWeaponStyle}"/>
+                <ComboBox x:Name="SecondaryWeaponBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxWeaponStyle}" SelectionChanged="WeaponBox_SelectionChanged"/>
                 <ComboBox x:Name="SecondaryWeaponExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0"/>
                 <ComboBox x:Name="SecondaryWeaponType" Grid.Row="0" Grid.Column="1"  SelectedIndex="0" SelectionChanged="WeaponType_SelectionChanged" />
 
@@ -157,7 +157,7 @@
                 <Label x:Name="SideArmName" Style="{StaticResource BrandNameStyle}" Grid.ColumnSpan="2"/>
                 <Label x:Name="SideArmArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
 
-                <ComboBox x:Name="SideArmBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxWeaponStyle}"/>
+                <ComboBox x:Name="SideArmBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxWeaponStyle}" SelectionChanged="WeaponBox_SelectionChanged"/>
                 <ComboBox x:Name="SideArmExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0"/>
                 <ComboBox x:Name="SideArmType" Grid.Row="0" Grid.Column="1"  SelectedIndex="0" SelectionChanged="WeaponType_SelectionChanged" />
 
