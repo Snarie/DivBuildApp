@@ -448,7 +448,21 @@
             <Setter Property="VerticalContentAlignment" Value="Bottom"/>
             <Setter Property="FontSize" Value="18"/>
         </Style>
-        
+
+        <Style TargetType="Label" x:Key="SmallTopLabelStyle">
+            <Setter Property="Foreground" Value="CornSilk"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,-2,0,0"/>
+        </Style>
+        <Style TargetType="Label" x:Key="LargeValueStyle">
+            <Setter Property="Foreground" Value="Goldenrod"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Margin" Value="0,0,0,-2"/>
+        </Style>
         <Style TargetType="Label" x:Key="ItemArmorStyle">
             <Setter Property="Foreground" Value="Cornsilk"/>
             <Setter Property="FontWeight" Value="DemiBold"/>

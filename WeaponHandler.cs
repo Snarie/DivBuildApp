@@ -23,6 +23,8 @@ namespace DivBuildApp
             {
                 WeaponStatsFormat wsf = WeaponStats.GetWeaponStats(wlf.Name);
                 e.Grid.Damage.Content = wsf.Damage;
+                e.Grid.RPM.Content = wsf.RPM;
+                e.Grid.MagazineSize.Content = wsf.MagazineSize;
             }
             WeaponSet?.Invoke(null, e);
         }
