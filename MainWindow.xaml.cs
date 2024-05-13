@@ -10,7 +10,8 @@ using DivBuildApp.UI;
 using DivBuildApp.BonusControl;
 using DivBuildApp.Data.Tables;
 using DivBuildApp.Data.CsvFormats;
-using DivBuildApp.Classes;
+using System.Text;
+//using DivBuildApp.Classes;
 //using static DivBuildApp.ItemHandler;
 //using static DivBuildApp.BonusHandler;
 
@@ -21,19 +22,56 @@ namespace DivBuildApp
     {
 
         public static bool Initializing;
+        public static bool InitializeComp;
         public MainWindow()
         {
             Initializing = true;
+            InitializeComp = true;
+
             // Order is important !!!!
             InitializeComponent();
             AdjustWindowSizeToScreen();
 
             InitializeGearGridLinks();
+            InitializeWeaponGridLinks();
+            InitializeComp = false;
+
             Initializer();
 
 
             Initializing = false;
 
+        }
+        private void InitializeWeaponGridLinks()
+        {
+            WeaponGridLinks.Add("PrimaryWeapon", new WeaponGridContent(
+                PrimaryWeaponBox, PrimaryWeaponName, PrimaryWeaponArmor,
+                PrimaryWeaponExpertiece, PrimaryWeaponType,
+                PrimaryWeaponOpticalRail, PrimaryWeaponMagazine, PrimaryWeaponUnderbarrel, PrimaryWeaponMuzzle,
+                new ComboBox[] { PrimaryWeaponStat1, PrimaryWeaponStat2, PrimaryWeaponStat3 },
+                new Label[] { PrimaryWeaponStat1_Value, PrimaryWeaponStat2_Value, PrimaryWeaponStat3_Value},
+                new Slider[] { PrimaryWeaponStat1_Slider, PrimaryWeaponStat2_Slider, PrimaryWeaponStat3_Slider},
+                new Image[] { PrimaryWeaponStat1_Icon, PrimaryWeaponStat2_Icon, PrimaryWeaponStat3_Icon},
+                PrimaryWeaponImage
+            )); WeaponGridLinks.Add("SecondaryWeapon", new WeaponGridContent(
+                SecondaryWeaponBox, SecondaryWeaponName, SecondaryWeaponArmor,
+                SecondaryWeaponExpertiece, SecondaryWeaponType,
+                SecondaryWeaponOpticalRail, SecondaryWeaponMagazine, SecondaryWeaponUnderbarrel, SecondaryWeaponMuzzle,
+                new ComboBox[] { SecondaryWeaponStat1, SecondaryWeaponStat2, SecondaryWeaponStat3 },
+                new Label[] { SecondaryWeaponStat1_Value, SecondaryWeaponStat2_Value, SecondaryWeaponStat3_Value },
+                new Slider[] { SecondaryWeaponStat1_Slider, SecondaryWeaponStat2_Slider, SecondaryWeaponStat3_Slider },
+                new Image[] { SecondaryWeaponStat1_Icon, SecondaryWeaponStat2_Icon, SecondaryWeaponStat3_Icon },
+                PrimaryWeaponImage
+            )); WeaponGridLinks.Add("SideArm", new WeaponGridContent(
+                SideArmBox, SideArmName, SideArmArmor,
+                SideArmExpertiece, SideArmType,
+                SideArmOpticalRail, SideArmMagazine, SideArmUnderbarrel, SideArmMuzzle,
+                new ComboBox[] { SideArmStat1, SideArmStat2, SideArmStat3 },
+                new Label[] { SideArmStat1_Value, SideArmStat2_Value, SideArmStat3_Value },
+                new Slider[] { SideArmStat1_Slider, SideArmStat2_Slider, SideArmStat3_Slider },
+                new Image[] { SideArmStat1_Icon, SideArmStat2_Icon, SideArmStat3_Icon },
+                PrimaryWeaponImage
+            ));
         }
         private void InitializeGearGridLinks()
         {
@@ -48,6 +86,7 @@ namespace DivBuildApp
         {
             //Stays private
             ItemArmorControl.Initialize();
+            //Lib.Initialize(this);
             InitializeOptionsExpertiece();
 
             GearHandler.Initialize();
@@ -67,6 +106,7 @@ namespace DivBuildApp
 
 
             InitializeWeaponTypeBox();
+
             //ListOptions.OptionsWeaponBox(WeaponType.SMG, PrimaryWeaponBox, SecondaryWeaponBox);
             ListOptions.OptionsGearBox(ItemHandler.AllItemList);
         }
@@ -90,6 +130,7 @@ namespace DivBuildApp
                 PrimaryWeaponType.Items.Add(weaponType);
                 SecondaryWeaponType.Items.Add(weaponType);
             }
+            SideArmType.Items.Add(WeaponType.Pistol);
         }
         private void AdjustWindowSizeToScreen()
         {
@@ -109,16 +150,13 @@ namespace DivBuildApp
         
         private void WeaponType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(sender is ComboBox comboBox)
+            // if (Initializing) return;
+            if (sender is ComboBox comboBox)
             {
-                if(comboBox.SelectedItem is WeaponType weaponType)
-                {
-                    ListOptions.OptionsWeaponBox(weaponType, PrimaryWeaponBox, SecondaryWeaponBox);
-                }
-                else
-                {
-                    Console.WriteLine("Not a weaponType");
-                }
+
+                string baseName = GetGridBaseNameFromChild(comboBox);
+                WeaponEventArgs we = new WeaponEventArgs(baseName);
+                ListOptions.OptionsWeaponBox(we);
             }
         }
 

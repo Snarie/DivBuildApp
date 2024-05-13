@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using DivBuildApp.BonusControl;
 using DivBuildApp.Data.CsvFormats;
-using DivBuildApp.Classes;
+//using DivBuildApp.Classes;
 using DivBuildApp.Data.Tables;
 
 namespace DivBuildApp
@@ -171,15 +171,16 @@ namespace DivBuildApp
             
         }
 
-        public static void OptionsWeaponBox(WeaponType weaponType, ComboBox primaryWeapon, ComboBox secondaryWeapon)
+        public static void OptionsWeaponBox(WeaponEventArgs e)
         {
-            List<WeaponListFormat> weapons = WeaponList.TypeList[weaponType];
-            primaryWeapon.Items.Clear();
-            secondaryWeapon.Items.Clear();
-            foreach(WeaponListFormat weapon in weapons)
+            if(e.Grid.WeaponType.SelectedItem is WeaponType weaponType)
             {
-                primaryWeapon.Items.Add(weapon);
-                secondaryWeapon.Items.Add(weapon);
+                List<WeaponListFormat> weapons = WeaponList.TypeList[weaponType];
+                e.Grid.Box.Items.Clear();
+                foreach (WeaponListFormat weapon in weapons)
+                {
+                    e.Grid.Box.Items.Add(weapon);
+                }
             }
         }
     }

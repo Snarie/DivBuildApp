@@ -16,6 +16,7 @@ namespace DivBuildApp
         
         public static Dictionary<ItemType, GearGridContent> GearGridLinks = new Dictionary<ItemType, GearGridContent>();
 
+        public static Dictionary<string, WeaponGridContent> WeaponGridLinks = new Dictionary<string, WeaponGridContent>();
         
 
         public static void CreateGearGridLink(Grid grid)
@@ -76,7 +77,11 @@ namespace DivBuildApp
             }
         }
 
-
+        public static bool WeaponGridExists(string slot, out WeaponGridContent grid)
+        {
+            bool exists = WeaponGridLinks.TryGetValue(slot, out grid);
+            return exists;
+        }
         /// <summary>
         /// Gets the <see cref="GearGridContent"/> associated with the <paramref name="itemType"/>
         /// </summary>
@@ -88,7 +93,10 @@ namespace DivBuildApp
             return exists;
         }
 
-
+        public static WeaponGridContent GetWeaponGridContent(string slot)
+        {
+            return WeaponGridExists(slot, out WeaponGridContent grid) ? grid : null;
+        }
         public static GearGridContent GetGridContent(ItemType itemType)
         {
             return GridExists(itemType, out GearGridContent grid) ? grid : null;
@@ -308,12 +316,21 @@ namespace DivBuildApp
             return (ItemType)Enum.Parse(typeof(ItemType), GetPrefixFromElement(element));
         }
 
-
         public static GearGridContent GetGridContentFromElement(FrameworkElement element)
         {
             return GetGridContent(GetItemTypeFromElement(element));
         }
-
+        public static string GetGridBaseNameFromChild(FrameworkElement element)
+        {
+            Grid grid = element.Parent as Grid;
+            return grid.Name.Replace("Grid", "");
+        }
+        public static WeaponGridContent GetWeaponGridFromElement(FrameworkElement element)
+        {
+            Grid grid = element.Parent as Grid;
+            string baseName = grid.Name.Replace("Grid", "");
+            return GetWeaponGridContent(baseName);
+        }
         /// <summary>
         /// Returns the first immediate <see cref="FrameworkElement"/> child of specified <paramref name="startElement"/> where the name equals <paramref name="targetName"/>
         /// </summary>

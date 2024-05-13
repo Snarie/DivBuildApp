@@ -83,6 +83,7 @@
     </ApplicationDefinition>
     <Compile Include="BonusControl\ActiveBonuses.cs" />
     <Compile Include="Classes\WeaponCore.cs" />
+    <Compile Include="Classes\WeaponGridContent.cs" />
     <Compile Include="Data\CsvFormats\WeaponListFormat.cs" />
     <Compile Include="Data\CsvFormats\WeaponStatsFormat.cs" />
     <Compile Include="Data\Tables\BonusCaps.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="UI\ItemArmorControl.cs" />
     <Compile Include="UI\StatTableControl.cs" />
     <Compile Include="UI\StatValueLabelControl.cs" />
+    <Compile Include="WeaponEventArgs.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

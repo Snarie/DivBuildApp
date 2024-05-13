@@ -64,7 +64,6 @@ namespace DivBuildApp.BonusControl
                 brandSetBonuses.Clear();
                 Dictionary<string, int> brandLevels = new Dictionary<string, int>();
                 Dictionary<ItemType, Gear> localEquippedDict = GearHandler.equippedItemDict;
-
                 // First pass: Collect brand levels
                 foreach (Gear equippedItem in localEquippedDict.Values)
                 {
@@ -78,11 +77,21 @@ namespace DivBuildApp.BonusControl
                         brandLevels.Add(brandName, 1);
                     }
                 }
+                Console.WriteLine(localEquippedDict.Values);
 
                 // Apply brand set bonuses
                 foreach(KeyValuePair<string, int> kvp in brandLevels)
                 {
-                    foreach(Bonus bonus in BrandSets.GetBrandBonus(kvp.Key, kvp.Value))
+                    List<Bonus> bonuses = new List<Bonus>();
+                    for(int i = 1; i <= kvp.Value; i++)
+                    {
+                        List<Bonus> brandBonus = BrandSets.GetBrandBonus(kvp.Key, i);
+                        foreach(Bonus bonus in brandBonus)
+                        {
+                            bonuses.Add(bonus);
+                        }
+                    }
+                    foreach(Bonus bonus in bonuses)
                     {
                         brandSetBonuses.Add(new BonusSource("Brand Set", new Bonus(bonus.BonusType, bonus.Value)));
                     }

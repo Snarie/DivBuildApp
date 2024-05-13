@@ -52,6 +52,7 @@ namespace DivBuildApp.Data.Tables
             return equipBonuses;
 
         }
+        
         public static List<Bonus> GetBrandBonus(string brandName, int pieceNumber)
         {
             bool keyExists = SetBonuses.TryGetValue(brandName, out List<EquipBonus> equipBonuses);

@@ -1,277 +1,277 @@
-name;varient;type;rarity;damage;rpm;magazineSize;reloadSpeed;optimalRange;opticalRail;magazine;underbarrel;muzzle
-ACR;ACR;AR;High-End;59,329;650;30;2.3;27;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-ACR-E;ACR;AR;High-End;59,329;650;30;2.3;27;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-F2000;F2000;AR;High-End;45,132;900;40;2.1;27;Iron Sight / Long / Short;5.56;;5.56
-F2000 R;F2000;AR;High-End;45,132;900;40;2.1;27;Iron Sight / Long / Short;5.56;;5.56
-Shield Splinterer;F2000;AR;Named;45,132;900;40;2.1;27;Iron Sight / Long / Short;5.56;;5.56
-AUG A3-CQC;AUG;AR;High-End;56,367;680;30;2.1;27;Iron Sight / Long / Short;5.56;Side / Short;5.56
-Invisible Hand;AUG;AR;Named;51,243;680;30;2.1;27;Iron Sight / Long / Short;5.56;Side / Short;5.56
-AK-M;AK-47;AR;High-End;67,227;600;30;2.5;31;Long / Short;7.62;Side / Short;
-Military AK-M;AK-47;AR;High-End;65,676;600;30;2.5;31;Long / Short;7.62;Side / Long / Short;7.62
-Black Market AK-M;AK-47;AR;High-End;65,676;600;30;2.5;31;Long / Short;7.62;Side / Long / Short;7.62
-Black Market AK-M R;AK-47;AR;High-End;65,676;600;30;2.5;31;Long / Short;7.62;Side / Long / Short;7.62
-Manic;AK-47;AR;Named;60,645;600;30;2.5;31;Long / Short;7.62;Side / Long / Short;7.62
-FAL;FAL;AR;High-End;59,705;650;20;2.3;32;Long / Short;7.62;Side / Long / Short;7.62
-FAL SA-58;FAL;AR;High-End;59,705;650;20;2.3;32;Long / Short;7.62;Side / Long / Short;7.62
-FAL SA-58 Para;FAL;AR;High-End;59,705;650;20;2.3;32;Long / Short;7.62;Side / Long / Short;7.62
-FAL SA-58 Para R;FAL;AR;High-End;59,705;650;20;2.3;32;Long / Short;7.62;Side / Long / Short;7.62
-FAMAS 2010;FAMAS;AR;High-End;44,191;900;30;2.2;28;Long / Short;5.56;Side / Short;5.56
-FAMAS 2010 R;FAMAS;AR;High-End;44,191;900;30;2.2;28;Long / Short;5.56;Side / Short;5.56
-Burnout;FAMAS;AR;Named;44,191;900;30;2.2;28;Long / Short;5.56;Side / Short;5.56
-Military G36;G36;AR;High-End;48,892;800;30;2.3;32;Long / Short;5.56;Side / Long / Short;5.56
-Born Great;G36;AR;Named;48,892;800;30;2.3;32;Long / Short;5.56;Side / Long / Short;5.56
-G36 C;G36;AR;High-End;48,892;800;30;2.3;32;Long / Short;5.56;Side / Short;5.56
-G36 Enhanced;G36;AR;High-End;48,892;800;30;2.3;32;Long / Short;5.56;Side / Long / Short;5.56
-G36 Enhanced R;G36;AR;High-End;48,892;800;30;2.3;32;Long / Short;5.56;Side / Long / Short;5.56
-Police M4;M4;AR;High-End;44,191;850;30;2.4;35;Long / Short;5.56;Side / Long / Short;5.56
-Police M4 R;M4;AR;High-End;44,191;850;30;2.4;35;Long / Short;5.56;Side / Long / Short;5.56
-Pyromaniac;M4;AR;Named;44,191;850;30;2.4;35;Long / Short;5.56;Side / Long / Short;5.56
-Carbine 7;Carbine 7;AR;High-End;47,012;790;30;2.4;35;Long / Short;5.56;Side / Long / Short;5.56
-Honey Badger;Honey Badger;AR;High-End;47,952;790;35;2.4;35;Long / Short;5.56;Side / Long / Short;
-Savage Wolverine;Honey Badger;AR;Named;47,952;790;35;2.4;35;Long / Short;5.56;Side / Long / Short;
-Military P416;P416;AR;High-End;47,952;800;30;2.3;26;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-Custom P416 G3;P416;AR;High-End;47,952;800;30;2.3;26;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-Glory Daze;P416;AR;Named;47,952;800;30;2.3;26;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-Mk16;SCAR;AR;High-End;60,457;625;30;2.3;35;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-SOCOM Mk16;SCAR;AR;High-End;60,457;625;30;2.3;35;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-Tactical Mk16;SCAR;AR;High-End;60,457;625;30;2.3;35;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-Tactical Mk16 R;SCAR;AR;High-End;60,457;625;30;2.3;35;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-CTAR-21;TAR-21;AR;High-End;41,371;900;40;2.1;35;Micro / Short;5.56;Side;5.56
-The Railsplitter;TAR-21;AR;Named;41,371;900;40;2.1;35;Micro / Short;5.56;Side;5.56
-SIG 556;SIG Sauer 556;AR;High-End;50,773;720;30;2.5;35;Long / Short;5.56;Side / Short;5.56
-Mechanical Animal;SIG Sauer 556;AR;Named;50,773;720;30;2.5;35;Long / Short;5.56;Side / Short;5.56
-PDR;PDR;AR;High-End;56,845;700;30;2.2;28;Micro / Short;5.56;;5.56
-Test Subject;PDR;AR;Named;51,713;700;30;2.2;28;Micro / Short;5.56;;5.56
-TKB-408;TKB-408;AR;High-End;58,765;650;30;2.4;31;Long / Short;7.62;Side / Long / Short;7.62
-Kingbreaker;TKB-408;AR;Named;58,765;650;30;2.4;31;Long / Short;7.62;Side / Long / Short;7.62
-Eagle Bearer;P416;AR;Exotic;51,713;800;30;2.5;35;Eagle Eye Sight;Bullet Eyrie;Talon Grip;Jagged Beak
-Chameleon;Vector;AR;Exotic;39,960;900;30;2.4;20;Chameleon Optics;Chameleon ActivCamo Processor;Chameleon Grip;Chameleon Dampener
-Capacitor;PDR;AR;Exotic;56,885;700;30;2.2;28;Conductive Focal;Voltage Generator;Dielectric Safety Grip;Discharge Electrode
-The Bighorn;AUG;AR;Exotic;56,367;800;40;2.1;27;Fire Select Scope;Tension Spring Magazine;Bighorn Horn Grip;Carbon Steel Muzzle
-St. Elmo’s Engine;M4;AR;Exotic;44,191;850;40;2.4;35;St. Elmo’s Engine Optic;St. Elmo’s Engine Magazine;St. Elmo’s Engine Grip;St. Elmo’s Engine Muzzle
-MG5;MG5;LMG;High-End;53,546;800;50;5.6;30;Long / Short;Ammunition Belt;Side / Short;
-Infantry MG5;MG5;LMG;High-End;51,854;800;50;5.6;30;Long / Short;Ammunition Belt;Side / Short;7.62
-Infantry MG5 R;MG5;LMG;High-End;51,854;800;50;5.6;30;Long / Short;Ammunition Belt;Side / Short;7.62
-Big Show;MG5;LMG;Named;53,546;800;50;5.6;30;Long / Short;Ammunition Belt;Side / Short;
-Sleipnir;MG5;LMG;Named;53,546;800;50;5.6;30;Long / Short;Ammunition Belt;Side / Short;
-Stoner LAMG;KAC;LMG;High-End;57,495;580;200;4.7;40;Long / Short;Ammunition Belt;Side / Short;QDC Sound Suppressor
-Quiet Roar;KAC;LMG;Named;47,952;580;200;4.7;40;Long / Short;Ammunition Belt;Side / Short;QDC Sound Suppressor
-M249 B;M249;LMG;High-End;67,697;550;100;5.6;35;Long / Short;Ammunition Belt;Side / Long / Short;5.56
-Tactical M249 Para;M249;LMG;High-End;67,697;550;100;5.6;35;Long / Short;Ammunition Belt;Side / Long / Short;5.56
-Military Mk46;M249;LMG;High-End;67,697;550;100;5.6;35;Long / Short;Ammunition Belt;Side / Long / Short;5.56
-Military Mk46 R;M249;LMG;High-End;67,697;550;100;5.6;35;Long / Short;Ammunition Belt;Side / Long / Short;5.56
-October Fifth - M249 B;M249;LMG;High-End;67,697;550;100;5.6;35;Long / Short;Ammunition Belt;Side / Long / Short;5.56
-Black Friday;M249;LMG;Named;56,414;550;100;5.6;35;Long / Short;Ammunition Belt;Side / Long / Short;5.56
-The Stinger;M249;LMG;Named;56,414;550;100;5.6;35;Long / Short;Ammunition Belt;Side / Long / Short;5.56
-Classic M60;M60;LMG;High-End;76,159;500;100;5.8;40;Long / Short;Ammunition Belt;Side / Long / Short;
-Military M60 E4;M60;LMG;High-End;73,338;500;100;5.8;40;Long / Short;Ammunition Belt;Side / Long / Short;7.62
-Black Market M60 E6;M60;LMG;High-End;73,338;500;100;5.8;40;Long / Short;Ammunition Belt;Side / Long / Short;7.62
-Classic M60 R;M60;LMG;High-End;76,159;500;100;5.8;40;Long / Short;Ammunition Belt;Side / Long / Short;
-Black Market M60 E6 R;M60;LMG;High-End;73,338;500;100;5.8;40;Long / Short;Ammunition Belt;Side / Long / Short;7.62
-Good Times;M60;LMG;Named;73,338;500;100;5.8;40;Long / Short;Ammunition Belt;Side / Long / Short;7.62
-Classic RPK-74;RPK-74;LMG;High-End;66,521;650;45;3;28;Long / Short;7.62;Side / Long / Short;7.62
-Military RPK-74 M;RPK-74;LMG;High-End;66,521;650;45;3;28;Long / Short;7.62;Side / Long / Short;7.62
-Black Market RPK-74 E;RPK-74;LMG;High-End;66,521;650;45;3;28;Micro / Long / Short;7.62;Side / Long / Short;7.62
-Black Market RPK-74 R;RPK-74;LMG;High-End;66,521;650;45;3;28;Long / Short;7.62;Side / Long / Short;7.62
-New Reliable;RPK-74;LMG;Named;66,521;650;45;3;28;Long / Short;7.62;Side / Long / Short;7.62
-Military L86 LSW;L86;LMG;High-End;71,646;610;30;3;32;Long / Short;5.56;Side / Short;5.56
-Custom L86 A2;L86;LMG;High-End;71,646;610;30;3;32;Long / Short;5.56;Side / Long / Short;5.56
-Custom L86 A2 R;L86;LMG;High-End;71,646;610;30;3;32;Long / Short;5.56;Side / Long / Short;5.56
-Tabula Rasa;L86;LMG;Named;71,646;610;30;3;32;Long / Short;5.56;Side / Short;5.56
-IWI NEGEV;NEGEV;LMG;High-End;45,084;850;100;5.8;40;Micro / Short;Ammunition Belt;Side / Long / Short;7.62
-Carnage;NEGEV;LMG;Named;45,084;850;100;5.8;40;Micro / Short;Ammunition Belt;Side / Long / Short;7.62
-GR9;HK GR9;LMG;High-End;47,905;750;200;4.6;30;Built-in scope (8x);Ammunition Belt;Side / Short;7.62
-Dare;HK GR9;LMG;Named;47,905;750;200;4.6;30;Built-in scope (8x);Ammunition Belt;Side / Short;7.62
-Pestilence;M249;LMG;Exotic;47,012;550;100;5.6;35;;Plagued Magazine;Caution Tape;Plagued Muzzle
-Bullet King;NEGEV;LMG;Exotic;45,084;850;100;0;40;;Mag of Holding;Solid Gold Bipod;Gold Plated Muzzle
-Bluescreen;KAC;LMG;Exotic;62,008;660;100;4.7;40;Lightning Sight;Deauthentication Frame;Dropkick Grip;Overclock Muzzle
-Iron Lung;MG5;LMG;Exotic;59,094;800;50;5.1;30;Dragon Horns;Bellows;Scales;
-ACS-12;AA-12;Shotgun;High-End;169,243;300;20;2.3;14;Micro / Short;;Side / Long / Short;
-Rock 'n' Roll;AA-12;Shotgun;Named;169,243;300;20;2.3;14;Micro / Short;;Side / Long / Short;
-Lefty;AA-12;Shotgun;Named;169,243;300;20;2.3;14;Micro / Short;;Side / Long / Short;
-Black Market SASG-12 S;SASG-12;Shotgun;High-End;364,812;180;7;2.7;14;Long / Short;;Side / Long / Short;
-Black Market SASG-12 S R;SASG-12;Shotgun;High-End;364,812;180;7;2.7;14;Long / Short;;Side / Long / Short;
-SASG-12;SASG-12;Shotgun;High-End;364,812;180;7;2.7;14;Micro / Short;;Side / Long / Short;
-Tactical SASG-12 K;SASG-12;Shotgun;High-End;364,812;180;7;2.7;14;Micro / Short;;Side / Long / Short;
-Tsunami;SASG-12;Shotgun;Named;364,812;180;7;2.7;14;Micro / Short;;Side / Long / Short;
-Marine Super 90;Super 90;Shotgun;High-End;440,032;160;8;4.8;16;Long / Short;Tubular;Side / Long / Short;
-Super 90;Super 90;Shotgun;High-End;440,032;160;8;4.8;16;Long / Short;Tubular;Side / Long / Short;
-Super 90 R;Super 90;Shotgun;High-End;440,032;160;8;4.8;16;Long / Short;Tubular;Side / Long / Short;
-Tactical Super 90 SBS;Super 90;Shotgun;High-End;440,032;160;8;4.8;16;Long / Short;Tubular;Side / Long / Short;
-Tactical Super 90 SBS R;Super 90;Shotgun;High-End;440,032;160;8;4.8;16;Long / Short;Tubular;Side / Long / Short;
-Enforcer;Super 90;Shotgun;Named;440,032;160;8;4.8;16;Micro / Short;Tubular;Side / Long / Short;
-Double Barrel Sawed Off;Double Barrel;Shotgun;High-End;620,556;200;2;2.2;11;;;;
-Backup Boomstick;Double Barrel;Shotgun;Named;620,556;200;2;2.2;11;;;;
-Firestarter;Double Barrel;Shotgun;Named;620,556;200;2;2.2;11;;;;
-Double Barrel Shotgun;Double Barrel;Shotgun;High-End;620,556;200;2;2.2;11;;;;
-Double Barrel Shotgun R;Double Barrel;Shotgun;High-End;620,556;200;2;2.2;11;;;;
-Boomstick;Double Barrel;Shotgun;Named;620,556;200;2;2.2;11;;;;
-KSG Shotgun;KSG;Shotgun;High-End;594,228;70;12;8.1;16;Micro / Short;Tubular;Side / Long / Short;
-The Send-Off;KSG;Shotgun;Named;594,228;70;12;8.1;16;Micro / Short;Tubular;Side / Long / Short;
-Custom M870 MCS;M870;Shotgun;High-End;695,776;75;5;3.7;14;Long / Short;Tubular;Side / Long / Short;
-Custom M870 MCS R;M870;Shotgun;High-End;695,776;75;5;3.7;14;Long / Short;Tubular;Side / Long / Short;
-M870 Express;M870;Shotgun;High-End;695,775;75;5;3.7;14;Long / Short;Tubular;Side / Long / Short;
-M870 Express R;M870;Shotgun;High-End;695,775;75;5;3.7;14;Long / Short;Tubular;Side / Long / Short;
-Military M870;M870;Shotgun;High-End;695,775;75;5;3.7;14;Micro / Short;Tubular;Side / Long / Short;
-Cuélebre;M870;Shotgun;Named;695,775;75;5;3.7;14;Micro / Short;Tubular;Side / Long / Short;
-SPAS-12;SPAS-12;Shotgun;High-End;646,884;70;8;5.4;16;;Tubular;;
-SPAS-12 R;SPAS-12;Shotgun;High-End;646,884;70;8;5.4;16;;Tubular;;
-SIX-12;SIX12;Shotgun;High-End;451,321;130;7;1.8;16;Micro / Short;Tubular;Side / Long / Short;
-The Mop;SIX12;Shotgun;Named;451,321;130;7;1.8;16;Micro / Short;Tubular;Side / Long / Short;
-Lullaby;SPAS-12;Shotgun;Exotic;646,884;70;8;5.4;13;Damaged Optics;Modified Feed System;Hardened Grip;
-Sweet Dreams;SPAS-12;Shotgun;Exotic;646,884;70;8;5.4;13;Outcast Optics;Modified Feed System;Stunner;
-Scorpio;SIX12;Shotgun;Exotic;451,321;130;7;1.8;16;Starlight Receptors;Venom Glands;Chaelae Grip;Aculeus
-Converted SMG-9;SMG-9;SMG;High-End;51,713;875;30;2;20;Micro / Short;9mm;;9mm
-Converted SMG-9 R;SMG-9;SMG;High-End;51,713;875;30;2;20;Micro / Short;9mm;;9mm
-Converted SMG-9 A2;SMG-9;SMG;High-End;49,833;875;30;2;20;Micro / Short;9mm;Side / Short;9mm
-MP5A2;MP5;SMG;High-End;51,713;800;36;2.1;16;Long / Short;9mm;Side / Short;9mm
-MP5-N;MP5;SMG;High-End;51,713;800;36;2.1;16;Micro / Short;9mm;Side / Long / Short;9mm
-MP5 ST;MP5;SMG;High-End;51,713;800;36;2.1;16;Iron Sight / Long / Short;9mm;Side / Long / Short;9mm
-MP5 ST R;MP5;SMG;High-End;51,713;800;36;2.1;16;Iron Sight / Long / Short;9mm;Side / Long / Short;9mm
-Cabaret;MP5;SMG;Named;51,713;800;36;2.1;16;Iron Sight / Long / Short;9mm;Side / Long / Short;9mm
-PP-19;PP-19;SMG;High-End;59,705;700;53;2.5;16;Long / Short;;;9mm
-Enhanced PP-19;PP-19;SMG;High-End;59,705;700;53;2.5;16;Long / Short;;;9mm
-Cold Relations;PP-19;SMG;Named;59,705;700;53;2.5;16;Long / Short;;;9mm
-AUG A3 Para XS;AUG;SMG;High-End;63,560;750;25;2.1;18;Iron Sight / Long / Short;9mm;Side / Long / Short;9mm
-Enhanced AUG A3P;AUG;SMG;High-End;63,560;750;25;2.1;18;Iron Sight / Long / Short;9mm;Side / Long / Short;9mm
-Tactical AUG A3P;AUG;SMG;High-End;63,560;750;25;2.1;18;Iron Sight / Long / Short;9mm;Side / Short;9mm
-Tactical AUG A3P R;AUG;SMG;High-End;63,560;750;25;2.1;18;Iron Sight / Long / Short;9mm;Side / Short;9mm
-Tactical Vector SBR 9mm;Vector;SMG;High-End;42,311;1200;19;1.9;15;Iron Sight / Long / Short;9mm;Side / Short;9mm
-Vector SBR 9mm;Vector;SMG;High-End;37,139;1200;33;1.9;15;Iron Sight / Long / Short;9mm;Side / Short;9mm
-Vector SBR.45 ACP;Vector;SMG;High-End;40,430;1200;25;1.9;15;Iron Sight / Long / Short;.45 ACP;Side / Long / Short;0.45
-Vector SBR.45 ACP R;Vector;SMG;High-End;40,430;1200;25;1.9;15;Iron Sight / Long / Short;.45 ACP;Side / Long / Short;0.45
-Dark Winter;Vector;SMG;Named;40,430;1200;25;1.9;15;Iron Sight / Long / Short;.45 ACP;Side / Long / Short;0.45
-MP7;MP7;SMG;High-End;50,303;1000;40;1.9;19;Long / Short;;Side / Short;5.56
-Swap Chain;MP7;SMG;Named;47,952;1000;40;1.9;19;Long / Short;;Side / Short;
-Black Market T821;T821;SMG;High-End;73,433;550;32;1.9;17;Micro / Short;9mm;Side / Short;9mm
-Black Market T821 R;T821;SMG;High-End;73,433;550;32;1.9;17;Micro / Short;9mm;Side / Short;9mm
-Police T821;T821;SMG;High-End;73,433;550;32;1.9;17;Micro / Short;9mm;Side / Short;9mm
-Police UMP-45;UMP-45;SMG;High-End;72,304;600;30;2.3;14;Long / Short;.45 ACP;Side / Long / Short;0.45
-Tactical UMP-45;UMP-45;SMG;High-End;72,304;600;30;2.3;14;Long / Short;.45 ACP;Side / Long / Short;0.45
-Tactical UMP-45 R;UMP-45;SMG;High-End;72,304;600;30;2.3;14;Long / Short;.45 ACP;Side / Long / Short;0.45
-M1928;Thompson;SMG;High-End;77,570;600;30;2.3;16;;.45 ACP;;
-Tommy Gun;Thompson;SMG;High-End;60,975;800;50;2.3;16;;;;
-Grown Great;Thompson;SMG;Named;60,975;800;50;2.3;16;;;;
-The Sleigher;Thompson;SMG;Named;92,989;250;50;2.3;16;;;;
-P90;P90;SMG;High-End;48,892;900;50;2.2;15;Micro / Short;;;5.56
-P90 R;P90;SMG;High-End;48,892;900;50;2.2;15;Micro / Short;;;5.56
-Emeline's Guard;P90;SMG;Named;48,892;900;50;2.2;15;Micro / Short;;;5.56
-SIG MPX;MPX;SMG;High-End;53,124;850;30;2.3;22;Long / Short;9mm;Side / Short;9mm
-Safety Distance;MPX;SMG;Named;53,124;850;30;2.3;22;Long / Short;9mm;Side / Short;9mm
-The Apartment;MPX;SMG;Named;53,124;850;30;2.3;22;Long / Short;9mm;Side / Short;9mm
-CMMG Banshee;CMMG;SMG;High-End;52,779;950;32;2.4;16;Micro / Short;9mm;Side / Short;9mm
-The Grudge;CMMG;SMG;Named;50,303;950;32;2.4;16;Micro / Short;9mm;Side / Short;9mm
-The Chatterbox;P90;SMG;Exotic;42,781;700;50;1.7;15;Modified Optics;Chatterbox Magazine;Chatterbox Cannister;Chatterbox Muzzle
-Lady Death;CMMG;SMG;Exotic;41,371;900;32;2.4;16;Gaze of Death;Death's Hand;Kiss of Death;Death's Maw
-Backfire;MPX;SMG;Exotic;53,124;850;30;2.3;22;Quick Sight;Barbed Grip Magazine;Barbed Frame;Jagged Muzzle
-Ouroboros;Vector;SMG;Exotic;40,430;1350;50;1.9;15;Ouroboros Optics;Ouroboros Magazine;Ouroboros Underbarrel;Ouroboros Muzzle
-ACR SS;ACR;Rifle;High-End;101,828;420;30;2.3;50;Long / Short;7.62;Side / Long / Short;7.62
-UIC15 MOD2;AR15;Rifle;High-End;133,890;240;30;1.9;50;Long / Short;5.56;Side / Long / Short;5.56
-M16A2;M16A2;Rifle;High-End;97,737;300;30;2.4;36;Micro / Short;5.56;;5.56
-M16A2 R;M16A2;Rifle;High-End;97,737;300;30;2.4;36;Micro / Short;5.56;;5.56
-Whisper;M16A2;Rifle;Named;75,219;300;30;2.4;36;Micro / Short;5.56;;5.56
-Classic M1A;M1A;Rifle;High-End;205,442;180;10;2.7;60;Long / Short;Marksman 7.62;Side / Long / Short;
-Baker's Dozen;M1A;Rifle;Named;205,442;180;10;2.7;60;Long / Short;Marksman 7.62;Side / Long / Short;
-SOCOM M1A;M1A;Rifle;High-End;141,036;320;10;2.7;60;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-Stage Left;M1A;Rifle;Named;141,036;320;10;2.7;60;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-M1A CQB;M1A;Rifle;High-End;156,080;320;10;2.7;60;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-M1A CQB R;M1A;Rifle;High-End;156,080;320;10;2.7;60;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-Lightweight M4;M4;Rifle;High-End;114,333;360;30;2.4;50;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-LVOA-C;M4;Rifle;High-End;110,102;380;30;2.4;50;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-LVOA-C R;M4;Rifle;High-End;110,102;380;30;2.4;50;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-Surge;M4;Rifle;Named;110,102;380;30;2.4;50;Iron Sight / Long / Short;5.56;Side / Long / Short;5.56
-Urban MDR;MDR;Rifle;High-End;107,469;380;20;1.9;28;Long / Short;7.62;Side / Long / Short;7.62
-Urban MDR R;MDR;Rifle;High-End;107,469;380;20;1.9;28;Long / Short;7.62;Side / Long / Short;7.62
-Military Mk17;SCAR;Rifle;High-End;145,079;275;20;2.2;50;Long / Short;7.62;Side / Long / Short;7.62
-Police Mk17;SCAR;Rifle;High-End;145,079;275;20;2.2;50;Long / Short;7.62;Side / Long / Short;7.62
-Police Mk17 R;SCAR;Rifle;High-End;145,079;275;20;2.2;50;Long / Short;7.62;Side / Long / Short;7.62
-Everlasting Gaze;SCAR;Rifle;Named;145,079;275;20;2.2;50;Long / Short;7.62;Side / Long / Short;7.62
-SIG 716 CQB;SIG 716;Rifle;High-End;124,487;320;20;2.4;60;Long / Short;7.62;Side / Short;
-SIG 716;SIG 716;Rifle;High-End;122,184;320;20;2.4;60;Long / Short;7.62;Side / Long / Short;7.62
-SIG 716 R;SIG 716;Rifle;High-End;122,184;320;20;2.4;60;Long / Short;7.62;Side / Long / Short;7.62
-Artist's Tool;SIG 716;Rifle;Named;122,184;320;20;2.4;60;Long / Short;7.62;Side / Short;
-USC .45 ACP;UMP-45;Rifle;High-End;107,892;420;20;2.3;50;Long / Short;.45 ACP;Side / Long / Short;
-USC .45 ACP R;UMP-45;Rifle;High-End;107,892;420;20;2.3;50;Long / Short;.45 ACP;Side / Long / Short;
-1886;1886;Rifle;High-End;342,247;100;5;3.4;28;;Tubular;;
-The Virginian;1886;Rifle;Named;342,247;100;5;3.4;28;;Tubular;;
-Resolute MK47;MK47;Rifle;High-End;125,710;300;30;2.3;60;Iron Sight / Long / Short;7.62;Side / Long / Short;7.62
-Harmony;MK47;Rifle;Named;125,710;300;30;2.3;60;Iron Sight / Long / Short;7.62;Side / Long / Short;7.62
-Ruthless;AK-M;Rifle;Exotic;84,622;400;30;2.5;50;Unidentified Custom Russian Sight;Ruthless Magazine;Ruthless Grip;Mayhem's Muzzle
-Merciless;AK-M;Rifle;Exotic;92,989;400;30;2.5;50;Merciless Optics;Merciless Magazine;Merciless Grip;Merciless Muzzle
-Diamondback;1886;Rifle;Exotic;329,084;100;5;3.4;28;Diamondback Dot Sight;Diamondback Lever;Diamondback Grip;Rattlesnake Ornamentation
-The Ravenous;Gilboa Snake;Rifle;Exotic;134,360;240;60;2.4;50;Predatory Optics;Gluttonous Magazines;Wolf's Claw;Devouring Maw
-Doctor Home;M1A;Rifle;Exotic;156,080;200;15;2.7;60;Doctors Sight;Homes Magazine;Doctors Grip;Doctors Perseverance
-Vindicator;MDR;Rifle;Exotic;107,469;380;20;1.9;28;Vindicator Optics;Vindicator Magazine;Vindicator Underbarrel;Vindicator Muzzle
-G28;G28;MMR;High-End;146,677;275;20;2.4;60;Long / Short;7.62;Side / Long / Short;7.62
-Relic;G28;MMR;Named;146,677;275;20;2.4;60;Long / Short;7.62;Side / Long / Short;7.62
-SOCOM Mk20 SSR;SCAR;MMR;High-End;143,857;275;20;2.2;60;Iron Sight / Long / Short;7.62;Side / Long / Short;7.62
-SOCOM Mk20 SSR R;SCAR;MMR;High-End;143,857;275;20;2.2;60;Iron Sight / Long / Short;7.62;Side / Long / Short;7.62
-The Darkness;SCAR;MMR;Named;143,857;275;20;2.2;60;Iron Sight / Long / Short;7.62;Side / Long / Short;7.62
-M700 Carbon;Model 700;MMR;High-End;439,797;54;7;3.3;50;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-M700 Carbon R;Model 700;MMR;High-End;439,797;54;7;3.3;50;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-Brutus;Model 700;MMR;Named;439,797;54;7;3.3;50;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-M700 Tactical;Model 700;MMR;High-End;439,797;54;7;3.3;50;Long / Short;Marksman 7.62;Side;7.62
-Model 700;Model 700;MMR;High-End;499,361;54;7;7.2;50;Long / Short;Integrated;;7.62
-Model 700 R;Model 700;MMR;High-End;499,361;54;7;7.2;50;Long / Short;Integrated;;7.62
-Ekim's Long Stick;Model 700;MMR;Named;499,361;54;7;7.2;50;Long / Short;Integrated;;7.62
-Paratrooper SVD;SVD;MMR;High-End;183,723;260;10;2.6;34;Long / Short;Marksman 7.62;Side / Short;7.62
-Surplus SVD;SVD;MMR;High-End;183,723;260;10;2.6;34;Long / Short;Marksman 7.62;Side / Short;7.62
-Commando;SVD;MMR;Named;183,723;260;10;2.6;34;Long / Short;Marksman 7.62;Side / Short;7.62
-Covert SRS;SRS;MMR;High-End;338,957;60;7;3;42;Iron Sight / Long / Short;Marksman 7.62;Side / Short;7.62
-SRS A1;SRS;MMR;High-End;440,596;60;7;3;42;Iron Sight / Long / Short;Marksman 7.62;Side / Long / Short;7.62
-SRS A1 R;SRS;MMR;High-End;440,596;60;7;3;42;Iron Sight / Long / Short;Marksman 7.62;Side / Long / Short;7.62
-Pinprick;SRS;MMR;Named;440,596;60;7;3;42;Iron Sight / Long / Short;Marksman 7.62;Side / Short;7.62
-Classic M44 Carbine;M44;MMR;High-End;423,108;55;5;4.2;60;Long / Short;Integrated;Side / Short;
-Classic M44 Carbine R;M44;MMR;High-End;423,108;55;5;4.2;60;Long / Short;Integrated;Side / Short;
-The White Death;M44;MMR;Named;423,108;55;5;4.2;60;Long / Short;Integrated;Side / Short;
-Hunting M44;M44;MMR;High-End;416,056;55;5;4.2;60;Long / Short;Integrated;Side / Long / Short;7.62
-Custom M44;M44;MMR;High-End;376,096;55;5;3.2;60;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-Custom M44 R;M44;MMR;High-End;376,096;55;5;3.2;60;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-SR-1;SR-1;MMR;High-End;464,385;60;5;3.2;60;Iron Sight / Long / Short;Marksman 7.62;Side / Short;7.62
-SR-1 R;SR-1;MMR;High-End;464,385;60;5;3.2;60;Iron Sight / Long / Short;Marksman 7.62;Side / Short;7.62
-Adrestia;SR-1;MMR;Named;464,385;60;5;3.2;60;Iron Sight / Long / Short;Marksman 7.62;Side / Short;7.62
-Designated Hitter;SR-1;MMR;Named;464,385;60;5;3.2;60;Iron Sight / Long / Short;Marksman 7.62;Side / Short;7.62
-Tactical .308;Tactical .308;MMR;High-End;324,383;90;7;3.2;50;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-Scalpel;Tactical .308;MMR;Named;324,383;90;7;3.2;50;Long / Short;Marksman 7.62;Side / Long / Short;7.62
-Nemesis;AWM;MMR;Exotic;940,240;50;5;3.2;60;Nemesis Digital Scope;Nemesis Bolt;Nemesis Bipod;Nemesis Barrel
-Mantis;SRS;MMR;Exotic;385,310;60;7;3.2;42;Anti-Glint Coated Sight;Well-Oiled Machine;Ghillie Frame;Wrapped Suppressor
-Dread Edict;SVD;MMR;Exotic;183,723;260;10;2.6;34;Judgement's Glare;Tuned-tension Spring;Dropkick Grip;Punctuating Barrel
-Sacrum Imperium;G28;MMR;Exotic;146,677;290;15;2.4;60;Sacrum Optic;Sacrum Magazine;Sacrum Underbarrel;Sacrum Muzzle
-Px4 Storm Type-F;Px4;Pistol;High-End;79,920;380;17;1.9;16;;Pistol;Gadget;9mm
-Px4 Storm Type-T;Px4;Pistol;High-End;79,920;380;17;1.9;16;;Pistol;Gadget;0.45
-Px4 Storm Type-T R;Px4;Pistol;High-End;79,920;380;17;1.9;16;;Pistol;Gadget;0.45
-X-45;X-45;Pistol;High-End;76,630;400;10;1.9;16;;Pistol;Gadget;0.45
-X-45 Tactical;X-45;Pistol;High-End;76,630;400;15;1.9;16;;Pistol;Gadget;0.45
-X-45 Tactical R;X-45;Pistol;High-End;76,630;400;15;1.9;16;;Pistol;Gadget;0.45
-Military M9;M9;Pistol;High-End;81,801;350;15;1.7;16;;Pistol;;9mm
-Military M9 R;M9;Pistol;High-End;81,801;350;15;1.7;16;;Pistol;;9mm
-Officer M9 A1;M9;Pistol;High-End;79,920;350;20;1.9;16;Micro;Pistol;Gadget;9mm
-D50;Desert Eagle;Pistol;High-End;220,956;150;8;1.9;16;Micro / Short;;;
-Survivalist D50;Desert Eagle;Pistol;Named;220,956;150;8;1.9;16;Micro / Short;;;
-M1911;M1911;Pistol;High-End;101,076;310;7;1.7;12;;Pistol;;
-M45A1;M1911;Pistol;High-End;98,725;310;7;1.7;12;Micro;Pistol;Gadget;0.45
-Mozambique Special;M1911;Pistol;Named;98,725;310;7;1.9;12;Micro;Pistol;Gadget;0.45
-Tactical M1911;M1911;Pistol;High-End;98,725;310;7;1.9;12;Micro;Pistol;Gadget;0.45
-Tactical M1911 R;M1911;Pistol;High-End;98,725;310;7;1.9;12;Micro;Pistol;Gadget;0.45
-Maxim 9;Maxim 9;Pistol;Named;98,725;280;17;1.9;16;;Pistol;;
-First Wave PF45;PF45;Pistol;High-End;82,741;370;12;1.7;14;;Pistol;Gadget;
-Custom PF45;PF45;Pistol;High-End;79,920;370;15;1.7;14;Micro;Pistol;Gadget;0.45
-Lightning Rod;PF45;Pistol;Named;79,920;370;15;1.7;14;Micro;Pistol;Gadget;0.45
-93R;93R;Pistol;High-End;32,908;1100;20;1.9;16;;Pistol;;9mm
-Sharpshooter 93R;93R;Pistol;Named;32,908;1100;20;1.9;16;;Pistol;;9mm
-Diceros;Rhino;Pistol;High-End;169,243;180;6;1.8;18;;Revolver Drum;Gadget;
-Diceros R;Rhino;Pistol;High-End;169,243;180;6;1.8;18;;Revolver Drum;Gadget;
-Snubnosed Diceros;Rhino;Pistol;High-End;170,183;180;6;1.8;18;;Revolver Drum;;
-Diceros Special;Rhino;Pistol;Named;169,243;180;6;1.8;18;Micro / Short;Revolver Drum;Gadget;
-586 Magnum;586 Magnum;Pistol;High-End;190,399;160;6;1.8;18;Micro / Short;Revolver Drum;;
-Orbit;586 Magnum;Pistol;Named;190,399;160;6;1.8;18;Micro / Short;Revolver Drum;;
-Police 686 Magnum;586 Magnum;Pistol;High-End;190,399;160;6;1.8;18;Micro / Short;Revolver Drum;;
-Police 686 Magnum R;586 Magnum;Pistol;High-End;190,399;160;6;1.8;18;Micro / Short;Revolver Drum;;
-Prophet;586 Magnum;Pistol;Named;190,399;160;6;1.8;18;Micro / Short;Revolver Drum;;
-P320 XCompact;P320;Pistol;Named;79,920;380;15;1.7;16;Micro;Pistol;Gadget;9mm
-KARD-45;KARD;Pistol;High-End;109,068;310;7;1.9;12;Micro;Pistol;Gadget;9mm
-"TDI ""Kard"" Custom";KARD;Pistol;Named;109,068;310;7;1.9;12;Micro;Pistol;Gadget;9mm
-Liberty;Desert Eagle;Pistol;Exotic;235,060;150;8;2;16;Liberty Sight;Trigger Mechanism;Trigger Mechanism;Liberty Customs
-Mosquito;M9;Pistol;Exotic;81,801;350;15;1.7;16;;Mosquito Magazine;;Mosquito Muzzle
-Regulus;586 Magnum;Pistol;Exotic;282,072;160;6;1.8;18;;Engraved Drum;;Engraved Muzzle
-Busy Little Bee;PF45;Pistol;Exotic;79,920;400;30;1.7;14;Bee's Focus;Bee's Speed;Bee's Strength;Bee's Purpose
+name;varient;type;rarity
+ACR;ACR;AR;High-End
+ACR-E;ACR;AR;High-End
+F2000;F2000;AR;High-End
+F2000 R;F2000;AR;High-End
+Shield Splinterer;F2000;AR;Named
+AUG A3-CQC;AUG;AR;High-End
+Invisible Hand;AUG;AR;Named
+AK-M;AK-47;AR;High-End
+Military AK-M;AK-47;AR;High-End
+Black Market AK-M;AK-47;AR;High-End
+Black Market AK-M R;AK-47;AR;High-End
+Manic;AK-47;AR;Named
+FAL;FAL;AR;High-End
+FAL SA-58;FAL;AR;High-End
+FAL SA-58 Para;FAL;AR;High-End
+FAL SA-58 Para R;FAL;AR;High-End
+FAMAS 2010;FAMAS;AR;High-End
+FAMAS 2010 R;FAMAS;AR;High-End
+Burnout;FAMAS;AR;Named
+Military G36;G36;AR;High-End
+Born Great;G36;AR;Named
+G36 C;G36;AR;High-End
+G36 Enhanced;G36;AR;High-End
+G36 Enhanced R;G36;AR;High-End
+Police M4;M4;AR;High-End
+Police M4 R;M4;AR;High-End
+Pyromaniac;M4;AR;Named
+Carbine 7;Carbine 7;AR;High-End
+Honey Badger;Honey Badger;AR;High-End
+Savage Wolverine;Honey Badger;AR;Named
+Military P416;P416;AR;High-End
+Custom P416 G3;P416;AR;High-End
+Glory Daze;P416;AR;Named
+Mk16;SCAR;AR;High-End
+SOCOM Mk16;SCAR;AR;High-End
+Tactical Mk16;SCAR;AR;High-End
+Tactical Mk16 R;SCAR;AR;High-End
+CTAR-21;TAR-21;AR;High-End
+The Railsplitter;TAR-21;AR;Named
+SIG 556;SIG Sauer 556;AR;High-End
+Mechanical Animal;SIG Sauer 556;AR;Named
+PDR;PDR;AR;High-End
+Test Subject;PDR;AR;Named
+TKB-408;TKB-408;AR;High-End
+Kingbreaker;TKB-408;AR;Named
+Eagle Bearer;P416;AR;Exotic
+Chameleon;Vector;AR;Exotic
+Capacitor;PDR;AR;Exotic
+The Bighorn;AUG;AR;Exotic
+St. Elmo's Engine;M4;AR;Exotic
+MG5;MG5;LMG;High-End
+Infantry MG5;MG5;LMG;High-End
+Infantry MG5 R;MG5;LMG;High-End
+Big Show;MG5;LMG;Named
+Sleipnir;MG5;LMG;Named
+Stoner LAMG;KAC;LMG;High-End
+Quiet Roar;KAC;LMG;Named
+M249 B;M249;LMG;High-End
+Tactical M249 Para;M249;LMG;High-End
+Military Mk46;M249;LMG;High-End
+Military Mk46 R;M249;LMG;High-End
+October Fifth - M249 B;M249;LMG;High-End
+Black Friday;M249;LMG;Named
+The Stinger;M249;LMG;Named
+Classic M60;M60;LMG;High-End
+Military M60 E4;M60;LMG;High-End
+Black Market M60 E6;M60;LMG;High-End
+Classic M60 R;M60;LMG;High-End
+Black Market M60 E6 R;M60;LMG;High-End
+Good Times;M60;LMG;Named
+Classic RPK-74;RPK-74;LMG;High-End
+Military RPK-74 M;RPK-74;LMG;High-End
+Black Market RPK-74 E;RPK-74;LMG;High-End
+Black Market RPK-74 R;RPK-74;LMG;High-End
+New Reliable;RPK-74;LMG;Named
+Military L86 LSW;L86;LMG;High-End
+Custom L86 A2;L86;LMG;High-End
+Custom L86 A2 R;L86;LMG;High-End
+Tabula Rasa;L86;LMG;Named
+IWI NEGEV;NEGEV;LMG;High-End
+Carnage;NEGEV;LMG;Named
+GR9;HK GR9;LMG;High-End
+Dare;HK GR9;LMG;Named
+Pestilence;M249;LMG;Exotic
+Bullet King;NEGEV;LMG;Exotic
+Bluescreen;KAC;LMG;Exotic
+Iron Lung;MG5;LMG;Exotic
+ACS-12;AA-12;Shotgun;High-End
+Rock 'n' Roll;AA-12;Shotgun;Named
+Lefty;AA-12;Shotgun;Named
+Black Market SASG-12 S;SASG-12;Shotgun;High-End
+Black Market SASG-12 S R;SASG-12;Shotgun;High-End
+SASG-12;SASG-12;Shotgun;High-End
+Tactical SASG-12 K;SASG-12;Shotgun;High-End
+Tsunami;SASG-12;Shotgun;Named
+Marine Super 90;Super 90;Shotgun;High-End
+Super 90;Super 90;Shotgun;High-End
+Super 90 R;Super 90;Shotgun;High-End
+Tactical Super 90 SBS;Super 90;Shotgun;High-End
+Tactical Super 90 SBS R;Super 90;Shotgun;High-End
+Enforcer;Super 90;Shotgun;Named
+Double Barrel Sawed Off;Double Barrel;Shotgun;High-End
+Backup Boomstick;Double Barrel;Shotgun;Named
+Firestarter;Double Barrel;Shotgun;Named
+Double Barrel Shotgun;Double Barrel;Shotgun;High-End
+Double Barrel Shotgun R;Double Barrel;Shotgun;High-End
+Boomstick;Double Barrel;Shotgun;Named
+KSG Shotgun;KSG;Shotgun;High-End
+The Send-Off;KSG;Shotgun;Named
+Custom M870 MCS;M870;Shotgun;High-End
+Custom M870 MCS R;M870;Shotgun;High-End
+M870 Express;M870;Shotgun;High-End
+M870 Express R;M870;Shotgun;High-End
+Military M870;M870;Shotgun;High-End
+Cuélebre;M870;Shotgun;Named
+SPAS-12;SPAS-12;Shotgun;High-End
+SPAS-12 R;SPAS-12;Shotgun;High-End
+SIX-12;SIX12;Shotgun;High-End
+The Mop;SIX12;Shotgun;Named
+Lullaby;SPAS-12;Shotgun;Exotic
+Sweet Dreams;SPAS-12;Shotgun;Exotic
+Scorpio;SIX12;Shotgun;Exotic
+Converted SMG-9;SMG-9;SMG;High-End
+Converted SMG-9 R;SMG-9;SMG;High-End
+Converted SMG-9 A2;SMG-9;SMG;High-End
+MP5A2;MP5;SMG;High-End
+MP5-N;MP5;SMG;High-End
+MP5 ST;MP5;SMG;High-End
+MP5 ST R;MP5;SMG;High-End
+Cabaret;MP5;SMG;Named
+PP-19;PP-19;SMG;High-End
+Enhanced PP-19;PP-19;SMG;High-End
+Cold Relations;PP-19;SMG;Named
+AUG A3 Para XS;AUG;SMG;High-End
+Enhanced AUG A3P;AUG;SMG;High-End
+Tactical AUG A3P;AUG;SMG;High-End
+Tactical AUG A3P R;AUG;SMG;High-End
+Tactical Vector SBR 9mm;Vector;SMG;High-End
+Vector SBR 9mm;Vector;SMG;High-End
+Vector SBR.45 ACP;Vector;SMG;High-End
+Vector SBR.45 ACP R;Vector;SMG;High-End
+Dark Winter;Vector;SMG;Named
+MP7;MP7;SMG;High-End
+Swap Chain;MP7;SMG;Named
+Black Market T821;T821;SMG;High-End
+Black Market T821 R;T821;SMG;High-End
+Police T821;T821;SMG;High-End
+Police UMP-45;UMP-45;SMG;High-End
+Tactical UMP-45;UMP-45;SMG;High-End
+Tactical UMP-45 R;UMP-45;SMG;High-End
+M1928;Thompson;SMG;High-End
+Tommy Gun;Thompson;SMG;High-End
+Grown Great;Thompson;SMG;Named
+The Sleigher;Thompson;SMG;Named
+P90;P90;SMG;High-End
+P90 R;P90;SMG;High-End
+Emeline's Guard;P90;SMG;Named
+SIG MPX;MPX;SMG;High-End
+Safety Distance;MPX;SMG;Named
+The Apartment;MPX;SMG;Named
+CMMG Banshee;CMMG;SMG;High-End
+The Grudge;CMMG;SMG;Named
+The Chatterbox;P90;SMG;Exotic
+Lady Death;CMMG;SMG;Exotic
+Backfire;MPX;SMG;Exotic
+Ouroboros;Vector;SMG;Exotic
+ACR SS;ACR;Rifle;High-End
+UIC15 MOD2;AR15;Rifle;High-End
+M16A2;M16A2;Rifle;High-End
+M16A2 R;M16A2;Rifle;High-End
+Whisper;M16A2;Rifle;Named
+Classic M1A;M1A;Rifle;High-End
+Baker's Dozen;M1A;Rifle;Named
+SOCOM M1A;M1A;Rifle;High-End
+Stage Left;M1A;Rifle;Named
+M1A CQB;M1A;Rifle;High-End
+M1A CQB R;M1A;Rifle;High-End
+Lightweight M4;M4;Rifle;High-End
+LVOA-C;M4;Rifle;High-End
+LVOA-C R;M4;Rifle;High-End
+Surge;M4;Rifle;Named
+Urban MDR;MDR;Rifle;High-End
+Urban MDR R;MDR;Rifle;High-End
+Military Mk17;SCAR;Rifle;High-End
+Police Mk17;SCAR;Rifle;High-End
+Police Mk17 R;SCAR;Rifle;High-End
+Everlasting Gaze;SCAR;Rifle;Named
+SIG 716 CQB;SIG 716;Rifle;High-End
+SIG 716;SIG 716;Rifle;High-End
+SIG 716 R;SIG 716;Rifle;High-End
+Artist's Tool;SIG 716;Rifle;Named
+USC .45 ACP;UMP-45;Rifle;High-End
+USC .45 ACP R;UMP-45;Rifle;High-End
+1886;1886;Rifle;High-End
+The Virginian;1886;Rifle;Named
+Resolute MK47;MK47;Rifle;High-End
+Harmony;MK47;Rifle;Named
+Ruthless;AK-M;Rifle;Exotic
+Merciless;AK-M;Rifle;Exotic
+Diamondback;1886;Rifle;Exotic
+The Ravenous;Gilboa Snake;Rifle;Exotic
+Doctor Home;M1A;Rifle;Exotic
+Vindicator;MDR;Rifle;Exotic
+G28;G28;MMR;High-End
+Relic;G28;MMR;Named
+SOCOM Mk20 SSR;SCAR;MMR;High-End
+SOCOM Mk20 SSR R;SCAR;MMR;High-End
+The Darkness;SCAR;MMR;Named
+M700 Carbon;Model 700;MMR;High-End
+M700 Carbon R;Model 700;MMR;High-End
+Brutus;Model 700;MMR;Named
+M700 Tactical;Model 700;MMR;High-End
+Model 700;Model 700;MMR;High-End
+Model 700 R;Model 700;MMR;High-End
+Ekim's Long Stick;Model 700;MMR;Named
+Paratrooper SVD;SVD;MMR;High-End
+Surplus SVD;SVD;MMR;High-End
+Commando;SVD;MMR;Named
+Covert SRS;SRS;MMR;High-End
+SRS A1;SRS;MMR;High-End
+SRS A1 R;SRS;MMR;High-End
+Pinprick;SRS;MMR;Named
+Classic M44 Carbine;M44;MMR;High-End
+Classic M44 Carbine R;M44;MMR;High-End
+The White Death;M44;MMR;Named
+Hunting M44;M44;MMR;High-End
+Custom M44;M44;MMR;High-End
+Custom M44 R;M44;MMR;High-End
+SR-1;SR-1;MMR;High-End
+SR-1 R;SR-1;MMR;High-End
+Adrestia;SR-1;MMR;Named
+Designated Hitter;SR-1;MMR;Named
+Tactical .308;Tactical .308;MMR;High-End
+Scalpel;Tactical .308;MMR;Named
+Nemesis;AWM;MMR;Exotic
+Mantis;SRS;MMR;Exotic
+Dread Edict;SVD;MMR;Exotic
+Sacrum Imperium;G28;MMR;Exotic
+Px4 Storm Type-F;Px4;Pistol;High-End
+Px4 Storm Type-T;Px4;Pistol;High-End
+Px4 Storm Type-T R;Px4;Pistol;High-End
+X-45;X-45;Pistol;High-End
+X-45 Tactical;X-45;Pistol;High-End
+X-45 Tactical R;X-45;Pistol;High-End
+Military M9;M9;Pistol;High-End
+Military M9 R;M9;Pistol;High-End
+Officer M9 A1;M9;Pistol;High-End
+D50;Desert Eagle;Pistol;High-End
+Survivalist D50;Desert Eagle;Pistol;Named
+M1911;M1911;Pistol;High-End
+M45A1;M1911;Pistol;High-End
+Mozambique Special;M1911;Pistol;Named
+Tactical M1911;M1911;Pistol;High-End
+Tactical M1911 R;M1911;Pistol;High-End
+Maxim 9;Maxim 9;Pistol;Named
+First Wave PF45;PF45;Pistol;High-End
+Custom PF45;PF45;Pistol;High-End
+Lightning Rod;PF45;Pistol;Named
+93R;93R;Pistol;High-End
+Sharpshooter 93R;93R;Pistol;Named
+Diceros;Rhino;Pistol;High-End
+Diceros R;Rhino;Pistol;High-End
+Snubnosed Diceros;Rhino;Pistol;High-End
+Diceros Special;Rhino;Pistol;Named
+586 Magnum;586 Magnum;Pistol;High-End
+Orbit;586 Magnum;Pistol;Named
+Police 686 Magnum;586 Magnum;Pistol;High-End
+Police 686 Magnum R;586 Magnum;Pistol;High-End
+Prophet;586 Magnum;Pistol;Named
+P320 XCompact;P320;Pistol;Named
+KARD-45;KARD;Pistol;High-End
+"TDI ""Kard"" Custom";KARD;Pistol;Named
+Liberty;Desert Eagle;Pistol;Exotic
+Mosquito;M9;Pistol;Exotic
+Regulus;586 Magnum;Pistol;Exotic
+Busy Little Bee;PF45;Pistol;Exotic

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DivBuildApp.Classes
+namespace DivBuildApp
 {
     public enum WeaponType
     {
@@ -16,6 +16,7 @@ namespace DivBuildApp.Classes
          MMR,
          Pistol
     }
+    
     internal class Weapon
     {
         public string Name { get; set; }
