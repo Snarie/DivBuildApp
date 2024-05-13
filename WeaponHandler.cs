@@ -1,4 +1,6 @@
-﻿using DivBuildApp.UI;
+﻿using DivBuildApp.Data.CsvFormats;
+using DivBuildApp.Data.Tables;
+using DivBuildApp.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,11 @@ namespace DivBuildApp
         public static event EventHandler<WeaponEventArgs> WeaponSet;
         private static void OnWeaponSet(WeaponEventArgs e)
         {
+            if(e.Grid.Box.SelectedItem is WeaponListFormat wlf)
+            {
+                WeaponStatsFormat wsf = WeaponStats.GetWeaponStats(wlf.Name);
+                e.Grid.Damage.Content = wsf.Damage;
+            }
             WeaponSet?.Invoke(null, e);
         }
         public static void SetEquippedWeapon(WeaponEventArgs e)

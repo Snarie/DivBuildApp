@@ -9,18 +9,20 @@ namespace DivBuildApp.Data.CsvFormats
     internal class WeaponStatsFormat
     {
         public string Name { get; set; }
-        public string WeaponDamage { get; set; }
-        public string CoreAttribute { get; set; }
-        public string SideAttribute { get; set; }
-        public string Talent { get; set; }
+        public string Damage { get; set; }
+        public string RPM { get; set; }
+        public string MagazineSize { get; set; }
+        public string ReloadSpeed { get; set; }
+        public string OptimalRange { get; set; }
 
-        public WeaponStatsFormat(string name, string weaponDamage, string coreAttribute, string sideAttribute, string talent)
+        public WeaponStatsFormat(string name, string damage, string rpm, string magazineSize, string reloadSpeed, string optimalRange)
         {
             Name = name;
-            WeaponDamage = weaponDamage;
-            CoreAttribute = coreAttribute;
-            SideAttribute = sideAttribute;
-            Talent = talent;
+            Damage = damage;
+            RPM = rpm;
+            MagazineSize = magazineSize;
+            ReloadSpeed = reloadSpeed;
+            OptimalRange = optimalRange;
         }
     }
 }

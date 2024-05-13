@@ -48,6 +48,7 @@ namespace DivBuildApp
                 PrimaryWeaponBox, PrimaryWeaponName, PrimaryWeaponArmor,
                 PrimaryWeaponExpertiece, PrimaryWeaponType,
                 PrimaryWeaponOpticalRail, PrimaryWeaponMagazine, PrimaryWeaponUnderbarrel, PrimaryWeaponMuzzle,
+                PrimaryWeaponDamage, PrimaryWeaponRPM, PrimaryWeaponMagazineSize,
                 new ComboBox[] { PrimaryWeaponStat1, PrimaryWeaponStat2, PrimaryWeaponStat3 },
                 new Label[] { PrimaryWeaponStat1_Value, PrimaryWeaponStat2_Value, PrimaryWeaponStat3_Value},
                 new Slider[] { PrimaryWeaponStat1_Slider, PrimaryWeaponStat2_Slider, PrimaryWeaponStat3_Slider},
@@ -57,6 +58,7 @@ namespace DivBuildApp
                 SecondaryWeaponBox, SecondaryWeaponName, SecondaryWeaponArmor,
                 SecondaryWeaponExpertiece, SecondaryWeaponType,
                 SecondaryWeaponOpticalRail, SecondaryWeaponMagazine, SecondaryWeaponUnderbarrel, SecondaryWeaponMuzzle,
+                SecondaryWeaponDamage, SecondaryWeaponRPM, SecondaryWeaponMagazineSize,
                 new ComboBox[] { SecondaryWeaponStat1, SecondaryWeaponStat2, SecondaryWeaponStat3 },
                 new Label[] { SecondaryWeaponStat1_Value, SecondaryWeaponStat2_Value, SecondaryWeaponStat3_Value },
                 new Slider[] { SecondaryWeaponStat1_Slider, SecondaryWeaponStat2_Slider, SecondaryWeaponStat3_Slider },
@@ -66,6 +68,7 @@ namespace DivBuildApp
                 SideArmBox, SideArmName, SideArmArmor,
                 SideArmExpertiece, SideArmType,
                 SideArmOpticalRail, SideArmMagazine, SideArmUnderbarrel, SideArmMuzzle,
+                SideArmDamage, SideArmRPM, SideArmMagazineSize,
                 new ComboBox[] { SideArmStat1, SideArmStat2, SideArmStat3 },
                 new Label[] { SideArmStat1_Value, SideArmStat2_Value, SideArmStat3_Value },
                 new Slider[] { SideArmStat1_Slider, SideArmStat2_Slider, SideArmStat3_Slider },
@@ -104,6 +107,7 @@ namespace DivBuildApp
             BrandSets.Initialize();
             BonusCaps.Initialize();
             WeaponList.Initialize();
+            WeaponStats.Initialize();
 
 
             InitializeWeaponTypeBox();

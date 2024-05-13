@@ -94,6 +94,7 @@
     <Compile Include="Data\CsvReader.cs" />
     <Compile Include="Data\Tables\BonusDisplayTypes.cs" />
     <Compile Include="Data\Tables\WeaponList.cs" />
+    <Compile Include="Data\Tables\WeaponStats.cs" />
     <Compile Include="GlobalSynchronizationManager.cs" />
     <Compile Include="GridEventArgs.cs" />
     <Compile Include="Logger.cs" />
