@@ -40,7 +40,10 @@ namespace DivBuildApp.UI
                     bool success = Enum.TryParse(wlf.Type + "_Damage", out BonusType damageType);
                     if (success)
                     {
-                        double dmgMult = (100 + ActiveBonuses.activeBonuses[damageType] + ActiveBonuses.activeBonuses[BonusType.Weapon_Damage]) / 100; 
+                        double dmgtemp1 = ActiveBonuses.activeBonuses[damageType];
+                        double dmgtemp2 = ActiveBonuses.activeBonuses[BonusType.Weapon_Damage];
+                        double dmgMult = (100 + dmgtemp1 + dmgtemp2) / 100;
+                        //double dmgMult = (100 + ActiveBonuses.activeBonuses[damageType] + ActiveBonuses.activeBonuses[BonusType.Weapon_Damage]) / 100; 
                         grid.Damage.Content = Math.Floor(double.Parse(wsf.Damage) * dmgMult);
                         double rpmMult = (100 + ActiveBonuses.activeBonuses[BonusType.Rate_of_Fire]) / 100;
                         grid.RPM.Content = Math.Floor(double.Parse(wsf.RPM) * rpmMult);
