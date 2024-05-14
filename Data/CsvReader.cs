@@ -39,9 +39,29 @@ namespace DivBuildApp
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvHelper.CsvReader(reader, config))
             {
-                IEnumerable<T> records = csv.GetRecords<T>();
-                List<T> list = records.ToList();
+                //var records = csv.GetRecords<T>();
+                List<T> list = new List<T>();
+                while (csv.Read())
+                {
+                    // Checking if the row is empty or all whitespace
+                    if (csv.Context.Parser.RawRecord.Trim().Length == 0)
+                    {
+                        continue; // Skip empty or whitespace-only rows
+                    }
+                    // Attempt to get the record, skip the row if it fails to parse
+                    try
+                    {
+                        var record = csv.GetRecord<T>();
+                        list.Add(record);
+                    }
+                    catch (CsvHelperException)
+                    {
+                        // handle error?
+                        continue;
+                    }
+                }
                 return list;
+                //return records.ToList();
             }
         }
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DivBuildApp
 {
@@ -28,8 +29,21 @@ namespace DivBuildApp
             }
             WeaponSet?.Invoke(null, e);
         }
-        public static void SetEquippedWeapon(WeaponEventArgs e)
+
+        private static Dictionary<string, Weapon> equippedWeapons = new Dictionary<string, Weapon>();
+        private static async Task CreateGear(WeaponEventArgs e)
         {
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                if (e.Grid.Box.SelectedItem is WeaponListFormat wlf) 
+                {
+                    new Weapon(wlf.Name, wlf.Varient, wlf.Type, wlf.Rarity, new Bonus[] { }, new WeaponMod[] { }, "");
+                }
+            });
+        }
+        public static async void SetEquippedWeapon(WeaponEventArgs e)
+        {
+            await CreateGear(e);
             OnWeaponSet(e);
         }
     }

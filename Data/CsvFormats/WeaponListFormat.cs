@@ -11,10 +11,10 @@ namespace DivBuildApp.Data.CsvFormats
     {
         public string Name { get; set; }
         public string Varient { get; set; }
-        public string Type { get; set; }
+        public WeaponType Type { get; set; }
         public string Rarity { get; set; }
 
-        public WeaponListFormat(string name, string varient, string type, string rarity)
+        public WeaponListFormat(string name, string varient, WeaponType type, string rarity)
         {
             Name = name;
             Varient = varient;

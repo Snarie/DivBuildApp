@@ -44,11 +44,11 @@ namespace DivBuildApp.UI
                         double dmgtemp2 = ActiveBonuses.activeBonuses[BonusType.Weapon_Damage];
                         double dmgMult = (100 + dmgtemp1 + dmgtemp2) / 100;
                         //double dmgMult = (100 + ActiveBonuses.activeBonuses[damageType] + ActiveBonuses.activeBonuses[BonusType.Weapon_Damage]) / 100; 
-                        grid.Damage.Content = Math.Floor(double.Parse(wsf.Damage) * dmgMult);
+                        grid.Damage.Content = Math.Floor(wsf.Damage * dmgMult);
                         double rpmMult = (100 + ActiveBonuses.activeBonuses[BonusType.Rate_of_Fire]) / 100;
-                        grid.RPM.Content = Math.Floor(double.Parse(wsf.RPM) * rpmMult);
+                        grid.RPM.Content = Math.Floor(wsf.RPM * rpmMult);
                         double magMult = (100 + ActiveBonuses.activeBonuses[BonusType.Magazine_Size]) / 100;
-                        grid.MagazineSize.Content = Math.Floor(double.Parse(wsf.MagazineSize) * magMult);
+                        grid.MagazineSize.Content = Math.Floor(wsf.MagazineSize * magMult);
                     }
                 }
             });

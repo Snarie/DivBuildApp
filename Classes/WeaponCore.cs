@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DivBuildApp.Data.CsvFormats;
+using DivBuildApp.Data.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,7 @@ namespace DivBuildApp
         public string Rarity { get; set; }
         public Bonus[] StatAttributes { get; set; }
         public WeaponMod[] WeaponMods { get; set; }
+        public WeaponStatsFormat WeaponStats { get; set; }
         public string Talent { get; set; }
 
         public Weapon(string name, string varient, WeaponType type, string rarity, Bonus[] statAttributes, WeaponMod[] weaponMods, string talent)

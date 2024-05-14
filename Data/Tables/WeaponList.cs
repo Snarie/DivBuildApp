@@ -25,12 +25,7 @@ namespace DivBuildApp.Data.Tables
             }
             foreach (WeaponListFormat weaponFormat in  WeaponBases)
             {
-                bool success = Enum.TryParse(weaponFormat.Type, true, out WeaponType weaponType);
-                if (!success)
-                {
-                    continue;
-                }
-                TypeList[weaponType].Add(weaponFormat);
+                TypeList[weaponFormat.Type].Add(weaponFormat);
 
             }
         }
