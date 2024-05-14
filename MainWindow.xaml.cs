@@ -87,6 +87,7 @@ namespace DivBuildApp
         }
         private void Initializer()
         {
+            ActiveBonuses.Initialize();
             //Stays private
             ItemArmorControl.Initialize();
             //Lib.Initialize(this);
@@ -97,6 +98,7 @@ namespace DivBuildApp
             StatTableControl.Initialize(this);
             StatValueLabelControl.Initialize();
             StatSliderControl.Initialize();
+            WeaponStatsControl.Initialize();
             IconControl.Initialize();
             SHDWatch.Initialize();
             ListOptions.Initialize();

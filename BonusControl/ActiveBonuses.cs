@@ -13,6 +13,10 @@ namespace DivBuildApp.BonusControl
 {
     internal static class ActiveBonuses
     {
+        public static void Initialize()
+        {
+            ResetBonuses();
+        }
         static ActiveBonuses()
         {
             //StatValueLabelControl.ValueSet += HandleValueSet;

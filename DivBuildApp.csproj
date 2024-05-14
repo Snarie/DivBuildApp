@@ -105,6 +105,7 @@
     <Compile Include="UI\ItemArmorControl.cs" />
     <Compile Include="UI\StatTableControl.cs" />
     <Compile Include="UI\StatValueLabelControl.cs" />
+    <Compile Include="UI\WeaponStatsControl.cs" />
     <Compile Include="WeaponEventArgs.cs" />
     <Compile Include="WeaponHandler.cs" />
     <Page Include="MainWindow.xaml">
