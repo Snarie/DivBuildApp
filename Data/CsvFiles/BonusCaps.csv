@@ -26,7 +26,7 @@ Ensnare_Resistance;Blue;;;10;;;
 Pulse_Resistance;Blue;;;10;;;
 Shock_Resistance;Blue;;;10;;;
 Armor_on_Kill_Stat;Blue;;;18935;;;
-Damage_to_Health;Red;;;;;21;9.5
+Health_Damage;Red;;;;;21;9.5
 Damage_to_Armor;Red;;;;;12;6
 DMG_out_of_Cover;Red;;;;;12;10
 Accuracy;Red;;;;;;12
@@ -44,4 +44,3 @@ Armor_Regen;Blue;;;;;;
 Skill_Health;Yellow;;;;;;
 Armor_on_Kill;Blue;;;;;;
 Scanner_Pulse_Haste;Yellow;;;;;;
-Health_Damage;Red;;;;;;

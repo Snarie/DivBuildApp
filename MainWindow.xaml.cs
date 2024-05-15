@@ -110,6 +110,8 @@ namespace DivBuildApp
             BonusCaps.Initialize();
             WeaponList.Initialize();
             WeaponStats.Initialize();
+            //attributes requires stats and list
+            WeaponAttributes.Initialize();
 
 
             InitializeWeaponTypeBox();

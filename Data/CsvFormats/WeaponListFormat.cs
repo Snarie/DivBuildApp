@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using DivBuildApp.Data.Tables;
 
 namespace DivBuildApp.Data.CsvFormats
 {
@@ -20,6 +21,15 @@ namespace DivBuildApp.Data.CsvFormats
             Varient = varient;
             Type = type;
             Rarity = rarity;
+        }
+
+        public WeaponAttributesFormat Attributes()
+        {
+            return WeaponAttributes.Attributes.FirstOrDefault(a => a.Name == Name);
+        }
+        public WeaponStatsFormat Stats()
+        {
+            return WeaponStats.Stats.FirstOrDefault(a => a.Name == Name);
         }
     }
 }

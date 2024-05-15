@@ -84,6 +84,7 @@
     <Compile Include="BonusControl\ActiveBonuses.cs" />
     <Compile Include="Classes\WeaponCore.cs" />
     <Compile Include="Classes\WeaponGridContent.cs" />
+    <Compile Include="Data\CsvFormats\WeaponAttributesFormat.cs" />
     <Compile Include="Data\CsvFormats\WeaponListFormat.cs" />
     <Compile Include="Data\CsvFormats\WeaponStatsFormat.cs" />
     <Compile Include="Data\Tables\BonusCaps.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Data\CsvFormats\BrandBonusesFormat.cs" />
     <Compile Include="Data\CsvReader.cs" />
     <Compile Include="Data\Tables\BonusDisplayTypes.cs" />
+    <Compile Include="Data\Tables\WeaponAttributes.cs" />
     <Compile Include="Data\Tables\WeaponList.cs" />
     <Compile Include="Data\Tables\WeaponStats.cs" />
     <Compile Include="GlobalSynchronizationManager.cs" />

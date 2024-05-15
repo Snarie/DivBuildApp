@@ -46,5 +46,7 @@ namespace DivBuildApp
             await CreateGear(e);
             OnWeaponSet(e);
         }
+
+
     }
 }

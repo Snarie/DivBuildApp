@@ -1,4 +1,4 @@
-name;weaponDamage;coreAttribute;sideAttribute;talent
+name;core;main;side;talent
 Shield Splinterer;;;;Perfect Optimist
 Invisible Hand;;;;Perfect Allegro
 Manic;;;;Perfect Overflowing
@@ -23,7 +23,7 @@ Black Friday;;;;Perfectly Unhinged
 The Stinger;;;;Swift
 Good Times;;;;Perfect Fast Hands
 New Reliable;;;;Perfectly Optimized
-Tabula Raba;;;;Perfectly Steady Handed
+Tabula Rasa;;;;Perfectly Steady Handed
 Carnage;;;;Perfect Sadist
 Dare;;;;Perfect Flatline
 Pestilence;;;;Plague of the Outcasts
@@ -34,8 +34,8 @@ Rock 'n' Roll;;;;Perfectly Extra
 Lefty;;;;Perfected Sledgehammer
 Tsunami;;;;Perfect Pummel
 Enforcer;;;none;Perfect Pummel
-Backup Boomstick;locked:17;;;
-Firestarter;locked:11.6;none;locked:Damage_to_Health=10.0;Primer Rounds
+Backup Boomstick;locked:Weapon_Damage=17.0;;;
+Firestarter;locked:Weapon_Damage=11.6;none;locked:Damage_to_Health=10.0;Primer Rounds
 Boomstick;;;;Perfectly Pumped Up
 The Send-Off;;;;Perfect Distance
 Cuélebre;;;;Perfect Jazz Hands
@@ -47,7 +47,7 @@ Cabaret;;;;Perfect Thunder Strike
 Cold Relations;;;;Perfectly Strained
 Dark Winter;;;;Perfect Killer
 Swap Chain;;;;Perfectly Unwavering
-Grown Greaet;;;;Perfect Stabilize
+Grown Great;;;;Perfect Stabilize
 The Sleigher;;;;Hidden Rock
 Emeline's Guard;;;;Perfect Preservation
 Safety Distance;;;;Perfect Outsider
@@ -84,14 +84,14 @@ Nemesis;;;;Electromagnetic Accelerator
 Mantis;;;;In Plain Sight
 Dread Edict;;;;Full Stop
 Sacrum Imperium;;;;The Trap
-Survivalist D50;locked:11.6;;locked:DMG_out_of_Cover=10.0;Perfect Sadist
+Survivalist D50;locked:Weapon_Damage=11.6;;locked:DMG_out_of_Cover=10.0;Perfect Sadist
 Mozambique Special;;;;Perfect Bread Basket
-Maxim 9;locked:11.6;;locked:Headshot_Damage=10.0;Perfect Spike
+Maxim 9;locked:Weapon_Damage=11.6;;locked:Headshot_Damage=10.0;Perfect Spike
 Lightning Rod;;;;Perfect Salvage
-Diceros Special;locked:11.6;;locked:Reload_Speed=20.0;Perfectly Unwavering
+Diceros Special;locked:Weapon_Damage=11.6;;locked:Reload_Speed=20.0;Perfectly Unwavering
 Orbit;;;;Perfect Finisher
 Prophet;;;;Perfect Determined
-P320 Xcompact;locked:11.6;;locked:Damage_to_Armor=30.0;Perfect Preservation
+P320 XCompact;locked:Weapon_Damage=11.6;;locked:Damage_to_Armor=30.0;Perfect Preservation
 "TDI ""Kard"" Custom ";;locked:Skill_Tier=1;;
 Liberty;;;;Liberty or Death
 Mosquito;;;;Mosquito Song

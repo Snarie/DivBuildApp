@@ -14,8 +14,8 @@ namespace DivBuildApp.BonusControl
         public static List<BonusDisplay> GearSideAttributes = new List<BonusDisplay>();
         public static List<BonusDisplay> GearModAttributes = new List<BonusDisplay>();
         public static List<BonusDisplay> WeaponCoreAttributes = new List<BonusDisplay>();
-        public static List<BonusDisplay> WeaponPrimaryAttributes = new List<BonusDisplay>();
-        public static List<BonusDisplay> WeaponSecondaryAttributes = new List<BonusDisplay>();
+        public static List<BonusDisplay> WeaponMainAttributes = new List<BonusDisplay>();
+        public static List<BonusDisplay> WeaponSideAttributes = new List<BonusDisplay>();
 
         public static void Initialize()
         {
@@ -34,9 +34,9 @@ namespace DivBuildApp.BonusControl
                 TryCreateBonusCap(name, bonusCaps.GearCore, "Core-" + bonusCaps.IconType, GearCoreAttributes);
                 TryCreateBonusCap(name, bonusCaps.GearSide, "Side-" + bonusCaps.IconType, GearSideAttributes);
                 TryCreateBonusCap(name, bonusCaps.Mod, "Mod-" + bonusCaps.IconType, GearModAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponCore, bonusCaps.IconType, WeaponCoreAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponPrimary, bonusCaps.IconType, WeaponPrimaryAttributes);
-                TryCreateBonusCap(name, bonusCaps.WeaponSide, bonusCaps.IconType, WeaponSecondaryAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponCore, "Core-" + bonusCaps.IconType, WeaponCoreAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponPrimary, "Side-" + bonusCaps.IconType, WeaponMainAttributes);
+                TryCreateBonusCap(name, bonusCaps.WeaponSide, "Side-" + bonusCaps.IconType, WeaponSideAttributes);
 
             }
         }

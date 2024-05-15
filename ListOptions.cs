@@ -21,7 +21,12 @@ namespace DivBuildApp
         public static void Initialize()
         {
             GearHandler.GearSet += HandleGearSet;
+            WeaponHandler.WeaponSet += HandleWeaponSet;
             //Creates the eventHandlers
+        }
+        private static void HandleWeaponSet(object sender, WeaponEventArgs e)
+        {
+            SetOptionsWeaponStatBoxes(e);
         }
         private static void HandleGearSet(object sender, GridEventArgs e)
         {
@@ -36,7 +41,7 @@ namespace DivBuildApp
             if (statBoxes[0] != null && statBoxes[1] != null && statBoxes[2] != null && statBoxes[3] != null)
             {
                 ComboBox itemBox = e.Grid.ItemBox;
-                if(itemBox.SelectedItem is ComboBoxBrandItem selectedItem)
+                if (itemBox.SelectedItem is ComboBoxBrandItem selectedItem) 
                 {
                     StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
 
@@ -54,6 +59,38 @@ namespace DivBuildApp
             int bonusItemCount = statBox.Items.Count;
             statBox.ItemsSource = GetBonusOptionsList(itemAttribute);
             SetBoxSelectedIndex(e, bonusIndex, bonusItemCount);
+        }
+        public static void SetOptionsWeaponStatBoxes(WeaponEventArgs e)
+        {
+            ComboBox[] statBoxes = e.Grid.StatBoxes;
+
+            if (statBoxes[0] != null && statBoxes[1] != null && statBoxes[2] != null)
+            {
+                ComboBox box = e.Grid.Box;
+                if (box.SelectedItem is WeaponListFormat wlf)
+                {
+
+                    WeaponAttributesFormat attributes = wlf.Attributes();
+                    if(attributes == null)
+                    {
+                        attributes = new WeaponAttributesFormat(wlf.Name, "", "", "", "");
+                    }
+                    attributes = WeaponAttributes.ConvertWeaponAttribute(attributes);
+
+                    SetWeaponSource(e, 0, attributes.Core);
+                    SetWeaponSource(e, 1, attributes.Main);
+                    SetWeaponSource(e, 2, attributes.Side);
+                }
+            }
+        }
+        private static void SetWeaponSource(WeaponEventArgs e, int i, string itemAttribute)
+        {
+            ComboBox statBox = e.Grid.StatBoxes[i];
+            //int bonusIndex = statBox.SelectedIndex;
+            //int bonusItemCount = statBox.Items.Count;
+            List<BonusDisplay> list = GetBonusOptionsList(itemAttribute);
+            statBox.ItemsSource = list;
+
         }
         private static void SetBoxSelectedIndex(GridEventArgs e, int oldIndex, int oldItemCount)
         {
@@ -99,7 +136,7 @@ namespace DivBuildApp
         }
 
 
-
+        
         /// <summary>
         /// Returns the list of all Bonusses available to be selected
         /// </summary>
@@ -130,6 +167,8 @@ namespace DivBuildApp
                 case "list":
                     switch (value)
                     {
+                        case "wside":
+                            return BonusCaps.WeaponSideAttributes;
                         case "core":
                             return BonusCaps.GearCoreAttributes;
                         case "side":
@@ -143,6 +182,12 @@ namespace DivBuildApp
                     }
                 case "locked":
                     return new List<BonusDisplay>() { new BonusDisplay(new Bonus(value)) };
+                case "wcore":
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.WeaponCoreAttributes, BonusHandler.StringToBonusType(value)) };
+                case "wmain":
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.WeaponMainAttributes, BonusHandler.StringToBonusType(value)) };
+                case "wside":
+                    return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.WeaponSideAttributes, BonusHandler.StringToBonusType(value)) };
                 case "core":
                     return new List<BonusDisplay>() { BonusDisplayHandler.BonusDisplayFromList(BonusCaps.GearCoreAttributes, BonusHandler.StringToBonusType(value)) };
                 case "side":

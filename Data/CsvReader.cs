@@ -75,6 +75,11 @@ namespace DivBuildApp
             string filePath = Path.Combine(CsvDirectory(), "WeaponStats.csv");
             return ReadCsvFile<WeaponStatsFormat>(filePath, Config());
         }
+        public static List<WeaponAttributesFormat> WeaponAttributes()
+        {
+            string filePath = Path.Combine(CsvDirectory(), "WeaponAttributes.csv");
+            return ReadCsvFile<WeaponAttributesFormat>(filePath, Config());
+        }
         public static List<BonusCapsFormat> BonusCaps()
         {
             string filePath = Path.Combine(CsvDirectory(), "BonusCaps.csv");

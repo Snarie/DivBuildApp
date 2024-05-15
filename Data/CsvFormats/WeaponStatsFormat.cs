@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DivBuildApp.Data.Tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace DivBuildApp.Data.CsvFormats
             MagazineSize = magazineSize;
             ReloadSpeed = reloadSpeed;
             OptimalRange = optimalRange;
+        }
+
+        public WeaponListFormat List()
+        {
+            return WeaponList.WeaponBases.FirstOrDefault(a => a.Name == Name);
+        }
+        public WeaponAttributesFormat Attributes()
+        {
+            return WeaponAttributes.Attributes.FirstOrDefault(a => a.Name == Name);
         }
     }
 }
