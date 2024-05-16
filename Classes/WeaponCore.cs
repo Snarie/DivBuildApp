@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp
 {
+    public enum WeaponSlot
+    {
+        PrimaryWeapon,
+        SecondaryWeapon,
+        SideArm
+    }
     public enum WeaponType
     {
          AR,

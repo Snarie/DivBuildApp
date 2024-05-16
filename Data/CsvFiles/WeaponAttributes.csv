@@ -92,7 +92,7 @@ Diceros Special;locked:Weapon_Damage=11.6;;locked:Reload_Speed=20.0;Perfectly Un
 Orbit;;;;Perfect Finisher
 Prophet;;;;Perfect Determined
 P320 XCompact;locked:Weapon_Damage=11.6;;locked:Damage_to_Armor=30.0;Perfect Preservation
-"TDI ""Kard"" Custom ";;locked:Skill_Tier=1;;
+"TDI ""Kard"" Custom ";;;locked:Skill_Tier=1;
 Liberty;;;;Liberty or Death
 Mosquito;;;;Mosquito Song
 Regulus;;;;Regicide

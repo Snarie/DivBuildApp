@@ -80,7 +80,7 @@ namespace DivBuildApp.UI
             object selectedItem = null;
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                selectedItem = e.Grid.ItemBox.SelectedItem;
+                selectedItem = e.Grid.Box.SelectedItem;
             });
             string resourcePath = $"pack://application:,,,/Images/Brand Icons/Improvised.png";
             if (selectedItem is ComboBoxBrandItem item)

@@ -50,9 +50,9 @@ namespace DivBuildApp
                 PrimaryWeaponOpticalRail, PrimaryWeaponMagazine, PrimaryWeaponUnderbarrel, PrimaryWeaponMuzzle,
                 PrimaryWeaponDamage, PrimaryWeaponRPM, PrimaryWeaponMagazineSize,
                 new ComboBox[] { PrimaryWeaponStat1, PrimaryWeaponStat2, PrimaryWeaponStat3 },
-                new Label[] { PrimaryWeaponStat1_Value, PrimaryWeaponStat2_Value, PrimaryWeaponStat3_Value},
-                new Slider[] { PrimaryWeaponStat1_Slider, PrimaryWeaponStat2_Slider, PrimaryWeaponStat3_Slider},
-                new Image[] { PrimaryWeaponStat1_Icon, PrimaryWeaponStat2_Icon, PrimaryWeaponStat3_Icon},
+                new Label[] { PrimaryWeaponStat1_Value, PrimaryWeaponStat2_Value, PrimaryWeaponStat3_Value },
+                new Slider[] { PrimaryWeaponStat1_Slider, PrimaryWeaponStat2_Slider, PrimaryWeaponStat3_Slider },
+                new Image[] { PrimaryWeaponStat1_Icon, PrimaryWeaponStat2_Icon, PrimaryWeaponStat3_Icon },
                 PrimaryWeaponImage
             )); WeaponGridLinks.Add("SecondaryWeapon", new WeaponGridContent(
                 SecondaryWeaponBox, SecondaryWeaponName, SecondaryWeaponArmor,
@@ -134,7 +134,7 @@ namespace DivBuildApp
         }
         private void InitializeWeaponTypeBox()
         {
-            foreach(WeaponType weaponType in Enum.GetValues(typeof(WeaponType)))
+            foreach (WeaponType weaponType in Enum.GetValues(typeof(WeaponType)))
             {
                 PrimaryWeaponType.Items.Add(weaponType);
                 SecondaryWeaponType.Items.Add(weaponType);
@@ -152,26 +152,70 @@ namespace DivBuildApp
             Left = (SystemParameters.WorkArea.Width - Width) / 2;
             Top = (SystemParameters.WorkArea.Height - Height) / 2;
         }
-        
 
-        
 
-        
+
+
+
         private void WeaponType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
             {
-                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox));
+                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox), -1);
                 ListOptions.OptionsWeaponBox(we);
             }
         }
         private void WeaponBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(sender is ComboBox comboBox)
+            if (sender is ComboBox comboBox)
             {
-                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox));
+                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox), -1);
                 WeaponHandler.SetEquippedWeapon(we);
             }
+        }
+        private void WeaponStatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e, int index)
+        {
+            if(sender is Slider slider)
+            {
+                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(slider), index);
+                StatValueLabelControl.SetWeaponValueAsync(we);
+            }
+        }
+        private void WeaponStat1Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Initializing) return;
+            WeaponStatSlider_ValueChanged(sender, e, 0);
+        }
+        private void WeaponStat2Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Initializing) return;
+            WeaponStatSlider_ValueChanged(sender, e, 1);
+        }
+        private void WeaponStat3Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Initializing) return;
+            WeaponStatSlider_ValueChanged(sender, e, 2);
+        }
+
+        private void WeaponStatBox_SelectionChanged(object sender, SelectionChangedEventArgs e, int index)
+        {
+            if(sender is ComboBox comboBox)
+            {
+                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox), index);
+                StatSliderControl.SetWeaponRangeAsync(we);
+            }
+        }
+        private void WeaponStat1Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WeaponStatBox_SelectionChanged(sender, e, 0);
+        }
+        private void WeaponStat2Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WeaponStatBox_SelectionChanged(sender, e, 1);
+        }
+        private void WeaponStat3Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WeaponStatBox_SelectionChanged(sender, e, 2);
         }
         private void GlobalExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

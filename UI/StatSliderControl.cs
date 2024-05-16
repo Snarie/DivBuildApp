@@ -18,42 +18,78 @@ namespace DivBuildApp.UI
             // Set eventHandlers
         }
         public static event EventHandler<GridEventArgs> SliderRangeSet;
+        public static event EventHandler<WeaponEventArgs> WeaponSliderRangeSet;
         private static void OnSliderRangeSet(GridEventArgs e)
         {
             SliderRangeSet?.Invoke(null, e);
         }
-        public static void SetRange(GridEventArgs e)
+        private static void OnWeaponSliderRangeSet(WeaponEventArgs e)
         {
-            Slider slider = e.Grid.StatSliders[e.Index];
-            ComboBox statBox = e.Grid.StatBoxes[e.Index];
+            WeaponSliderRangeSet?.Invoke(null, e);
+        }
 
-            if (!(statBox.SelectedItem is BonusDisplay bonusDisplay))
+
+
+        private static readonly SynchronizedIndexGroupedTaskRunner<WeaponSlot> WeaponRangeSetTaskRunner = new SynchronizedIndexGroupedTaskRunner<WeaponSlot>(TimeSpan.FromSeconds(1), 3);
+        public static async void SetWeaponRangeAsync(WeaponEventArgs e)
+        {
+            await WeaponRangeSetTaskRunner.ExecuteTaskAsync(e.Slot, e.Index, () =>
             {
-                slider.Visibility = Visibility.Collapsed;
+                Slider slider = e.Grid.StatSliders[e.Index];
+                ComboBox statBox = e.Grid.StatBoxes[e.Index];
+
+                if (!(statBox.SelectedItem is BonusDisplay bonusDisplay))
+                {
+                    slider.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    slider.Visibility = Visibility.Visible;
+
+                    if (FillRectangleExists(slider, out Rectangle rect)) SetFillColorFromIconType(rect, bonusDisplay.IconType);
+
+                    SetRange(slider, bonusDisplay);
+                }
+
+                OnWeaponSliderRangeSet(e);
+
+                // Return a completed task because lambda must return a Task
+                // Alternative is async await OnSliderRangeSet
+                return Task.CompletedTask;
+            });
+        }
+        
+        private static readonly SynchronizedIndexGroupedTaskRunner<ItemType> RangeSetTaskRunner = new SynchronizedIndexGroupedTaskRunner<ItemType>(TimeSpan.FromSeconds(0.05), 4);
+        public static async void SetRangeAsync(GridEventArgs e)
+        {
+            await RangeSetTaskRunner.ExecuteTaskAsync(e.ItemType, e.Index, () =>
+            {
+                Slider slider = e.Grid.StatSliders[e.Index];
+                ComboBox statBox = e.Grid.StatBoxes[e.Index];
+
+                if (!(statBox.SelectedItem is BonusDisplay bonusDisplay))
+                {
+                    slider.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    slider.Visibility = Visibility.Visible;
+
+                    if (FillRectangleExists(slider, out Rectangle rect)) SetFillColorFromIconType(rect, bonusDisplay.IconType);
+
+                    SetRange(slider, bonusDisplay);
+                }
+
                 OnSliderRangeSet(e);
-                return;
-            }
-            slider.Visibility = Visibility.Visible;
 
-            bool success = FillRectangleExists(slider, out Rectangle rect);
-            if(success) 
-            {
-                Brush brush = Brushes.Pink;
-                if (bonusDisplay.IconType.EndsWith("Red"))
-                {
-                    brush = Brushes.Red;
-                }
-                else if (bonusDisplay.IconType.EndsWith("Blue"))
-                {
-                    brush = Brushes.DeepSkyBlue;
-                }
-                else if (bonusDisplay.IconType.EndsWith("Yellow"))
-                {
-                    brush = Brushes.Yellow;
-                }
-                rect.Fill = brush;
-            }
-
+                // Return a completed task because lambda must return a Task
+                // Alternative is async await OnSliderRangeSet
+                return Task.CompletedTask;
+            });
+            
+        }
+        private static void SetRange(Slider slider, BonusDisplay bonusDisplay)
+        {
             switch (bonusDisplay.Bonus.BonusType)
             {
                 case BonusType.Skill_Tier:
@@ -69,66 +105,23 @@ namespace DivBuildApp.UI
                     slider.Minimum = 1;
                     break;
             }
-            OnSliderRangeSet(e);
         }
-
-
-        private static readonly SynchronizedIndexGroupedTaskRunner RangeSetTaskRunner = new SynchronizedIndexGroupedTaskRunner(TimeSpan.FromSeconds(0.05));
-        public static async void SetRangeAsync(GridEventArgs e)
+        private static void SetFillColorFromIconType(Rectangle rect, string iconType)
         {
-            await RangeSetTaskRunner.ExecuteTaskAsync(e.ItemType, e.Index, () =>
+            Brush brush = Brushes.Pink;
+            if (iconType.EndsWith("Red"))
             {
-                Slider slider = e.Grid.StatSliders[e.Index];
-                ComboBox statBox = e.Grid.StatBoxes[e.Index];
-
-                if (!(statBox.SelectedItem is BonusDisplay bonusDisplay))
-                {
-                    slider.Visibility = Visibility.Collapsed;
-                    OnSliderRangeSet(e);
-                    return Task.CompletedTask;
-                }
-                slider.Visibility = Visibility.Visible;
-
-                bool success = FillRectangleExists(slider, out Rectangle rect);
-                if (success)
-                {
-                    Brush brush = Brushes.Pink;
-                    if (bonusDisplay.IconType.EndsWith("Red"))
-                    {
-                        brush = Brushes.Red;
-                    }
-                    else if (bonusDisplay.IconType.EndsWith("Blue"))
-                    {
-                        brush = Brushes.DeepSkyBlue;
-                    }
-                    else if (bonusDisplay.IconType.EndsWith("Yellow"))
-                    {
-                        brush = Brushes.Yellow;
-                    }
-                    rect.Fill = brush;
-                }
-
-                switch (bonusDisplay.Bonus.BonusType)
-                {
-                    case BonusType.Skill_Tier:
-                    case BonusType.Armor_Kit_Capacity:
-                    case BonusType.Grenade_Capacity:
-                    case BonusType.Skill_Repair_Charges:
-                    case BonusType.Skill_Stim_Charges:
-                    case BonusType.Skill_Stinger_Charges:
-                        slider.Minimum = 100;
-                        slider.Value = 100;
-                        break;
-                    default:
-                        slider.Minimum = 1;
-                        break;
-                }
-                OnSliderRangeSet(e);
-
-                // Return a completed task because lambda must return a Task
-                return Task.CompletedTask;
-            });
-            
+                brush = Brushes.Red;
+            }
+            else if (iconType.EndsWith("Blue"))
+            {
+                brush = Brushes.DeepSkyBlue;
+            }
+            else if (iconType.EndsWith("Yellow"))
+            {
+                brush = Brushes.Yellow;
+            }
+            rect.Fill = brush;
         }
         private static bool FillRectangleExists(Slider slider, out Rectangle rectangle)
         {

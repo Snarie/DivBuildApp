@@ -13,17 +13,32 @@ namespace DivBuildApp.Data.Tables
         public static List<WeaponAttributesFormat> Attributes = new List<WeaponAttributesFormat>();
         public static void Initialize()
         {
-            Attributes = CsvReader.WeaponAttributes();
+            CreateWeaponAttributes(CsvReader.WeaponAttributes());
             //ConvertWeaponAttributes();
         }
 
-        public static WeaponAttributesFormat ConvertWeaponAttribute(WeaponAttributesFormat attribute)
+        public static void CreateWeaponAttributes(List<WeaponAttributesFormat> overrides)
         {
-            string core = string.IsNullOrEmpty(attribute.Core) ? "wcore:Weapon_Damage" : attribute.Core;
-            string main = string.IsNullOrEmpty(attribute.Main) ? "none" : attribute.Main;
+            foreach(WeaponListFormat weapon in WeaponList.WeaponBases)
+            {
+                WeaponAttributesFormat attributes = overrides.FirstOrDefault(w => w.Name == weapon.Name);
+
+                if(attributes == null)
+                {
+                    attributes = new WeaponAttributesFormat(weapon.Name, "", "", "", "");
+                }
+
+                Attributes.Add(ConvertWeaponAttribute(attributes));
+            }
+        }
+
+        public static WeaponAttributesFormat ConvertWeaponAttribute(WeaponAttributesFormat attributes)
+        {
+            string core = string.IsNullOrEmpty(attributes.Core) ? "wcore:Weapon_Damage" : attributes.Core;
+            string main = string.IsNullOrEmpty(attributes.Main) ? "none" : attributes.Main;
             if (main == "none")
             {
-                switch (attribute.List().Type)
+                switch (attributes.List().Type)
                 {
                     case WeaponType.AR:
                         main = "wmain:Health_Damage";
@@ -47,9 +62,9 @@ namespace DivBuildApp.Data.Tables
                         break;
                 }
             }
-            string side = string.IsNullOrEmpty(attribute.Side) ? "list:wside" : attribute.Side;
-            string talent = string.IsNullOrEmpty(attribute.Talent) ? "list:wtalent" : attribute.Talent;
-            return new WeaponAttributesFormat(attribute.Name, core, main, side, talent);
+            string side = string.IsNullOrEmpty(attributes.Side) ? "list:wside" : attributes.Side;
+            string talent = string.IsNullOrEmpty(attributes.Talent) ? "list:wtalent" : attributes.Talent;
+            return new WeaponAttributesFormat(attributes.Name, core, main, side, talent);
         }
 
     }

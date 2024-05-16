@@ -10,10 +10,10 @@ namespace DivBuildApp
 {
     public class GearGridContent
     {
-        public ComboBox ItemBox { get; set; }
-        public Label ItemName { get; set; }
-        public Label ItemArmor { get; set; }
-        public ComboBox ItemExpertiece { get; set; }
+        public ComboBox Box { get; set; }
+        public Label Name { get; set; }
+        public Label Armor { get; set; }
+        public ComboBox Expertiece { get; set; }
         
         public TextBlock[] BrandBonusTextBlocks { get; set; }
         public ComboBox[] StatBoxes { get; set; }
@@ -21,12 +21,12 @@ namespace DivBuildApp
         public Slider[] StatSliders { get; set; }
         public Image[] StatIcons { get; set; }
         public Image BrandImage { get; set; }
-        public GearGridContent(ComboBox itemBox, Label itemName, Label itemArmor, ComboBox itemExpertiece, TextBlock[] brandBonusTextBlocks, ComboBox[] statBoxes, Label[] statValues, Slider[] statSliders, Image[] statIcons, Image brandImage) 
+        public GearGridContent(ComboBox box, Label name, Label armor, ComboBox expertiece, TextBlock[] brandBonusTextBlocks, ComboBox[] statBoxes, Label[] statValues, Slider[] statSliders, Image[] statIcons, Image brandImage) 
         {
-            ItemBox = itemBox;
-            ItemName = itemName;
-            ItemArmor = itemArmor;
-            ItemExpertiece = itemExpertiece;
+            Box = box;
+            Name = name;
+            Armor = armor;
+            Expertiece = expertiece;
             BrandBonusTextBlocks = brandBonusTextBlocks;
             StatBoxes = statBoxes;
             StatValues = statValues;

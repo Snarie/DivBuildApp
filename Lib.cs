@@ -109,7 +109,7 @@ namespace DivBuildApp
         /// <returns><see cref="ComboBox"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static ComboBox GetItemBox(ItemType itemType)
         {
-            return GridExists(itemType, out GearGridContent grid) ? grid.ItemBox : null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.Box : null;
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace DivBuildApp
         /// <returns>ItemName <see cref="Label"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static Label GetItemNameLabel(ItemType itemType)
         {
-            return GridExists(itemType, out GearGridContent grid) ? grid.ItemName : null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.Name : null;
         }
 
 
@@ -130,7 +130,7 @@ namespace DivBuildApp
         /// <returns>ItemArmor <see cref="Label"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static Label GetItemArmorLabel(ItemType itemType)
         {
-            return GridExists(itemType, out GearGridContent grid) ? grid.ItemArmor : null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.Armor : null;
         }
 
 
@@ -141,7 +141,7 @@ namespace DivBuildApp
         /// <returns>ExpertieceBox <see cref="ComboBox"/> if <paramref name="itemType"/>'s <see cref="GearGridContent"/> exists; otherwise, <see langword="null"/></returns>
         public static ComboBox GetExpertieceBox(ItemType itemType)
         {
-            return GridExists(itemType, out GearGridContent grid) ? grid.ItemExpertiece : null;
+            return GridExists(itemType, out GearGridContent grid) ? grid.Expertiece : null;
         }
 
 

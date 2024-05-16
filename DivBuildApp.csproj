@@ -97,7 +97,6 @@
     <Compile Include="Data\Tables\WeaponAttributes.cs" />
     <Compile Include="Data\Tables\WeaponList.cs" />
     <Compile Include="Data\Tables\WeaponStats.cs" />
-    <Compile Include="GlobalSynchronizationManager.cs" />
     <Compile Include="GridEventArgs.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="SHDWatch.cs" />

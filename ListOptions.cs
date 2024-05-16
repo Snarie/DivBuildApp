@@ -40,7 +40,7 @@ namespace DivBuildApp
 
             if (statBoxes[0] != null && statBoxes[1] != null && statBoxes[2] != null && statBoxes[3] != null)
             {
-                ComboBox itemBox = e.Grid.ItemBox;
+                ComboBox itemBox = e.Grid.Box;
                 if (itemBox.SelectedItem is ComboBoxBrandItem selectedItem) 
                 {
                     StringItem stringItem = ItemHandler.ItemFromIdentity(selectedItem.Name, selectedItem.Slot);
@@ -73,9 +73,9 @@ namespace DivBuildApp
                     WeaponAttributesFormat attributes = wlf.Attributes();
                     if(attributes == null)
                     {
-                        attributes = new WeaponAttributesFormat(wlf.Name, "", "", "", "");
+                        Console.WriteLine();
+                        Console.WriteLine(attributes.Core);
                     }
-                    attributes = WeaponAttributes.ConvertWeaponAttribute(attributes);
 
                     SetWeaponSource(e, 0, attributes.Core);
                     SetWeaponSource(e, 1, attributes.Main);

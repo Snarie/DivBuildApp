@@ -75,7 +75,7 @@ namespace DivBuildApp
         }
 
 
-        private static readonly SynchronizedGroupedTaskRunner GearAttibuteSetTaskRunner = new SynchronizedGroupedTaskRunner(TimeSpan.FromSeconds(0.1));
+        private static readonly SynchronizedGroupedTaskRunner<ItemType> GearAttibuteSetTaskRunner = new SynchronizedGroupedTaskRunner<ItemType>(TimeSpan.FromSeconds(0.1));
         public static async void SetGearStatAttributesAsync(GridEventArgs e)
         {
             await GearAttibuteSetTaskRunner.ExecuteTaskAsync(e.ItemType, async () =>
@@ -115,7 +115,7 @@ namespace DivBuildApp
         }
 
 
-        private static readonly SynchronizedGroupedTaskRunner GearSetTaskRunner = new SynchronizedGroupedTaskRunner(TimeSpan.FromSeconds(0.05));
+        private static readonly SynchronizedGroupedTaskRunner<ItemType> GearSetTaskRunner = new SynchronizedGroupedTaskRunner<ItemType>(TimeSpan.FromSeconds(0.05));
         public static async void SetEquippedGearListAsync(GridEventArgs e)
         {
             await GearSetTaskRunner.ExecuteTaskAsync(e.ItemType, () =>

@@ -9,14 +9,16 @@ namespace DivBuildApp
     internal class WeaponEventArgs
     {
         public WeaponGridContent Grid { get; }
-        public WeaponType Type { get; }
-        public string Slot { get; }
+        public WeaponSlot Slot { get; }
+        public int Index { get; }
+        public WeaponType Type { get; }  // Not in use but might be usefull
 
-        public WeaponEventArgs(string slot)
+        public WeaponEventArgs(string slot, int index)
         {
             Grid = Lib.GetWeaponGridContent(slot);
-            Slot = slot;
-
+            _ = Enum.TryParse(slot, true, out WeaponSlot ws);
+            Slot = ws;
+            Index = index;
         }
     }
 }

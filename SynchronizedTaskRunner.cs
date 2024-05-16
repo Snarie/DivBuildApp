@@ -105,22 +105,24 @@ namespace DivBuildApp
 
     }
 
-    internal class SynchronizedGroupedTaskRunner
+    
+
+    internal class SynchronizedGroupedTaskRunner<TEnum> where TEnum : Enum
     {
         public SemaphoreSlim GlobalSemaphore;
-        public Dictionary<ItemType, SynchronizedTaskRunner> Runners;
+        public Dictionary<TEnum, SynchronizedTaskRunner> Runners;
 
         public SynchronizedGroupedTaskRunner(TimeSpan minimumDelay, int initialCount = 1, int maxCount = 1)
         {
             GlobalSemaphore = new SemaphoreSlim(initialCount, maxCount);
-            Runners = Enum.GetValues(typeof(ItemType))
-                .Cast<ItemType>()
-                .ToDictionary(itemType => itemType, itemType => new SynchronizedTaskRunner(minimumDelay));
+            Runners = Enum.GetValues(typeof(TEnum))
+                .Cast<TEnum>()
+                .ToDictionary(T => T, T => new SynchronizedTaskRunner(minimumDelay));
         }
 
-        public async Task ExecuteTaskAsync(ItemType itemType, Func<Task> taskFunc)
+        public async Task ExecuteTaskAsync(TEnum T, Func<Task> taskFunc)
         {
-            var runner = Runners[itemType];
+            var runner = Runners[T];
             // Try to enter the item-specific runner first.
             if (await runner.TryEnterAsync())
             {
@@ -140,59 +142,59 @@ namespace DivBuildApp
             else
             {
                 // Log if unable to enter runner
-                _ = Logger.LogInfo("Exiting early due to queue for " + itemType);
+                _ = Logger.LogInfo("Exiting early due to queue for " + T);
             }
         }
     }
 
-        internal class SynchronizedIndexGroupedTaskRunner
+    internal class SynchronizedIndexGroupedTaskRunner<TEnum> where TEnum : Enum
+    {
+        public SemaphoreSlim GlobalSemaphore;
+        public Dictionary<(TEnum, int), SynchronizedTaskRunner> Runners;
+
+        public SynchronizedIndexGroupedTaskRunner(TimeSpan minimumDelay, int indexAmount, int initialCount = 1, int maxCount = 1)
         {
-            public SemaphoreSlim GlobalSemaphore;
-            public Dictionary<(ItemType, int), SynchronizedTaskRunner> Runners;
+            GlobalSemaphore = new SemaphoreSlim(initialCount, maxCount);
 
-            public SynchronizedIndexGroupedTaskRunner(TimeSpan minimumDelay, int initialCount = 1, int maxCount = 1)
+            Runners = new Dictionary<(TEnum, int), SynchronizedTaskRunner>();
+            foreach (TEnum T in Enum.GetValues(typeof(TEnum)))
             {
-                GlobalSemaphore = new SemaphoreSlim(initialCount, maxCount);
-
-                Runners = new Dictionary<(ItemType, int), SynchronizedTaskRunner>();
-                foreach(ItemType itemType in Enum.GetValues(typeof(ItemType)))
+                for (int i = 0; i < indexAmount; i++)
                 {
-                    for(int i = 0; i < 4; i++)
-                    {
-                        Runners[(itemType, i)] = new SynchronizedTaskRunner(minimumDelay);
-                    }
-                }
-            }
-
-            public async Task ExecuteTaskAsync(ItemType itemType, int index, Func<Task> taskFunc)
-            {
-                var key = (itemType, index);
-                if(!Runners.ContainsKey(key))
-                {
-                    throw new ArgumentException($"No runner available for ItemType {itemType} at index {index}.");
-                }
-                var runner = Runners[key];
-                // Try to enter the item-specific runner first.
-                if (await runner.TryEnterAsync())
-                {
-                    // Wait on the global semaphore only after successfully entering.
-                    await GlobalSemaphore.WaitAsync();
-                    try
-                    {
-                        runner.ResetLastStartTime();
-                        await taskFunc(); // Execute the task.
-                    }
-                    finally
-                    {
-                        GlobalSemaphore.Release();
-                        runner.Release();
-                    }
-                }
-                else
-                {
-                    // Log if unable to enter runner
-                    _ = Logger.LogInfo("Exiting early due to queue for " + itemType);
+                    Runners[(T, i)] = new SynchronizedTaskRunner(minimumDelay);
                 }
             }
         }
+
+        public async Task ExecuteTaskAsync(TEnum T, int index, Func<Task> taskFunc)
+        {
+            var key = (T, index);
+            if (!Runners.ContainsKey(key))
+            {
+                throw new ArgumentException($"No runner available for type {T} at index {index}.");
+            }
+            var runner = Runners[key];
+            // Try to enter the item-specific runner first.
+            if (await runner.TryEnterAsync())
+            {
+                // Wait on the global semaphore only after successfully entering.
+                await GlobalSemaphore.WaitAsync();
+                try
+                {
+                    runner.ResetLastStartTime();
+                    await taskFunc(); // Execute the task.
+                }
+                finally
+                {
+                    GlobalSemaphore.Release();
+                    runner.Release();
+                }
+            }
+            else
+            {
+                // Log if unable to enter runner
+                _ = Logger.LogInfo("Exiting early due to queue for " + T);
+            }
+        }
+    }
 }

@@ -48,7 +48,7 @@ namespace DivBuildApp.UI
         public static void SetItemArmor(GridEventArgs e)
         {
             double armorValue = defaultArmorValues[e.ItemType];
-            ComboBox multiplierBox = e.Grid.ItemExpertiece;
+            ComboBox multiplierBox = e.Grid.Expertiece;
             if (!multiplierBox.HasItems)
             {
                 Task.Run(() => Logger.LogError($"{multiplierBox.Name} has no items"));
@@ -63,7 +63,7 @@ namespace DivBuildApp.UI
 
         private static async Task DisplayItemArmorValue(GridEventArgs e)
         {
-            Label itemArmorLabel = e.Grid.ItemArmor;
+            Label itemArmorLabel = e.Grid.Armor;
             double value = expertieceArmorValues[e.ItemType];
 
             await Application.Current.Dispatcher.InvokeAsync(() =>
@@ -73,14 +73,14 @@ namespace DivBuildApp.UI
                 itemArmorLabel.Content = text;
             });
         }
-        private static readonly SynchronizedGroupedTaskRunner ItemArmorSyncTask = new SynchronizedGroupedTaskRunner(TimeSpan.FromSeconds(0.2));
+        private static readonly SynchronizedGroupedTaskRunner<ItemType> ItemArmorSyncTask = new SynchronizedGroupedTaskRunner<ItemType>(TimeSpan.FromSeconds(0.2));
         public static async void SetItemArmorAsync(GridEventArgs e)
         {
             await ItemArmorSyncTask.ExecuteTaskAsync(e.ItemType, async () =>
             {
                 // Fetch default armor values and UI controls
                 double armorValue = defaultArmorValues[e.ItemType];
-                ComboBox multiplierBox = e.Grid.ItemExpertiece;
+                ComboBox multiplierBox = e.Grid.Expertiece;
                 double multiplier = 100;
 
                 // UI thread work to fetch selected value from combo box

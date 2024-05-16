@@ -39,7 +39,7 @@ namespace DivBuildApp.UI
             object selectedItem = null;
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                selectedItem = e.Grid.ItemBox.SelectedItem;
+                selectedItem = e.Grid.Box.SelectedItem;
             });
             if (!(selectedItem is ComboBoxBrandItem item))
             {
@@ -47,7 +47,7 @@ namespace DivBuildApp.UI
                 return;
             }
 
-            Label itemLabel = e.Grid.ItemName;
+            Label itemLabel = e.Grid.Name;
             Brush brush = Brushes.Red;
             switch (item.Preset)
             {
@@ -83,7 +83,7 @@ namespace DivBuildApp.UI
             object selectedItem = null;
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                selectedItem = e.Grid.ItemBox.SelectedItem;
+                selectedItem = e.Grid.Box.SelectedItem;
             });
             if (!(selectedItem is ComboBoxBrandItem item))
             {
