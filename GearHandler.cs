@@ -31,7 +31,6 @@ namespace DivBuildApp
         private static void HandleValueSet(object sender, GridEventArgs e)
         {
             SetGearStatAttributes(e);
-            OnGearAttributeSet();
         }
 
         public static ItemType[] gearTypes = { ItemType.Mask, ItemType.Backpack, ItemType.Chest, ItemType.Gloves, ItemType.Kneepads, ItemType.Holster };
@@ -72,6 +71,8 @@ namespace DivBuildApp
                 }
             }
             GearFromSlot(e.ItemType).StatAttributes = bonusList.ToArray();
+
+            OnGearAttributeSet();
         }
 
 

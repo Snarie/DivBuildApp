@@ -92,6 +92,7 @@ namespace DivBuildApp
             ItemArmorControl.Initialize();
             //Lib.Initialize(this);
             InitializeOptionsExpertiece();
+            InitializeOptionsWeaponSlot();
 
             WeaponHandler.Initialize();
             GearHandler.Initialize();
@@ -118,6 +119,13 @@ namespace DivBuildApp
 
             //ListOptions.OptionsWeaponBox(WeaponType.SMG, PrimaryWeaponBox, SecondaryWeaponBox);
             ListOptions.OptionsGearBox(ItemHandler.AllItemList);
+        }
+        private void InitializeOptionsWeaponSlot()
+        {
+            foreach(WeaponSlot slot in Enum.GetValues(typeof(WeaponSlot)))
+            {
+                EquippedWeaponSlot.Items.Add(slot);
+            }
         }
         private void InitializeOptionsExpertiece()
         {
@@ -170,7 +178,7 @@ namespace DivBuildApp
             if (sender is ComboBox comboBox)
             {
                 WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox), -1);
-                WeaponHandler.SetEquippedWeapon(we);
+                WeaponHandler.SetEquippedWeaponListAsync(we);
             }
         }
         private void WeaponStatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e, int index)
@@ -341,6 +349,15 @@ namespace DivBuildApp
             return regex.IsMatch(text);
         }
 
-        
+        private void EquippedWeaponSlot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(sender is ComboBox comboBox)
+            {
+                if(comboBox.SelectedItem is WeaponSlot slot)
+                {
+                    WeaponHandler.SetEquippedWepaonSlot(slot);
+                }
+            }
+        }
     }
 }

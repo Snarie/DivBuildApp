@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 
 
 namespace DivBuildApp.BonusControl
@@ -22,6 +24,9 @@ namespace DivBuildApp.BonusControl
             //StatValueLabelControl.ValueSet += HandleValueSet;
             GearHandler.GearSet += HandleGearSet;
             GearHandler.GearAttributeSet += HandleGearAttributeSet;
+            //WeaponHandler.WeaponSet += HandleWeaponSet;
+            WeaponHandler.WeaponAttributeSet += HandleWeaponAttributeSet;
+            WeaponHandler.EquippedWeaponSet += HandleWeaponAttributeSet;
             SHDWatch.WatchSet += HandleWatchSet;
             ItemArmorControl.ItemArmorSet += HandleItemArmorSet;
         }
@@ -40,6 +45,10 @@ namespace DivBuildApp.BonusControl
         {
             await CalculateStatAttributes();
         }
+        private static async void HandleWeaponAttributeSet(object sender, EventArgs e)
+        {
+            await CalculateWeaponAttributes();
+        }
         private static async void HandleWatchSet(object sender, EventArgs e)
         {
             await CalculateWatchBonuses();
@@ -53,6 +62,7 @@ namespace DivBuildApp.BonusControl
         private static readonly List<BonusSource> brandSetBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> expertieceBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> statAttributeBonuses = new List<BonusSource>();
+        private static readonly List<BonusSource> weaponAttributeBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> watchBonuses = new List<BonusSource>();
 
         public static List<BonusSource> activeBonusSources = new List<BonusSource>();
@@ -63,7 +73,7 @@ namespace DivBuildApp.BonusControl
         private static readonly SynchronizedTaskRunner BrandBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
         private static async Task CalculateBrandBonuses()
         {
-            await BrandBonusesTaskRunner.ExecuteAsync(() =>
+            await BrandBonusesTaskRunner.ExecuteAsync( async () =>
             {
                 brandSetBonuses.Clear();
                 Dictionary<string, int> brandLevels = new Dictionary<string, int>();
@@ -114,13 +124,23 @@ namespace DivBuildApp.BonusControl
                         }
                     }
                 }
-                _ = CalculateBonuses();
-
-                // Return a completed task because lambda must return a Task
-                return Task.CompletedTask;
+                await CalculateBonuses();
             });
+        }
 
-            
+        private static readonly SynchronizedTaskRunner WeaponAttributesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
+        private static async Task CalculateWeaponAttributes()
+        {
+            await WeaponAttributesTaskRunner.ExecuteAsync(async () =>
+            {
+                weaponAttributeBonuses.Clear();
+                Weapon weapon = WeaponHandler.GetEquippedWeapon();
+                foreach(Bonus bonus in weapon.StatAttributes)
+                {
+                    weaponAttributeBonuses.Add(new BonusSource(weapon.Name, bonus));
+                }
+                await CalculateBonuses();
+            });
         }
 
 
@@ -195,6 +215,11 @@ namespace DivBuildApp.BonusControl
                 }
 
                 foreach (BonusSource bonusSource in statAttributeBonuses)
+                {
+                    activeBonusSources.Add(bonusSource);
+                    activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
+                }
+                foreach(BonusSource bonusSource in weaponAttributeBonuses)
                 {
                     activeBonusSources.Add(bonusSource);
                     activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;

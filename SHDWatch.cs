@@ -24,36 +24,6 @@ namespace DivBuildApp
 
         public static List<Bonus> WatchBonuses = new List<Bonus>();
 
-        public static void SetWatchBonuses(string level)
-        {
-            WatchLevel = int.Parse((string.IsNullOrEmpty(level)) ? "0" : level);
-            double watchLevelPerc = (double)WatchLevel / 1000;
-            if (watchLevelPerc > 1) watchLevelPerc = 1;
-
-            WatchBonuses.Clear();
-
-            WatchBonuses.Add(new Bonus(BonusType.Critical_Hit_Chance, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Critical_Hit_Damage, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Headshot_Damage, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Weapon_Damage, 10 * watchLevelPerc));
-
-            WatchBonuses.Add(new Bonus(BonusType.Ammo_Capacity, 20 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Accuracy, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Stability, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Reload_Speed, 10 * watchLevelPerc));
-
-            WatchBonuses.Add(new Bonus(BonusType.Total_Armor, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Health, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Hazard_Protection, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Explosive_Resistance, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Skill_Haste, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Skill_Damage, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Repair_Skills, 10 * watchLevelPerc));
-            WatchBonuses.Add(new Bonus(BonusType.Skill_Duration, 10 * watchLevelPerc));
-
-            OnWatchSet();
-        }
-
         private static readonly SynchronizedTaskRunner WatchSetTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
         public static async void SetWatchBonusesAsync(string level)
         {
@@ -67,8 +37,8 @@ namespace DivBuildApp
                 WatchBonuses.Clear();
 
                 WatchBonuses.Add(new Bonus(BonusType.Critical_Hit_Chance, 10 * watchLevelPerc));
-                WatchBonuses.Add(new Bonus(BonusType.Critical_Hit_Damage, 10 * watchLevelPerc));
-                WatchBonuses.Add(new Bonus(BonusType.Headshot_Damage, 10 * watchLevelPerc));
+                WatchBonuses.Add(new Bonus(BonusType.Critical_Hit_Damage, 20 * watchLevelPerc));
+                WatchBonuses.Add(new Bonus(BonusType.Headshot_Damage, 20 * watchLevelPerc));
                 WatchBonuses.Add(new Bonus(BonusType.Weapon_Damage, 10 * watchLevelPerc));
 
                 WatchBonuses.Add(new Bonus(BonusType.Ammo_Capacity, 20 * watchLevelPerc));

@@ -13,7 +13,7 @@ Test Subject;;;;Perfectly In Sync
 Kingbreaker;;;;Perfect Flatline
 Eagle Bearer;;;;Eagle's Strike
 Chameleon;;;;Adaptive Instincts
-Capacitor;;core:Damage_to_Armor=12.0;;Capacitance
+Capacitor;;wmain:Damage_to_Armor;;Capacitance
 The Bighorn;;;;Big Game Hunter
 St. Elmo's Engine;;;;Actum Est
 Big Show;;;;Perfect Thunder Strike

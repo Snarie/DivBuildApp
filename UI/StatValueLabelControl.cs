@@ -27,9 +27,14 @@ namespace DivBuildApp.UI
         }
 
         public static event EventHandler<GridEventArgs> ValueSet;
+        public static event EventHandler<WeaponEventArgs> WeaponValueSet;
         private static void OnValueSet(GridEventArgs e)
         {
             ValueSet?.Invoke(null, e);
+        }
+        private static void OnWeaponValueSet(WeaponEventArgs e)
+        {
+            WeaponValueSet?.Invoke(null, e);
         }
 
 
@@ -66,6 +71,7 @@ namespace DivBuildApp.UI
                 {
                     statValueLabel.Content = "";
                 }
+                OnWeaponValueSet(e);
 
                 return Task.CompletedTask;
             });

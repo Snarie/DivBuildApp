@@ -47,16 +47,16 @@ namespace DivBuildApp.Data.Tables
                         main = "wmain:DMG_out_of_Cover";
                         break;
                     case WeaponType.MMR:
-                        main = "wmain:Headshot_Damagee";
+                        main = "wmain:Headshot_Damage";
                         break;
                     case WeaponType.Rifle:
-                        main = "wmain:Critical_hit_Damage";
+                        main = "wmain:Critical_Hit_Damage";
                         break;
                     case WeaponType.Shotgun:
-                        main = "wmain:Armor_Damage";
+                        main = "wmain:Damage_to_Armor";
                         break;
                     case WeaponType.SMG:
-                        main = "wmain:Critical_hit_Chance";
+                        main = "wmain:Critical_Hit_Chance";
                         break;
                     case WeaponType.Pistol:
                         break;
