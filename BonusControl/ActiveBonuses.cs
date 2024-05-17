@@ -229,6 +229,12 @@ namespace DivBuildApp.BonusControl
             {
                 ResetBonuses();
                 activeBonusSources.Clear();
+
+                // Specialization 15% on 3 weapon types (so all 3 equipped weapons for now)
+                BonusSource specializationBonus = new BonusSource("Specialization", new Bonus(BonusType.Weapon_Damage, 15.0));
+                activeBonusSources.Add(specializationBonus);
+                activeBonuses[specializationBonus.Bonus.BonusType] += specializationBonus.Bonus.BonusValue;
+
                 foreach (BonusSource bonusSource in brandSetBonuses)
                 {
                     activeBonusSources.Add(bonusSource);
