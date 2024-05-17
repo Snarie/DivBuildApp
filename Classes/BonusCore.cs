@@ -23,6 +23,7 @@ namespace DivBuildApp
         Armor_Regen,
         Armor_Regen_HPs,
 
+        Extra_Rounds,
         Magazine_Size,
         Ammo_Capacity,
         Grenade_Capacity,
