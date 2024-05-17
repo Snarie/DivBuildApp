@@ -129,7 +129,8 @@ namespace DivBuildApp.UI
 
             if (!(slider.Template.FindName("PART_Track", slider) is Track track))
             {
-                Task.Run(() => Logger.LogWarning($"track doesn't exist: {slider.Name}"));
+                string t = slider.Name;
+                Task.Run(() => Logger.LogWarning($"track doesn't exist: {t}"));
                 return false;
             }
             RepeatButton decreaseButton = track.DecreaseRepeatButton;
@@ -137,13 +138,15 @@ namespace DivBuildApp.UI
 
             if (decreaseButton == null)
             {
-                Task.Run(() => Logger.LogError($"decreaseButton doesn't exist: {slider.Name}"));
+                string t = slider.Name;
+                Task.Run(() => Logger.LogError($"decreaseButton doesn't exist: {t}"));
                 return false;
             }
             rectangle = decreaseButton.Template.FindName("decreaseRect", decreaseButton) as Rectangle;
             if (rectangle == null)
             {
-                Task.Run(() => Logger.LogError($"rectangle doesn't exist: {decreaseButton.Name}"));
+                string t = decreaseButton.Name;
+                Task.Run(() => Logger.LogError($"rectangle doesn't exist: {t}"));
                 return false;
             }
             return true;

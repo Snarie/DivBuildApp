@@ -24,9 +24,9 @@ namespace DivBuildApp.BonusControl
             //StatValueLabelControl.ValueSet += HandleValueSet;
             GearHandler.GearSet += HandleGearSet;
             GearHandler.GearAttributeSet += HandleGearAttributeSet;
-            //WeaponHandler.WeaponSet += HandleWeaponSet;
+            WeaponHandler.WeaponSet += HandleWeaponSet;
             WeaponHandler.WeaponAttributeSet += HandleWeaponAttributeSet;
-            WeaponHandler.EquippedWeaponSet += HandleWeaponAttributeSet;
+            WeaponHandler.EquippedWeaponSet += HandleEquippedWeaponSet;
             SHDWatch.WatchSet += HandleWatchSet;
             ItemArmorControl.ItemArmorSet += HandleItemArmorSet;
         }
@@ -45,8 +45,17 @@ namespace DivBuildApp.BonusControl
         {
             await CalculateStatAttributes();
         }
+        private static async void HandleWeaponSet(object sender, WeaponEventArgs e)
+        {
+            await CalculateWeaponDefaultBonuses();
+        }
         private static async void HandleWeaponAttributeSet(object sender, EventArgs e)
         {
+            await CalculateWeaponAttributes();
+        }
+        private static async void HandleEquippedWeaponSet(object sender, EventArgs e)
+        {
+            await CalculateWeaponDefaultBonuses();
             await CalculateWeaponAttributes();
         }
         private static async void HandleWatchSet(object sender, EventArgs e)
@@ -64,11 +73,24 @@ namespace DivBuildApp.BonusControl
         private static readonly List<BonusSource> statAttributeBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> weaponAttributeBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> watchBonuses = new List<BonusSource>();
+        private static readonly List<BonusSource> weaponDefaultBonuses = new List<BonusSource>();
 
         public static List<BonusSource> activeBonusSources = new List<BonusSource>();
         public static Dictionary<BonusType, double> activeBonuses = new Dictionary<BonusType, double>();
 
 
+
+        private static readonly SynchronizedTaskRunner WeaponDefaultTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
+        private static async Task CalculateWeaponDefaultBonuses()
+        {
+            await WeaponDefaultTaskRunner.ExecuteAsync(async () =>
+            {
+                weaponDefaultBonuses.Clear();
+                Weapon weapon = WeaponHandler.GetEquippedWeapon();
+                weaponDefaultBonuses.Add(new BonusSource("Weapon Base Headshot", WeaponHandler.GetWeaponHeadshotDefault(weapon)));
+                await CalculateBonuses();
+            });
+        }
 
         private static readonly SynchronizedTaskRunner BrandBonusesTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
         private static async Task CalculateBrandBonuses()
@@ -200,7 +222,6 @@ namespace DivBuildApp.BonusControl
         }
 
         private static readonly SemaphoreSlim CalculateSemaphore = new SemaphoreSlim(1);
-
         private static async Task CalculateBonuses()
         {
             await CalculateSemaphore.WaitAsync();
@@ -220,6 +241,11 @@ namespace DivBuildApp.BonusControl
                     activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
                 }
                 foreach(BonusSource bonusSource in weaponAttributeBonuses)
+                {
+                    activeBonusSources.Add(bonusSource);
+                    activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
+                }
+                foreach(BonusSource bonusSource in weaponDefaultBonuses)
                 {
                     activeBonusSources.Add(bonusSource);
                     activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;

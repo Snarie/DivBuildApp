@@ -29,8 +29,8 @@ namespace DivBuildApp
                 e.Grid.Damage.Content = wsf.Damage;
                 e.Grid.RPM.Content = wsf.RPM;
                 e.Grid.MagazineSize.Content = wsf.MagazineSize;
+                WeaponSet?.Invoke(null, e);
             }
-            WeaponSet?.Invoke(null, e);
         }
         private static void OnWeaponAttributeSet()
         {
@@ -40,15 +40,40 @@ namespace DivBuildApp
         {
             EquippedWeaponSet?.Invoke(null, EventArgs.Empty);
         }
-
         private static void HandleWeaponValueSet(object sender,  WeaponEventArgs e)
         {
             SetWeaponStatAttributes(e);
         }
 
+        private static readonly Dictionary<string, double> weaponVarientHeadshot = new Dictionary<string, double>
+        {
+            {"MG5", 85.0 },
+            {"SPAS-12", 25.0},
+            {"Vector", 50.0 }
+        };
+        private static readonly Dictionary<WeaponType, double> weaponTypeHeadshot = new Dictionary<WeaponType, double>
+        {
+            {WeaponType.AR, 55.0 },
+            {WeaponType.LMG, 65.0 },
+            {WeaponType.MMR, 0.0 },
+            {WeaponType.Pistol, 100.0 },
+            {WeaponType.Rifle, 60.0 },
+            {WeaponType.Shotgun, 45.0 },
+            {WeaponType.SMG, 50 }
+        };
+
         public static WeaponSlot equippedWeaponSlot;
         public static Dictionary<WeaponSlot, Weapon> equippedWeapons = new Dictionary<WeaponSlot, Weapon>();
 
+
+        public static Bonus GetWeaponHeadshotDefault(Weapon weapon)
+        {
+            if (weaponVarientHeadshot.ContainsKey(weapon.Varient))
+            {
+                return new Bonus(BonusType.Headshot_Damage, weaponVarientHeadshot[weapon.Varient]);
+            }
+            return new Bonus(BonusType.Headshot_Damage, weaponTypeHeadshot[weapon.Type]);
+        }
         private static Weapon CreateWeapon(WeaponEventArgs e)
         {
             if (e.Grid.Box.SelectedItem is WeaponListFormat wlf)

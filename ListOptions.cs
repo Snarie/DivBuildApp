@@ -13,6 +13,7 @@ using DivBuildApp.BonusControl;
 using DivBuildApp.Data.CsvFormats;
 //using DivBuildApp.Classes;
 using DivBuildApp.Data.Tables;
+using System.Windows;
 
 namespace DivBuildApp
 {
@@ -80,6 +81,7 @@ namespace DivBuildApp
                     SetWeaponSource(e, 0, attributes.Core);
                     SetWeaponSource(e, 1, attributes.Main);
                     SetWeaponSource(e, 2, attributes.Side);
+                    SetWeaponAttributesSelectedIndex(e);
                 }
             }
         }
@@ -91,6 +93,46 @@ namespace DivBuildApp
             List<BonusDisplay> list = GetBonusOptionsList(itemAttribute);
             statBox.ItemsSource = list;
 
+        }
+        private static void SetWeaponSelectedIndex(WeaponEventArgs e)
+        {
+            ComboBox box = e.Grid.Box;
+
+            if(box.Items.Count > 0)
+            {
+                box.SelectedIndex = 0;
+                if (box.Items.Count == 1)
+                {
+                    box.IsEnabled = false;
+                }
+                else
+                {
+                    box.IsEnabled = true;
+
+                }
+            }
+        }
+        private static void SetWeaponAttributesSelectedIndex(WeaponEventArgs e)
+        {
+            foreach(ComboBox bonusBox in e.Grid.StatBoxes)
+            {
+                if(bonusBox.Items.Count > 0)
+                {
+                    if(bonusBox.Items.Count == 1)
+                    {
+                        bonusBox.SelectedIndex = 0;
+                        bonusBox.IsEnabled = false;
+                    }
+                    else
+                    {
+                        bonusBox.IsEnabled= true;
+                    }
+                }
+                else
+                {
+                    bonusBox.IsEnabled = false;
+                }
+            }
         }
         private static void SetBoxSelectedIndex(GridEventArgs e, int oldIndex, int oldItemCount)
         {
@@ -226,6 +268,7 @@ namespace DivBuildApp
                 {
                     e.Grid.Box.Items.Add(weapon);
                 }
+                SetWeaponSelectedIndex(e);
             }
         }
     }
