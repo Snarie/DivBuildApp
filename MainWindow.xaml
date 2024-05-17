@@ -57,7 +57,7 @@
                 <Label x:Name="PrimaryWeaponArmor" Style="{StaticResource ItemArmorStyle}" Grid.Column="2"/>
 
                 <ComboBox x:Name="PrimaryWeaponBox"       Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Style="{StaticResource ComboBoxWeaponStyle}" SelectionChanged="WeaponBox_SelectionChanged"/>
-                <ComboBox x:Name="PrimaryWeaponExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0"/>
+                <ComboBox x:Name="PrimaryWeaponExpertiece" Grid.Row="0" Grid.Column="2" Style="{StaticResource ComboBoxExpertieceStyle}" SelectedIndex="0" SelectionChanged="WeaponExpertiece_SelectionChanged"/>
                 <ComboBox x:Name="PrimaryWeaponType" Grid.Row="0" Grid.Column="1"  SelectedIndex="0" SelectionChanged="WeaponType_SelectionChanged" />
                 
                 <ComboBox x:Name="PrimaryWeaponOpticalRail" Grid.Column="1" Grid.Row="1" Style="{StaticResource ComboBoxBonusStyle}"/>

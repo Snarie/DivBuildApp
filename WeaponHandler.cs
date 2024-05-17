@@ -20,6 +20,7 @@ namespace DivBuildApp
         }
         public static event EventHandler<WeaponEventArgs> WeaponSet;
         public static event EventHandler WeaponAttributeSet;
+        public static event EventHandler WeaponExpertieceSet;
         public static event EventHandler EquippedWeaponSet;
         private static void OnWeaponSet(WeaponEventArgs e)
         {
@@ -35,6 +36,10 @@ namespace DivBuildApp
         private static void OnWeaponAttributeSet()
         {
             WeaponAttributeSet?.Invoke(null, EventArgs.Empty);
+        }
+        private static void OnWeaponExpertieceSet()
+        {
+            WeaponExpertieceSet?.Invoke(null, EventArgs.Empty);
         }
         private static void OnEquippedWeaponSet()
         {
@@ -78,7 +83,7 @@ namespace DivBuildApp
         {
             if (e.Grid.Box.SelectedItem is WeaponListFormat wlf)
             {
-                return new Weapon(wlf.Name, wlf.Varient, wlf.Type, wlf.Rarity, new Bonus[] { }, new WeaponMod[] { }, "");
+                return new Weapon(wlf.Name, wlf.Varient, wlf.Type, wlf.Rarity, new Bonus[] { }, new WeaponMod[] { }, "", 0);
             }
             return null;
         }
@@ -91,8 +96,13 @@ namespace DivBuildApp
         {
             return equippedWeapons[equippedWeaponSlot];
         }
-
-
+        
+        public static void SetWeaponExpertiece(WeaponEventArgs e)
+        {
+            ComboBox expertieceBox = e.Grid.Expertiece;
+            equippedWeapons[e.Slot].Expertiece = expertieceBox.SelectedIndex;
+            OnWeaponExpertieceSet();
+        }
         public static void SetWeaponStatAttributes(WeaponEventArgs e)
         {
             ComboBox[] statBoxes = e.Grid.StatBoxes;

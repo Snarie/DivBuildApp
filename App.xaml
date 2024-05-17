@@ -375,7 +375,7 @@
             <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Margin" Value="50,9,90,0"/>
+            <Setter Property="Margin" Value="0,9,30,0"/>
             <Setter Property="Padding" Value="3,1,3,1"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Foreground" Value="Lime"/>

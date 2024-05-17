@@ -11,6 +11,7 @@ using DivBuildApp.BonusControl;
 using DivBuildApp.Data.Tables;
 using DivBuildApp.Data.CsvFormats;
 using System.Text;
+using System.Reflection;
 //using DivBuildApp.Classes;
 //using static DivBuildApp.ItemHandler;
 //using static DivBuildApp.BonusHandler;
@@ -138,6 +139,9 @@ namespace DivBuildApp
                 HolsterExpertiece.Items.Add(i);
                 KneepadsExpertiece.Items.Add(i);
                 GlobalExpertiece.Items.Add(i);
+                PrimaryWeaponExpertiece.Items.Add(i);
+                SecondaryWeaponExpertiece.Items.Add(i);
+                SideArmExpertiece.Items.Add(i);
             }
         }
         private void InitializeWeaponTypeBox()
@@ -235,6 +239,18 @@ namespace DivBuildApp
                 GlovesExpertiece.SelectedIndex = comboBox.SelectedIndex;
                 HolsterExpertiece.SelectedIndex = comboBox.SelectedIndex;
                 KneepadsExpertiece.SelectedIndex = comboBox.SelectedIndex;
+                PrimaryWeaponExpertiece.SelectedIndex = comboBox.SelectedIndex;
+                SecondaryWeaponExpertiece.SelectedIndex = comboBox.SelectedIndex;
+                SideArmExpertiece.SelectedIndex = comboBox.SelectedIndex;
+            }
+        }
+        private void WeaponExpertiece_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Initializing) return;
+            if(sender is ComboBox comboBox)
+            {
+                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox), -1);
+                WeaponHandler.SetWeaponExpertiece(we);
             }
         }
         private void ExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -359,5 +375,7 @@ namespace DivBuildApp
                 }
             }
         }
+
+        
     }
 }

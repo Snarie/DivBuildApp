@@ -35,8 +35,9 @@ namespace DivBuildApp
         public WeaponMod[] WeaponMods { get; set; }
         public WeaponStatsFormat WeaponStats { get; set; }
         public string Talent { get; set; }
+        public int Expertiece { get; set; }
 
-        public Weapon(string name, string varient, WeaponType type, string rarity, Bonus[] statAttributes, WeaponMod[] weaponMods, string talent)
+        public Weapon(string name, string varient, WeaponType type, string rarity, Bonus[] statAttributes, WeaponMod[] weaponMods, string talent, int expertiece)
         {
             Name = name;
             Varient = varient;
@@ -45,6 +46,7 @@ namespace DivBuildApp
             StatAttributes = statAttributes;
             WeaponMods = weaponMods;
             Talent = talent;
+            Expertiece = expertiece;
         }
     }
 

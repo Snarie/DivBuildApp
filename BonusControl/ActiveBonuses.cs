@@ -2,6 +2,7 @@
 using DivBuildApp.UI;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
@@ -26,6 +27,7 @@ namespace DivBuildApp.BonusControl
             GearHandler.GearAttributeSet += HandleGearAttributeSet;
             WeaponHandler.WeaponSet += HandleWeaponSet;
             WeaponHandler.WeaponAttributeSet += HandleWeaponAttributeSet;
+            WeaponHandler.WeaponExpertieceSet += HandleWeaponExpertieceSet;
             WeaponHandler.EquippedWeaponSet += HandleEquippedWeaponSet;
             SHDWatch.WatchSet += HandleWatchSet;
             ItemArmorControl.ItemArmorSet += HandleItemArmorSet;
@@ -52,6 +54,10 @@ namespace DivBuildApp.BonusControl
         private static async void HandleWeaponAttributeSet(object sender, EventArgs e)
         {
             await CalculateWeaponAttributes();
+        }
+        private static async void HandleWeaponExpertieceSet(object sender, EventArgs e)
+        {
+            await CalculateExpertieceBonuses();
         }
         private static async void HandleEquippedWeaponSet(object sender, EventArgs e)
         {
@@ -173,6 +179,7 @@ namespace DivBuildApp.BonusControl
             {
                 expertieceBonuses.Clear();
                 expertieceBonuses.Add(new BonusSource("Gear Expertiecem", new Bonus(BonusType.Armor, ItemArmorControl.GetExpertieceArmorValue())));
+                expertieceBonuses.Add(new BonusSource("Weapon Expertiece", new Bonus(BonusType.Weapon_Damage, WeaponHandler.GetEquippedWeapon().Expertiece)));
                 await CalculateBonuses();
             });
         }
