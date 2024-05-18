@@ -50,14 +50,5 @@ namespace DivBuildApp
         }
     }
 
-    internal class WeaponMod
-    {
-        public string Name { get; set; }
-        public Bonus[] Bonuses { get; set; }
-        public WeaponMod(string name, Bonus[] bonuses)
-        {
-            Name = name;
-            Bonuses = bonuses;
-        }
-    }
+    
 }

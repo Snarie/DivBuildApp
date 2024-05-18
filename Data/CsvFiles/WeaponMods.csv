@@ -1,4 +1,4 @@
-﻿Name;Slot;Type;attribute
+﻿name;slot;type;attributes
 Streamlined Iron Sights;Optics Rail;Iron Sight;Reload_Speed=10.0
 Weighted Iron Sights;Optics Rail;Iron Sight;Stability=10.0
 Open Iron Sights;Optics Rail;Iron Sight;Accuracy=10.0
