@@ -86,7 +86,7 @@
     <Compile Include="Classes\WeaponGridContent.cs" />
     <Compile Include="Data\CsvFormats\WeaponAttributesFormat.cs" />
     <Compile Include="Data\CsvFormats\WeaponListFormat.cs" />
-    <Compile Include="Data\CsvFormats\WeaponModFormat.cs" />
+    <Compile Include="Data\CsvFormats\WeaponMod.cs" />
     <Compile Include="Data\CsvFormats\WeaponStatsFormat.cs" />
     <Compile Include="Data\CsvTypeConverters\BonusArrayConverter.cs" />
     <Compile Include="Data\Tables\BonusCaps.cs" />

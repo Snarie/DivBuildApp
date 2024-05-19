@@ -7,29 +7,18 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp.Data.Tables
 {
-    internal class WeaponMod
-    {
-        public string Name { get; set; }
-        public string Slot { get; set; }
-        public string Type { get; set; }
-        public Bonus[] Bonuses { get; set; }
-
-        public WeaponMod(string name, string slot, string type, Bonus[] bonuses)
-        {
-            Name = name;
-            Slot = slot;
-            Type = type;
-            Bonuses = bonuses;
-        }
-    }
     internal static class WeaponMods
     {
-        public static List<WeaponModFormat> mods;
+        public static List<WeaponMod> mods;
         public static void Initialize()
         {
             mods = CsvReader.WeaponMods();
+        }
 
-            Console.WriteLine(mods[400]);
+        public static List<WeaponMod> GetFilteredMods(string name)
+        {
+            string[] groups = name.Split('/');
+            return mods.Where(m => groups.Contains(m.Type)).ToList();
         }
     }
 }

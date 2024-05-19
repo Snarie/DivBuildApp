@@ -170,7 +170,7 @@ namespace DivBuildApp
         }
 
 
-        public sealed class WeaponModMapper : Mapper<WeaponModFormat>
+        public sealed class WeaponModMapper : Mapper<WeaponMod>
         {
             public WeaponModMapper()
             {
@@ -186,7 +186,7 @@ namespace DivBuildApp
             }
         }
 
-        public static List<WeaponModFormat> WeaponMods()
+        public static List<WeaponMod> WeaponMods()
         {
             string filePath = Path.Combine(CsvDirectory(), "WeaponMods.csv");
             return ReadCsvFileMapped(filePath, new WeaponModMapper());

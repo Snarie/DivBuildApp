@@ -61,6 +61,15 @@ namespace DivBuildApp
             statBox.ItemsSource = GetBonusOptionsList(itemAttribute);
             SetBoxSelectedIndex(e, bonusIndex, bonusItemCount);
         }
+        public static void SetOptionsWeaponModBoxes(WeaponEventArgs e)
+        {
+            ComboBox box = e.Grid.Box;
+            if(box.SelectedItem is WeaponListFormat wlf)
+            {
+                //
+            }
+        }
+        
         public static void SetOptionsWeaponStatBoxes(WeaponEventArgs e)
         {
             ComboBox[] statBoxes = e.Grid.StatBoxes;

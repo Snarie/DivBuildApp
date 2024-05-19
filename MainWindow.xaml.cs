@@ -12,6 +12,8 @@ using DivBuildApp.Data.Tables;
 using DivBuildApp.Data.CsvFormats;
 using System.Text;
 using System.Reflection;
+using System.Linq;
+using System.Collections.Generic;
 //using DivBuildApp.Classes;
 //using static DivBuildApp.ItemHandler;
 //using static DivBuildApp.BonusHandler;

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace DivBuildApp
 {
-    internal class WeaponModFormat
+    internal class WeaponMod
     {
         public string Name { get; set; }
         public string Slot { get; set; }
         public string Type { get; set; }
         public Bonus[] Attributes { get; set; }
 
-        public WeaponModFormat() { }
-        public WeaponModFormat(string name, string slot, string type, Bonus[] attributes) 
+        public WeaponMod() { }
+        public WeaponMod(string name, string slot, string type, Bonus[] attributes) 
         { 
             Name = name;
             Slot = slot;
