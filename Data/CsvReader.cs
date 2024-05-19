@@ -182,16 +182,17 @@ namespace DivBuildApp
 
             private Bonus[] ConvertToBonusArray(string[] values)
             {
-                return string.Join("+", values).Split('+').Select(b => new Bonus(b)).ToArray();
+                return string.Join("+", values).Split('+').Where(v => !string.IsNullOrWhiteSpace(v)).Select(b =>  new Bonus(b)).ToArray();
             }
         }
 
         public static List<WeaponModFormat> WeaponMods()
         {
             string filePath = Path.Combine(CsvDirectory(), "WeaponMods.csv");
-            var mapper = new WeaponModMapper();
-            List<WeaponModFormat> list = ReadCsvFileMapped(filePath, mapper);
-            return list;
+            return ReadCsvFileMapped(filePath, new WeaponModMapper());
+            //var mapper = new WeaponModMapper();
+            //List<WeaponModFormat> list = ReadCsvFileMapped(filePath, mapper);
+            //return list;
             //return ReadCsvFile<WeaponModFormat>(filePath, Config());
             //return ReadCsvFile(filePath, Config(), new WeaponModMap());
         }

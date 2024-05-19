@@ -178,6 +178,8 @@ namespace DivBuildApp
         {
             if (string.IsNullOrEmpty(format))
             {
+                _ = Logger.LogWarning("Creating Bonus from empty string");
+                BonusType = BonusType.NoBonus;
                 return;
             }
             string[] parts = format.Split('=');
@@ -209,11 +211,13 @@ namespace DivBuildApp
         {
             get
             {
-                if (DisplayType == "percentage")
+                return (Value > 0 ? "+" : "") + BonusValue + (DisplayType == "percentage" ? "%" : "");
+                //return "" + DisplayType == "percentage" ? "%" : "";
+                /*if (DisplayType == "percentage"
                 {
                     return "+" + BonusValue + "%";
                 }
-                return "+" + BonusValue;
+                return "+" + BonusValue;*/
             }
         }
     }
