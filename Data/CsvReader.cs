@@ -190,12 +190,24 @@ namespace DivBuildApp
         {
             string filePath = Path.Combine(CsvDirectory(), "WeaponMods.csv");
             return ReadCsvFileMapped(filePath, new WeaponModMapper());
-            //var mapper = new WeaponModMapper();
-            //List<WeaponModFormat> list = ReadCsvFileMapped(filePath, mapper);
-            //return list;
-            //return ReadCsvFile<WeaponModFormat>(filePath, Config());
-            //return ReadCsvFile(filePath, Config(), new WeaponModMap());
         }
+        public sealed class WeaponModSlotMapper : Mapper<WeaponModSlot>
+        {
+            public WeaponModSlotMapper()
+            {
+                Map(m => m.Name, "name");
+                Map(m => m.OpticalRail, "opticalRail");
+                Map(m => m.Magazine, "magazine");
+                Map(m => m.Underbarrel, "underbarrel");
+                Map(m => m.Muzzle, "muzzle");
+            }
+        }
+        public static List<WeaponModSlot> WeaponModSlots()
+        {
+            string filePath = Path.Combine(CsvDirectory(), "WeaponModSlots.csv");
+            return ReadCsvFileMapped(filePath, new WeaponModSlotMapper());
+        }
+
         public static List<WeaponListFormat> WeaponList()
         {
             string filePath = Path.Combine(CsvDirectory(), "WeaponList.csv");

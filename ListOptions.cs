@@ -28,6 +28,7 @@ namespace DivBuildApp
         private static void HandleWeaponSet(object sender, WeaponEventArgs e)
         {
             SetOptionsWeaponStatBoxes(e);
+            SetOptionsWeaponModBoxes(e);
         }
         private static void HandleGearSet(object sender, GridEventArgs e)
         {
@@ -66,7 +67,10 @@ namespace DivBuildApp
             ComboBox box = e.Grid.Box;
             if(box.SelectedItem is WeaponListFormat wlf)
             {
-                //
+                e.Grid.OpticalRail.ItemsSource = wlf.ModSlot().OpticalRail;
+                e.Grid.Magazine.ItemsSource = wlf.ModSlot().Magazine;
+                e.Grid.Underbarrel.ItemsSource = wlf.ModSlot().Underbarrel;
+                e.Grid.Muzzle.ItemsSource = wlf.ModSlot().Muzzle;
             }
         }
         

@@ -87,8 +87,8 @@
     <Compile Include="Data\CsvFormats\WeaponAttributesFormat.cs" />
     <Compile Include="Data\CsvFormats\WeaponListFormat.cs" />
     <Compile Include="Data\CsvFormats\WeaponMod.cs" />
+    <Compile Include="Data\CsvFormats\WeaponModSlot.cs" />
     <Compile Include="Data\CsvFormats\WeaponStatsFormat.cs" />
-    <Compile Include="Data\CsvTypeConverters\BonusArrayConverter.cs" />
     <Compile Include="Data\Tables\BonusCaps.cs" />
     <Compile Include="BonusControl\BonusDisplayHandler.cs" />
     <Compile Include="Data\Tables\BrandSets.cs" />
@@ -99,6 +99,7 @@
     <Compile Include="Data\Tables\WeaponAttributes.cs" />
     <Compile Include="Data\Tables\WeaponList.cs" />
     <Compile Include="Data\Tables\WeaponMods.cs" />
+    <Compile Include="Data\Tables\WeaponModSlots.cs" />
     <Compile Include="Data\Tables\WeaponStats.cs" />
     <Compile Include="GridEventArgs.cs" />
     <Compile Include="Logger.cs" />

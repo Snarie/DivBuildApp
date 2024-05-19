@@ -31,5 +31,9 @@ namespace DivBuildApp.Data.CsvFormats
         {
             return WeaponStats.Stats.FirstOrDefault(a => a.Name == Name);
         }
+        public WeaponModSlot ModSlot()
+        {
+            return WeaponModSlots.All.FirstOrDefault(a => a.Name == Name);
+        }
     }
 }
