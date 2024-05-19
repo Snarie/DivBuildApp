@@ -176,6 +176,10 @@ namespace DivBuildApp
         }
         public Bonus(string format)
         {
+            if (string.IsNullOrEmpty(format))
+            {
+                return;
+            }
             string[] parts = format.Split('=');
             BonusType = Enum.TryParse(parts[0], true, out BonusType b) ? b : BonusType.NoBonus;
             Value = double.TryParse(parts[1], out double v) ? v : 0;

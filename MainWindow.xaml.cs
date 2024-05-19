@@ -114,6 +114,7 @@ namespace DivBuildApp
             WeaponStats.Initialize();
             //attributes requires stats and list
             WeaponAttributes.Initialize();
+            WeaponMods.Initialize();
 
 
             InitializeWeaponTypeBox();

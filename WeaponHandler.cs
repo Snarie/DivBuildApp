@@ -83,7 +83,7 @@ namespace DivBuildApp
         {
             if (e.Grid.Box.SelectedItem is WeaponListFormat wlf)
             {
-                return new Weapon(wlf.Name, wlf.Varient, wlf.Type, wlf.Rarity, new Bonus[] { }, new WeaponMod[] { }, "", 0);
+                return new Weapon(wlf.Name, wlf.Varient, wlf.Type, wlf.Rarity, new Bonus[] { }, new WeaponModFormat[] { }, "", 0);
             }
             return null;
         }
