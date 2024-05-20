@@ -67,10 +67,10 @@ namespace DivBuildApp
             ComboBox box = e.Grid.Box;
             if(box.SelectedItem is WeaponListFormat wlf)
             {
-                e.Grid.OpticalRail.ItemsSource = WeaponMods.GetFilteredMods(wlf.ModSlot().OpticalRail);
-                e.Grid.Magazine.ItemsSource = WeaponMods.GetFilteredMods(wlf.ModSlot().Magazine);
-                e.Grid.Underbarrel.ItemsSource = WeaponMods.GetFilteredMods(wlf.ModSlot().Underbarrel);
-                e.Grid.Muzzle.ItemsSource = WeaponMods.GetFilteredMods(wlf.ModSlot().Muzzle);
+                e.Grid.OpticalRail.ItemsSource = WeaponMods.GetModList(wlf.ModSlot().OpticalRail);
+                e.Grid.Magazine.ItemsSource = WeaponMods.GetModList(wlf.ModSlot().Magazine);
+                e.Grid.Underbarrel.ItemsSource = WeaponMods.GetModList(wlf.ModSlot().Underbarrel);
+                e.Grid.Muzzle.ItemsSource = WeaponMods.GetModList(wlf.ModSlot().Muzzle);
                 SetComboBoxSelectedIndex(new ComboBox[] { e.Grid.OpticalRail, e.Grid.Magazine, e.Grid.Underbarrel, e.Grid.Muzzle });
             }
         }

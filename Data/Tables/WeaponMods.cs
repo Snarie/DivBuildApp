@@ -20,5 +20,11 @@ namespace DivBuildApp.Data.Tables
             string[] groups = name.Split('/');
             return mods.Where(m => groups.Contains(m.Type)).ToList();
         }
+        public static List<WeaponMod> GetModList(string name)
+        {
+            List<WeaponMod> weaponMods = GetFilteredMods(name);
+            if (weaponMods.Count > 1) weaponMods.Insert(0, new WeaponMod() { Name = "Unselected" });
+            return weaponMods;
+        }
     }
 }
