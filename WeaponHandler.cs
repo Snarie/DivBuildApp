@@ -28,9 +28,6 @@ namespace DivBuildApp
             if(e.Grid.Box.SelectedItem is WeaponListFormat wlf)
             {
                 WeaponStatsFormat wsf = wlf.Stats();
-                e.Grid.Damage.Content = wsf.Damage;
-                e.Grid.RPM.Content = wsf.RPM;
-                e.Grid.MagazineSize.Content = wsf.MagazineSize;
                 WeaponSet?.Invoke(null, e);
             }
         }

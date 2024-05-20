@@ -47,8 +47,8 @@ namespace DivBuildApp.UI
                         grid.Damage.Content = Math.Floor(wsf.Damage * dmgMult);
                         double rpmMult = (100 + ActiveBonuses.activeBonuses[BonusType.Rate_of_Fire]) / 100;
                         grid.RPM.Content = Math.Floor(wsf.RPM * rpmMult);
-                        double magMult = (100 + ActiveBonuses.activeBonuses[BonusType.Magazine_Size]) / 100;
-                        grid.MagazineSize.Content = Math.Floor(wsf.MagazineSize * magMult);
+                        double magMult = (100 +  ActiveBonuses.activeBonuses[BonusType.Magazine_Size]) / 100;
+                        grid.MagazineSize.Content = Math.Floor((wsf.MagazineSize + ActiveBonuses.activeBonuses[BonusType.Extra_Rounds]) * magMult);
                     }
                 }
             });
