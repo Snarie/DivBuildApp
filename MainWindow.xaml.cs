@@ -127,7 +127,7 @@ namespace DivBuildApp
         }
         private void InitializeOptionsWeaponSlot()
         {
-            foreach(WeaponSlot slot in Enum.GetValues(typeof(WeaponSlot)))
+            foreach (WeaponSlot slot in Enum.GetValues(typeof(WeaponSlot)))
             {
                 EquippedWeaponSlot.Items.Add(slot);
             }
@@ -181,6 +181,8 @@ namespace DivBuildApp
                 ListOptions.OptionsWeaponBox(we);
             }
         }
+
+
         private void WeaponBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
@@ -189,9 +191,11 @@ namespace DivBuildApp
                 WeaponHandler.SetEquippedWeaponListAsync(we);
             }
         }
+
+
         private void WeaponStatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e, int index)
         {
-            if(sender is Slider slider)
+            if (sender is Slider slider)
             {
                 WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(slider), index);
                 StatValueLabelControl.SetWeaponValueAsync(we);
@@ -213,6 +217,33 @@ namespace DivBuildApp
             WeaponStatSlider_ValueChanged(sender, e, 2);
         }
 
+
+        private void WeaponModBox_SelectionChanged(object sender, SelectionChangedEventArgs e, int index)
+        {
+            if (sender is ComboBox comboBox)
+            {
+                WeaponEventArgs we = new WeaponEventArgs(GetGridBaseNameFromChild(comboBox), index);
+                WeaponHandler.SetWeaponMods(we);
+            }
+        }
+        private void WeaponMod1Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WeaponModBox_SelectionChanged(sender, e, 0);
+        }
+        private void WeaponMod2Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WeaponModBox_SelectionChanged(sender, e, 1);
+        }
+        private void WeaponMod3Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WeaponModBox_SelectionChanged(sender, e, 2);
+        }
+        private void WeaponMod4Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            WeaponModBox_SelectionChanged(sender, e, 3);
+        }
+
+
         private void WeaponStatBox_SelectionChanged(object sender, SelectionChangedEventArgs e, int index)
         {
             if(sender is ComboBox comboBox)
@@ -233,6 +264,8 @@ namespace DivBuildApp
         {
             WeaponStatBox_SelectionChanged(sender, e, 2);
         }
+
+
         private void GlobalExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
@@ -248,6 +281,8 @@ namespace DivBuildApp
                 SideArmExpertiece.SelectedIndex = comboBox.SelectedIndex;
             }
         }
+
+
         private void WeaponExpertiece_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Initializing) return;
@@ -257,6 +292,8 @@ namespace DivBuildApp
                 WeaponHandler.SetWeaponExpertiece(we);
             }
         }
+
+
         private void ExpertieceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
@@ -295,6 +332,7 @@ namespace DivBuildApp
             if (Initializing) return;
             StatSlider_ValueChanged(sender, e, 3);
         }
+
 
         private void StatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e, int index)
         {

@@ -23,7 +23,7 @@ namespace DivBuildApp.Data.Tables
         public static List<WeaponMod> GetModList(string name)
         {
             List<WeaponMod> weaponMods = GetFilteredMods(name);
-            if (weaponMods.Count > 1) weaponMods.Insert(0, new WeaponMod() { Name = "Unselected" });
+            if (weaponMods.Count > 1) weaponMods.Insert(0, new WeaponMod() { Name = "Unselected" , Attributes = new Bonus[] { } });
             return weaponMods;
         }
     }
