@@ -67,12 +67,15 @@ namespace DivBuildApp
             ComboBox box = e.Grid.Box;
             if(box.SelectedItem is WeaponListFormat wlf)
             {
-                e.Grid.OpticalRail.ItemsSource = wlf.ModSlot().OpticalRail;
-                e.Grid.Magazine.ItemsSource = wlf.ModSlot().Magazine;
-                e.Grid.Underbarrel.ItemsSource = wlf.ModSlot().Underbarrel;
-                e.Grid.Muzzle.ItemsSource = wlf.ModSlot().Muzzle;
+                e.Grid.OpticalRail.ItemsSource = WeaponMods.GetFilteredMods(wlf.ModSlot().OpticalRail);
+                e.Grid.Magazine.ItemsSource = WeaponMods.GetFilteredMods(wlf.ModSlot().Magazine);
+                e.Grid.Underbarrel.ItemsSource = WeaponMods.GetFilteredMods(wlf.ModSlot().Underbarrel);
+                e.Grid.Muzzle.ItemsSource = WeaponMods.GetFilteredMods(wlf.ModSlot().Muzzle);
+                SetComboBoxSelectedIndex(new ComboBox[] { e.Grid.OpticalRail, e.Grid.Magazine, e.Grid.Underbarrel, e.Grid.Muzzle });
             }
         }
+        
+        
         
         public static void SetOptionsWeaponStatBoxes(WeaponEventArgs e)
         {
@@ -94,7 +97,7 @@ namespace DivBuildApp
                     SetWeaponSource(e, 0, attributes.Core);
                     SetWeaponSource(e, 1, attributes.Main);
                     SetWeaponSource(e, 2, attributes.Side);
-                    SetWeaponAttributesSelectedIndex(e);
+                    SetComboBoxSelectedIndex(statBoxes);
                 }
             }
         }
@@ -125,28 +128,32 @@ namespace DivBuildApp
                 }
             }
         }
-        private static void SetWeaponAttributesSelectedIndex(WeaponEventArgs e)
+
+        private static void SetComboBoxSelectedIndex(ComboBox[] comboBoxes)
         {
-            foreach(ComboBox bonusBox in e.Grid.StatBoxes)
+            foreach(ComboBox comboBox in comboBoxes)
             {
-                if(bonusBox.Items.Count > 0)
+                if (comboBox.Items.Count > 0)
                 {
-                    if(bonusBox.Items.Count == 1)
+                    if (comboBox.Items.Count == 1)
                     {
-                        bonusBox.SelectedIndex = 0;
-                        bonusBox.IsEnabled = false;
+                        comboBox.SelectedIndex = 0;
+                        comboBox.IsEnabled = false;
                     }
                     else
                     {
-                        bonusBox.IsEnabled= true;
+                        comboBox.SelectedIndex = 0;
+                        comboBox.IsEnabled = true;
                     }
                 }
                 else
                 {
-                    bonusBox.IsEnabled = false;
+                    comboBox.IsEnabled = false;
                 }
             }
         }
+        
+        
         private static void SetBoxSelectedIndex(GridEventArgs e, int oldIndex, int oldItemCount)
         {
             ComboBox bonusBox = e.Grid.StatBoxes[e.Index];

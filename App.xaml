@@ -101,6 +101,18 @@
                 </TextBlock.Text>
             </TextBlock>
         </DataTemplate>
+        
+        <DataTemplate x:Key="ComboBoxModTemplate">
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0}">
+                        <Binding Path="Name"/>
+                        <!--<Binding Path="Bonus.Value"/>-->
+                        <!--<Binding Path="IconType"/>-->
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
 
         <Thickness x:Key="ComboBox.Dropdown.Margin">0,0,0,0</Thickness>
 
@@ -422,6 +434,22 @@
             <Style.Resources>
                 <!-- Overides -->
                 <Thickness x:Key="ComboBox.Dropdown.Margin">90,0,0,0</Thickness>
+            </Style.Resources>
+        </Style>
+        
+        <Style TargetType="ComboBox" x:Key="ComboBoxModStyle">
+            <Setter Property="Template" Value="{StaticResource ComboBoxPreset}"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ComboBoxItemStyle}"/>
+            <Setter Property="ItemTemplate" Value="{StaticResource ComboBoxModTemplate}" />
+            <Setter Property="BorderThickness" Value="0,0,0,0" />
+            <Setter Property="Margin" Value="1,0,1,0"/>
+            <Setter Property="Padding" Value="3,1,3,13"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="Cornsilk" />
+            <Style.Resources>
+                <!-- Overides -->
+                <Thickness x:Key="ComboBox.Dropdown.Margin">0,0,0,0</Thickness>
             </Style.Resources>
         </Style>
 
