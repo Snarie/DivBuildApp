@@ -19,6 +19,7 @@ namespace DivBuildApp
             // Set
         }
         public static event EventHandler<WeaponEventArgs> WeaponSet;
+        public static event EventHandler WeaponModsSet;
         public static event EventHandler WeaponAttributeSet;
         public static event EventHandler WeaponExpertieceSet;
         public static event EventHandler EquippedWeaponSet;
@@ -32,6 +33,10 @@ namespace DivBuildApp
                 e.Grid.MagazineSize.Content = wsf.MagazineSize;
                 WeaponSet?.Invoke(null, e);
             }
+        }
+        private static void OnWeaponModsSet()
+        {
+            WeaponModsSet?.Invoke(null, EventArgs.Empty);
         }
         private static void OnWeaponAttributeSet()
         {
@@ -102,6 +107,25 @@ namespace DivBuildApp
             ComboBox expertieceBox = e.Grid.Expertiece;
             equippedWeapons[e.Slot].Expertiece = expertieceBox.SelectedIndex;
             OnWeaponExpertieceSet();
+        }
+
+        public static void SetWeaponMods(WeaponEventArgs e)
+        {
+            ComboBox[] modBoxes = new ComboBox[] { e.Grid.OpticalRail, e.Grid.Magazine, e.Grid.Underbarrel, e.Grid.Muzzle };
+            List<WeaponMod> mods = new List<WeaponMod>();
+            for (int i = 0; i < 4; i++)
+            {
+                if (modBoxes[i].SelectedItem is WeaponMod wm)
+                {
+                    mods.Add(wm);
+                }
+            }
+            if (equippedWeapons.ContainsKey(e.Slot))
+            {
+                equippedWeapons[e.Slot].WeaponMods = mods.ToArray();
+            }
+            OnWeaponModsSet();
+            
         }
         public static void SetWeaponStatAttributes(WeaponEventArgs e)
         {

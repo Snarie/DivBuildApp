@@ -26,6 +26,7 @@ namespace DivBuildApp.BonusControl
             GearHandler.GearSet += HandleGearSet;
             GearHandler.GearAttributeSet += HandleGearAttributeSet;
             WeaponHandler.WeaponSet += HandleWeaponSet;
+            WeaponHandler.WeaponModsSet += HandleWeaponModsSet;
             WeaponHandler.WeaponAttributeSet += HandleWeaponAttributeSet;
             WeaponHandler.WeaponExpertieceSet += HandleWeaponExpertieceSet;
             WeaponHandler.EquippedWeaponSet += HandleEquippedWeaponSet;
@@ -50,6 +51,10 @@ namespace DivBuildApp.BonusControl
         private static async void HandleWeaponSet(object sender, WeaponEventArgs e)
         {
             await CalculateWeaponDefaultBonuses();
+        }
+        private static async void HandleWeaponModsSet(object sender, EventArgs e)
+        {
+            await CalculateWeaponModsBonuses();
         }
         private static async void HandleWeaponAttributeSet(object sender, EventArgs e)
         {
@@ -77,6 +82,7 @@ namespace DivBuildApp.BonusControl
         private static readonly List<BonusSource> brandSetBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> expertieceBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> statAttributeBonuses = new List<BonusSource>();
+        private static readonly List<BonusSource> weaponModsBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> weaponAttributeBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> watchBonuses = new List<BonusSource>();
         private static readonly List<BonusSource> weaponDefaultBonuses = new List<BonusSource>();
@@ -150,6 +156,24 @@ namespace DivBuildApp.BonusControl
                         {
                             brandSetBonuses.Add(new BonusSource("NinjaBike Backpack", new Bonus(bonus.BonusType, bonus.Value)));
                         }
+                    }
+                }
+                await CalculateBonuses();
+            });
+        }
+
+        private static readonly SynchronizedTaskRunner WeaponModsTaskRunner = new SynchronizedTaskRunner(TimeSpan.FromSeconds(0.1));
+        private static async Task CalculateWeaponModsBonuses()
+        {
+            await WeaponModsTaskRunner.ExecuteAsync(async () =>
+            {
+                weaponModsBonuses.Clear();
+                Weapon weapon = WeaponHandler.GetEquippedWeapon();
+                foreach(WeaponMod weaponMod in weapon.WeaponMods)
+                {
+                    foreach(Bonus bonus in weaponMod.Attributes)
+                    {
+                        weaponModsBonuses.Add(new BonusSource(weapon.Name + "=>" + weaponMod.Name, bonus));
                     }
                 }
                 await CalculateBonuses();
@@ -254,6 +278,11 @@ namespace DivBuildApp.BonusControl
                     activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
                 }
                 foreach(BonusSource bonusSource in weaponAttributeBonuses)
+                {
+                    activeBonusSources.Add(bonusSource);
+                    activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
+                }
+                foreach(BonusSource bonusSource in weaponModsBonuses)
                 {
                     activeBonusSources.Add(bonusSource);
                     activeBonuses[bonusSource.Bonus.BonusType] += bonusSource.Bonus.BonusValue;
